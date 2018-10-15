@@ -1,14 +1,22 @@
 package grupo2.LD;
 
+import grupo2.LN.usuario;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
 public class BaseDeDatos {
-
+	
+	public BaseDeDatos() {
+		
+		//para inicializar la base de datos
+	}
+	
 	private static Connection connection = null;
 	private static Statement statement = null;
 	
@@ -62,15 +70,65 @@ public class BaseDeDatos {
 	 * Debe haberse inicializado la conexion correctamente.
 	 */
 	
+	
+	public boolean chequearYaEnTabla( Statement st, String nombre ) {
+		//SELECT
+			try {
+
+				String sentSQL = "select * from USUARIO";
+				System.out.println( sentSQL ); 
+				
+				ResultSet rs = st.executeQuery( sentSQL );
+				
+				if (rs.next()) {
+					rs.close();
+					return true;
+				}
+				return false;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
+		}
 	//TABLA USUARIO
 	public static void crearTablaBDUsuario() {
 		if (statement==null) return;
 		try {
-			statement.executeUpdate("create table if not exists USUARIO ( nombre string, contrasenya string)");
+			statement.executeUpdate("create table if not exists USUARIO ( nombre string, contrasenya string )");
+			System.out.println ("Tabla creada");
 		} catch (SQLException e) {
 			// Si hay excepcion es que la tabla ya existia (lo cual es correcto)
 			if (!e.getMessage().equals("table interaccion already exists"))
 				e.printStackTrace();  
 		}
 	}
-}
+
+	public static void inicializarValores() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+public static void insertarUsuario (Statement statement){
+		
+		
+	//	String nombre = usuario.getNombre();
+		
+	//	String contrasenya = usuario.getContrasenya();
+		
+
+		//final String sent = "insert into cliente values nombreusuario, nombre, ciudad, email, contra";
+		
+		try {
+			
+			statement.executeUpdate( "insert into USUARIO values ('Leire', '1234')");
+			statement.executeUpdate( "insert into USUARIO values ('Jon', '1234')");
+			statement.executeUpdate( "insert into USUARIO values ('Gorka', '1234')");
+			System.out.println ("Datos introducidos");
+
+			} 
+			catch (SQLException ex) {
+	        JOptionPane.showMessageDialog(null, "Error en el almacenamiento de datos");
+	    }
+			
+		}
+	}

@@ -40,7 +40,7 @@ public class usuario  implements Comparable<Object> {
 		//SELECT
 			try {
 
-				String sentSQL = "select * from USUARIO where (nombreUsuario = '" + nombre + "')";
+				String sentSQL = "select * from USUARIO where (nombre = '" + nombre + "')";
 				System.out.println( sentSQL ); 
 				
 				ResultSet rs = st.executeQuery( sentSQL );
