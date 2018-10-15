@@ -4,18 +4,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class usuario  implements Comparable<Object> {
+public class prenda  implements Comparable<Object> {
 
 	static int count = 0; 
 	int id;
 	private String nombre;
-	private String contrasenya;
+	private String color;
 	
-	public usuario(String nombre, String contrasenya){
+	public prenda(String nombre, String color){
 		
 		id = ++count; 
 		this.nombre = nombre;
-		this.contrasenya = contrasenya;
+		this.color = color;
 		
 	}
 
@@ -28,11 +28,11 @@ public class usuario  implements Comparable<Object> {
 	}
 	
 	public String getContrasenya() {
-		return contrasenya;
+		return color;
 	}
 
-	public void setContrasenya(String contrasenya) {
-		this.contrasenya = contrasenya;
+	public void setContrasenya(String color) {
+		this.color = color;
 	}
 	
 

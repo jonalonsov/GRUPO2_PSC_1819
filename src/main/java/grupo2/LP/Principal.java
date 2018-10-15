@@ -2,15 +2,17 @@ package grupo2.LP;
 
 
 
+import grupo2.LD.BaseDeDatos;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -21,28 +23,23 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import java.awt.Component;
-import java.awt.Point;
-
-import com.jgoodies.forms.factories.DefaultComponentFactory;
-
-
-public class ventanaPrincipal extends JFrame implements ActionListener {
+public class Principal extends JFrame implements ActionListener {
 
 	private JPanel PanelSuperior;
 	private JPanel PanelInferior;
 	private JPanel PanelIzquierda;
 	private JPanel PanelDerecha;
-	private JPanel panelRopa = new PanelRopa ();
+	private PanelRegistro panelRegis = new PanelRegistro ();
 	
 	
 	private JLabel textCont;
 	private JTextField Contraseña;
 	private JLabel textU;
 	private JTextField Usuario;
+	private JLabel textR;
 		
 	private JButton Aceptar;
-	private JButton BEntrar;
+	private JButton Registrar;
 	private JButton BMenu;
 	
 	private JTextArea M, I, A, R, M2, A2, R2, I2, O;
@@ -53,7 +50,7 @@ public class ventanaPrincipal extends JFrame implements ActionListener {
 	
 	//private Reloj reloj;
 	
-	public ventanaPrincipal(){
+	public Principal(){
 		
 		
 //getContentPane().setLayout(null);
@@ -68,7 +65,7 @@ public class ventanaPrincipal extends JFrame implements ActionListener {
 		textU = new JLabel();
 		textU.setText("Inserte el nombre de usuario \r\n");
 		textU.setFont(new Font("Century Gothic", Font.BOLD, 12));
-		textU.setBounds(94, 54, 250, 29);
+		textU.setBounds(94, 53, 250, 29);
 		textU.setOpaque(false);
 		
 						
@@ -83,57 +80,76 @@ public class ventanaPrincipal extends JFrame implements ActionListener {
 		textCont.setText("Inserte la contrasena \r\n");
 		textCont.setFont(new Font("Century Gothic", Font.BOLD, 12));
 		textCont.setBounds(94, 137, 231, 20);
-		
-		BEntrar = new JButton("Entrar"); //añadimos un boton
-		BEntrar.setFont(new Font("Century Gothic", Font.BOLD, 12));
-//		BEntrar.setBounds(324, 62, 300, 30);
-		BEntrar.addActionListener(this);
-		BEntrar.setActionCommand("Entrar");
-		BEntrar.setOpaque(false);
-		BEntrar.setContentAreaFilled(false);
-		BEntrar.setBorderPainted(false);
-		
+			
 		
 		
 		setTitle("Bienvenido a tu armario");
 		setLocationRelativeTo( null );  // Centra la ventana en la pantalla
 		setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
-		setBounds(250, 50, 880, 600); 
+		setBounds(250, 50, 450, 600); 
 		//PanelSuperior.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().setLayout(new BorderLayout());
 		
 		M = new JTextArea();
 		M.setText("M");
 		M.setForeground(new Color(0, 0, 0));
-		M.setFont(new Font("Century Gothic", Font.BOLD, 50));
+		M.setFont(new Font("Century Gothic", Font.BOLD, 30));
 		M.setEnabled(false);
 		M.setBackground(Color.GRAY);
+		
+		M2 = new JTextArea();
+		M2.setText("M");
+		M2.setForeground(new Color(0, 0, 0));
+		M2.setFont(new Font("Century Gothic", Font.BOLD, 30));
+		M2.setEnabled(false);
+		M2.setBackground(Color.GRAY);
 		
 		I = new JTextArea();
 		I.setText("I");
 		I.setForeground(new Color(0, 0, 0));
-		I.setFont(new Font("Century Gothic", Font.BOLD, 50));
+		I.setFont(new Font("Century Gothic", Font.BOLD, 30));
 		I.setEnabled(false);
 		I.setBackground(Color.GRAY);
+		
+		I2 = new JTextArea();
+		I2.setText("I");
+		I2.setForeground(new Color(0, 0, 0));
+		I2.setFont(new Font("Century Gothic", Font.BOLD, 30));
+		I2.setEnabled(false);
+		I2.setBackground(Color.GRAY);
 		
 		R = new JTextArea();
 		R.setText("R");
 		R.setForeground(new Color(0, 0, 0));
-		R.setFont(new Font("Century Gothic", Font.BOLD, 50));
+		R.setFont(new Font("Century Gothic", Font.BOLD, 30));
 		R.setEnabled(false);
 		R.setBackground(Color.GRAY);
+		
+		R2 = new JTextArea();
+		R2.setText("R");
+		R2.setForeground(new Color(0, 0, 0));
+		R2.setFont(new Font("Century Gothic", Font.BOLD, 30));
+		R2.setEnabled(false);
+		R2.setBackground(Color.GRAY);
 		
 		A = new JTextArea();
 		A.setText("A");
 		A.setForeground(new Color(0, 0, 0));
-		A.setFont(new Font("Century Gothic", Font.BOLD, 50));
+		A.setFont(new Font("Century Gothic", Font.BOLD, 30));
 		A.setEnabled(false);
 		A.setBackground(Color.GRAY);
+		
+		A2 = new JTextArea();
+		A2.setText("A");
+		A2.setForeground(new Color(0, 0, 0));
+		A2.setFont(new Font("Century Gothic", Font.BOLD, 30));
+		A2.setEnabled(false);
+		A2.setBackground(Color.GRAY);
 		
 		O = new JTextArea();
 		O.setText("O");
 		O.setForeground(new Color(0, 0, 0));
-		O.setFont(new Font("Century Gothic", Font.BOLD, 50));
+		O.setFont(new Font("Century Gothic", Font.BOLD, 30));
 		O.setEnabled(false);
 		O.setBackground(Color.GRAY);
 		
@@ -158,10 +174,10 @@ public class ventanaPrincipal extends JFrame implements ActionListener {
 				PanelSuperior.add(I);
 				PanelSuperior.add(A);
 				PanelSuperior.add(R);
-				PanelSuperior.add(M);
-				PanelSuperior.add(A);
-				PanelSuperior.add(R);
-				PanelSuperior.add(I);
+				PanelSuperior.add(M2);
+				PanelSuperior.add(A2);
+				PanelSuperior.add(R2);
+				PanelSuperior.add(I2);
 				PanelSuperior.add(O);
 				
 				
@@ -185,20 +201,19 @@ public class ventanaPrincipal extends JFrame implements ActionListener {
 				PanelIzquierda.setBackground(SystemColor.WHITE);
 									
 				getContentPane().add(PanelIzquierda, BorderLayout.WEST);
-				
-				
+								
 							
-				Aceptar = new JButton("Entrar");
+				Aceptar = new JButton("Log In");
 				Aceptar.setHorizontalAlignment(SwingConstants.TRAILING);
 				Aceptar.setAlignmentY(Component.BOTTOM_ALIGNMENT);
 				Aceptar.setAlignmentX(Component.RIGHT_ALIGNMENT);
 				Aceptar.setSize(91, 29);
-				Aceptar.setLocation(171, 210);
+				Aceptar.setLocation(172, 204);
 				Aceptar.setFont(new Font("Century Gothic", Font.BOLD, 16));
 				//		BSalir.setBounds(100, 103, 150, 30);
 						Aceptar.addActionListener(this);
 						PanelIzquierda.setLayout(null);
-						Aceptar.setActionCommand("Entrar");
+						Aceptar.setActionCommand("Log In");
 						PanelIzquierda.add(Aceptar);
 				
 				
@@ -208,7 +223,29 @@ public class ventanaPrincipal extends JFrame implements ActionListener {
 				PanelIzquierda.add(textU);
 			//	PanelInferior.add(reloj);
 				
-				//PANEL DERECHA
+				
+				textR = new JLabel();
+				textR.setText("¿No esta registrado? \r\n");
+				textR.setFont(new Font("Century Gothic", Font.BOLD, 12));
+				textR.setBounds(172, 393, 129, 29);
+				textR.setOpaque(false);
+				PanelIzquierda.add(textR);
+				
+				Registrar = new JButton("Registrarse");
+				Registrar.setForeground(Color.BLACK);
+				Registrar.setHorizontalAlignment(SwingConstants.TRAILING);
+				Registrar.setAlignmentY(Component.BOTTOM_ALIGNMENT);
+				Registrar.setAlignmentX(Component.RIGHT_ALIGNMENT);
+				Registrar.setSize(113, 31);
+				Registrar.setLocation(308, 390);
+				Registrar.setFont(new Font("Century Gothic", Font.BOLD, 16));
+				//		BSalir.setBounds(100, 103, 150, 30);
+				Registrar.addActionListener(this);
+						PanelIzquierda.setLayout(null);
+						Registrar.setActionCommand("Registrar");
+						PanelIzquierda.add(Registrar);
+				
+			/*	//PANEL DERECHA
 				
 				PanelDerecha = new JPanel();
 				//PanelIzquierda.setSize(400, 432);
@@ -216,10 +253,9 @@ public class ventanaPrincipal extends JFrame implements ActionListener {
 				PanelDerecha.setPreferredSize( new Dimension( 450,  450 ) );
 				PanelDerecha.setBackground(SystemColor.activeCaption);
 									
-				getContentPane().add(PanelDerecha, BorderLayout.EAST);
+				getContentPane().add(PanelDerecha, BorderLayout.EAST);*/
 				
-		        
-			
+				
 				
 						
 	}
@@ -233,53 +269,30 @@ public class ventanaPrincipal extends JFrame implements ActionListener {
 		
 		case "Entrar":
 			
-			/*String contraseña = Contraseña.getText();
+			String contraseña = Contraseña.getText();
 			
 			String usuario = Usuario.getText();
 			
-			try {
-				
-				comprobarUsu (usuario);
-				
-			
-			//	PanelGestionContacto panelGestionCont = new PanelGestionContacto ();
-				//panelGestionCont.setPreferredSize( new Dimension( 800,125 ) );
-				//panelGestionCont.setBackground(SystemColor.activeCaption);
-				//this.add(panelGestionCont, BorderLayout.CENTER);
-			
-				
-				//JOptionPane.showInputDialog("Entrado bien");
-			}
-				
-			catch (Exception e1) {
-			
-					// TODO Auto-generated catch block
-				//	JOptionPane.showMessageDialog(this, e1.Informar());
-			}
-				
-			try {
-			comprobarCont(contraseña);
-			}
-			catch (Exception e1){
-				
-				//JOptionPane.showMessageDialog(this, e1.Informar());
-			}*/
-			
-			panelRopa.setPreferredSize( new Dimension( 400,500 ) );
-			panelRopa.setBackground(SystemColor.activeCaption);
-			this.add(panelRopa, BorderLayout.WEST);
-								
-			panelRopa.setVisible(true);
-			
-			
+						
 			break;
-		
-		
+		case "Registrar":
+			
+			//JOptionPane.showMessageDialog(null, "Registrarse"); 
+			PanelRegistro objpanelR = new PanelRegistro();
+			objpanelR.setVisible(true);
+//			
+//			panelRegis.setPreferredSize( new Dimension( 400,500 ) );
+//			panelRegis.setBackground(SystemColor.activeCaption);
+//			this.add(panelRegis, BorderLayout.WEST);
+//			
+//			panelRegis.setVisible(true);
+//					
+					
+		break;
 		
 		}
 		
 	}
-
 	private void comprobarCont(String contraseña) throws Exception {
 		// TODO Auto-generated method stub
 		if(contraseña.isEmpty()){
@@ -297,14 +310,4 @@ public class ventanaPrincipal extends JFrame implements ActionListener {
 			
 		}// mirar si existe el nombre de usuario
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

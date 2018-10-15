@@ -1,5 +1,6 @@
 package grupo2.LD;
 
+
 import grupo2.LN.usuario;
 
 import java.sql.Connection;
@@ -71,17 +72,37 @@ public class BaseDeDatos {
 	 */
 	
 	
-	public boolean chequearYaEnTabla( Statement st, String nombre ) {
+/*	public static boolean chequearYaEnTabla( Statement st, String nombre ) {
 		//SELECT
 			try {
 
-				String sentSQL = "select * from USUARIO";
+				String sentSQL = "select * from USUARIO where (nombre = '" + nombre + "')";
 				System.out.println( sentSQL ); 
 				
 				ResultSet rs = st.executeQuery( sentSQL );
 				
 				if (rs.next()) {
 					rs.close();
+					return true;
+				}
+				return false;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
+		}*/
+	public boolean chequearYaEnTabla( Statement st, String nombre ) {
+		//SELECT
+			try {
+
+				String sentSQL = "select * from USUARIO where (nombre = '" + nombre + "')";
+				System.out.println( sentSQL ); 
+				
+				ResultSet rs = st.executeQuery( sentSQL );
+				
+				if (rs.next()) {  // Normalmente se recorre con un while, pero aqui solo hay que ver si ya existe
+					rs.close();
+					JOptionPane.showMessageDialog(null, "El usuario ya existe, prueba con otro","Mensaje de error",JOptionPane.ERROR_MESSAGE);
 					return true;
 				}
 				return false;
@@ -102,22 +123,29 @@ public class BaseDeDatos {
 				e.printStackTrace();  
 		}
 	}
+	
+	public static void crearTablaBDPrenda() {
+		if (statement==null) return;
+		try {
+			statement.executeUpdate("create table if not exists PRENDA ( nombre string, color string )");
+			System.out.println ("Tabla creada");
+		} catch (SQLException e) {
+			// Si hay excepcion es que la tabla ya existia (lo cual es correcto)
+			if (!e.getMessage().equals("table interaccion already exists"))
+				e.printStackTrace();  
+		}
+	}
+
 
 	public static void inicializarValores() {
 		// TODO Auto-generated method stub
 		
 	}
 	
-public static void insertarUsuario (Statement statement){
-		
-		
-	//	String nombre = usuario.getNombre();
-		
-	//	String contrasenya = usuario.getContrasenya();
-		
-
-		//final String sent = "insert into cliente values nombreusuario, nombre, ciudad, email, contra";
-		
+/*public void insertarUsuario (usuario usuario){
+	
+	
+				
 		try {
 			
 			statement.executeUpdate( "insert into USUARIO values ('Leire', '1234')");
@@ -130,5 +158,27 @@ public static void insertarUsuario (Statement statement){
 	        JOptionPane.showMessageDialog(null, "Error en el almacenamiento de datos");
 	    }
 			
-		}
+		}*/
+public static void insertarUsuario (String usuario, String contraseña){
+		
+				
+		//String nombre = usuario.getText();
+		//String contrasenya = usuario.getText();
+		
+
+		//final String sent = "insert into cliente values nombreusuario, nombre, ciudad, email, contra";
+		
+		try {
+			String Query = "INSERT INTO USUARIO VALUES("
+	                + " ' " + usuario + " ', "
+	                + " ' " + contraseña + " ')";
+	        Statement st = connection.createStatement();
+	        st.executeUpdate(Query);
+	        JOptionPane.showMessageDialog(null, "Datos almacenados de forma exitosa");
+	        
+			} catch (SQLException ex) {
+	        JOptionPane.showMessageDialog(null, "Error en el almacenamiento de datos");
+	    }
+	}
+	
 	}
