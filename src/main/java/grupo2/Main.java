@@ -17,7 +17,7 @@ public class Main {
 		Principal objpanel = new Principal();
 		objpanel.setVisible(true);
 		
-//Para probar git con youtrack
+//Para probar git con youtrack 2
 		
 	}	
 	
