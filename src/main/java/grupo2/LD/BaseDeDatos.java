@@ -1,14 +1,23 @@
 package grupo2.LD;
 
+
+import grupo2.LN.usuario;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
 public class BaseDeDatos {
-
+	
+	public BaseDeDatos() {
+		
+		//para inicializar la base de datos
+	}
+	
 	private static Connection connection = null;
 	private static Statement statement = null;
 	
@@ -62,15 +71,114 @@ public class BaseDeDatos {
 	 * Debe haberse inicializado la conexion correctamente.
 	 */
 	
+	
+/*	public static boolean chequearYaEnTabla( Statement st, String nombre ) {
+		//SELECT
+			try {
+
+				String sentSQL = "select * from USUARIO where (nombre = '" + nombre + "')";
+				System.out.println( sentSQL ); 
+				
+				ResultSet rs = st.executeQuery( sentSQL );
+				
+				if (rs.next()) {
+					rs.close();
+					return true;
+				}
+				return false;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
+		}*/
+	public boolean chequearYaEnTabla( Statement st, String nombre ) {
+		//SELECT
+			try {
+
+				String sentSQL = "select * from USUARIO where (nombre = '" + nombre + "')";
+				System.out.println( sentSQL ); 
+				
+				ResultSet rs = st.executeQuery( sentSQL );
+				
+				if (rs.next()) {  // Normalmente se recorre con un while, pero aqui solo hay que ver si ya existe
+					rs.close();
+					JOptionPane.showMessageDialog(null, "El usuario ya existe, prueba con otro","Mensaje de error",JOptionPane.ERROR_MESSAGE);
+					return true;
+				}
+				return false;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
+		}
 	//TABLA USUARIO
 	public static void crearTablaBDUsuario() {
 		if (statement==null) return;
 		try {
-			statement.executeUpdate("create table if not exists USUARIO ( nombre string, contrasenya string)");
+			statement.executeUpdate("create table if not exists USUARIO ( nombre string, contrasenya string )");
+			System.out.println ("Tabla creada");
 		} catch (SQLException e) {
 			// Si hay excepcion es que la tabla ya existia (lo cual es correcto)
 			if (!e.getMessage().equals("table interaccion already exists"))
 				e.printStackTrace();  
 		}
 	}
-}
+	
+	public static void crearTablaBDPrenda() {
+		if (statement==null) return;
+		try {
+			statement.executeUpdate("create table if not exists PRENDA ( nombre string, color string )");
+			System.out.println ("Tabla creada");
+		} catch (SQLException e) {
+			// Si hay excepcion es que la tabla ya existia (lo cual es correcto)
+			if (!e.getMessage().equals("table interaccion already exists"))
+				e.printStackTrace();  
+		}
+	}
+
+
+	public static void inicializarValores() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+/*public void insertarUsuario (usuario usuario){
+	
+	
+				
+		try {
+			
+			statement.executeUpdate( "insert into USUARIO values ('Leire', '1234')");
+			statement.executeUpdate( "insert into USUARIO values ('Jon', '1234')");
+			statement.executeUpdate( "insert into USUARIO values ('Gorka', '1234')");
+			System.out.println ("Datos introducidos");
+
+			} 
+			catch (SQLException ex) {
+	        JOptionPane.showMessageDialog(null, "Error en el almacenamiento de datos");
+	    }
+			
+		}*/
+public static void insertarUsuario (String usuario, String contraseña){
+		
+				
+		//String nombre = usuario.getText();
+		//String contrasenya = usuario.getText();
+		
+
+		//final String sent = "insert into cliente values nombreusuario, nombre, ciudad, email, contra";
+		
+		try {
+			String Query = "INSERT INTO USUARIO VALUES("
+	                + " ' " + usuario + " ', "
+	                + " ' " + contraseña + " ')";
+	        Statement st = connection.createStatement();
+	        st.executeUpdate(Query);
+	        JOptionPane.showMessageDialog(null, "Datos almacenados de forma exitosa");
+	        
+			} catch (SQLException ex) {
+	        JOptionPane.showMessageDialog(null, "Error en el almacenamiento de datos");
+	    }
+	}
+	
+	}
