@@ -39,7 +39,7 @@ public class Principal extends JFrame implements ActionListener {
 	private JLabel textR;
 		
 	private JButton Aceptar;
-	private JButton Registrar;
+	private JButton btnRegistrar;
 	private JButton BMenu;
 	
 	private JTextArea M, I, A, R, M2, A2, R2, I2, O;
@@ -231,19 +231,19 @@ public class Principal extends JFrame implements ActionListener {
 				textR.setOpaque(false);
 				PanelIzquierda.add(textR);
 				
-				Registrar = new JButton("Registrarse");
-				Registrar.setForeground(Color.BLACK);
-				Registrar.setHorizontalAlignment(SwingConstants.TRAILING);
-				Registrar.setAlignmentY(Component.BOTTOM_ALIGNMENT);
-				Registrar.setAlignmentX(Component.RIGHT_ALIGNMENT);
-				Registrar.setSize(113, 31);
-				Registrar.setLocation(308, 390);
-				Registrar.setFont(new Font("Century Gothic", Font.BOLD, 16));
+				btnRegistrar = new JButton("Registrarse");
+				btnRegistrar.setForeground(Color.BLACK);
+				btnRegistrar.setHorizontalAlignment(SwingConstants.TRAILING);
+				btnRegistrar.setAlignmentY(Component.BOTTOM_ALIGNMENT);
+				btnRegistrar.setAlignmentX(Component.RIGHT_ALIGNMENT);
+				btnRegistrar.setSize(113, 31);
+				btnRegistrar.setLocation(308, 390);
+				btnRegistrar.setFont(new Font("Century Gothic", Font.BOLD, 16));
 				//		BSalir.setBounds(100, 103, 150, 30);
-				Registrar.addActionListener(this);
+				btnRegistrar.addActionListener(this);
 						PanelIzquierda.setLayout(null);
-						Registrar.setActionCommand("Registrar");
-						PanelIzquierda.add(Registrar);
+						btnRegistrar.setActionCommand("Registrar");
+						PanelIzquierda.add(btnRegistrar);
 				
 			/*	//PANEL DERECHA
 				
@@ -264,6 +264,12 @@ public class Principal extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
+//		if (e.getSource() == btnRegistrar){
+//			
+//			PanelRegistro registrarse = new PanelRegistro();
+//			registrarse.setVisible(true);
+//			
+//		}
 		
 		switch (e.getActionCommand()){
 		
