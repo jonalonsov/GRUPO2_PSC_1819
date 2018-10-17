@@ -264,6 +264,12 @@ public class Principal extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
+//		if (e.getSource() == btnRegistrar){
+//			
+//			PanelRegistro registrarse = new PanelRegistro();
+//			registrarse.setVisible(true);
+//			
+//		}
 		
 		switch (e.getActionCommand()){
 		
