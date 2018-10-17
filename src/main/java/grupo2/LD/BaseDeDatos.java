@@ -180,5 +180,27 @@ public static void insertarUsuario (String usuario, String contraseña){
 	        JOptionPane.showMessageDialog(null, "Error en el almacenamiento de datos");
 	    }
 	}
+
+public static void insertarPrenda (String nombre, String color){
+	
+	
+	//String nombre = usuario.getText();
+	//String contrasenya = usuario.getText();
+	
+
+	//final String sent = "insert into cliente values nombreusuario, nombre, ciudad, email, contra";
+	
+	try {
+		String Query = "INSERT INTO PRENDA VALUES("
+                + " ' " + nombre + " ', "
+                + " ' " + color + " ')";
+        Statement st = connection.createStatement();
+        st.executeUpdate(Query);
+        JOptionPane.showMessageDialog(null, "Datos almacenados de forma exitosa");
+        
+		} catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error en el almacenamiento de datos");
+    }
+}
 	
 	}
