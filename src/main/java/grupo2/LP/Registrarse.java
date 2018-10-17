@@ -2,6 +2,9 @@ package grupo2.LP;
 
 
 
+import grupo2.LD.BaseDeDatos;
+import grupo2.LN.GestorUsuario;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -10,21 +13,18 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Statement;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import grupo2.LD.BaseDeDatos;
-import grupo2.LN.GestorUsuario;
-
-public class Principal extends JFrame implements ActionListener {
+public class Registrarse extends JFrame implements ActionListener {
 
 	/**
 	 * 
@@ -33,13 +33,13 @@ public class Principal extends JFrame implements ActionListener {
 	private JPanel PanelSuperior;
 	private JPanel PanelInferior;
 	private JPanel PanelIzquierda;
+	private JPanel PanelDerecha;
+	
+	
 	private JLabel textCont;
 	private JTextField Contraseña;
 	private JLabel textU;
 	private JTextField Usuario;
-	private JLabel textR;
-		
-	private JButton btnAceptar;
 	private JButton btnRegistrar;
 	private JTextArea M, I, A, R, M2, A2, R2, I2, O;
 	private JTextArea informacion;
@@ -48,10 +48,9 @@ public class Principal extends JFrame implements ActionListener {
 	
 	//private Reloj reloj;
 	
-	public Principal(){
+	public Registrarse(){
 		
 		
-//getContentPane().setLayout(null);
 				
 
 		Usuario = new JTextField();
@@ -199,35 +198,13 @@ public class Principal extends JFrame implements ActionListener {
 				PanelIzquierda.setBackground(SystemColor.WHITE);
 									
 				getContentPane().add(PanelIzquierda, BorderLayout.WEST);
-								
-							
-				btnAceptar = new JButton("Log In");
-				btnAceptar.setHorizontalAlignment(SwingConstants.TRAILING);
-				btnAceptar.setAlignmentY(Component.BOTTOM_ALIGNMENT);
-				btnAceptar.setAlignmentX(Component.RIGHT_ALIGNMENT);
-				btnAceptar.setSize(91, 29);
-				btnAceptar.setLocation(172, 204);
-				btnAceptar.setFont(new Font("Century Gothic", Font.BOLD, 16));
-				//		BSalir.setBounds(100, 103, 150, 30);
-						btnAceptar.addActionListener(this);
 						PanelIzquierda.setLayout(null);
-						btnAceptar.setActionCommand("Log In");
-						PanelIzquierda.add(btnAceptar);
 				
 				
 				PanelIzquierda.add(Usuario);
 				PanelIzquierda.add(Contraseña);
 				PanelIzquierda.add(textCont);
 				PanelIzquierda.add(textU);
-			//	PanelInferior.add(reloj);
-				
-				
-				textR = new JLabel();
-				textR.setText("¿No esta registrado? \r\n");
-				textR.setFont(new Font("Century Gothic", Font.BOLD, 12));
-				textR.setBounds(172, 393, 129, 29);
-				textR.setOpaque(false);
-				PanelIzquierda.add(textR);
 				
 				btnRegistrar = new JButton("Registrarse");
 				btnRegistrar.setForeground(Color.BLACK);
@@ -235,26 +212,14 @@ public class Principal extends JFrame implements ActionListener {
 				btnRegistrar.setAlignmentY(Component.BOTTOM_ALIGNMENT);
 				btnRegistrar.setAlignmentX(Component.RIGHT_ALIGNMENT);
 				btnRegistrar.setSize(113, 31);
-				btnRegistrar.setLocation(308, 390);
+				btnRegistrar.setLocation(95, 205);
 				btnRegistrar.setFont(new Font("Century Gothic", Font.BOLD, 16));
 				//		BSalir.setBounds(100, 103, 150, 30);
 				btnRegistrar.addActionListener(this);
 						PanelIzquierda.setLayout(null);
 						btnRegistrar.setActionCommand("Registrar");
 						PanelIzquierda.add(btnRegistrar);
-				
-			/*	//PANEL DERECHA
-				
-				PanelDerecha = new JPanel();
-				//PanelIzquierda.setSize(400, 432);
-				
-				PanelDerecha.setPreferredSize( new Dimension( 450,  450 ) );
-				PanelDerecha.setBackground(SystemColor.activeCaption);
-									
-				getContentPane().add(PanelDerecha, BorderLayout.EAST);*/
-				
-				
-				
+								
 						
 	}
 
@@ -262,38 +227,40 @@ public class Principal extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
-//		if (e.getSource() == btnRegistrar){
-//			
-//			PanelRegistro registrarse = new PanelRegistro();
-//			registrarse.setVisible(true);
-//			
-//		}
-		
-		switch (e.getActionCommand()){
-		
-		case "Log In":
+		if (e.getSource() == btnRegistrar){
 			
 			String contrasenya = Contraseña.getText();
-			String usuario = Usuario.getText();
-			
-			GestorUsuario jugador = new GestorUsuario(usuario, contrasenya);		
+			String nombre = Usuario.getText();			
 				
-			boolean semaforo=jugador.chequearYaEnTablaLOGIN( BaseDeDatos.getStatement(), usuario, contrasenya);
+			
+			GestorUsuario jugador = new GestorUsuario(nombre, contrasenya);
+
+				
+			//Si no existe, anyade fila con el usuario nuevo y sus respectivos atributos
+			
+			boolean semaforo=jugador.anyadirUsuario(BaseDeDatos.getStatement(), nombre);
 					
 			if(semaforo==true)dispose();
-			
-			//PONER AQUÍ ENLACE AL MENÚ PRINCIPAL
-			
-			break;
-		case "Registrar":
-			
-			//JOptionPane.showMessageDialog(null, "Registrarse"); 
-			Registrarse objpanelR = new Registrarse();
-			objpanelR.setVisible(true);
-			
-		break;
-		
+					
 		}
-		
+			
+			
+	}
+	private void comprobarCont(String contraseña) throws Exception {
+		// TODO Auto-generated method stub
+		if(contraseña.isEmpty()){
+			
+			throw new Exception ();
+			
+		} //comprobar tambien si son los correctos
+	}
+
+	private void comprobarUsu(String usuario) throws Exception {
+		// TODO Auto-generated method stub
+		if(usuario.isEmpty()){
+			
+			throw new Exception ();
+			
+		}// mirar si existe el nombre de usuario
 	}
 }
