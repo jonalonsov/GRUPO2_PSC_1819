@@ -2,9 +2,6 @@ package grupo2.LP;
 
 
 
-import grupo2.LD.BaseDeDatos;
-import grupo2.LN.GestorUsuario;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -19,12 +16,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class Registrarse extends JFrame implements ActionListener {
+import grupo2.LD.BaseDeDatos;
+import grupo2.LN.GestorPrendas;
+
+public class InsertarPrenda extends JFrame implements ActionListener {
 
 	/**
 	 * 
@@ -33,11 +32,15 @@ public class Registrarse extends JFrame implements ActionListener {
 	private JPanel PanelSuperior;
 	private JPanel PanelInferior;
 	private JPanel PanelIzquierda;
-	private JLabel textCont;
-	private JTextField Contraseña;
-	private JLabel textU;
-	private JTextField Usuario;
-	private JButton btnRegistrar;
+	private JLabel textC;
+	private JTextField Color1;
+	private JLabel textP;
+	private JTextField Prenda;
+	private JLabel textT;
+	private JTextField Tejido;
+	
+	
+	private JButton btnAcep;
 	private JTextArea M, I, A, R, M2, A2, R2, I2, O;
 	private JTextArea informacion;
 	
@@ -45,35 +48,47 @@ public class Registrarse extends JFrame implements ActionListener {
 	
 	//private Reloj reloj;
 	
-	public Registrarse(){
+	public InsertarPrenda(){
 		
 		
 				
 
-		Usuario = new JTextField();
-		Usuario.setFont(new Font("Century Gothic", Font.BOLD, 10));
-		Usuario.setBounds(94, 94, 231, 20);
-		Usuario.setEnabled(true);
-		Usuario.setEditable(true);
+		Color1 = new JTextField();
+		Color1.setFont(new Font("Century Gothic", Font.BOLD, 10));
+		Color1.setBounds(94, 147, 231, 20);
+		Color1.setEnabled(true);
+		Color1.setEditable(true);
 		
-		textU = new JLabel();
-		textU.setText("Inserte el nombre de usuario \r\n");
-		textU.setFont(new Font("Century Gothic", Font.BOLD, 12));
-		textU.setBounds(94, 53, 250, 29);
-		textU.setOpaque(false);
+		textC = new JLabel();
+		textC.setText("Inserte el color de la prenda \r\n");
+		textC.setFont(new Font("Century Gothic", Font.BOLD, 12));
+		textC.setBounds(94, 119, 250, 29);
+		textC.setOpaque(false);
 		
 						
-		Contraseña = new JPasswordField();
-		Contraseña.setFont(new Font("Century Gothic", Font.BOLD, 10));
-		Contraseña.setBounds(94, 159, 231, 20);
-		Contraseña.setEnabled(true);
-		Contraseña.setEditable(true);
+		Prenda = new JTextField();
+		Prenda.setFont(new Font("Century Gothic", Font.BOLD, 10));
+		Prenda.setBounds(94, 91, 231, 20);
+		Prenda.setEnabled(true);
+		Prenda.setEditable(true);
 				
-		textCont = new JLabel();
-		textCont.setVerticalAlignment(SwingConstants.TOP);
-		textCont.setText("Inserte la contrasena \r\n");
-		textCont.setFont(new Font("Century Gothic", Font.BOLD, 12));
-		textCont.setBounds(94, 137, 231, 20);
+		textP = new JLabel();
+		textP.setVerticalAlignment(SwingConstants.TOP);
+		textP.setText("Inserte la prenda \r\n");
+		textP.setFont(new Font("Century Gothic", Font.BOLD, 12));
+		textP.setBounds(94, 60, 231, 20);
+		
+		Tejido = new JTextField();
+		Tejido.setFont(new Font("Century Gothic", Font.BOLD, 10));
+		Tejido.setBounds(94, 237, 231, 20);
+		Tejido.setEnabled(true);
+		Tejido.setEditable(true);
+				
+		textT = new JLabel();
+		textT.setVerticalAlignment(SwingConstants.TOP);
+		textT.setText("Inserte el tejido de la prenda \r\n");
+		textT.setFont(new Font("Century Gothic", Font.BOLD, 12));
+		textT.setBounds(94, 217, 231, 20);
 			
 		
 		
@@ -198,24 +213,26 @@ public class Registrarse extends JFrame implements ActionListener {
 						PanelIzquierda.setLayout(null);
 				
 				
-				PanelIzquierda.add(Usuario);
-				PanelIzquierda.add(Contraseña);
-				PanelIzquierda.add(textCont);
-				PanelIzquierda.add(textU);
+				PanelIzquierda.add(Color1);
+				PanelIzquierda.add(Prenda);
+				PanelIzquierda.add(Tejido);
+				PanelIzquierda.add(textT);
+				PanelIzquierda.add(textC);
+				PanelIzquierda.add(textP);
 				
-				btnRegistrar = new JButton("Registrarse");
-				btnRegistrar.setForeground(Color.BLACK);
-				btnRegistrar.setHorizontalAlignment(SwingConstants.TRAILING);
-				btnRegistrar.setAlignmentY(Component.BOTTOM_ALIGNMENT);
-				btnRegistrar.setAlignmentX(Component.RIGHT_ALIGNMENT);
-				btnRegistrar.setSize(113, 31);
-				btnRegistrar.setLocation(95, 205);
-				btnRegistrar.setFont(new Font("Century Gothic", Font.BOLD, 16));
+				btnAcep = new JButton("Aceptar");
+				btnAcep.setForeground(Color.BLACK);
+				btnAcep.setHorizontalAlignment(SwingConstants.TRAILING);
+				btnAcep.setAlignmentY(Component.BOTTOM_ALIGNMENT);
+				btnAcep.setAlignmentX(Component.RIGHT_ALIGNMENT);
+				btnAcep.setSize(113, 31);
+				btnAcep.setLocation(105, 290);
+				btnAcep.setFont(new Font("Century Gothic", Font.BOLD, 16));
 				//		BSalir.setBounds(100, 103, 150, 30);
-				btnRegistrar.addActionListener(this);
+				btnAcep.addActionListener(this);
 						PanelIzquierda.setLayout(null);
-						btnRegistrar.setActionCommand("Registrar");
-						PanelIzquierda.add(btnRegistrar);
+						btnAcep.setActionCommand("Aceptar");
+						PanelIzquierda.add(btnAcep);
 								
 						
 	}
@@ -223,49 +240,29 @@ public class Registrarse extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
-		if (e.getSource() == btnRegistrar){
-			
-			if(Contraseña.getText().length()==0 || Usuario.getText().length()==0){
+
+		if (e.getSource() == btnAcep){
+	            
+			if(Color1.getText().length()==0 || Prenda.getText().length()==0 || Tejido.getText().length()==0){
 				JOptionPane.showMessageDialog(null, "Debe rellenar todos los campos.", "CUIDADO",JOptionPane.INFORMATION_MESSAGE);
-
-					} else {
+			} else {
+	
+						String nombre = Color1.getText();
+						String color = Prenda.getText();
+						String tejido = Tejido.getText();
 						
-					
-						String contrasenya = Contraseña.getText();
-						String nombre = Usuario.getText();			
+						GestorPrendas prenda = new GestorPrendas(nombre, color, tejido);		
 							
+						prenda.anyadirPrenda( BaseDeDatos.getStatement(), nombre, color, tejido);
 						
-						GestorUsuario jugador = new GestorUsuario(nombre, contrasenya);
-			
-							
-						//Si no existe, anyade fila con el usuario nuevo y sus respectivos atributos
+						boolean semaforo=prenda.anyadirPrenda(BaseDeDatos.getStatement(), nombre, color, tejido);
 						
-						boolean semaforo=jugador.anyadirUsuario(BaseDeDatos.getStatement(), nombre);
-								
-						if(semaforo==true)dispose();
-					}		
+						if(semaforo==true) {
+							JOptionPane.showMessageDialog(null, "Prenda introducida con éxito","Correcto",JOptionPane.INFORMATION_MESSAGE);
+								dispose();
+						}
+			} 				
 		}
-			
-			
 	}
-	@SuppressWarnings("unused")
-	private void comprobarCont(String contraseña) throws Exception {
-		// TODO Auto-generated method stub
-		if(contraseña.isEmpty()){
-			
-			throw new Exception ();
-			
-		} //comprobar tambien si son los correctos
-	}
-
-	@SuppressWarnings("unused")
-	private void comprobarUsu(String usuario) throws Exception {
-		// TODO Auto-generated method stub
-		if(usuario.isEmpty()){
-			
-			throw new Exception ();
-			
-		}// mirar si existe el nombre de usuario
-	}
+	
 }

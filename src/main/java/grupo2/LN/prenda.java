@@ -6,12 +6,14 @@ public class prenda  implements Comparable<Object> {
 	int id;
 	private String nombre;
 	private String color;
+	private String tejido;
 	
-	public prenda(String nombre, String color){
+	public prenda(String nombre, String color, String tejido){
 		
 		id = ++count; 
 		this.nombre = nombre;
 		this.color = color;
+		this.setTejido(tejido);
 		
 	}
 
@@ -36,6 +38,14 @@ public class prenda  implements Comparable<Object> {
 	public int compareTo(Object o) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	public String getTejido() {
+		return tejido;
+	}
+
+	public void setTejido(String tejido) {
+		this.tejido = tejido;
 	}
 	
 

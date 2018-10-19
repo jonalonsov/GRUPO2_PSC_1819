@@ -280,31 +280,38 @@ public class Principal extends JFrame implements ActionListener {
 		
 		case "Log In":
 			
-			String contrasenya = Contraseña.getText();
-			String usuario = Usuario.getText();
-			
-			GestorUsuario jugador = new GestorUsuario(usuario, contrasenya);		
-				
-			boolean semaforo=jugador.chequearYaEnTablaLOGIN( BaseDeDatos.getStatement(), usuario, contrasenya);
-					
-			if(semaforo==true) {
-				
-				PanelMenu objpanelMP = new PanelMenu();
-				objpanelMP.setVisible(true);
-				dispose();
-			} else {			
+			if(Contraseña.getText().length()==0 || Usuario.getText().length()==0){
+				JOptionPane.showMessageDialog(null, "Debe rellenar todos los campos.", "CUIDADO",JOptionPane.INFORMATION_MESSAGE);
 
-				int resp = JOptionPane.showConfirmDialog(null, "¿Quieres registrarte como nuevo usuario con los datos introducidos?", "Alerta!", JOptionPane.YES_NO_OPTION);
-				if (resp==0) {
-									
-					//Si no existe, anyade fila con el usuario nuevo y sus respectivos atributos
+					} else {
+			
+					String contrasenya = Contraseña.getText();
+					String usuario = Usuario.getText();
 					
-					jugador.anyadirUsuario(BaseDeDatos.getStatement(), usuario);
+					GestorUsuario jugador = new GestorUsuario(usuario, contrasenya);		
+						
+					boolean semaforo=jugador.chequearYaEnTablaLOGIN( BaseDeDatos.getStatement(), usuario, contrasenya);
 							
-					PanelMenu objpanelMP = new PanelMenu();
-					objpanelMP.setVisible(true);
-					dispose();	
-				} 
+					
+								if(semaforo==true) {
+									
+									PanelMenu objpanelMP = new PanelMenu();
+									objpanelMP.setVisible(true);
+									dispose();
+								} else {			
+					
+									int resp = JOptionPane.showConfirmDialog(null, "¿Quieres registrarte como nuevo usuario con los datos introducidos?", "Alerta!", JOptionPane.YES_NO_OPTION);
+									if (resp==0) {
+														
+										//Si no existe, anyade fila con el usuario nuevo y sus respectivos atributos
+										
+										jugador.anyadirUsuario(BaseDeDatos.getStatement(), usuario);
+												
+										PanelMenu objpanelMP = new PanelMenu();
+										objpanelMP.setVisible(true);
+										dispose();	
+									} 
+						}
 			
 			}
 			

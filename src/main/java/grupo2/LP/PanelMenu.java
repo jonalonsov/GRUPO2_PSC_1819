@@ -173,7 +173,7 @@ public class PanelMenu extends JFrame implements ActionListener {
                 Ver.setAlignmentX(Component.RIGHT_ALIGNMENT);
                 Ver.setSize(170, 29);
                 Ver.setLocation(132, 155);
-                Ver.setFont(new Font("Century Gothic", Font.BOLD, 16));
+                Ver.setFont(new Font("Century Gothic", Font.CENTER_BASELINE, 16));
                 //        BSalir.setBounds(100, 103, 150, 30);
                 Ver.addActionListener(this);
                         PanelCentro.setLayout(null);
@@ -260,10 +260,14 @@ public class PanelMenu extends JFrame implements ActionListener {
         
         case "Ver":
             
-        
+		JOptionPane.showMessageDialog( null, "No disponible, inténtelo más adelante. " , "ERROR", JOptionPane.INFORMATION_MESSAGE);
+
                         
             break;
         case "Añadir":
+        	
+        	InsertarPrenda objpanePanel = new InsertarPrenda();
+        	objpanePanel.setVisible(true);
             
                                 
                     
@@ -275,6 +279,20 @@ public class PanelMenu extends JFrame implements ActionListener {
             
             
             
+        break;
+        case "Fav":
+        	
+    		JOptionPane.showMessageDialog( null, "No disponible, inténtelo más adelante. " , "ERROR", JOptionPane.INFORMATION_MESSAGE);
+
+            
+                                    
+        break;
+        case "Conjuntos":
+        	
+    		JOptionPane.showMessageDialog( null, "No disponible, inténtelo más adelante. " , "ERROR", JOptionPane.INFORMATION_MESSAGE);
+
+            
+                                    
         break;
         
         }
