@@ -10,11 +10,12 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Statement;
-
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
@@ -43,13 +44,15 @@ public class Principal extends JFrame implements ActionListener {
 	private JButton btnRegistrar;
 	private JTextArea M, I, A, R, M2, A2, R2, I2, O;
 	private JTextArea informacion;
+	private JTextArea fechayhora;
 	
-	
-	
-	//private Reloj reloj;
+	private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+	private LocalDateTime now = LocalDateTime.now();
+
+
 	
 	public Principal(){
-		
+
 		
 //getContentPane().setLayout(null);
 				
@@ -75,7 +78,7 @@ public class Principal extends JFrame implements ActionListener {
 				
 		textCont = new JLabel();
 		textCont.setVerticalAlignment(SwingConstants.TOP);
-		textCont.setText("Inserte la contrasena \r\n");
+		textCont.setText("Inserte la contraseña \r\n");
 		textCont.setFont(new Font("Century Gothic", Font.BOLD, 12));
 		textCont.setBounds(94, 137, 231, 20);
 			
@@ -84,7 +87,7 @@ public class Principal extends JFrame implements ActionListener {
 		setTitle("Bienvenido a tu armario");
 		setLocationRelativeTo( null );  // Centra la ventana en la pantalla
 		setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
-		setBounds(250, 50, 450, 600); 
+		setBounds(400, 50, 700, 600); 
 		//PanelSuperior.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().setLayout(new BorderLayout());
 		
@@ -158,6 +161,13 @@ public class Principal extends JFrame implements ActionListener {
 		informacion.setEnabled(false);
 		informacion.setBackground(Color.GRAY);
 		
+		fechayhora = new JTextArea();
+		fechayhora.setText("      			      "+dtf.format(now));
+		fechayhora.setForeground(new Color(0, 0, 0));
+		fechayhora.setFont(new Font("Century Gothic", Font.BOLD, 12));
+		fechayhora.setEnabled(false);
+		fechayhora.setBackground(Color.GRAY);
+		
 		
 		//PANEL SUPERIOR
 				PanelSuperior = new JPanel();
@@ -189,8 +199,9 @@ public class Principal extends JFrame implements ActionListener {
 									
 				getContentPane().add(PanelInferior, BorderLayout.SOUTH);
 				PanelInferior.add(informacion);
-			//	PanelInferior.add(reloj);
 				
+				PanelInferior.add(fechayhora);
+			
 			//PANEL izquierda
 				PanelIzquierda = new JPanel();
 				//PanelIzquierda.setSize(400, 432);
@@ -219,7 +230,7 @@ public class Principal extends JFrame implements ActionListener {
 				PanelIzquierda.add(Contraseña);
 				PanelIzquierda.add(textCont);
 				PanelIzquierda.add(textU);
-			//	PanelInferior.add(reloj);
+		
 				
 				
 				textR = new JLabel();
@@ -243,15 +254,18 @@ public class Principal extends JFrame implements ActionListener {
 						btnRegistrar.setActionCommand("Registrar");
 						PanelIzquierda.add(btnRegistrar);
 				
-			/*	//PANEL DERECHA
-				
-				PanelDerecha = new JPanel();
+				//PANEL DERECHA
+//GOE: Meterle alguna foto bonita	
+						
+						
+						
+				JPanel PanelDerecha = new JPanel();
 				//PanelIzquierda.setSize(400, 432);
 				
 				PanelDerecha.setPreferredSize( new Dimension( 450,  450 ) );
 				PanelDerecha.setBackground(SystemColor.activeCaption);
 									
-				getContentPane().add(PanelDerecha, BorderLayout.EAST);*/
+				getContentPane().add(PanelDerecha, BorderLayout.EAST);
 				
 				
 				
@@ -261,13 +275,6 @@ public class Principal extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
-//		if (e.getSource() == btnRegistrar){
-//			
-//			PanelRegistro registrarse = new PanelRegistro();
-//			registrarse.setVisible(true);
-//			
-//		}
 		
 		switch (e.getActionCommand()){
 		
@@ -280,11 +287,31 @@ public class Principal extends JFrame implements ActionListener {
 				
 			boolean semaforo=jugador.chequearYaEnTablaLOGIN( BaseDeDatos.getStatement(), usuario, contrasenya);
 					
-			if(semaforo==true)dispose();
+			if(semaforo==true) {
+				
+				PanelMenu objpanelMP = new PanelMenu();
+				objpanelMP.setVisible(true);
+				dispose();
+			} else {			
+
+				int resp = JOptionPane.showConfirmDialog(null, "¿Quieres registrarte como nuevo usuario con los datos introducidos?", "Alerta!", JOptionPane.YES_NO_OPTION);
+				if (resp==0) {
+									
+					//Si no existe, anyade fila con el usuario nuevo y sus respectivos atributos
+					
+					jugador.anyadirUsuario(BaseDeDatos.getStatement(), usuario);
+							
+					PanelMenu objpanelMP = new PanelMenu();
+					objpanelMP.setVisible(true);
+					dispose();	
+				} 
+			
+			}
 			
 			//PONER AQUÍ ENLACE AL MENÚ PRINCIPAL
 			
 			break;
+			
 		case "Registrar":
 			
 			//JOptionPane.showMessageDialog(null, "Registrarse"); 

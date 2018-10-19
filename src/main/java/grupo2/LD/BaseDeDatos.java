@@ -1,8 +1,6 @@
 package grupo2.LD;
 
 
-import grupo2.LN.usuario;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -33,7 +31,7 @@ public class BaseDeDatos {
 			statement = connection.createStatement();
 			statement.setQueryTimeout(30);  // poner timeout 30 msg. 
 			//TIMEOUT: Si estamos esperando una respuesta y si no nos dan en 30 mseg (en este caso), dejamos de esperar.
-			JOptionPane.showMessageDialog( null, "Bien!! Nombre: " + nombreBD + " / la base de datos se ha conectado" , "BIEN", JOptionPane.INFORMATION_MESSAGE);
+				//JOptionPane.showMessageDialog( null, "Bien!! Nombre: " + nombreBD + " / la base de datos se ha conectado" , "BIEN", JOptionPane.INFORMATION_MESSAGE);
 		    return connection;
 		} catch (ClassNotFoundException | SQLException e) {
 			JOptionPane.showMessageDialog( null, "Error!! Nombre: " + nombreBD + " / no se ha conectado la base de datos" , "ERROR", JOptionPane.ERROR_MESSAGE );
@@ -102,7 +100,7 @@ public class BaseDeDatos {
 				
 				if (rs.next()) {  // Normalmente se recorre con un while, pero aqui solo hay que ver si ya existe
 					rs.close();
-					JOptionPane.showMessageDialog(null, "El usuario ya existe, prueba con otro","Mensaje de error",JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "El usuario ya existe, prueba con otro nombre","Mensaje de error",JOptionPane.ERROR_MESSAGE);
 					return true;
 				}
 				return false;

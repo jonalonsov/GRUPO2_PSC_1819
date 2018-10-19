@@ -1,9 +1,5 @@
 package grupo2.LN;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
 public class usuario  implements Comparable<Object> {
 
 	static int count = 0; 

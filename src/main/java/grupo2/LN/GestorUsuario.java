@@ -17,8 +17,6 @@ public class GestorUsuario {
 		
 	}
 
-//    USUARIO!!    //
-	
 	/** Comprueba si un usuario ya esta en la tabla USUARIO de BD,considerando la trayectoria completa del disco como informacion clave.
 	 * @param st	Sentencia ya abierta de base de datos
 	 * @return	true si el usuario ya esta en la tabla, false en caso contrario
@@ -55,13 +53,13 @@ public class GestorUsuario {
 				
 				if (rs.next()) { 
 					rs.close();
-					JOptionPane.showMessageDialog(null, "Nombre de usuario y contrasenya correctos","Correcto",JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Nombre de usuario y/o contraseña correctos","Correcto",JOptionPane.INFORMATION_MESSAGE);
 					return true;
 				}
-				JOptionPane.showMessageDialog(null, "Nombre de usuario y contrasenya incorrectos","Mensaje de error",JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Usuario no registrado con este nombre","Mensaje de error",JOptionPane.ERROR_MESSAGE);
 				return false;
 			} catch (SQLException e) {
-				JOptionPane.showMessageDialog(null, "Nombre de usuario y contrasenya incorrectos","Mensaje de error",JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Usuario no registrados con este nombre","Mensaje de error",JOptionPane.ERROR_MESSAGE);
 				e.printStackTrace();
 				return false;
 			}
@@ -120,17 +118,21 @@ public class GestorUsuario {
 	 */
 	public boolean modificarFilaEnTablaUsuario( Statement st ) {
 	//UPDATE
-		try {
-			String sentSQL = "update USUARIO set "+ 
-					"nombre = '" + nombre + "', " +
-					"contrasenya = '" + contrasenya + "'";
-			System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
-			int val = st.executeUpdate( sentSQL );
-			if (val!=1) return false;  // Se tiene que modificar 1, error si no
-			return true;
-		} catch (SQLException e) {
-			e.printStackTrace();
+		int resp = JOptionPane.showConfirmDialog(null, "¿Esta seguro?", "Alerta!", JOptionPane.YES_NO_OPTION);
+		if(resp==1) {
+			try {		
+				String sentSQL = "update USUARIO set "+ 
+						"nombre = '" + nombre + "', " +
+						"contrasenya = '" + contrasenya + "'";
+				System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+				int val = st.executeUpdate( sentSQL );
+				if (val!=1) return false;  // Se tiene que modificar 1, error si no
+				return true;
+			
+			} catch (SQLException e) {
+				e.printStackTrace();
 			return false;
-		}
+			}
+		} else return false;
 	}
 }
