@@ -2,8 +2,6 @@ package grupo2.LP;
 
 
 
-import grupo2.LD.BaseDeDatos;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -12,40 +10,40 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Statement;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import grupo2.LD.BaseDeDatos;
+import grupo2.LN.GestorUsuario;
+
 public class Principal extends JFrame implements ActionListener {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel PanelSuperior;
 	private JPanel PanelInferior;
 	private JPanel PanelIzquierda;
-	private JPanel PanelDerecha;
-	private PanelRegistro panelRegis = new PanelRegistro ();
-	
-	
 	private JLabel textCont;
 	private JTextField Contraseña;
 	private JLabel textU;
 	private JTextField Usuario;
 	private JLabel textR;
 		
-	private JButton Aceptar;
-	private JButton Registrar;
-	private JButton BMenu;
-	
+	private JButton btnAceptar;
+	private JButton btnRegistrar;
 	private JTextArea M, I, A, R, M2, A2, R2, I2, O;
 	private JTextArea informacion;
-	private JLabel lblNewLabel;
-	private JLabel label;
+	
 	
 	
 	//private Reloj reloj;
@@ -203,18 +201,18 @@ public class Principal extends JFrame implements ActionListener {
 				getContentPane().add(PanelIzquierda, BorderLayout.WEST);
 								
 							
-				Aceptar = new JButton("Log In");
-				Aceptar.setHorizontalAlignment(SwingConstants.TRAILING);
-				Aceptar.setAlignmentY(Component.BOTTOM_ALIGNMENT);
-				Aceptar.setAlignmentX(Component.RIGHT_ALIGNMENT);
-				Aceptar.setSize(91, 29);
-				Aceptar.setLocation(172, 204);
-				Aceptar.setFont(new Font("Century Gothic", Font.BOLD, 16));
+				btnAceptar = new JButton("Log In");
+				btnAceptar.setHorizontalAlignment(SwingConstants.TRAILING);
+				btnAceptar.setAlignmentY(Component.BOTTOM_ALIGNMENT);
+				btnAceptar.setAlignmentX(Component.RIGHT_ALIGNMENT);
+				btnAceptar.setSize(91, 29);
+				btnAceptar.setLocation(172, 204);
+				btnAceptar.setFont(new Font("Century Gothic", Font.BOLD, 16));
 				//		BSalir.setBounds(100, 103, 150, 30);
-						Aceptar.addActionListener(this);
+						btnAceptar.addActionListener(this);
 						PanelIzquierda.setLayout(null);
-						Aceptar.setActionCommand("Log In");
-						PanelIzquierda.add(Aceptar);
+						btnAceptar.setActionCommand("Log In");
+						PanelIzquierda.add(btnAceptar);
 				
 				
 				PanelIzquierda.add(Usuario);
@@ -231,19 +229,19 @@ public class Principal extends JFrame implements ActionListener {
 				textR.setOpaque(false);
 				PanelIzquierda.add(textR);
 				
-				Registrar = new JButton("Registrarse");
-				Registrar.setForeground(Color.BLACK);
-				Registrar.setHorizontalAlignment(SwingConstants.TRAILING);
-				Registrar.setAlignmentY(Component.BOTTOM_ALIGNMENT);
-				Registrar.setAlignmentX(Component.RIGHT_ALIGNMENT);
-				Registrar.setSize(113, 31);
-				Registrar.setLocation(308, 390);
-				Registrar.setFont(new Font("Century Gothic", Font.BOLD, 16));
+				btnRegistrar = new JButton("Registrarse");
+				btnRegistrar.setForeground(Color.BLACK);
+				btnRegistrar.setHorizontalAlignment(SwingConstants.TRAILING);
+				btnRegistrar.setAlignmentY(Component.BOTTOM_ALIGNMENT);
+				btnRegistrar.setAlignmentX(Component.RIGHT_ALIGNMENT);
+				btnRegistrar.setSize(113, 31);
+				btnRegistrar.setLocation(308, 390);
+				btnRegistrar.setFont(new Font("Century Gothic", Font.BOLD, 16));
 				//		BSalir.setBounds(100, 103, 150, 30);
-				Registrar.addActionListener(this);
+				btnRegistrar.addActionListener(this);
 						PanelIzquierda.setLayout(null);
-						Registrar.setActionCommand("Registrar");
-						PanelIzquierda.add(Registrar);
+						btnRegistrar.setActionCommand("Registrar");
+						PanelIzquierda.add(btnRegistrar);
 				
 			/*	//PANEL DERECHA
 				
@@ -264,50 +262,38 @@ public class Principal extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
+//		if (e.getSource() == btnRegistrar){
+//			
+//			PanelRegistro registrarse = new PanelRegistro();
+//			registrarse.setVisible(true);
+//			
+//		}
 		
 		switch (e.getActionCommand()){
 		
-		case "Entrar":
+		case "Log In":
 			
-			String contraseña = Contraseña.getText();
-			
+			String contrasenya = Contraseña.getText();
 			String usuario = Usuario.getText();
 			
-						
+			GestorUsuario jugador = new GestorUsuario(usuario, contrasenya);		
+				
+			boolean semaforo=jugador.chequearYaEnTablaLOGIN( BaseDeDatos.getStatement(), usuario, contrasenya);
+					
+			if(semaforo==true)dispose();
+			
+			//PONER AQUÍ ENLACE AL MENÚ PRINCIPAL
+			
 			break;
 		case "Registrar":
 			
 			//JOptionPane.showMessageDialog(null, "Registrarse"); 
-			PanelRegistro objpanelR = new PanelRegistro();
+			Registrarse objpanelR = new Registrarse();
 			objpanelR.setVisible(true);
-//			
-//			panelRegis.setPreferredSize( new Dimension( 400,500 ) );
-//			panelRegis.setBackground(SystemColor.activeCaption);
-//			this.add(panelRegis, BorderLayout.WEST);
-//			
-//			panelRegis.setVisible(true);
-//					
-					
+			
 		break;
 		
 		}
 		
-	}
-	private void comprobarCont(String contraseña) throws Exception {
-		// TODO Auto-generated method stub
-		if(contraseña.isEmpty()){
-			
-			throw new Exception ();
-			
-		} //comprobar tambien si son los correctos
-	}
-
-	private void comprobarUsu(String usuario) throws Exception {
-		// TODO Auto-generated method stub
-		if(usuario.isEmpty()){
-			
-			throw new Exception ();
-			
-		}// mirar si existe el nombre de usuario
 	}
 }
