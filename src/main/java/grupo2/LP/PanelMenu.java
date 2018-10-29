@@ -260,8 +260,9 @@ public class PanelMenu extends JFrame implements ActionListener {
         
         case "Ver":
             
-		JOptionPane.showMessageDialog( null, "No disponible, inténtelo más adelante. " , "ERROR", JOptionPane.INFORMATION_MESSAGE);
-
+		//JOptionPane.showMessageDialog( null, "No disponible, inténtelo más adelante. " , "ERROR", JOptionPane.INFORMATION_MESSAGE);
+        	PanelArmario objpanePanel1 = new PanelArmario();
+        	objpanePanel1.setVisible(true);
                         
             break;
         case "Añadir":
