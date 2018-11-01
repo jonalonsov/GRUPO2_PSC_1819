@@ -10,12 +10,19 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
+import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
@@ -23,6 +30,10 @@ import javax.swing.SwingConstants;
 
 import grupo2.LD.BaseDeDatos;
 import grupo2.LN.GestorPrendas;
+
+import javax.swing.JComboBox;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.text.TableView.TableRow;
 
 public class PanelArmario extends JFrame implements ActionListener {
 
@@ -42,12 +53,13 @@ public class PanelArmario extends JFrame implements ActionListener {
 	
 	private JTextArea M, I, A, R, M2, A2, R2, I2, O;
 	private JTextArea informacion;
+	private JTable table;
 	
 	
 	
 	//private Reloj reloj;
 	
-	public PanelArmario(){
+	public PanelArmario() throws SQLException{
 		
 		
 		
@@ -169,7 +181,7 @@ public class PanelArmario extends JFrame implements ActionListener {
 				PanelCentro.setBackground(SystemColor.WHITE);
 									
 				getContentPane().add(PanelCentro, BorderLayout.WEST);
-				PanelCentro.setLayout(null);
+				//PanelCentro.setLayout(null);
 				
 				
 						 Añadir = new JButton("Añadir una nueva prenda");
@@ -178,25 +190,26 @@ public class PanelArmario extends JFrame implements ActionListener {
 			                Añadir.setAlignmentY(Component.BOTTOM_ALIGNMENT);
 			                Añadir.setAlignmentX(Component.RIGHT_ALIGNMENT);
 			                Añadir.setSize(237, 29);
-			                Añadir.setLocation(176, 340);
+			                Añadir.setLocation(109, 107);
 			                Añadir.setFont(new Font("Century Gothic", Font.BOLD, 16));
 			                //        BSalir.setBounds(100, 103, 150, 30);
 			                Añadir.addActionListener(this);
 			                        PanelCentro.setLayout(null);
+			                      //  PanelCentro.setLayout(null);
 			                        Añadir.setActionCommand("Añadir");
 			                        PanelCentro.add(Añadir);
 			                        
-			                Salir = new JButton("Cerrar sesion");
+			                Salir = new JButton("Atras");
 			                Salir.setForeground(Color.BLACK);
 			                Salir.setHorizontalAlignment(SwingConstants.TRAILING);
 			                Salir.setAlignmentY(Component.BOTTOM_ALIGNMENT);
 			                Salir.setAlignmentX(Component.RIGHT_ALIGNMENT);
-			                Salir.setSize(151, 29);
-			                Salir.setLocation(262, 380);
+			                Salir.setSize(131, 29);
+			                Salir.setLocation(298, 389);
 			                Salir.setFont(new Font("Century Gothic", Font.BOLD, 16));
 			                //        BSalir.setBounds(100, 103, 150, 30);
 			                Salir.addActionListener(this);
-			                        PanelCentro.setLayout(null);
+			                       // PanelCentro.setLayout(null);
 			                        
 			                        JButton Ver = new JButton("Ver la prenda seleccionada");
 			                        Ver.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -205,7 +218,7 @@ public class PanelArmario extends JFrame implements ActionListener {
 			                        Ver.setAlignmentY(1.0f);
 			                        Ver.setAlignmentX(1.0f);
 			                        Ver.setActionCommand("Ver");
-			                        Ver.setBounds(94, 252, 237, 29);
+			                        Ver.setBounds(99, 67, 251, 29);
 			                        PanelCentro.add(Ver);
 			                        Salir.setActionCommand("Salir");
 			                        PanelCentro.add(Salir);
@@ -217,11 +230,38 @@ public class PanelArmario extends JFrame implements ActionListener {
 			                txtpnHj.setForeground(SystemColor.desktop);
 			                txtpnHj.setFont(new Font("MS Mincho", Font.ITALIC, 26));
 			                txtpnHj.setText("¡Ya estas dentro de tu armario!");
-			                txtpnHj.setBounds(53, 43, 344, 60);
+			                txtpnHj.setBounds(20, 23, 409, 33);
 			                PanelCentro.add(txtpnHj);
 			                
-								
-						
+			                
+			                //tabla
+			               		                
+			                String sql="SELECT * FROM PRENDA";
+			                		
+			                Statement st;
+			                
+			                JTable table = new JTable();
+			                DefaultTableModel model= new DefaultTableModel();
+			                model.addColumn("nombre");
+			                model.addColumn("color");
+			                
+			                table.setModel (model);
+			                String[] dato =new String[30];
+			                
+			                st=BaseDeDatos.getStatement();
+			                
+			                ResultSet result =st.executeQuery(sql);
+			                
+			                while(result.next()){
+			                	dato[0]=result.getString(1);
+			                	dato[1]=result.getString(2);
+			                	model.addRow(dato);
+			                }
+			                JScrollPane scroll = new JScrollPane (table);
+			                scroll.setBounds(109, 147, 237, 231);
+							PanelCentro.add(scroll);
+			                
+			              
 	}
 
 	@Override
@@ -232,8 +272,8 @@ public class PanelArmario extends JFrame implements ActionListener {
 	        
 		  case "Ver":
 	        	
-	        	VerPrenda objpanePanel2 = new VerPrenda();
-	        	objpanePanel2.setVisible(true);
+	        //	VerPrenda objpanePanel2 = new VerPrenda();
+	        	//objpanePanel2.setVisible(true);
 	            
 	                                
 	                    
