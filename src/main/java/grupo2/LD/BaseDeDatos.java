@@ -94,6 +94,18 @@ public class BaseDeDatos {
 				e.printStackTrace();  
 		}
 	}
+	
+	public static void crearTablaBDComplemento() {
+		if (statement==null) return;
+		try {
+			statement.executeUpdate("create table if not exists COMPLEMENTO ( nombre string, color string )");
+			System.out.println ("Tabla creada");
+		} catch (SQLException e) {
+			// Si hay excepcion es que la tabla ya existia (lo cual es correcto)
+			if (!e.getMessage().equals("table interaccion already exists"))
+				e.printStackTrace();  
+		}
+	}
 
 
 	public static void inicializarValores() {
@@ -130,6 +142,23 @@ public class BaseDeDatos {
 			Statement st = connection.createStatement();
 	        st.executeUpdate(Query);
 	        JOptionPane.showMessageDialog(null, "Nueva prenda almacenada de forma exitosa");
+	        
+			} catch (SQLException ex) {
+	        JOptionPane.showMessageDialog(null, "Error al insertar una nueva prenda. ");
+	    }
+	}
+	
+public static void insertarComplemento (String nombre, String color){
+		
+		
+		try {
+			String Query = "INSERT INTO COMPLEMENTO VALUES("
+	                + " ' " + nombre + " ', "
+	                + " ' " + color + " ')";
+	      
+			Statement st = connection.createStatement();
+	        st.executeUpdate(Query);
+	        JOptionPane.showMessageDialog(null, "Nuevo complemento almacenado de forma exitosa");
 	        
 			} catch (SQLException ex) {
 	        JOptionPane.showMessageDialog(null, "Error al insertar una nueva prenda. ");
