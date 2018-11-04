@@ -10,6 +10,7 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -261,8 +262,20 @@ public class PanelMenu extends JFrame implements ActionListener {
         case "Ver":
             
 		//JOptionPane.showMessageDialog( null, "No disponible, inténtelo más adelante. " , "ERROR", JOptionPane.INFORMATION_MESSAGE);
+//<<<<<<< HEAD
         	PanelArmario objpanePanel1 = new PanelArmario();
         	objpanePanel1.setVisible(true);
+//=======
+        	PanelArmario objpanePanel2;
+			try {
+				objpanePanel2 = new PanelArmario();
+				objpanePanel2.setVisible(true);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+        	
+//>>>>>>> 92c4efe2d7a078211fe20179fe50fa0d48a76171
                         
             break;
         case "Añadir":

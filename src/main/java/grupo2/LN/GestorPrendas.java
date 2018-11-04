@@ -8,6 +8,8 @@ public class GestorPrendas {
 	String color;
 	String nombre;
 	String tejido;
+	
+	
 		
 	public GestorPrendas(String nombre, String color, String tejido){
 		this.nombre = nombre;
@@ -31,5 +33,6 @@ public class GestorPrendas {
 				return false;
 			}
 		}
+	
 
 }
