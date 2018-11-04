@@ -179,17 +179,6 @@ public class PanelArmario extends JFrame implements ActionListener {
 			//	PanelInferior.add(reloj);
 				
 			//PANEL izquierda
-				/*PanelCentro = new JPanel();
-				//PanelIzquierda.setSize(400, 432);
-				
-				PanelCentro.setPreferredSize( new Dimension( 450,  450 ) );
-				PanelCentro.setBackground(SystemColor.WHITE);
-									
-				getContentPane().add(PanelCentro, BorderLayout.WEST);
-				//PanelCentro.setLayout(null);
-				PanelCentro.setVisible(true);
-				PanelCentro.setPreferredSize( new Dimension( 450,  450 ) );
-			*/	//PanelCentro.setDefaultCloseOperation(EXIT_ON_CLOSE);
 				panelPestaña.setBounds(0, 80, 434, 432);
 				panelPestaña.setVisible(true);
 				panelPestaña.setPreferredSize( new Dimension( 450,  450 ) );
@@ -205,8 +194,8 @@ public class PanelArmario extends JFrame implements ActionListener {
 	                Salir.setHorizontalAlignment(SwingConstants.TRAILING);
 	                Salir.setAlignmentY(Component.BOTTOM_ALIGNMENT);
 	                Salir.setAlignmentX(Component.RIGHT_ALIGNMENT);
-	                Salir.setSize(131, 29);
-	                Salir.setLocation(298, 389);
+	                Salir.setSize(71, 29);
+	                Salir.setLocation(300, 43);
 	                Salir.setFont(new Font("Century Gothic", Font.BOLD, 16));
 	                //        BSalir.setBounds(100, 103, 150, 30);
 	                Salir.addActionListener(this);
@@ -220,13 +209,14 @@ public class PanelArmario extends JFrame implements ActionListener {
 	                        Ver.setAlignmentX(1.0f);
 	                        Ver.setActionCommand("Ver");
 	                        Ver.setBounds(99, 67, 251, 29);
+	                         armario.setLayout(null);
 	                        // PanelCentro.add(Salir);
 	                         
 	                         JTextPane txtpnHj = new JTextPane();
 	                         txtpnHj.setForeground(SystemColor.desktop);
 	                         txtpnHj.setFont(new Font("MS Mincho", Font.ITALIC, 26));
 	                         txtpnHj.setText("¡Ya estas dentro de tu armario!");
-	                         txtpnHj.setBounds(20, 23, 409, 33);
+	                         txtpnHj.setBounds(10, 5, 409, 33);
 	                         armario.add(txtpnHj);
 	                        //     PanelCentro.setLayout(null);
 	                             
@@ -237,27 +227,27 @@ public class PanelArmario extends JFrame implements ActionListener {
 	                             		 Añadir.setAlignmentY(Component.BOTTOM_ALIGNMENT);
 	                             		 Añadir.setAlignmentX(Component.RIGHT_ALIGNMENT);
 	                             		 Añadir.setSize(237, 29);
-	                             		 Añadir.setLocation(109, 107);
+	                             		 Añadir.setLocation(58, 43);
 	                             		 Añadir.setFont(new Font("Century Gothic", Font.BOLD, 16));
 	                             		 //        BSalir.setBounds(100, 103, 150, 30);
 	                             		 Añadir.addActionListener(this);
 	                             		 //  PanelCentro.setLayout(null);
 	                             		   Añadir.setActionCommand("Añadir");
-	                     //   PanelCentro.add(Ver);
-	                        Salir.setActionCommand("Salir");
+	                                     Salir.setActionCommand("Salir");
 	                   armario.add(Salir);
 	                
 	                
-	                //tabla
+	                //Aqui se muestra la pestaña sobre las prendas que contiene el armario; sus carateristicas principales. 
 	               		                
 	                String sql="SELECT * FROM PRENDA";
 	                		
 	                Statement st;
 	                
 	                JTable table = new JTable();
+	                table.setEnabled(false);
 	                DefaultTableModel model= new DefaultTableModel();
-	                model.addColumn("nombre");
 	                model.addColumn("color");
+	                model.addColumn("nombre");
 	                
 	                table.setModel (model);
 	                String[] dato =new String[30];
@@ -272,13 +262,17 @@ public class PanelArmario extends JFrame implements ActionListener {
 	                	model.addRow(dato);
 	                }
 	                JScrollPane scroll = new JScrollPane (table);
-	                scroll.setBounds(109, 147, 237, 231);
+	                scroll.setEnabled(false);
+	                scroll.setBounds(22, 92, 397, 377);
 				armario.add(scroll);
 	               
-				//PestañaComplemento
+				
+				
+				//Aqui se muestra la Pestaña de los Complementos, con sus caracteristicas principales
 				JPanel complemento = new JPanel ();
+				complemento.setLayout(null);
 				JLabel l2 = new JLabel ("Complemento");
-				l2.setBounds(200, 200,200,200);
+				l2.setBounds(182, 5,65,14);
 				complemento.add(l2);
 				panelPestaña.addTab("Complemento",null,complemento, "Complemento");
 				getContentPane().add(panelPestaña);
@@ -288,8 +282,8 @@ public class PanelArmario extends JFrame implements ActionListener {
 	                Salir.setHorizontalAlignment(SwingConstants.TRAILING);
 	                Salir.setAlignmentY(Component.BOTTOM_ALIGNMENT);
 	                Salir.setAlignmentX(Component.RIGHT_ALIGNMENT);
-	                Salir.setSize(131, 29);
-	                Salir.setLocation(298, 389);
+	                Salir.setSize(71, 29);
+	                Salir.setLocation(320, 62);
 	                Salir.setFont(new Font("Century Gothic", Font.BOLD, 16));
 	                //        BSalir.setBounds(100, 103, 150, 30);
 	                Salir.addActionListener(this);
@@ -299,7 +293,7 @@ public class PanelArmario extends JFrame implements ActionListener {
                      texto2.setForeground(SystemColor.desktop);
                      texto2.setFont(new Font("MS Mincho", Font.ITALIC, 26));
                      texto2.setText("¡Aqui estan tus complementos!");
-                     texto2.setBounds(20, 23, 409, 33);
+                     texto2.setBounds(23, 24, 383, 33);
                      complemento.add(texto2);
                     //     PanelCentro.setLayout(null);
                          
@@ -309,45 +303,45 @@ public class PanelArmario extends JFrame implements ActionListener {
                          		AñadirC.setHorizontalAlignment(SwingConstants.TRAILING);
                          		AñadirC.setAlignmentY(Component.BOTTOM_ALIGNMENT);
                          		AñadirC.setAlignmentX(Component.RIGHT_ALIGNMENT);
-                         		AñadirC.setSize(237, 29);
-                         		AñadirC.setLocation(109, 107);
+                         		AñadirC.setSize(277, 29);
+                         		AñadirC.setLocation(38, 62);
                          		AñadirC.setFont(new Font("Century Gothic", Font.BOLD, 16));
                          		 //        BSalir.setBounds(100, 103, 150, 30);
                          		AñadirC.addActionListener(this);
                          		 //  PanelCentro.setLayout(null);
                          		AñadirC.setActionCommand("AñadirC");
-                 //   PanelCentro.add(Ver);
-                    Salir.setActionCommand("Salir");
+                                   Salir.setActionCommand("Salir");
                complemento.add(Salir);
+           
+               
+              //tabla Complemento
+	          String sqlC="SELECT * FROM COMPLEMENTO";	
+               Statement stC;
+               
+               JTable tableC = new JTable();
+               tableC.setEnabled(false);
+               DefaultTableModel modelC= new DefaultTableModel();
+               modelC.addColumn("color");
+               modelC.addColumn("nombre");
+               
+               tableC.setModel (modelC);
+               String[] datoC =new String[30];
+               
+               stC=BaseDeDatos.getStatement();
+               
+               ResultSet resultC =stC.executeQuery(sqlC);
+               
+               while(resultC.next()){
+               	datoC[0]=resultC.getString(1);
+               	datoC[1]=resultC.getString(2);
+               	modelC.addRow(datoC);
+               }
+               JScrollPane scrollC = new JScrollPane (tableC);
+               scrollC.setBounds(23, 106, 383, 351);
+			complemento.add(scrollC);
+              
             
-            
-            //tabla
-           		                
-        /*    String sql="SELECT * FROM PRENDA";
-            		
-            Statement st;
-            
-            JTable table = new JTable();
-            DefaultTableModel model= new DefaultTableModel();
-            model.addColumn("nombre");
-            model.addColumn("color");
-            
-            table.setModel (model);
-            String[] dato =new String[30];
-            
-            st=BaseDeDatos.getStatement();
-            
-            ResultSet result =st.executeQuery(sql);
-            
-            while(result.next()){
-            	dato[0]=result.getString(1);
-            	dato[1]=result.getString(2);
-            	model.addRow(dato);
-            }
-            JScrollPane scroll = new JScrollPane (table);
-            scroll.setBounds(109, 147, 237, 231);
-		armario.add(scroll);	
-			          */    
+          
 	}
 
 	@Override

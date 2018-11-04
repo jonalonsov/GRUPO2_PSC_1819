@@ -6,7 +6,7 @@ public class complemento  implements Comparable<Object> {
 	int id;
 	private String nombre;
 	private String color;
-	private String tejido;
+	
 	
 	public complemento(String nombre, String color){
 		
@@ -39,14 +39,6 @@ public class complemento  implements Comparable<Object> {
 		return 0;
 	}
 
-	public String getTejido() {
-		return tejido;
-	}
-
-	public void setTejido(String tejido) {
-		this.tejido = tejido;
-	}
 	
-
 
 }

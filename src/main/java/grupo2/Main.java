@@ -10,6 +10,7 @@ public class Main {
 		
 		BaseDeDatos.crearTablaBDUsuario();
 		BaseDeDatos.crearTablaBDPrenda();
+		BaseDeDatos.crearTablaBDComplemento();
 		BaseDeDatos.inicializarValores();
 		//BaseDeDatos.insertarUsuario(BaseDeDatos.getStatement());
 

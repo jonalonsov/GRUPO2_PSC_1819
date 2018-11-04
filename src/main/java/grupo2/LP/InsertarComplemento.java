@@ -21,6 +21,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import grupo2.LD.BaseDeDatos;
+import grupo2.LN.GestorComplemento;
 import grupo2.LN.GestorPrendas;
 
 public class InsertarComplemento extends JFrame implements ActionListener {
@@ -74,7 +75,7 @@ public class InsertarComplemento extends JFrame implements ActionListener {
 				
 		textColor = new JLabel();
 		textColor.setVerticalAlignment(SwingConstants.TOP);
-		textColor.setText("Inserte la prenda \r\n");
+		textColor.setText("Inserte el color \r\n");
 		textColor.setFont(new Font("Century Gothic", Font.BOLD, 12));
 		textColor.setBounds(94, 60, 231, 20);
 		
@@ -226,27 +227,28 @@ public class InsertarComplemento extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
-		/*if (e.getSource() == btnAcep){
+		if (e.getSource() == btnAcep){
 	            
-			if(Color1.getText().length()==0 || Prenda.getText().length()==0 || Tejido.getText().length()==0){
+			if(Color1.getText().length()==0 || Complemento.getText().length()==0){
 				JOptionPane.showMessageDialog(null, "Debe rellenar todos los campos.", "CUIDADO",JOptionPane.INFORMATION_MESSAGE);
 			} else {
 	
 						String nombre = Color1.getText();
-						String color = Prenda.getText();
+						String color = Complemento.getText();
 												
-						GestorPrendas prenda = new GestorPrendas(nombre, color, tejido);		
+						GestorComplemento complemento = new GestorComplemento (nombre, color);		
 							
-						prenda.anyadirPrenda( BaseDeDatos.getStatement(), nombre, color, tejido);
+						complemento.anyadirComplemento( BaseDeDatos.getStatement(), nombre, color);
 						
-						boolean semaforo=prenda.anyadirPrenda(BaseDeDatos.getStatement(), nombre, color, tejido);
+						boolean semaforo=complemento.anyadirComplemento(BaseDeDatos.getStatement(), nombre, color);
 						
 						if(semaforo==true) {
 							JOptionPane.showMessageDialog(null, "Prenda introducida con éxito","Correcto",JOptionPane.INFORMATION_MESSAGE);
 								dispose();
-						}*/
+						}
 			} 				
 		//}
 //	}
 	
 }
+}}
