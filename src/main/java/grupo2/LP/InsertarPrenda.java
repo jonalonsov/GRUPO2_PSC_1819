@@ -50,6 +50,7 @@ public class InsertarPrenda extends JFrame implements ActionListener {
 	private JComboBox comboBoxC;
 	private JComboBox comboBoxT;
 	private JButton btnSeleccionar;
+	JFileChooser fc;
 	
 	
 	
@@ -241,16 +242,17 @@ public class InsertarPrenda extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
+		//no sale
 		if (e.getSource() == btnSeleccionar){
 			
 			//Creamos el objeto JFileChooser
-			JFileChooser fc=new JFileChooser();
+			fc=new JFileChooser();
 			 
 			//Abrimos la ventana, guardamos la opcion seleccionada por el usuario
 			int seleccion=fc.showSaveDialog(PanelIzquierda);
 			 
 			//Si el usuario, pincha en aceptar
-			if(seleccion==JFileChooser.APPROVE_OPTION){
+//			if(seleccion==JFileChooser.APPROVE_OPTION){
 			 
 			    //Seleccionamos el fichero
 			    File fichero=fc.getSelectedFile();
@@ -266,7 +268,7 @@ public class InsertarPrenda extends JFrame implements ActionListener {
 //			 
 			}
 			
-		}
+//		}
 		
 		if (e.getSource() == btnAcep){
 	            
