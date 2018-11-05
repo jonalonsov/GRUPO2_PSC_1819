@@ -263,8 +263,8 @@ public class PanelMenu extends JFrame implements ActionListener {
             
 		//JOptionPane.showMessageDialog( null, "No disponible, inténtelo más adelante. " , "ERROR", JOptionPane.INFORMATION_MESSAGE);
 //<<<<<<< HEAD
-        	PanelArmario objpanePanel1 = new PanelArmario();
-        	objpanePanel1.setVisible(true);
+//        	PanelArmario objpanePanel1 = new PanelArmario();
+//        	objpanePanel1.setVisible(true);
 //=======
         	PanelArmario objpanePanel2;
 			try {
