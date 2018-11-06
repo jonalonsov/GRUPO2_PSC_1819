@@ -5,21 +5,18 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
+import grupo2.LD.BaseDeDatos;
 
 public class GestorPrendas {
-	
-
-	
-	
 		
 	public GestorPrendas(){
 		
 	}
 	
 	
-	public int maxIdPrenda( Statement st) {
+	public int maxIdPrenda() {
 		//SELECT
+		Statement st=BaseDeDatos.getStatement();
 		int id=0;
 				String sentSQL = "SELECT id from PRENDA ORDER BY id DESC LIMIT 1 ";
 				System.out.println( sentSQL ); 
@@ -36,9 +33,9 @@ public class GestorPrendas {
 		return id;
 	}
 
-	public boolean anyadirPrenda(Statement st, prenda prenda) {
+	public boolean anyadirPrenda(Statement st, Prenda prenda) {
 	
-		int id = maxIdPrenda(st) + 1;
+		int id = maxIdPrenda() + 1;
 
 		try {
 				
@@ -53,8 +50,11 @@ public class GestorPrendas {
 			}
 		}
 	
-	public int maxIdConjunto( Statement st) {
+
+	
+	public int maxIdConjunto() {
 		//SELECT
+		Statement st=BaseDeDatos.getStatement();
 		int id=0;
 				String sentSQL = "SELECT id from Conjunto ORDER BY id DESC LIMIT 1 ";
 				System.out.println( sentSQL ); 
@@ -67,13 +67,14 @@ public class GestorPrendas {
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					id=0;
 				} 
 		return id;
 	}
 	
 	public boolean anyadirConjunto(Statement st, Conjunto conjunto) {
 
-		int id = maxIdConjunto(st) + 1;
+		int id = maxIdConjunto() + 1;
 		try {
 				
 				String sentSQL = "insert into CONJUNTO values(" + "'" + id + "', " + "'" + conjunto.getPrenda1() + "', " + "'" + conjunto.getPrenda2() + "', "+"'" + conjunto.getUsuario() + "', "+"'" + conjunto.getFavorito() + "')"; 
@@ -85,6 +86,35 @@ public class GestorPrendas {
 				e.printStackTrace();
 				return false;
 			}
+	}
+	
+	public Prenda[] selectPrendas() {
+		
+		 Statement st=BaseDeDatos.getStatement();
+		//Creamos el arrayList de los que cumplen la condición de ser favoritos
+		ArrayList<Prenda> prendas = new ArrayList<Prenda>();
+		try {
+			String sentSQL = "select * from PRENDA";
+			System.out.println( sentSQL ); 
+			
+			ResultSet rs = st.executeQuery( sentSQL );
+			
+			while (rs.next()) {
+				//Añadimos los id-s de los conjuntos que son favoritos
+				prendas.add(new Prenda(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+			
+		}
+		//Pasamos de ArrayList a Array
+		Prenda[] Arrprendas = new Prenda[prendas.size()];
+		Arrprendas = prendas.toArray(Arrprendas);
+		
+		return Arrprendas;
+		
 	}
 	
 	//Selecciona todos los conjuntos que están marcados como favoritos y devuelve un array con los id-s de esos conjuntos

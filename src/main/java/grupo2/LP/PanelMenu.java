@@ -29,6 +29,7 @@ public class PanelMenu extends JFrame implements ActionListener {
     
     private JButton Ver;
     private JButton Añadir;
+    private JButton AñadirComp;
     private JButton Salir;
     private JButton Conjuntos;
     private JButton Fav;
@@ -161,12 +162,13 @@ public class PanelMenu extends JFrame implements ActionListener {
                                     
                 getContentPane().add(PanelCentro, BorderLayout.WEST);
                 
+                
                 Ver = new JButton("Ver mi armario");
                 Ver.setForeground(Color.BLACK);
                 Ver.setAlignmentY(Component.CENTER_ALIGNMENT);
                 Ver.setAlignmentX(Component.LEFT_ALIGNMENT);
-                Ver.setSize(170, 29);
-                Ver.setLocation(132, 155);
+                Ver.setSize(200, 29);
+                Ver.setLocation(100, 155);
                 Ver.setFont(new Font("Century Gothic", Font.CENTER_BASELINE, 15));
                 //        BSalir.setBounds(100, 103, 150, 30);
                 Ver.addActionListener(this);
@@ -178,8 +180,8 @@ public class PanelMenu extends JFrame implements ActionListener {
                 Conjuntos.setForeground(Color.BLACK);
                 Conjuntos.setAlignmentY(Component.CENTER_ALIGNMENT);
                 Conjuntos.setAlignmentX(Component.LEFT_ALIGNMENT);
-                Conjuntos.setSize(170, 29);
-                Conjuntos.setLocation(132, 195);
+                Conjuntos.setSize(200, 29);
+                Conjuntos.setLocation(100, 195);
                 Conjuntos.setFont(new Font("Century Gothic", Font.BOLD, 15));
                 //        BSalir.setBounds(100, 103, 150, 30);
                 Conjuntos.addActionListener(this);
@@ -191,10 +193,9 @@ public class PanelMenu extends JFrame implements ActionListener {
                 Fav.setForeground(Color.BLACK);
                 Fav.setAlignmentY(Component.CENTER_ALIGNMENT);
                 Fav.setAlignmentX(Component.LEFT_ALIGNMENT);
-                Fav.setSize(170, 29);
-                Fav.setLocation(132, 235);
+                Fav.setSize(200, 29);
+                Fav.setLocation(100, 235);
                 Fav.setFont(new Font("Century Gothic", Font.BOLD, 15));
-                        //        BSalir.setBounds(100, 103, 150, 30);
                 Fav.addActionListener(this);
                         PanelCentro.setLayout(null);
                         Fav.setActionCommand("Fav");
@@ -205,14 +206,27 @@ public class PanelMenu extends JFrame implements ActionListener {
                 Añadir.setForeground(Color.BLACK);
                 Añadir.setAlignmentY(Component.CENTER_ALIGNMENT);
                 Añadir.setAlignmentX(Component.LEFT_ALIGNMENT);
-                Añadir.setSize(170, 29);
-                Añadir.setLocation(132, 275);
+                Añadir.setSize(200, 29);
+                Añadir.setLocation(100, 275);
                 Añadir.setFont(new Font("Century Gothic", Font.BOLD, 15));
               
                 Añadir.addActionListener(this);
                         PanelCentro.setLayout(null);
                         Añadir.setActionCommand("Añadir");
                         PanelCentro.add(Añadir);
+                        
+                AñadirComp = new JButton("Añadir complemento");
+                AñadirComp.setForeground(Color.BLACK);
+                AñadirComp.setAlignmentY(Component.CENTER_ALIGNMENT);
+                AñadirComp.setAlignmentX(Component.LEFT_ALIGNMENT);
+                AñadirComp.setSize(200, 29);
+                AñadirComp.setLocation(100, 315);
+                AñadirComp.setFont(new Font("Century Gothic", Font.BOLD, 15));
+              
+                AñadirComp.addActionListener(this);
+                        PanelCentro.setLayout(null);
+                        AñadirComp.setActionCommand("AñadirComp");
+                        PanelCentro.add(AñadirComp);
                         
                 Salir = new JButton("Cerrar sesion");
                 Salir.setForeground(Color.BLACK);
@@ -293,6 +307,13 @@ public class PanelMenu extends JFrame implements ActionListener {
 
             
                                     
+        break;
+		case "AñadirComp":
+		        	
+			InsertarComplemento objComp = new InsertarComplemento();
+			objComp.setVisible(true);		
+		            
+		                                    
         break;
         
         }

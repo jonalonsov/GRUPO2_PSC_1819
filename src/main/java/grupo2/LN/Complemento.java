@@ -1,21 +1,18 @@
 package grupo2.LN;
 
-public class prenda  implements Comparable<Object> {
+public class Complemento  implements Comparable<Object> {
 
 	private int id;
 	private String nombre;
 	private String color;
-	private String tejido;
-	private String imagen;
 	
-	public prenda(int id, String nombre, String color, String tejido, String imagen){
+	
+	public Complemento(int id, String nombre, String color){
 		
-		this.id=id;
+		this.id=id; 
 		this.nombre = nombre;
 		this.color = color;
-		this.setTejido(tejido);
-		this.imagen = imagen;
-		
+				
 	}
 
 	public String getNombre() {
@@ -34,27 +31,11 @@ public class prenda  implements Comparable<Object> {
 		this.color = color;
 	}
 	
-	public String getImagen() {
-		return imagen;
-	}
-
-	public void setImagen(String imagen) {
-		this.imagen = imagen;
-	}
-	
 
 	@Override
 	public int compareTo(Object o) {
 		// TODO Auto-generated method stub
 		return 0;
-	}
-
-	public String getTejido() {
-		return tejido;
-	}
-
-	public void setTejido(String tejido) {
-		this.tejido = tejido;
 	}
 
 	public int getId() {
@@ -64,7 +45,7 @@ public class prenda  implements Comparable<Object> {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
 
+	
 
 }

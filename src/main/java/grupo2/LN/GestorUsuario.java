@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 
 public class GestorUsuario {
 
+	//<--GOE--> HACER LO MISMO QUE HE HECHO CON GESTORCOMPLEMENTOS Y GESTORPRENDAS, NO CREAR UN NUEVO OBJETO
 	String contrasenya;
 	String nombre;
 		

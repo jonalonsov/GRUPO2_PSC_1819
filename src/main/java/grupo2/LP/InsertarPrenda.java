@@ -48,7 +48,7 @@ public class InsertarPrenda extends JFrame implements ActionListener {
 	JFileChooser fc;
 	
 	private GestorPrendas gprenda; 
-	private grupo2.LN.prenda prenda;
+	private grupo2.LN.Prenda prenda;
 	
 	
 	
@@ -275,7 +275,7 @@ public class InsertarPrenda extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(null, "Debe rellenar todos los campos.", "CUIDADO",JOptionPane.INFORMATION_MESSAGE);
 			} else {
 								
-					prenda = new grupo2.LN.prenda(0, nombre, color, tejido, imagen.getAbsolutePath());	
+					prenda = new grupo2.LN.Prenda(0, nombre, color, tejido, imagen.getAbsolutePath());	
 					
 
 					gprenda = new GestorPrendas();

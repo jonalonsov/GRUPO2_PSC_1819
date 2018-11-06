@@ -1,7 +1,6 @@
 package grupo2.LP;
 
 
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -11,7 +10,9 @@ import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -22,7 +23,6 @@ import javax.swing.SwingConstants;
 
 import grupo2.LD.BaseDeDatos;
 import grupo2.LN.GestorComplemento;
-import grupo2.LN.GestorPrendas;
 
 public class InsertarComplemento extends JFrame implements ActionListener {
 
@@ -35,7 +35,6 @@ public class InsertarComplemento extends JFrame implements ActionListener {
 	private JPanel PanelIzquierda;
 	
 	private JLabel textC;
-	private JTextField Complemento;
 	private JLabel textColor;
 	private JTextField Color1;
 	
@@ -44,8 +43,10 @@ public class InsertarComplemento extends JFrame implements ActionListener {
 	private JButton btnAcep;
 	private JTextArea M, I, A, R, M2, A2, R2, I2, O;
 	private JTextArea informacion;
+	private JComboBox<String> comboBoxN;
 	
-	
+	private grupo2.LN.Complemento complemento;
+	private GestorComplemento gcomplementos;
 	
 	//private Reloj reloj;
 	
@@ -53,12 +54,17 @@ public class InsertarComplemento extends JFrame implements ActionListener {
 		
 		
 				
-
+		/*
 		Complemento = new JTextField();
 		Complemento.setFont(new Font("Century Gothic", Font.BOLD, 10));
 		Complemento.setBounds(94, 147, 231, 20);
 		Complemento.setEnabled(true);
 		Complemento.setEditable(true);
+		*/
+		
+		comboBoxN = new JComboBox<String>();
+		comboBoxN.setModel(new DefaultComboBoxModel<String>(new String[] {"Seleccione complemento...", "Collar", "Pulsera", "Pendientes", "Gafas",  "Gorra"}));
+		comboBoxN.setBounds(94, 147, 231, 20);
 		
 		textC = new JLabel();
 		textC.setText("Inserte el Complemento\r\n");
@@ -78,6 +84,7 @@ public class InsertarComplemento extends JFrame implements ActionListener {
 		textColor.setText("Inserte el color \r\n");
 		textColor.setFont(new Font("Century Gothic", Font.BOLD, 12));
 		textColor.setBounds(94, 60, 231, 20);
+		
 		
 		
 		setTitle("Bienvenido a tu armario");
@@ -196,15 +203,18 @@ public class InsertarComplemento extends JFrame implements ActionListener {
 				
 				PanelIzquierda.setPreferredSize( new Dimension( 450,  450 ) );
 				PanelIzquierda.setBackground(SystemColor.WHITE);
-									
+					
 				getContentPane().add(PanelIzquierda, BorderLayout.WEST);
 						PanelIzquierda.setLayout(null);
+		
+
 				
+				PanelIzquierda.add(comboBoxN);
 				
 				PanelIzquierda.add(textC);
-				PanelIzquierda.add(Complemento);
 				PanelIzquierda.add(Color1);
 				PanelIzquierda.add(textColor);
+				PanelIzquierda.add(comboBoxN);
 								
 				btnAcep = new JButton("Aceptar");
 				btnAcep.setForeground(Color.BLACK);
@@ -228,23 +238,26 @@ public class InsertarComplemento extends JFrame implements ActionListener {
 		// TODO Auto-generated method stub
 
 		if (e.getSource() == btnAcep){
-	            
-			if(Color1.getText().length()==0 || Complemento.getText().length()==0){
+			String nombre = Color1.getText();
+			String color = (String)comboBoxN.getSelectedItem();
+			
+			if(Color1.getText().length()==0 || color.equals("Seleccione complemento...")){
 				JOptionPane.showMessageDialog(null, "Debe rellenar todos los campos.", "CUIDADO",JOptionPane.INFORMATION_MESSAGE);
 			} else {
 	
-						String nombre = Color1.getText();
-						String color = Complemento.getText();
+						
 												
-						GestorComplemento complemento = new GestorComplemento (nombre, color);		
-							
-						complemento.anyadirComplemento( BaseDeDatos.getStatement(), nombre, color);
+						complemento = new grupo2.LN.Complemento (0, nombre, color);		
 						
-						boolean semaforo=complemento.anyadirComplemento(BaseDeDatos.getStatement(), nombre, color);
+						gcomplementos = new GestorComplemento();
 						
+						boolean semaforo = gcomplementos.anyadirComplemento( BaseDeDatos.getStatement(), complemento);
+												
 						if(semaforo==true) {
-							JOptionPane.showMessageDialog(null, "Prenda introducida con éxito","Correcto",JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Complemento introducido con éxito","Correcto",JOptionPane.INFORMATION_MESSAGE);
 								dispose();
+						}else {
+							JOptionPane.showMessageDialog(null, "El complemento no ha podido introducirse, vuelva a intentarlo. ","Incorrecto",JOptionPane.INFORMATION_MESSAGE);
 						}
 			} 				
 		//}
