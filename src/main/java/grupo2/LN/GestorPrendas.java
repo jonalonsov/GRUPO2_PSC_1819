@@ -3,6 +3,9 @@ package grupo2.LN;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 
 public class GestorPrendas {
 	
@@ -84,5 +87,34 @@ public class GestorPrendas {
 			}
 	}
 	
+	//Selecciona todos los conjuntos que están marcados como favoritos y devuelve un array con los id-s de esos conjuntos
+	public Conjunto[] selectFavoritos(Statement st) {
+	
+		//Creamos el arrayList de los que cumplen la condición de ser favoritos
+		ArrayList<Conjunto> favoritos = new ArrayList<Conjunto>();
+		try {
+			String sentSQL = "select id from CONJUNTO where favorito = 1)";
+			System.out.println( sentSQL ); 
+			
+			ResultSet rs = st.executeQuery( sentSQL );
+			
+			while (rs.next()) {
+				//Añadimos los id-s de los conjuntos que son favoritos
+				favoritos.add(new Conjunto(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getInt(5)));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+		//Pasamos de ArrayList a Array
+		Conjunto[] Arrfavoritos = new Conjunto[favoritos.size()];
+		Arrfavoritos = favoritos.toArray(Arrfavoritos);
+		
+		return Arrfavoritos;
+		
+	}
+
 
 }
