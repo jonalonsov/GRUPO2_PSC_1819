@@ -86,7 +86,7 @@ public class BaseDeDatos {
 	public static void crearTablaBDPrenda() {
 		if (statement==null) return;
 		try {
-			statement.executeUpdate("create table if not exists PRENDA ( nombre string, color string, tejido string )");
+			statement.executeUpdate("create table if not exists PRENDA ( id int, nombre string, color string, tejido string, imagen string )");
 			System.out.println ("Tabla creada");
 		} catch (SQLException e) {
 			// Si hay excepcion es que la tabla ya existia (lo cual es correcto)
@@ -130,23 +130,24 @@ public class BaseDeDatos {
 		    }
 		}
 	
-	public static void insertarPrenda (String nombre, String color, String tejido){
-		
-		
-		try {
-			String Query = "INSERT INTO PRENDA VALUES("
-	                + " ' " + nombre + " ', "
-	                + " ' " + color + " ', "
-	                + " ' " + tejido + " ')";
-	      
-			Statement st = connection.createStatement();
-	        st.executeUpdate(Query);
-	        JOptionPane.showMessageDialog(null, "Nueva prenda almacenada de forma exitosa");
-	        
-			} catch (SQLException ex) {
-	        JOptionPane.showMessageDialog(null, "Error al insertar una nueva prenda. ");
-	    }
-	}
+//	public static void insertarPrenda (String nombre, String color, String tejido, String imagen){
+//		
+//		
+//		try {
+//			String Query = "INSERT INTO PRENDA VALUES("
+//	                + " ' " + nombre + " ', "
+//	                + " ' " + color + " ', "
+//	                + " ' " + tejido + " ', "
+//	                + " ' " + imagen + " ')";
+//	      
+//			Statement st = connection.createStatement();
+//	        st.executeUpdate(Query);
+//	        JOptionPane.showMessageDialog(null, "Nueva prenda almacenada de forma exitosa");
+//	        
+//			} catch (SQLException ex) {
+//	        JOptionPane.showMessageDialog(null, "Error al insertar una nueva prenda. ");
+//	    }
+//	}
 	
 public static void insertarComplemento (String nombre, String color){
 		

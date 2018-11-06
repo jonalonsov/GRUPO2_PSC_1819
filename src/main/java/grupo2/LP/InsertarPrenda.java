@@ -50,6 +50,7 @@ public class InsertarPrenda extends JFrame implements ActionListener {
 	private JComboBox comboBoxC;
 	private JComboBox comboBoxT;
 	private JButton btnSeleccionar;
+	private File imagen;
 	JFileChooser fc;
 	
 	
@@ -231,9 +232,14 @@ public class InsertarPrenda extends JFrame implements ActionListener {
 				PanelIzquierda.add(comboBoxT);
 				
 				btnSeleccionar = new JButton("Seleccionar IMAGEN");
+				btnSeleccionar.addActionListener(this);
 		        btnSeleccionar.setBounds(94, 289, 187, 23);
 		        PanelIzquierda.add(btnSeleccionar);
 				
+		      //Creamos el objeto JFileChooser
+				fc=new JFileChooser();
+				
+				 
 				
 						
 	}
@@ -244,19 +250,16 @@ public class InsertarPrenda extends JFrame implements ActionListener {
 		
 		//no sale
 		if (e.getSource() == btnSeleccionar){
-			
-			//Creamos el objeto JFileChooser
-			fc=new JFileChooser();
-			 
+						
 			//Abrimos la ventana, guardamos la opcion seleccionada por el usuario
 			int seleccion=fc.showSaveDialog(PanelIzquierda);
 			 
 			//Si el usuario, pincha en aceptar
-//			if(seleccion==JFileChooser.APPROVE_OPTION){
+			if(seleccion==JFileChooser.APPROVE_OPTION){
 			 
 			    //Seleccionamos el fichero
-			    File fichero=fc.getSelectedFile();
-			 
+			    imagen =fc.getSelectedFile();
+			 System.out.println(imagen.getAbsolutePath());
 //			    try(FileWriter fw=new FileWriter(fichero)){
 //			 
 //			        //Escribimos el texto en el fichero
@@ -268,7 +271,7 @@ public class InsertarPrenda extends JFrame implements ActionListener {
 //			 
 			}
 			
-//		}
+		}
 		
 		if (e.getSource() == btnAcep){
 	            
@@ -281,17 +284,17 @@ public class InsertarPrenda extends JFrame implements ActionListener {
 					String color = (String)comboBoxC.getSelectedItem();
 					String tejido = (String)comboBoxT.getSelectedItem();
 					
-					GestorPrendas prenda = new GestorPrendas(nombre, color, tejido);		
+					GestorPrendas prenda = new GestorPrendas(nombre, color, tejido, imagen.getAbsolutePath());		
 						
-					prenda.anyadirPrenda( BaseDeDatos.getStatement(), nombre, color, tejido);
+					prenda.anyadirPrenda( BaseDeDatos.getStatement(), nombre, color, tejido, imagen.getAbsolutePath());
 					
-					boolean semaforo=prenda.anyadirPrenda(BaseDeDatos.getStatement(), nombre, color, tejido);
+//					boolean semaforo=prenda.anyadirPrenda(BaseDeDatos.getStatement(), nombre, color, tejido, imagen.getAbsolutePath());
 					
-					if(semaforo==true) {
+//					if(semaforo==true) {
 						JOptionPane.showMessageDialog(null, "Prenda introducida con éxito","Correcto",JOptionPane.INFORMATION_MESSAGE);
 							dispose();
 //					}
-			} 				
+//			} 				
 		}
 	}
 }
