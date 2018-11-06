@@ -263,7 +263,13 @@ public class PanelMenu extends JFrame implements ActionListener {
             
 		//JOptionPane.showMessageDialog( null, "No disponible, inténtelo más adelante. " , "ERROR", JOptionPane.INFORMATION_MESSAGE);
 //<<<<<<< HEAD
-        	PanelArmario objpanePanel1 = new PanelArmario();
+        	PanelArmario objpanePanel1 = null;
+			try {
+				objpanePanel1 = new PanelArmario();
+			} catch (SQLException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
         	objpanePanel1.setVisible(true);
 //=======
         	PanelArmario objpanePanel2;
@@ -274,7 +280,7 @@ public class PanelMenu extends JFrame implements ActionListener {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-        	
+        	 
 //>>>>>>> 92c4efe2d7a078211fe20179fe50fa0d48a76171
                         
             break;
