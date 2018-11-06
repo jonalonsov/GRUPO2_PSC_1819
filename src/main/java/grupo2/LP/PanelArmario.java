@@ -74,7 +74,7 @@ public class PanelArmario extends JFrame implements ActionListener {
 		
 		
 		
-		setTitle("Bienvenido a tu armario");
+		
 		setLocationRelativeTo( null );  // Centra la ventana en la pantalla
 		setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
 		setBounds(250, 50, 758, 600);
@@ -260,19 +260,19 @@ public class PanelArmario extends JFrame implements ActionListener {
 			                        
 				 Salir = new JButton("Atras");
 	                Salir.setForeground(Color.BLACK);
-	                Salir.setHorizontalAlignment(SwingConstants.TRAILING);
-	                Salir.setAlignmentY(Component.BOTTOM_ALIGNMENT);
-	                Salir.setAlignmentX(Component.RIGHT_ALIGNMENT);
+	                Salir.setAlignmentY(Component.CENTER_ALIGNMENT);
+	                Salir.setAlignmentX(Component.CENTER_ALIGNMENT);
 	                Salir.setSize(71, 29);
 	                Salir.setLocation(320, 62);
-	                Salir.setFont(new Font("Century Gothic", Font.BOLD, 16));
+	                Salir.setFont(new Font("Century Gothic", Font.BOLD, 14));
 	                //        BSalir.setBounds(100, 103, 150, 30);
 	                Salir.addActionListener(this);
 	                       // PanelCentro.setLayout(null);   
 	                                    
                      JTextPane texto2 = new JTextPane();
                      texto2.setForeground(SystemColor.desktop);
-                     texto2.setFont(new Font("MS Mincho", Font.ITALIC, 26));
+                     texto2.setBackground(Color.lightGray);
+                     texto2.setFont(new Font("MS Mincho", Font.ITALIC, 23));
                      texto2.setText("¡Aqui estan tus complementos!");
                      texto2.setBounds(23, 24, 383, 33);
                      complemento.add(texto2);
@@ -281,9 +281,9 @@ public class PanelArmario extends JFrame implements ActionListener {
              		 AñadirC = new JButton("Añadir un nuevo complemento");
              		 complemento.add(AñadirC);
              		AñadirC.setForeground(Color.BLACK);
-             		AñadirC.setHorizontalAlignment(SwingConstants.TRAILING);
-             		AñadirC.setAlignmentY(Component.BOTTOM_ALIGNMENT);
-             		AñadirC.setAlignmentX(Component.RIGHT_ALIGNMENT);
+             	
+             		AñadirC.setAlignmentY(Component.CENTER_ALIGNMENT);
+             		AñadirC.setAlignmentX(Component.CENTER_ALIGNMENT);
              		AñadirC.setSize(277, 29);
              		AñadirC.setLocation(38, 62);
              		AñadirC.setFont(new Font("Century Gothic", Font.BOLD, 16));
@@ -330,12 +330,11 @@ public class PanelArmario extends JFrame implements ActionListener {
 			
 			 Salir = new JButton("Atras");
 			 Salir.setForeground(Color.BLACK);
-			 Salir.setHorizontalAlignment(SwingConstants.TRAILING);
-			 Salir.setAlignmentY(Component.BOTTOM_ALIGNMENT);
-			 Salir.setAlignmentX(Component.RIGHT_ALIGNMENT);
+			 Salir.setAlignmentY(Component.CENTER_ALIGNMENT);
+			 Salir.setAlignmentX(Component.CENTER_ALIGNMENT);
 			 Salir.setSize(100, 29);
 			 Salir.setLocation(300, 43);
-			 Salir.setFont(new Font("Century Gothic", Font.BOLD, 16));
+			 Salir.setFont(new Font("Century Gothic", Font.BOLD, 14));
 			 //        BSalir.setBounds(100, 103, 150, 30);
 			 Salir.addActionListener(this);
 			 armario.setLayout(null);
@@ -344,21 +343,22 @@ public class PanelArmario extends JFrame implements ActionListener {
 			  
 			  JTextPane txtpnHj = new JTextPane();
 			  txtpnHj.setForeground(SystemColor.desktop);
-			  txtpnHj.setFont(new Font("MS Mincho", Font.ITALIC, 26));
+			  txtpnHj.setBackground(Color.lightGray);
+			  txtpnHj.setFont(new Font("MS Mincho", Font.ITALIC, 23));
 			  txtpnHj.setText("¡Ya estas dentro de tu armario!");
 			  txtpnHj.setBounds(10, 5, 409, 33);
-			  armario.add(txtpnHj);
+			  armario.add(txtpnHj, BorderLayout.CENTER);
 			  //     PanelCentro.setLayout(null);
 			       
 			       		 Añadir = new JButton("Añadir una nueva prenda");
 			       		 armario.add(Añadir);
 			       		 Añadir.setForeground(Color.BLACK);
-			       		 Añadir.setHorizontalAlignment(SwingConstants.TRAILING);
-			       		 Añadir.setAlignmentY(Component.BOTTOM_ALIGNMENT);
-			       		 Añadir.setAlignmentX(Component.RIGHT_ALIGNMENT);
+			       		
+			       		 Añadir.setAlignmentY(Component.CENTER_ALIGNMENT);
+			       		 Añadir.setAlignmentX(Component.CENTER_ALIGNMENT);
 			       		 Añadir.setSize(237, 29);
 			       		 Añadir.setLocation(58, 43);
-			       		 Añadir.setFont(new Font("Century Gothic", Font.BOLD, 16));
+			       		 Añadir.setFont(new Font("Century Gothic", Font.BOLD, 14));
 			       		 //        BSalir.setBounds(100, 103, 150, 30);
 			       		 Añadir.addActionListener(this);
 			       		 //  PanelCentro.setLayout(null);
