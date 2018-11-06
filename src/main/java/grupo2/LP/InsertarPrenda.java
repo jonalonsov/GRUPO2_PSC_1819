@@ -10,6 +10,7 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -22,6 +23,11 @@ import javax.swing.SwingConstants;
 
 import grupo2.LD.BaseDeDatos;
 import grupo2.LN.GestorPrendas;
+import javax.swing.JComboBox;
+import javax.swing.JList;
+import javax.swing.JToggleButton;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFileChooser;
 
 public class InsertarPrenda extends JFrame implements ActionListener {
 
@@ -33,16 +39,19 @@ public class InsertarPrenda extends JFrame implements ActionListener {
 	private JPanel PanelInferior;
 	private JPanel PanelIzquierda;
 	private JLabel textC;
-	private JTextField Color1;
 	private JLabel textP;
-	private JTextField Prenda;
 	private JLabel textT;
-	private JTextField Tejido;
 	
 	
 	private JButton btnAcep;
 	private JTextArea M, I, A, R, M2, A2, R2, I2, O;
 	private JTextArea informacion;
+	private JComboBox comboBoxN;
+	private JComboBox comboBoxC;
+	private JComboBox comboBoxT;
+	private JButton btnSeleccionar;
+	private File imagen;
+	JFileChooser fc;
 	
 	
 	
@@ -50,45 +59,23 @@ public class InsertarPrenda extends JFrame implements ActionListener {
 	
 	public InsertarPrenda(){
 		
-		
-				
-
-		Color1 = new JTextField();
-		Color1.setFont(new Font("Century Gothic", Font.BOLD, 10));
-		Color1.setBounds(94, 147, 231, 20);
-		Color1.setEnabled(true);
-		Color1.setEditable(true);
-		
 		textC = new JLabel();
 		textC.setText("Inserte el color de la prenda \r\n");
 		textC.setFont(new Font("Century Gothic", Font.BOLD, 12));
 		textC.setBounds(94, 119, 250, 29);
 		textC.setOpaque(false);
-		
-						
-		Prenda = new JTextField();
-		Prenda.setFont(new Font("Century Gothic", Font.BOLD, 10));
-		Prenda.setBounds(94, 91, 231, 20);
-		Prenda.setEnabled(true);
-		Prenda.setEditable(true);
 				
 		textP = new JLabel();
 		textP.setVerticalAlignment(SwingConstants.TOP);
 		textP.setText("Inserte la prenda \r\n");
 		textP.setFont(new Font("Century Gothic", Font.BOLD, 12));
 		textP.setBounds(94, 60, 231, 20);
-		
-		Tejido = new JTextField();
-		Tejido.setFont(new Font("Century Gothic", Font.BOLD, 10));
-		Tejido.setBounds(94, 237, 231, 20);
-		Tejido.setEnabled(true);
-		Tejido.setEditable(true);
 				
 		textT = new JLabel();
 		textT.setVerticalAlignment(SwingConstants.TOP);
 		textT.setText("Inserte el tejido de la prenda \r\n");
 		textT.setFont(new Font("Century Gothic", Font.BOLD, 12));
-		textT.setBounds(94, 217, 231, 20);
+		textT.setBounds(94, 196, 231, 20);
 			
 		
 		
@@ -211,11 +198,6 @@ public class InsertarPrenda extends JFrame implements ActionListener {
 									
 				getContentPane().add(PanelIzquierda, BorderLayout.WEST);
 						PanelIzquierda.setLayout(null);
-				
-				
-				PanelIzquierda.add(Color1);
-				PanelIzquierda.add(Prenda);
-				PanelIzquierda.add(Tejido);
 				PanelIzquierda.add(textT);
 				PanelIzquierda.add(textC);
 				PanelIzquierda.add(textP);
@@ -226,43 +208,93 @@ public class InsertarPrenda extends JFrame implements ActionListener {
 				btnAcep.setAlignmentY(Component.BOTTOM_ALIGNMENT);
 				btnAcep.setAlignmentX(Component.RIGHT_ALIGNMENT);
 				btnAcep.setSize(113, 31);
-				btnAcep.setLocation(105, 290);
+				btnAcep.setLocation(90, 345);
 				btnAcep.setFont(new Font("Century Gothic", Font.BOLD, 16));
 				//		BSalir.setBounds(100, 103, 150, 30);
 				btnAcep.addActionListener(this);
 						PanelIzquierda.setLayout(null);
 						btnAcep.setActionCommand("Aceptar");
 						PanelIzquierda.add(btnAcep);
-								
+						
+				comboBoxN = new JComboBox();
+				comboBoxN.setModel(new DefaultComboBoxModel(new String[] {"Camisa", "Camiseta", "Pantalones", "Jersey"}));
+				comboBoxN.setBounds(93, 88, 106, 22);
+				PanelIzquierda.add(comboBoxN);
+				
+				comboBoxC = new JComboBox();
+				comboBoxC.setModel(new DefaultComboBoxModel(new String[] {"Rojo", "Verde", "Azul", "Blanco", "Morado", "Negro", "Amarillo", "Gris", "Rosa", "Marrón"}));
+				comboBoxC.setBounds(94, 161, 105, 22);
+				PanelIzquierda.add(comboBoxC);
+				
+				comboBoxT = new JComboBox();
+				comboBoxT.setModel(new DefaultComboBoxModel(new String[] {"Algodón", "Vaquero", "Lino", "Poliester", "Piel"}));
+				comboBoxT.setBounds(94, 229, 105, 22);
+				PanelIzquierda.add(comboBoxT);
+				
+				btnSeleccionar = new JButton("Seleccionar IMAGEN");
+				btnSeleccionar.addActionListener(this);
+		        btnSeleccionar.setBounds(94, 289, 187, 23);
+		        PanelIzquierda.add(btnSeleccionar);
+				
+		      //Creamos el objeto JFileChooser
+				fc=new JFileChooser();
+				
+				 
+				
 						
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-
+		
+		//no sale
+		if (e.getSource() == btnSeleccionar){
+						
+			//Abrimos la ventana, guardamos la opcion seleccionada por el usuario
+			int seleccion=fc.showSaveDialog(PanelIzquierda);
+			 
+			//Si el usuario, pincha en aceptar
+			if(seleccion==JFileChooser.APPROVE_OPTION){
+			 
+			    //Seleccionamos el fichero
+			    imagen =fc.getSelectedFile();
+			 System.out.println(imagen.getAbsolutePath());
+//			    try(FileWriter fw=new FileWriter(fichero)){
+//			 
+//			        //Escribimos el texto en el fichero
+//			        fw.write(textArea.getText());
+//			 
+//			    } catch (IOException e1) {
+//			        e1.printStackTrace();
+//			    }
+//			 
+			}
+			
+		}
+		
 		if (e.getSource() == btnAcep){
 	            
-			if(Color1.getText().length()==0 || Prenda.getText().length()==0 || Tejido.getText().length()==0){
-				JOptionPane.showMessageDialog(null, "Debe rellenar todos los campos.", "CUIDADO",JOptionPane.INFORMATION_MESSAGE);
-			} else {
+//			if(Color1.getText().length()==0 || Tejido.getText().length()==0){
+//				JOptionPane.showMessageDialog(null, "Debe rellenar todos los campos.", "CUIDADO",JOptionPane.INFORMATION_MESSAGE);
+//			} else {
+					
 	
-						String nombre = Color1.getText();
-						String color = Prenda.getText();
-						String tejido = Tejido.getText();
+					String nombre = (String)comboBoxN.getSelectedItem();
+					String color = (String)comboBoxC.getSelectedItem();
+					String tejido = (String)comboBoxT.getSelectedItem();
+					
+					GestorPrendas prenda = new GestorPrendas(nombre, color, tejido, imagen.getAbsolutePath());		
 						
-						GestorPrendas prenda = new GestorPrendas(nombre, color, tejido);		
-							
-						prenda.anyadirPrenda( BaseDeDatos.getStatement(), nombre, color, tejido);
-						
-						boolean semaforo=prenda.anyadirPrenda(BaseDeDatos.getStatement(), nombre, color, tejido);
-						
-						if(semaforo==true) {
-							JOptionPane.showMessageDialog(null, "Prenda introducida con éxito","Correcto",JOptionPane.INFORMATION_MESSAGE);
-								dispose();
-						}
-			} 				
+					prenda.anyadirPrenda( BaseDeDatos.getStatement(), nombre, color, tejido, imagen.getAbsolutePath());
+					
+//					boolean semaforo=prenda.anyadirPrenda(BaseDeDatos.getStatement(), nombre, color, tejido, imagen.getAbsolutePath());
+					
+//					if(semaforo==true) {
+						JOptionPane.showMessageDialog(null, "Prenda introducida con éxito","Correcto",JOptionPane.INFORMATION_MESSAGE);
+							dispose();
+//					}
+//			} 				
 		}
 	}
-	
 }

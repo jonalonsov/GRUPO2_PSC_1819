@@ -3,17 +3,19 @@ package grupo2.LN;
 public class prenda  implements Comparable<Object> {
 
 	static int count = 0; 
-	int id;
+	static int id;
 	private String nombre;
 	private String color;
 	private String tejido;
+	private String imagen;
 	
-	public prenda(String nombre, String color, String tejido){
+	public prenda(String nombre, String color, String tejido, String imagen){
 		
 		id = ++count; 
 		this.nombre = nombre;
 		this.color = color;
 		this.setTejido(tejido);
+		this.imagen = imagen;
 		
 	}
 
@@ -31,6 +33,14 @@ public class prenda  implements Comparable<Object> {
 
 	public void setContrasenya(String color) {
 		this.color = color;
+	}
+	
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 	
 
