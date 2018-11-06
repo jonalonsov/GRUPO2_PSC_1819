@@ -1,7 +1,5 @@
 package grupo2.LP;
 
-
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -18,14 +16,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import grupo2.LD.BaseDeDatos;
 import grupo2.LN.GestorPrendas;
 import javax.swing.JComboBox;
-import javax.swing.JList;
-import javax.swing.JToggleButton;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 
@@ -41,17 +36,19 @@ public class InsertarPrenda extends JFrame implements ActionListener {
 	private JLabel textC;
 	private JLabel textP;
 	private JLabel textT;
-	
-	
+		
 	private JButton btnAcep;
 	private JTextArea M, I, A, R, M2, A2, R2, I2, O;
 	private JTextArea informacion;
-	private JComboBox comboBoxN;
-	private JComboBox comboBoxC;
-	private JComboBox comboBoxT;
+	private JComboBox<String> comboBoxN;
+	private JComboBox<String> comboBoxC;
+	private JComboBox<String> comboBoxT;
 	private JButton btnSeleccionar;
 	private File imagen;
 	JFileChooser fc;
+	
+	private GestorPrendas gprenda; 
+	private grupo2.LN.prenda prenda;
 	
 	
 	
@@ -204,9 +201,8 @@ public class InsertarPrenda extends JFrame implements ActionListener {
 				
 				btnAcep = new JButton("Aceptar");
 				btnAcep.setForeground(Color.BLACK);
-				btnAcep.setHorizontalAlignment(SwingConstants.TRAILING);
-				btnAcep.setAlignmentY(Component.BOTTOM_ALIGNMENT);
-				btnAcep.setAlignmentX(Component.RIGHT_ALIGNMENT);
+				btnAcep.setAlignmentY(Component.CENTER_ALIGNMENT);
+				btnAcep.setAlignmentX(Component.LEFT_ALIGNMENT);
 				btnAcep.setSize(113, 31);
 				btnAcep.setLocation(90, 345);
 				btnAcep.setFont(new Font("Century Gothic", Font.BOLD, 16));
@@ -216,32 +212,28 @@ public class InsertarPrenda extends JFrame implements ActionListener {
 						btnAcep.setActionCommand("Aceptar");
 						PanelIzquierda.add(btnAcep);
 						
-				comboBoxN = new JComboBox();
-				comboBoxN.setModel(new DefaultComboBoxModel(new String[] {"Camisa", "Camiseta", "Pantalones", "Jersey"}));
-				comboBoxN.setBounds(93, 88, 106, 22);
+				comboBoxN = new JComboBox<String>();
+				comboBoxN.setModel(new DefaultComboBoxModel<String>(new String[] {"Seleccione tipo prenda...", "Camisa", "Camiseta", "Pantalones", "Jersey"}));
+				comboBoxN.setBounds(93, 88, 180, 22);
 				PanelIzquierda.add(comboBoxN);
 				
-				comboBoxC = new JComboBox();
-				comboBoxC.setModel(new DefaultComboBoxModel(new String[] {"Rojo", "Verde", "Azul", "Blanco", "Morado", "Negro", "Amarillo", "Gris", "Rosa", "Marrón"}));
-				comboBoxC.setBounds(94, 161, 105, 22);
+				comboBoxC = new JComboBox<String>();
+				comboBoxC.setModel(new DefaultComboBoxModel<String>(new String[] {"Seleccione color...", "Rojo", "Verde", "Azul", "Blanco", "Morado", "Negro", "Amarillo", "Gris", "Rosa", "Marrón"}));
+				comboBoxC.setBounds(94, 161, 180, 22);
 				PanelIzquierda.add(comboBoxC);
 				
-				comboBoxT = new JComboBox();
-				comboBoxT.setModel(new DefaultComboBoxModel(new String[] {"Algodón", "Vaquero", "Lino", "Poliester", "Piel"}));
-				comboBoxT.setBounds(94, 229, 105, 22);
+				comboBoxT = new JComboBox<String>();
+				comboBoxT.setModel(new DefaultComboBoxModel<String>(new String[] {"Seleccione tejido...", "Algodón", "Vaquero", "Lino", "Poliester", "Piel"}));
+				comboBoxT.setBounds(94, 229, 180, 22);
 				PanelIzquierda.add(comboBoxT);
 				
-				btnSeleccionar = new JButton("Seleccionar IMAGEN");
+				btnSeleccionar =new JButton("Seleccionar imagen...");    
 				btnSeleccionar.addActionListener(this);
 		        btnSeleccionar.setBounds(94, 289, 187, 23);
 		        PanelIzquierda.add(btnSeleccionar);
 				
 		      //Creamos el objeto JFileChooser
-				fc=new JFileChooser();
-				
-				 
-				
-						
+				fc=new JFileChooser();					
 	}
 
 	@Override
@@ -258,7 +250,7 @@ public class InsertarPrenda extends JFrame implements ActionListener {
 			if(seleccion==JFileChooser.APPROVE_OPTION){
 			 
 			    //Seleccionamos el fichero
-			    imagen =fc.getSelectedFile();
+			 imagen =fc.getSelectedFile();
 			 System.out.println(imagen.getAbsolutePath());
 //			    try(FileWriter fw=new FileWriter(fichero)){
 //			 
@@ -275,26 +267,28 @@ public class InsertarPrenda extends JFrame implements ActionListener {
 		
 		if (e.getSource() == btnAcep){
 	            
-//			if(Color1.getText().length()==0 || Tejido.getText().length()==0){
-//				JOptionPane.showMessageDialog(null, "Debe rellenar todos los campos.", "CUIDADO",JOptionPane.INFORMATION_MESSAGE);
-//			} else {
+			String nombre = (String)comboBoxN.getSelectedItem();
+			String color = (String)comboBoxC.getSelectedItem();
+			String tejido = (String)comboBoxT.getSelectedItem();
+			
+			if(nombre.equals("Seleccione tipo prenda...") || color.equals("Seleccione color...") || tejido.equals("Seleccione tejido...") || imagen ==null){
+				JOptionPane.showMessageDialog(null, "Debe rellenar todos los campos.", "CUIDADO",JOptionPane.INFORMATION_MESSAGE);
+			} else {
+								
+					prenda = new grupo2.LN.prenda(0, nombre, color, tejido, imagen.getAbsolutePath());	
 					
-	
-					String nombre = (String)comboBoxN.getSelectedItem();
-					String color = (String)comboBoxC.getSelectedItem();
-					String tejido = (String)comboBoxT.getSelectedItem();
+
+					gprenda = new GestorPrendas();
 					
-					GestorPrendas prenda = new GestorPrendas(nombre, color, tejido, imagen.getAbsolutePath());		
-						
-					prenda.anyadirPrenda( BaseDeDatos.getStatement(), nombre, color, tejido, imagen.getAbsolutePath());
-					
-//					boolean semaforo=prenda.anyadirPrenda(BaseDeDatos.getStatement(), nombre, color, tejido, imagen.getAbsolutePath());
-					
-//					if(semaforo==true) {
+					boolean semaforo = gprenda.anyadirPrenda( BaseDeDatos.getStatement(), prenda);
+							
+					if(semaforo==true) {
 						JOptionPane.showMessageDialog(null, "Prenda introducida con éxito","Correcto",JOptionPane.INFORMATION_MESSAGE);
 							dispose();
-//					}
-//			} 				
+					} else {
+						JOptionPane.showMessageDialog(null, "La prenda no ha podido introducirse, vuelva a intentarlo. ","Incorrecto",JOptionPane.INFORMATION_MESSAGE);
+					}
+			} 				
 		}
 	}
 }

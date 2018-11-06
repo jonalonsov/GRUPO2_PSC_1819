@@ -2,16 +2,15 @@ package grupo2.LN;
 
 public class prenda  implements Comparable<Object> {
 
-	static int count = 0; 
-	static int id;
+	private int id;
 	private String nombre;
 	private String color;
 	private String tejido;
 	private String imagen;
 	
-	public prenda(String nombre, String color, String tejido, String imagen){
+	public prenda(int id, String nombre, String color, String tejido, String imagen){
 		
-		id = ++count; 
+		this.id=id;
 		this.nombre = nombre;
 		this.color = color;
 		this.setTejido(tejido);
@@ -27,11 +26,11 @@ public class prenda  implements Comparable<Object> {
 		this.nombre = nombre;
 	}
 	
-	public String getContrasenya() {
+	public String getColor() {
 		return color;
 	}
 
-	public void setContrasenya(String color) {
+	public void setColor(String color) {
 		this.color = color;
 	}
 	
@@ -56,6 +55,14 @@ public class prenda  implements Comparable<Object> {
 
 	public void setTejido(String tejido) {
 		this.tejido = tejido;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 

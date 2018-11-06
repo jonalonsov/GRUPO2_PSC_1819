@@ -17,7 +17,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
 
 @SuppressWarnings("serial")
@@ -38,22 +37,17 @@ public class PanelMenu extends JFrame implements ActionListener {
     private JTextArea informacion;
     
     
-    
-    //private Reloj reloj;
-    
     public PanelMenu(){
        
    //GOE --> Ponerle nombre de usuario arriba a la derecha
         
-//getContentPane().setLayout(null);
-                
+            
     
-        setTitle("Bienvenido a tu armario");
-        setLocationRelativeTo( null );  // Centra la ventana en la pantalla
+        this.setTitle("Bienvenido a tu armario");
+        setLocationRelativeTo(null);  // Centra la ventana en la pantalla
         setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
         setBounds(250, 50, 450, 600); 
-        //PanelSuperior.setBorder(new EmptyBorder(5, 5, 5, 5));
-        getContentPane().setLayout(new BorderLayout());
+    
         
         M = new JTextArea();
         M.setText("M");
@@ -169,12 +163,11 @@ public class PanelMenu extends JFrame implements ActionListener {
                 
                 Ver = new JButton("Ver mi armario");
                 Ver.setForeground(Color.BLACK);
-                Ver.setHorizontalAlignment(SwingConstants.TRAILING);
-                Ver.setAlignmentY(Component.BOTTOM_ALIGNMENT);
-                Ver.setAlignmentX(Component.RIGHT_ALIGNMENT);
+                Ver.setAlignmentY(Component.CENTER_ALIGNMENT);
+                Ver.setAlignmentX(Component.LEFT_ALIGNMENT);
                 Ver.setSize(170, 29);
                 Ver.setLocation(132, 155);
-                Ver.setFont(new Font("Century Gothic", Font.CENTER_BASELINE, 16));
+                Ver.setFont(new Font("Century Gothic", Font.CENTER_BASELINE, 15));
                 //        BSalir.setBounds(100, 103, 150, 30);
                 Ver.addActionListener(this);
                         PanelCentro.setLayout(null);
@@ -183,12 +176,11 @@ public class PanelMenu extends JFrame implements ActionListener {
                 
                 Conjuntos = new JButton("Ver conjuntos");
                 Conjuntos.setForeground(Color.BLACK);
-                Conjuntos.setHorizontalAlignment(SwingConstants.TRAILING);
-                Conjuntos.setAlignmentY(Component.BOTTOM_ALIGNMENT);
-                Conjuntos.setAlignmentX(Component.RIGHT_ALIGNMENT);
+                Conjuntos.setAlignmentY(Component.CENTER_ALIGNMENT);
+                Conjuntos.setAlignmentX(Component.LEFT_ALIGNMENT);
                 Conjuntos.setSize(170, 29);
                 Conjuntos.setLocation(132, 195);
-                Conjuntos.setFont(new Font("Century Gothic", Font.BOLD, 16));
+                Conjuntos.setFont(new Font("Century Gothic", Font.BOLD, 15));
                 //        BSalir.setBounds(100, 103, 150, 30);
                 Conjuntos.addActionListener(this);
                         PanelCentro.setLayout(null);
@@ -197,12 +189,11 @@ public class PanelMenu extends JFrame implements ActionListener {
                         
                 Fav = new JButton("Ver mis favoritos");
                 Fav.setForeground(Color.BLACK);
-                Fav.setHorizontalAlignment(SwingConstants.TRAILING);
-                Fav.setAlignmentY(Component.BOTTOM_ALIGNMENT);
-                Fav.setAlignmentX(Component.RIGHT_ALIGNMENT);
+                Fav.setAlignmentY(Component.CENTER_ALIGNMENT);
+                Fav.setAlignmentX(Component.LEFT_ALIGNMENT);
                 Fav.setSize(170, 29);
                 Fav.setLocation(132, 235);
-                Fav.setFont(new Font("Century Gothic", Font.BOLD, 16));
+                Fav.setFont(new Font("Century Gothic", Font.BOLD, 15));
                         //        BSalir.setBounds(100, 103, 150, 30);
                 Fav.addActionListener(this);
                         PanelCentro.setLayout(null);
@@ -212,13 +203,12 @@ public class PanelMenu extends JFrame implements ActionListener {
                         
                 Añadir = new JButton("Añadir prenda");
                 Añadir.setForeground(Color.BLACK);
-                Añadir.setHorizontalAlignment(SwingConstants.TRAILING);
-                Añadir.setAlignmentY(Component.BOTTOM_ALIGNMENT);
-                Añadir.setAlignmentX(Component.RIGHT_ALIGNMENT);
+                Añadir.setAlignmentY(Component.CENTER_ALIGNMENT);
+                Añadir.setAlignmentX(Component.LEFT_ALIGNMENT);
                 Añadir.setSize(170, 29);
                 Añadir.setLocation(132, 275);
-                Añadir.setFont(new Font("Century Gothic", Font.BOLD, 16));
-                //        BSalir.setBounds(100, 103, 150, 30);
+                Añadir.setFont(new Font("Century Gothic", Font.BOLD, 15));
+              
                 Añadir.addActionListener(this);
                         PanelCentro.setLayout(null);
                         Añadir.setActionCommand("Añadir");
@@ -226,13 +216,12 @@ public class PanelMenu extends JFrame implements ActionListener {
                         
                 Salir = new JButton("Cerrar sesion");
                 Salir.setForeground(Color.BLACK);
-                Salir.setHorizontalAlignment(SwingConstants.TRAILING);
-                Salir.setAlignmentY(Component.BOTTOM_ALIGNMENT);
-                Salir.setAlignmentX(Component.RIGHT_ALIGNMENT);
-                Salir.setSize(151, 29);
-                Salir.setLocation(262, 380);
-                Salir.setFont(new Font("Century Gothic", Font.BOLD, 16));
-                //        BSalir.setBounds(100, 103, 150, 30);
+                Salir.setAlignmentY(Component.CENTER_ALIGNMENT);
+                Salir.setAlignmentX(Component.LEFT_ALIGNMENT);
+                Salir.setSize(100, 15);
+                Salir.setLocation(300, 400);
+                Salir.setFont(new Font("Century Gothic", Font.BOLD, 10));
+         
                 Salir.addActionListener(this);
                         PanelCentro.setLayout(null);
                         Salir.setActionCommand("Salir");
