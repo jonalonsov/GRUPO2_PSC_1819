@@ -262,10 +262,7 @@ public class PanelMenu extends JFrame implements ActionListener {
         case "Ver":
             
 		//JOptionPane.showMessageDialog( null, "No disponible, inténtelo más adelante. " , "ERROR", JOptionPane.INFORMATION_MESSAGE);
-//<<<<<<< HEAD
-//        	PanelArmario objpanePanel1 = new PanelArmario();
-//        	objpanePanel1.setVisible(true);
-//=======
+
         	PanelArmario objpanePanel2;
 			try {
 				objpanePanel2 = new PanelArmario();
@@ -274,7 +271,7 @@ public class PanelMenu extends JFrame implements ActionListener {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-        	
+        	 
 //>>>>>>> 92c4efe2d7a078211fe20179fe50fa0d48a76171
                         
             break;
