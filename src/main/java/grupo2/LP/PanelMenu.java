@@ -176,7 +176,7 @@ public class PanelMenu extends JFrame implements ActionListener {
                         Ver.setActionCommand("Ver");
                         PanelCentro.add(Ver);
                 
-                Conjuntos = new JButton("Ver conjuntos");
+                Conjuntos = new JButton("Crear conjunto");
                 Conjuntos.setForeground(Color.BLACK);
                 Conjuntos.setAlignmentY(Component.CENTER_ALIGNMENT);
                 Conjuntos.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -301,8 +301,8 @@ public class PanelMenu extends JFrame implements ActionListener {
         break;
         case "Conjuntos":
         	
-    		JOptionPane.showMessageDialog( null, "No disponible, inténtelo más adelante. " , "ERROR", JOptionPane.INFORMATION_MESSAGE);
-
+        	InsertarConjunto objConj = new InsertarConjunto();
+			objConj.setVisible(true);	
             
                                     
         break;
@@ -312,7 +312,9 @@ public class PanelMenu extends JFrame implements ActionListener {
 			objComp.setVisible(true);		
 		            
 		                                    
-        break;
+			break;
+
+        
         
         }
         

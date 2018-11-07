@@ -53,41 +53,8 @@ public class GestorPrendas {
 	
 
 	
-	public int maxIdConjunto() {
-		//SELECT
-		Statement st=BaseDeDatos.getStatement();
-		int id=0;
-				String sentSQL = "SELECT id from Conjunto ORDER BY id DESC LIMIT 1 ";
-				System.out.println( sentSQL ); 
-				
-				ResultSet rs;
-				try {
-					rs = st.executeQuery( sentSQL );
-						    id = rs.getInt("id");	
-						    System.out.println(id);
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					id=0;
-				} 
-		return id;
-	}
 	
-	public boolean anyadirConjunto(Statement st, Conjunto conjunto) {
-
-		int id = maxIdConjunto() + 1;
-		try {
-				
-				String sentSQL = "insert into CONJUNTO values(" + "'" + id + "', " + "'" + conjunto.getPrenda1() + "', " + "'" + conjunto.getPrenda2() + "', "+"'" + conjunto.getUsuario() + "', "+"'" + conjunto.getFavorito() + "')"; 
-				System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
-				int val = st.executeUpdate( sentSQL );
-				if (val!=1) return false;  // Se tiene que añadir 1 - error si no
-				return true;
-			} catch (SQLException e) {
-				e.printStackTrace();
-				return false;
-			}
-	}
+	
 	
 	public Prenda[] selectPrendas() {
 		

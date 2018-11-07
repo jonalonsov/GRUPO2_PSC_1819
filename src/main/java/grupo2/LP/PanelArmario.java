@@ -61,6 +61,7 @@ public class PanelArmario extends JFrame implements ActionListener {
 	private JScrollPane scrollC;
 	private JPanel complemento;
 	private JPanel armario;
+	private JPanel conjunto;
 	private  JTextPane txtpnHj;
 	private JScrollPane scroll;
 	
@@ -399,7 +400,13 @@ public class PanelArmario extends JFrame implements ActionListener {
 		      }
 		 });
 	
+	//Panel conjuntos
+		conjunto = new JPanel ();
+		panelPestaña.addTab("Conjunto",null,conjunto, "Conjunto");
+	
 	}
+
+
 	  
 
 	@Override
