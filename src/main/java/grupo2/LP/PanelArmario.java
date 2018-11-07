@@ -31,7 +31,9 @@ import grupo2.LD.BaseDeDatos;
 import grupo2.LN.GestorPrendas;
 import grupo2.LN.Prenda;
 import grupo2.LN.Complemento;
+import grupo2.LN.Conjunto;
 import grupo2.LN.GestorComplemento;
+import grupo2.LN.GestorConjuntos;
 
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTabbedPane;
@@ -56,9 +58,9 @@ public class PanelArmario extends JFrame implements ActionListener {
 	private JTextArea informacion;
 	private JLabel lblLabelImagen;
 	private  JTable table_1;
+	private  JTable tableConj;
+	private  JTable tableC;
 	private JTextPane texto2;
-	private JTable tableC;
-	private JScrollPane scrollC;
 	private JPanel complemento;
 	private JPanel armario;
 	private JPanel conjunto;
@@ -69,11 +71,21 @@ public class PanelArmario extends JFrame implements ActionListener {
 	private GestorComplemento gcomplementos;
 	private  String[] dato;
 	private  String[] datoC;
+	private  String[] datoConj;
+	private JTextPane txtpnEstosSonTus;
+	private JButton btnAadirNuevoConjunto;
+	private JButton button_1;
+	private JScrollPane scrollC;
+	private JScrollPane scrollConj;
+	private GestorConjuntos gconjuntos;
+	private int indice3;
+	private Conjunto objconjunto2;
 	
 	public PanelArmario() throws SQLException{
 		
 	gprendas = new GestorPrendas();
 	gcomplementos = new GestorComplemento();
+	gconjuntos = new GestorConjuntos();
 		
 		setLocationRelativeTo( null );  // Centra la ventana en la pantalla
 		setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
@@ -214,10 +226,11 @@ public class PanelArmario extends JFrame implements ActionListener {
             Salir.setForeground(Color.BLACK);
             Salir.setAlignmentY(Component.CENTER_ALIGNMENT);
             Salir.setAlignmentX(Component.CENTER_ALIGNMENT);
-            Salir.setSize(71, 29);
-            Salir.setLocation(320, 62);
+            Salir.setSize(65, 27);
+            Salir.setLocation(291, 58);
             Salir.setFont(new Font("Century Gothic", Font.BOLD, 14));
             Salir.addActionListener(this);
+	        complemento.setLayout(null);
             
 	                                    
 	        texto2 = new JTextPane();
@@ -225,33 +238,33 @@ public class PanelArmario extends JFrame implements ActionListener {
 	        texto2.setBackground(Color.lightGray);
 	        texto2.setFont(new Font("MS Mincho", Font.ITALIC, 23));
 	        texto2.setText("¡Aqui estan tus complementos!");
-	        texto2.setBounds(10, 5, 409, 33);
+	        texto2.setBounds(52, 11, 324, 36);
 	        complemento.add(texto2);
                          
-     		AñadirC = new JButton("Añadir un nuevo complemento");
+     		AñadirC = new JButton("Añadir complemento");
      		complemento.add(AñadirC);
      		AñadirC.setForeground(Color.BLACK);             	
      		AñadirC.setAlignmentY(Component.CENTER_ALIGNMENT);
      		AñadirC.setAlignmentX(Component.CENTER_ALIGNMENT);
-     		AñadirC.setSize(277, 29);
-     		AñadirC.setLocation(38, 62);
+     		AñadirC.setSize(201, 29);
+     		AñadirC.setLocation(52, 56);
      		AñadirC.setFont(new Font("Century Gothic", Font.BOLD, 16));
      		AñadirC.addActionListener(this);
      		AñadirC.setActionCommand("AñadirC");
      		Salir.setActionCommand("Salir");
     		complemento.add(Salir);
-                 	
-            tableC = new JTable();
-            tableC.setEnabled(true);
+    		
+    		tableC = new JTable();
+       		tableC.setEnabled(true);
+    		
+    		scrollC = new JScrollPane(tableC);
+    		scrollC.setBounds(22, 96, 397, 297);
+    		complemento.add(scrollC);
           
             DefaultTableModel modelC= new DefaultTableModel();
             modelC.addColumn("Id");
             modelC.addColumn("Color");
             modelC.addColumn("Nombre");
-               
-            scrollC = new JScrollPane (tableC);
-            scrollC.setBounds(22, 92, 397, 297);
-            complemento.add(scrollC);
 			
             Complemento objcomplemento;
 		       
@@ -264,7 +277,8 @@ public class PanelArmario extends JFrame implements ActionListener {
             	datoC[2]=objcomplemento.getColor();
             	modelC.addRow(datoC);
             }
-
+            
+            
             tableC.setModel(modelC);
 			
   //TABLA PRENDAS          
@@ -403,7 +417,88 @@ public class PanelArmario extends JFrame implements ActionListener {
 	//Panel conjuntos
 		conjunto = new JPanel ();
 		panelPestaña.addTab("Conjunto",null,conjunto, "Conjunto");
-	
+		conjunto.setLayout(null);
+		
+		txtpnEstosSonTus = new JTextPane();
+		txtpnEstosSonTus.setBounds(91, 5, 263, 36);
+		txtpnEstosSonTus.setText("Estos son tus conjuntos: ");
+		txtpnEstosSonTus.setForeground(Color.BLACK);
+		txtpnEstosSonTus.setFont(new Font("Dialog", Font.ITALIC, 23));
+		txtpnEstosSonTus.setBackground(Color.LIGHT_GRAY);
+		conjunto.add(txtpnEstosSonTus);
+		
+		btnAadirNuevoConjunto = new JButton("Marcar como favorito");
+		btnAadirNuevoConjunto.setBounds(250, 364, 185, 27);
+		btnAadirNuevoConjunto.setForeground(Color.BLACK);
+		btnAadirNuevoConjunto.setFont(new Font("Century Gothic", Font.BOLD, 14));
+		btnAadirNuevoConjunto.setAlignmentY(0.5f);
+		btnAadirNuevoConjunto.setAlignmentX(0.5f);
+		btnAadirNuevoConjunto.setActionCommand("Añadir");
+		conjunto.add(btnAadirNuevoConjunto);
+		
+		button_1 = new JButton("Atras");
+		button_1.setBounds(364, 14, 65, 27);
+		button_1.setForeground(Color.BLACK);
+		button_1.setFont(new Font("Century Gothic", Font.BOLD, 14));
+		button_1.setAlignmentY(0.5f);
+		button_1.setAlignmentX(0.5f);
+		button_1.setActionCommand("Salir");
+		conjunto.add(button_1);
+		
+		 tableConj = new JTable();
+		 tableConj.setEnabled(true);
+		
+		//Cargamos la tabla con los datos de la BD de prendas
+        DefaultTableModel model3= new DefaultTableModel();
+       // model3.addColumn("Id");
+        model3.addColumn("Prenda 1");
+        model3.addColumn("Prenda 2");
+        model3.addColumn("Favorito");   
+        
+		
+		scrollConj = new JScrollPane(tableConj);
+		scrollConj.setBounds(23, 52, 397, 297);
+		conjunto.add(scrollConj);
+		
+		Conjunto objconjunto;
+		String mensaje;
+   		for (int i = 0; i < gconjuntos.selectConjuntos().length; i++){
+        	datoConj = new String[75];
+        	objconjunto= gconjuntos.selectConjuntos()[i];
+        	if (objconjunto.getFavorito()==0) {
+        		mensaje ="NO";
+        	} else mensaje ="SI";
+        	//datoConj[0]=Integer.toString(objconjunto.getId());
+        	datoConj[0]=gprendas.nombrePrendaconID(objconjunto.getPrenda1());
+        	datoConj[1]=gprendas.nombrePrendaconID(objconjunto.getPrenda2());
+        	datoConj[2]=mensaje;
+        
+        	model3.addRow(datoConj);
+
+        }
+           
+   		tableConj.setCellSelectionEnabled(true);
+	     ListSelectionModel cellSelectionModel4 = tableConj.getSelectionModel();
+	     cellSelectionModel4.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+	        
+        tableConj.setModel(model3);
+        
+        cellSelectionModel4.addListSelectionListener(new ListSelectionListener() {
+    		  public void valueChanged(ListSelectionEvent e) {
+    		        String selectedDataID = null;
+    	
+
+    		      int selectedRow2 = tableConj.getSelectedRow();
+    		      
+		            selectedDataID = (String) tableConj.getValueAt(selectedRow2,0);
+		            indice3=Integer.parseInt(selectedDataID);
+		            
+		            System.out.println("Selected: " + indice3);
+		          //  objconjunto2=new Conjunto(gconjuntos.conjuntoconID(indice3).getId(), gconjuntos.conjuntoconID(indice3).getPrenda1(), gconjuntos.conjuntoconID(indice3).getPrenda2(), gconjuntos.conjuntoconID(indice3).getUsuario(), gconjuntos.conjuntoconID(indice3).getFavorito());
+    		 }
+ 		 });
+        
+   
 	}
 
 
@@ -458,5 +553,12 @@ public class PanelArmario extends JFrame implements ActionListener {
 	       
 	       	
 		}
+		  if (e.getSource() == btnAadirNuevoConjunto){
+			  
+			//gconjuntos.modifFavConjunto(objconjunto2);
+				JOptionPane.showMessageDialog( null, "Todavia no está disponible.." , "ADIOS", JOptionPane.INFORMATION_MESSAGE);
+
+		  }
 	}
+	
 }

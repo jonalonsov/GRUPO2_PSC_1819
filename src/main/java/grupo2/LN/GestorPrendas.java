@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import grupo2.LD.BaseDeDatos;
 
 public class GestorPrendas {
@@ -53,9 +55,6 @@ public class GestorPrendas {
 	
 
 	
-	
-	
-	
 	public Prenda[] selectPrendas() {
 		
 		 Statement st=BaseDeDatos.getStatement();
@@ -87,6 +86,30 @@ public class GestorPrendas {
 		return Arrprendas;
 		
 	}
+	
+	public String nombrePrendaconID(int id) {
+		//SELECT
+		 Statement st=BaseDeDatos.getStatement();
+		 String nombreComp = null;
+			try {
+				
+				String sentSQL = "select * from PRENDA where ( id = '" + id + "')";
+				System.out.println( sentSQL ); 
+				
+				ResultSet rs = st.executeQuery( sentSQL );
+				
+				if (rs.next()) { 
+					
+					//Añadimos los id-s de los conjuntos que son favoritos
+					nombreComp = rs.getString(2) + ",  " +rs.getString(3);
+					
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return "";
+			}
+			return nombreComp;
+		}
 	
 	//Selecciona todos los conjuntos que están marcados como favoritos y devuelve un array con los id-s de esos conjuntos
 	public Conjunto[] selectFavoritos(Statement st) {
