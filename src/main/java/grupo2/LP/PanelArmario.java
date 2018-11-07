@@ -396,6 +396,7 @@ public class PanelArmario extends JFrame implements ActionListener {
 				Image imagen = imagenIcono.getImage(); // transform it 
 				Image newimg = imagen.getScaledInstance(lblLabelImagen.getWidth(), lblLabelImagen.getHeight(),  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
 				ImageIcon nuevo = new ImageIcon(newimg); 
+				
 				lblLabelImagen.setIcon(nuevo);
 				
 				
