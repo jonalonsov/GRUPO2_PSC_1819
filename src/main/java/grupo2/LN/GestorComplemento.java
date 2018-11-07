@@ -11,6 +11,7 @@ public class GestorComplemento {
 
 	
 private Statement st;
+private GestorUsuario gusuario;
 	public GestorComplemento(){
 
 	}
@@ -56,10 +57,11 @@ private Statement st;
 	public Complemento[] selectComplementos() {
 		
 		 st=BaseDeDatos.getStatement();
+		 gusuario = new GestorUsuario();
 		//Creamos el arrayList de los que cumplen la condición de ser favoritos
 		ArrayList<Complemento> complementos = new ArrayList<Complemento>();
 		try {
-			String sentSQL = "select * from COMPLEMENTO";
+			String sentSQL = "select * from COMPLEMENTO where ( usuario = '" + gusuario.nombreUsuario() + "')";
 			System.out.println( sentSQL ); 
 			
 			ResultSet rs = st.executeQuery( sentSQL );

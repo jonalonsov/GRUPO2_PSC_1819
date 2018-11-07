@@ -254,7 +254,7 @@ public class PanelArmario extends JFrame implements ActionListener {
 			
             Complemento objcomplemento;
 		       
-            for (int i = 0; i < gcomplementos.maxIdComp(); i++){
+            for (int i = 0; i < gcomplementos.selectComplementos().length; i++){
             	datoC = new String[45];
             	objcomplemento = gcomplementos.selectComplementos()[i];
             	
@@ -327,8 +327,7 @@ public class PanelArmario extends JFrame implements ActionListener {
                 model.addColumn("Id");
                 model.addColumn("Tipo");
                 model.addColumn("Color");
-                model.addColumn("Tejido");               
-               
+                model.addColumn("Tejido");   
             	
 	       		scroll = new JScrollPane (table_1);
 	       		scroll.setBounds(22, 92, 397, 297);
@@ -336,13 +335,16 @@ public class PanelArmario extends JFrame implements ActionListener {
 
 	       		
 	       		Prenda objPrenda;
-                for (int i = 0; i < gprendas.maxIdPrenda(); i++){
-                	dato = new String[45];
+
+	       		for (int i = 0; i < gprendas.selectPrendas().length; i++){
+                	dato = new String[75];
                 	objPrenda= gprendas.selectPrendas()[i];
+                	
                 	dato[0]=Integer.toString(objPrenda.getId());
                 	dato[1]=objPrenda.getNombre();
                 	dato[2]=objPrenda.getColor();
                 	dato[3]=objPrenda.getTejido();
+                
                 	model.addRow(dato);
  
                 }

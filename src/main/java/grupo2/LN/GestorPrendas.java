@@ -13,6 +13,7 @@ public class GestorPrendas {
 		
 	}
 	
+	private GestorUsuario gusuario;
 	
 	public int maxIdPrenda() {
 		//SELECT
@@ -91,15 +92,16 @@ public class GestorPrendas {
 	public Prenda[] selectPrendas() {
 		
 		 Statement st=BaseDeDatos.getStatement();
+		 gusuario = new GestorUsuario();
 		//Creamos el arrayList de los que cumplen la condición de ser favoritos
 		ArrayList<Prenda> prendas = new ArrayList<Prenda>();
 		try {
-			String sentSQL = "select * from PRENDA";
+			String sentSQL = "select * from PRENDA  where ( usuario = '" + gusuario.nombreUsuario() + "')";
 			System.out.println( sentSQL ); 
 			
 			ResultSet rs = st.executeQuery( sentSQL );
-			
 			while (rs.next()) {
+				
 				//Añadimos los id-s de los conjuntos que son favoritos
 				prendas.add(new Prenda(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));				
 			}
@@ -110,6 +112,8 @@ public class GestorPrendas {
 			
 		}
 		//Pasamos de ArrayList a Array
+		System.out.println("AQUI VA EL TAMAÑOOOOO");
+		System.out.println(prendas.size());
 		Prenda[] Arrprendas = new Prenda[prendas.size()];
 		Arrprendas = prendas.toArray(Arrprendas);
 		
