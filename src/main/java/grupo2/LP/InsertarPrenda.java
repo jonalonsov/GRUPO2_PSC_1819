@@ -20,6 +20,8 @@ import javax.swing.SwingConstants;
 
 import grupo2.LD.BaseDeDatos;
 import grupo2.LN.GestorPrendas;
+import grupo2.LN.GestorUsuario;
+
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
@@ -49,6 +51,7 @@ public class InsertarPrenda extends JFrame implements ActionListener {
 	
 	private GestorPrendas gprenda; 
 	private grupo2.LN.Prenda prenda;
+	private GestorUsuario gusuarios;
 	
 	
 	
@@ -274,11 +277,13 @@ public class InsertarPrenda extends JFrame implements ActionListener {
 			if(nombre.equals("Seleccione tipo prenda...") || color.equals("Seleccione color...") || tejido.equals("Seleccione tejido...") || imagen ==null){
 				JOptionPane.showMessageDialog(null, "Debe rellenar todos los campos.", "CUIDADO",JOptionPane.INFORMATION_MESSAGE);
 			} else {
-								
-					prenda = new grupo2.LN.Prenda(0, nombre, color, tejido, imagen.getAbsolutePath());	
+					gusuarios = new GestorUsuario();
+					System.out.println(gusuarios.nombreUsuario());			
+					prenda = new grupo2.LN.Prenda(0, nombre, color, tejido, imagen.getAbsolutePath(), gusuarios.nombreUsuario());	
 					
 
 					gprenda = new GestorPrendas();
+					
 					
 					boolean semaforo = gprenda.anyadirPrenda( BaseDeDatos.getStatement(), prenda);
 							

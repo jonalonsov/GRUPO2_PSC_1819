@@ -2,8 +2,8 @@ package grupo2.LP;
 
 
 
-import grupo2.LD.BaseDeDatos;
 import grupo2.LN.GestorUsuario;
+import grupo2.LN.usuario;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -41,6 +41,9 @@ public class Registrarse extends JFrame implements ActionListener {
 	private JTextArea M, I, A, R, M2, A2, R2, I2, O;
 	private JTextArea informacion;
 	
+	
+	private GestorUsuario gusuario;
+	private usuario objUsuario;
 	
 	
 	//private Reloj reloj;
@@ -234,38 +237,18 @@ public class Registrarse extends JFrame implements ActionListener {
 					
 						String contrasenya = Contraseña.getText();
 						String nombre = Usuario.getText();			
-							
 						
-						GestorUsuario jugador = new GestorUsuario(nombre, contrasenya);
-			
-							
+						gusuario = new GestorUsuario();
+						objUsuario = new usuario(nombre, contrasenya);
+						
 						//Si no existe, anyade fila con el usuario nuevo y sus respectivos atributos
 						
-						boolean semaforo=jugador.anyadirUsuario(BaseDeDatos.getStatement(), nombre);
+						boolean semaforo=gusuario.anyadirUsuario(objUsuario);
 								
 						if(semaforo==true)dispose();
 					}		
 		}
 			
 			
-	}
-	@SuppressWarnings("unused")
-	private void comprobarCont(String contraseña) throws Exception {
-		// TODO Auto-generated method stub
-		if(contraseña.isEmpty()){
-			
-			throw new Exception ();
-			
-		} //comprobar tambien si son los correctos
-	}
-
-	@SuppressWarnings("unused")
-	private void comprobarUsu(String usuario) throws Exception {
-		// TODO Auto-generated method stub
-		if(usuario.isEmpty()){
-			
-			throw new Exception ();
-			
-		}// mirar si existe el nombre de usuario
 	}
 }

@@ -6,15 +6,15 @@ import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
+import grupo2.LD.BaseDeDatos;
+
 public class GestorUsuario {
 
 	//<--GOE--> HACER LO MISMO QUE HE HECHO CON GESTORCOMPLEMENTOS Y GESTORPRENDAS, NO CREAR UN NUEVO OBJETO
-	String contrasenya;
-	String nombre;
-		
-	public GestorUsuario(String nombre, String contrasenya){
-		this.nombre = nombre;
-		this.contrasenya = contrasenya;
+	private Statement st;
+	
+	public GestorUsuario(){
+		st=BaseDeDatos.getStatement();
 		
 	}
 
@@ -22,7 +22,7 @@ public class GestorUsuario {
 	 * @param st	Sentencia ya abierta de base de datos
 	 * @return	true si el usuario ya esta en la tabla, false en caso contrario
 	 */
-	public boolean chequearYaEnTabla( Statement st, String nombre ) {
+	public boolean chequearYaEnTabla(String nombre) {
 		//SELECT
 			try {
 
@@ -43,7 +43,7 @@ public class GestorUsuario {
 			}
 		}
 	
-	public boolean chequearYaEnTablaLOGIN( Statement st, String nombre, String contrasenya ) {
+	public boolean chequearYaEnTablaLOGIN(String nombre, String contrasenya ) {
 		//SELECT
 			try {
 
@@ -73,15 +73,15 @@ public class GestorUsuario {
 	 * @param st	Sentencia ya abierta de Base de Datos (con la estructura de tabla correspondiente al usuario)
 	 * @return	true si la inserción es correcta, false en caso contrario
 	 */
-	public boolean anyadirFilaATablauUsuario( Statement st, String nombre ) {
+	public boolean anyadirFilaATablauUsuario( usuario user ) {
 	//INSERT
 
-		if (chequearYaEnTabla(st, nombre)) {  // Si esta ya en la tabla
-			return modificarFilaEnTablaUsuario(st);
+		if (chequearYaEnTabla(user.getNombre())) {  // Si esta ya en la tabla
+			return modificarFilaEnTablaUsuario(user);
 		}
 		// Insercion normal
 		try {
-			String sentSQL = "insert into USUARIO values(" + "'" + nombre + "', " + "'" + contrasenya + "')"; 
+			String sentSQL = "insert into USUARIO values(" + "'" + user.getNombre() + "', " + "'" + user.getContrasenya() + "')"; 
 			System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
 			int val = st.executeUpdate( sentSQL );
 			if (val!=1) return false;  // Se tiene que añadir 1 - error si no
@@ -92,16 +92,16 @@ public class GestorUsuario {
 		}
 	}
 	
-	public boolean anyadirUsuario( Statement st, String nombre ) {
+	public boolean anyadirUsuario( usuario user ) {
 		//INSERT
 
-			if (chequearYaEnTabla(st, nombre)) {  // Si esta ya en la tabla
+			if (chequearYaEnTabla( user.getNombre())) {  // Si esta ya en la tabla
 				return false;
 			}
 			// Insercion normal
 			try {
-				String sentSQL = "insert into USUARIO values(" + "'" + nombre + "', " + "'" + contrasenya + "')"; 
-				System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+				String sentSQL = "insert into USUARIO values(" + "'" + user.getNombre() + "', " + "'" + user.getContrasenya() + "')"; 
+				
 				int val = st.executeUpdate( sentSQL );
 				if (val!=1) return false;  // Se tiene que añadir 1 - error si no
 				return true;
@@ -117,14 +117,14 @@ public class GestorUsuario {
 	 * @param st	Sentencia ya abierta de Base de Datos (con la estructura de tabla correspondiente al usuario)
 	 * @return	true si la modificacion es correcta, false en caso contrario
 	 */
-	public boolean modificarFilaEnTablaUsuario( Statement st ) {
+	public boolean modificarFilaEnTablaUsuario( usuario user ) {
 	//UPDATE
 		int resp = JOptionPane.showConfirmDialog(null, "¿Esta seguro?", "Alerta!", JOptionPane.YES_NO_OPTION);
 		if(resp==1) {
 			try {		
 				String sentSQL = "update USUARIO set "+ 
-						"nombre = '" + nombre + "', " +
-						"contrasenya = '" + contrasenya + "'";
+						"nombre = '" + user.getNombre() + "', " +
+						"contrasenya = '" + user.getContrasenya() + "'";
 				System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
 				int val = st.executeUpdate( sentSQL );
 				if (val!=1) return false;  // Se tiene que modificar 1, error si no
@@ -135,5 +135,50 @@ public class GestorUsuario {
 			return false;
 			}
 		} else return false;
+	}
+	
+	public boolean eliminarUsuarioSistema( ) {
+		//meter a la tabla temporal de usuario para saber durante la sesión qué usuario está en el sistema	
+			try {		
+					String sentSQL = "delete from USUARIO_SESION";
+					System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+					int val = st.executeUpdate( sentSQL );
+					if (val!=1) return false;  // Se tiene que modificar 1, error si no
+					return true;
+				
+				} catch (SQLException e) {
+					e.printStackTrace();
+				return false;
+				}
+
+		}
+	public boolean modificarUsuarioSistema(usuario user) {
+		eliminarUsuarioSistema();
+		// Insercion normal
+		try {
+			String sentSQL = "insert into USUARIO_SESION values(" + "'" + user.getNombre() + "', " + "'" + user.getContrasenya() + "')"; 
+			int val = st.executeUpdate( sentSQL );
+			if (val!=1) return false;  // Se tiene que añadir 1 - error si no
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	public String nombreUsuario( ) {
+		//SELECT
+		try {
+				String sentSQL = "select * from USUARIO_SESION";
+				System.out.println( sentSQL ); 
+				
+				ResultSet rs = st.executeQuery( sentSQL );
+
+				return rs.getString(1);
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return null;
+				
+			}				
+		
 	}
 }

@@ -12,6 +12,7 @@ public class Main {
 		BaseDeDatos.crearTablaBDPrenda();
 		BaseDeDatos.crearTablaBDComplemento();
 		BaseDeDatos.crearTablaBDConjunto();
+		BaseDeDatos.crearTablaUsuarioSesion();
 		BaseDeDatos.inicializarValores();
 		//BaseDeDatos.insertarUsuario(BaseDeDatos.getStatement());
 

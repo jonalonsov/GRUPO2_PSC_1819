@@ -10,13 +10,14 @@ import grupo2.LD.BaseDeDatos;
 public class GestorComplemento {
 
 	
+private Statement st;
 	public GestorComplemento(){
 
 	}
 	
 	public int maxIdComp() {
 		//SELECT
-		Statement st=BaseDeDatos.getStatement();
+		st=BaseDeDatos.getStatement();
 		int id=0;
 				String sentSQL = "SELECT id from COMPLEMENTO ORDER BY id DESC LIMIT 1 ";
 				System.out.println( sentSQL ); 
@@ -41,7 +42,7 @@ public class GestorComplemento {
 		
 		try {
 	
-				String sentSQL = "insert into COMPLEMENTO values(" + "'" + id + "', " + "'" + complemento.getNombre() + "', " + "'" + complemento.getColor() + "')"; 
+				String sentSQL = "insert into COMPLEMENTO values(" + "'" + id + "', " + "'" + complemento.getNombre() + "', " + "'" + complemento.getColor() + "', " + "'" + complemento.getUsuario() + "')"; 
 				System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
 				int val = st.executeUpdate( sentSQL );
 				if (val!=1) return false;  // Se tiene que añadir 1 - error si no
@@ -54,7 +55,7 @@ public class GestorComplemento {
 	
 	public Complemento[] selectComplementos() {
 		
-		 Statement st=BaseDeDatos.getStatement();
+		 st=BaseDeDatos.getStatement();
 		//Creamos el arrayList de los que cumplen la condición de ser favoritos
 		ArrayList<Complemento> complementos = new ArrayList<Complemento>();
 		try {
@@ -65,7 +66,7 @@ public class GestorComplemento {
 			
 			while (rs.next()) {
 				//Añadimos los id-s de los conjuntos que son favoritos
-				complementos.add(new Complemento(rs.getInt(1), rs.getString(2), rs.getString(3)));
+				complementos.add(new Complemento(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)));
 			}
 			
 		} catch (SQLException e) {

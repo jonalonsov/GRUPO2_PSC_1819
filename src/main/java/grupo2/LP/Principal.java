@@ -22,8 +22,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import grupo2.LD.BaseDeDatos;
 import grupo2.LN.GestorUsuario;
+import grupo2.LN.usuario;
 
 public class Principal extends JFrame implements ActionListener {
 
@@ -49,7 +49,8 @@ public class Principal extends JFrame implements ActionListener {
 	private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 	private LocalDateTime now = LocalDateTime.now();
 
-
+	private GestorUsuario jugador;
+	private usuario objUsuario;
 	
 	public Principal(){
 
@@ -288,10 +289,13 @@ public class Principal extends JFrame implements ActionListener {
 					String contrasenya = Contraseña.getText();
 					String usuario = Usuario.getText();
 					
-					GestorUsuario jugador = new GestorUsuario(usuario, contrasenya);		
-						
-					boolean semaforo=jugador.chequearYaEnTablaLOGIN( BaseDeDatos.getStatement(), usuario, contrasenya);
-							
+					
+					jugador = new GestorUsuario();		
+					
+					
+					boolean semaforo=jugador.chequearYaEnTablaLOGIN(usuario, contrasenya);
+					objUsuario = new usuario(usuario,contrasenya);
+					jugador.modificarUsuarioSistema(objUsuario);
 					
 								if(semaforo==true) {
 									
@@ -305,8 +309,10 @@ public class Principal extends JFrame implements ActionListener {
 														
 										//Si no existe, anyade fila con el usuario nuevo y sus respectivos atributos
 										
-										jugador.anyadirUsuario(BaseDeDatos.getStatement(), usuario);
-												
+										
+										
+										jugador.anyadirUsuario(objUsuario);
+																						
 										PanelMenu objpanelMP = new PanelMenu();
 										objpanelMP.setVisible(true);
 										dispose();	

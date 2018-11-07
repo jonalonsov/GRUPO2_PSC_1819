@@ -3,7 +3,6 @@ package grupo2.LD;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -86,7 +85,7 @@ public class BaseDeDatos {
 	public static void crearTablaBDPrenda() {
 		if (statement==null) return;
 		try {
-			statement.executeUpdate("create table if not exists PRENDA ( id int, nombre string, color string, tejido string, imagen string )");
+			statement.executeUpdate("create table if not exists PRENDA ( id int, nombre string, color string, tejido string, imagen string, usuario string )");
 			System.out.println ("Tabla creada");
 		} catch (SQLException e) {
 			// Si hay excepcion es que la tabla ya existia (lo cual es correcto)
@@ -98,7 +97,7 @@ public class BaseDeDatos {
 	public static void crearTablaBDComplemento() {
 		if (statement==null) return;
 		try {
-			statement.executeUpdate("create table if not exists COMPLEMENTO ( id int, nombre string, color string )");
+			statement.executeUpdate("create table if not exists COMPLEMENTO ( id int, nombre string, color string, usuario string )");
 			System.out.println ("Tabla creada");
 		} catch (SQLException e) {
 			// Si hay excepcion es que la tabla ya existia (lo cual es correcto)
@@ -106,6 +105,19 @@ public class BaseDeDatos {
 				e.printStackTrace();  
 		}
 	}
+	
+	public static void crearTablaUsuarioSesion() {
+		if (statement==null) return;
+		try {
+			statement.executeUpdate("create table if not exists USUARIO_SESION ( nombre string, contrasenya string )");
+			System.out.println ("Tabla creada");
+		} catch (SQLException e) {
+			// Si hay excepcion es que la tabla ya existia (lo cual es correcto)
+			if (!e.getMessage().equals("table interaccion already exists"))
+				e.printStackTrace();  
+		}
+	}
+	
 	public static void crearTablaBDConjunto() {
 		
 		if (statement==null) return;
@@ -124,61 +136,5 @@ public class BaseDeDatos {
 		// TODO Auto-generated method stub
 		
 	}
-	
-
-	public static void insertarUsuario (String usuario, String contraseña){
-			
-			
-			try {
-				String Query = "INSERT INTO USUARIO VALUES("
-		                + " ' " + usuario + " ', "
-		                + " ' " + contraseña + " ')";
-		        Statement st = connection.createStatement();
-		        st.executeUpdate(Query);
-		        JOptionPane.showMessageDialog(null, "Nuevo usuario almacenado de forma exitosa");
-		        
-				} catch (SQLException ex) {
-		        JOptionPane.showMessageDialog(null, "Error al almacenar el nuevo usuario. ");
-		    }
-		}
-	
-	
-public static void insertarComplemento (String nombre, String color){
-		
-		
-		try {
-			String Query = "INSERT INTO COMPLEMENTO VALUES("
-	                + " ' " + nombre + " ', "
-	                + " ' " + color + " ')";
-	      
-			Statement st = connection.createStatement();
-	        st.executeUpdate(Query);
-	        JOptionPane.showMessageDialog(null, "Nuevo complemento almacenado de forma exitosa");
-	        
-			} catch (SQLException ex) {
-	        JOptionPane.showMessageDialog(null, "Error al insertar una nueva prenda. ");
-	    }
-	}
-	
-	public boolean chequearYaEnTabla( Statement st, String nombre ) {
-		//SELECT
-			try {
-
-				String sentSQL = "select * from USUARIO where (nombre = '" + nombre + "')";
-				System.out.println( sentSQL ); 
-				
-				ResultSet rs = st.executeQuery( sentSQL );
-				
-				if (rs.next()) {  // Normalmente se recorre con un while, pero aqui solo hay que ver si ya existe
-					rs.close();
-					JOptionPane.showMessageDialog(null, "El usuario ya existe, prueba con otro nombre","Mensaje de error",JOptionPane.ERROR_MESSAGE);
-					return true;
-				}
-				return false;
-			} catch (SQLException e) {
-				e.printStackTrace();
-				return false;
-			}
-		}
 	
 	}

@@ -23,6 +23,7 @@ import javax.swing.SwingConstants;
 
 import grupo2.LD.BaseDeDatos;
 import grupo2.LN.GestorComplemento;
+import grupo2.LN.GestorUsuario;
 
 public class InsertarComplemento extends JFrame implements ActionListener {
 
@@ -47,6 +48,7 @@ public class InsertarComplemento extends JFrame implements ActionListener {
 	
 	private grupo2.LN.Complemento complemento;
 	private GestorComplemento gcomplementos;
+	private GestorUsuario usuario;
 	
 	//private Reloj reloj;
 	
@@ -244,10 +246,12 @@ public class InsertarComplemento extends JFrame implements ActionListener {
 			if(Color1.getText().length()==0 || color.equals("Seleccione complemento...")){
 				JOptionPane.showMessageDialog(null, "Debe rellenar todos los campos.", "CUIDADO",JOptionPane.INFORMATION_MESSAGE);
 			} else {
-	
+				
+				usuario = new GestorUsuario();
+				System.out.println(usuario.nombreUsuario());	
 						
 												
-						complemento = new grupo2.LN.Complemento (0, nombre, color);		
+						complemento = new grupo2.LN.Complemento (0, nombre, color, usuario.nombreUsuario());		
 						
 						gcomplementos = new GestorComplemento();
 						

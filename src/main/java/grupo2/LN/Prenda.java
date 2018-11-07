@@ -7,14 +7,16 @@ public class Prenda  implements Comparable<Object> {
 	private String color;
 	private String tejido;
 	private String imagen;
+	private String usuario;
 	
-	public Prenda(int id, String nombre, String color, String tejido, String imagen){
+	public Prenda(int id, String nombre, String color, String tejido, String imagen, String usuario){
 		
 		this.id=id;
 		this.nombre = nombre;
 		this.color = color;
 		this.setTejido(tejido);
 		this.imagen = imagen;
+		this.setUsuario(usuario);
 		
 	}
 
@@ -63,6 +65,14 @@ public class Prenda  implements Comparable<Object> {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 	
 

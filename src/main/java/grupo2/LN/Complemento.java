@@ -5,13 +5,15 @@ public class Complemento  implements Comparable<Object> {
 	private int id;
 	private String nombre;
 	private String color;
+	private String  usuario;
 	
 	
-	public Complemento(int id, String nombre, String color){
+	public Complemento(int id, String nombre, String color, String usuario){
 		
 		this.id=id; 
 		this.nombre = nombre;
 		this.color = color;
+		this.setUsuario(usuario);
 				
 	}
 
@@ -44,6 +46,14 @@ public class Complemento  implements Comparable<Object> {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 
 	
