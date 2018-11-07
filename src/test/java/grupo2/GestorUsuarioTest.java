@@ -54,6 +54,7 @@ public class GestorUsuarioTest {
     {
     	GestorUsuario gu = new GestorUsuario();
     	boolean expected = gu.chequearYaEnTabla("Miren");
+    	
         assertFalse( expected == true );
 
     }
