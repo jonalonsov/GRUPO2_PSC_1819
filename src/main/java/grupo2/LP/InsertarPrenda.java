@@ -274,7 +274,7 @@ public class InsertarPrenda extends JFrame implements ActionListener {
 			String color = (String)comboBoxC.getSelectedItem();
 			String tejido = (String)comboBoxT.getSelectedItem();
 			
-			if(nombre.equals("Seleccione tipo prenda...") || color.equals("Seleccione color...") || tejido.equals("Seleccione tejido...") || imagen ==null){
+			if(nombre.equals("Seleccione tipo prenda...") || color.equals("Seleccione color...") || tejido.equals("Seleccione tejido...") || imagen == null){
 				JOptionPane.showMessageDialog(null, "Debe rellenar todos los campos.", "CUIDADO",JOptionPane.INFORMATION_MESSAGE);
 			} else {
 					gusuarios = new GestorUsuario();
