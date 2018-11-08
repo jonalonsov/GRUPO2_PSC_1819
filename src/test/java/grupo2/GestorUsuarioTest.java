@@ -25,9 +25,10 @@ public class GestorUsuarioTest {
 	
 	public void setUp() { 
 		
-		BaseDeDatos.initBD("miarmario.bd");
+		BaseDeDatos.initBD("miarmarioTest.bd");
 		
 		BaseDeDatos.crearTablaBDUsuario();
+		BaseDeDatos.crearTablaUsuarioSesion();
 		
 		GestorUsuario gu = new GestorUsuario();
 		
@@ -58,5 +59,58 @@ public class GestorUsuarioTest {
         assertFalse( expected == true );
 
     }
+    
+    @Test
+    public void testanyadirFilaATablauUsuario()
+    {
+    	GestorUsuario gu = new GestorUsuario();
+    	usuario usuario = new usuario("uxue", "uxue"); 
+    	
+    	boolean expected = gu.anyadirFilaATablauUsuario(usuario);
+    	
+    	
+        assertEquals( expected, true );
+        
 
+    }
+    
+    @Test
+    public void testanyadirFilaATablauUsuario2()
+    {
+    	GestorUsuario gu = new GestorUsuario();
+    	usuario usuario = new usuario("Maider", "maider"); 
+    	
+    	gu.anyadirFilaATablauUsuario(usuario);
+    	
+        assertEquals( usuario.getNombre(), "Maider" );
+
+    }
+    
+    @Test
+    public void testchequearYaEnTablaLOGIN()
+    {
+    	GestorUsuario gu = new GestorUsuario();
+    	
+    	boolean expected = gu.chequearYaEnTablaLOGIN( "Maider", "maider");
+    	
+        assertEquals( expected, true );
+
+    }
+    
+    @Test
+    public void testmodificarUsuarioSistema()
+    {
+    	GestorUsuario gu = new GestorUsuario();
+    	
+    	usuario usuario = new usuario("Maider", "maider"); 
+    	
+    	//El usuario usando el sistema pasa a ser Maider
+    	gu.modificarUsuarioSistema(usuario);
+    	
+    	//Compueba que es así
+        assertEquals( gu.nombreUsuario(), "Maider" );
+
+    }
+    
+    
 }
