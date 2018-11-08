@@ -9,10 +9,12 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -37,7 +39,7 @@ public class InsertarComplemento extends JFrame implements ActionListener {
 	
 	private JLabel textC;
 	private JLabel textColor;
-	private JTextField Color1;
+		private JTextField Color1;
 	
 	
 	
@@ -45,10 +47,15 @@ public class InsertarComplemento extends JFrame implements ActionListener {
 	private JTextArea M, I, A, R, M2, A2, R2, I2, O;
 	private JTextArea informacion;
 	private JComboBox<String> comboBoxN;
+	private JComboBox<String> comboBoxC;
+	private JComboBox<String> comboBoxE;
+	private JButton btnSeleccionar;
+	//private File imagen;
+	JFileChooser fc;
 	
 	private grupo2.LN.Complemento complemento;
 	private GestorComplemento gcomplementos;
-	private GestorUsuario usuario;
+	private GestorUsuario gusuario;
 	
 	//private Reloj reloj;
 	
@@ -56,18 +63,6 @@ public class InsertarComplemento extends JFrame implements ActionListener {
 		
 		
 				
-		/*
-		Complemento = new JTextField();
-		Complemento.setFont(new Font("Century Gothic", Font.BOLD, 10));
-		Complemento.setBounds(94, 147, 231, 20);
-		Complemento.setEnabled(true);
-		Complemento.setEditable(true);
-		*/
-		
-		comboBoxN = new JComboBox<String>();
-		comboBoxN.setModel(new DefaultComboBoxModel<String>(new String[] {"Seleccione complemento...", "Collar", "Pulsera", "Pendientes", "Gafas",  "Gorra"}));
-		comboBoxN.setBounds(94, 147, 231, 20);
-		
 		textC = new JLabel();
 		textC.setText("Inserte el Complemento\r\n");
 		textC.setFont(new Font("Century Gothic", Font.BOLD, 12));
@@ -75,11 +70,11 @@ public class InsertarComplemento extends JFrame implements ActionListener {
 		textC.setOpaque(false);
 		
 						
-		Color1 = new JTextField();
+/*	Color1 = new JTextField();
 		Color1.setFont(new Font("Century Gothic", Font.BOLD, 10));
 		Color1.setBounds(94, 91, 231, 20);
 		Color1.setEnabled(true);
-		Color1.setEditable(true);
+		Color1.setEditable(true);*/
 				
 		textColor = new JLabel();
 		textColor.setVerticalAlignment(SwingConstants.TOP);
@@ -210,13 +205,6 @@ public class InsertarComplemento extends JFrame implements ActionListener {
 						PanelIzquierda.setLayout(null);
 		
 
-				
-				PanelIzquierda.add(comboBoxN);
-				
-				PanelIzquierda.add(textC);
-				PanelIzquierda.add(Color1);
-				PanelIzquierda.add(textColor);
-				PanelIzquierda.add(comboBoxN);
 								
 				btnAcep = new JButton("Aceptar");
 				btnAcep.setForeground(Color.BLACK);
@@ -232,26 +220,67 @@ public class InsertarComplemento extends JFrame implements ActionListener {
 						btnAcep.setActionCommand("Aceptar");
 						PanelIzquierda.add(btnAcep);
 								
+						comboBoxN = new JComboBox<String>();
+						comboBoxN.setModel(new DefaultComboBoxModel<String>(new String[] {"Seleccione complemento...", "Collar", "Pulsera", "Pendientes", "Gafas",  "Gorra"}));
+						comboBoxN.setBounds(94, 146, 231, 20);
 						
+						comboBoxC = new JComboBox<String>();
+						comboBoxC.setModel(new DefaultComboBoxModel<String>(new String[] {"Seleccione color...", "Negro", "Rojo", "Verde", "Azul",  "Amarillo"}));
+						comboBoxC.setBounds(94, 91, 231, 20);
+						
+						btnSeleccionar =new JButton("Seleccionar imagen...");    
+						btnSeleccionar.addActionListener(this);
+				        btnSeleccionar.setBounds(120, 214, 187, 23);
+				        //PanelIzquierda.add(btnSeleccionar);
+						
+				        
+				        PanelIzquierda.add(textC);
+						PanelIzquierda.add(textColor);
+						PanelIzquierda.add(comboBoxN);
+						PanelIzquierda.add(comboBoxC);
+				      //Creamos el objeto JFileChooser
+						fc=new JFileChooser();		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-
-		if (e.getSource() == btnAcep){
-			String nombre = Color1.getText();
-			String color = (String)comboBoxN.getSelectedItem();
+	/*	if (e.getSource() == btnSeleccionar){
 			
-			if(Color1.getText().length()==0 || color.equals("Seleccione complemento...")){
+			//Abrimos la ventana, guardamos la opcion seleccionada por el usuario
+			int seleccion=fc.showSaveDialog(PanelIzquierda);
+			 
+			//Si el usuario, pincha en aceptar
+			if(seleccion==JFileChooser.APPROVE_OPTION){
+			 
+			    //Seleccionamos el fichero
+			 imagen =fc.getSelectedFile();
+			 System.out.println(imagen.getAbsolutePath());
+//			    try(FileWriter fw=new FileWriter(fichero)){
+//			 
+//			        //Escribimos el texto en el fichero
+//			        fw.write(textArea.getText());
+//			 
+//			    } catch (IOException e1) {
+//			        e1.printStackTrace();
+//			    }
+//			 
+			}
+			
+		}*/
+		if (e.getSource() == btnAcep){
+			String nombre = (String)comboBoxN.getSelectedItem();
+			String color = (String)comboBoxC.getSelectedItem();
+			
+			if(nombre.equals("Seleccione complemento...") || color.equals("Seleccione color...")){
 				JOptionPane.showMessageDialog(null, "Debe rellenar todos los campos.", "CUIDADO",JOptionPane.INFORMATION_MESSAGE);
 			} else {
 				
-				usuario = new GestorUsuario();
-				System.out.println(usuario.nombreUsuario());	
+				gusuario = new GestorUsuario();
+				System.out.println(gusuario.nombreUsuario());	
 						
 												
-						complemento = new grupo2.LN.Complemento (0, nombre, color, usuario.nombreUsuario());		
+						complemento = new grupo2.LN.Complemento (0, nombre, color, gusuario.nombreUsuario());		
 						
 						gcomplementos = new GestorComplemento();
 						
