@@ -51,11 +51,7 @@ public class PanelArmario extends JFrame implements ActionListener {
 	    
 	    private JButton Añadir;
 	    private JButton AñadirC;
-	    private JButton Salir;
-	
-	
-	
-	private JTextArea M, I, A, R, M2, A2, R2, I2, O;
+	    private JTextArea M, I, A, R, M2, A2, R2, I2, O;
 	private JTextArea informacion;
 	private JLabel lblLabelImagen;
 	private  JTable table_1;
@@ -74,14 +70,11 @@ public class PanelArmario extends JFrame implements ActionListener {
 	private  String[] datoC;
 	private  String[] datoConj;
 	private JTextPane txtpnEstosSonTus;
-	private JButton btnAadirNuevoConjunto;
-	private JButton button_1;
+	private JButton btnMarcarFavorito;
 	private JScrollPane scrollC;
 	private JScrollPane scrollConj;
 	private GestorConjuntos gconjuntos;
 	private int indice3;
-	private Conjunto objconjunto2;
-	
 	public PanelArmario() throws SQLException{
 		
 	gprendas = new GestorPrendas();
@@ -204,33 +197,11 @@ public class PanelArmario extends JFrame implements ActionListener {
 				panelPestaña.setPreferredSize( new Dimension( 450,  450 ) );
 				getContentPane().add(panelPestaña);
 			
-	              
-	            
-	        /*    JButton Ver = new JButton("Ver la prenda seleccionada");
-	            Ver.setHorizontalAlignment(SwingConstants.TRAILING);
-	            Ver.setForeground(Color.BLACK);
-	            Ver.setFont(new Font("Century Gothic", Font.BOLD, 16));
-	            Ver.setAlignmentY(1.0f);
-	            Ver.setAlignmentX(1.0f);
-	            Ver.setActionCommand("Ver");
-	            Ver.setBounds(99, 67, 251, 29);
-	          */
 
-	
    //TABLA COMPLEMENTOS
 		//Aqui se muestra la Pestaña de los Complementos, con sus caracteristicas principales
 			complemento = new JPanel ();
 			panelPestaña.addTab("Complemento",null,complemento, "Complemento");
-
-			                        
-			Salir = new JButton("Atras");
-            Salir.setForeground(Color.BLACK);
-            Salir.setAlignmentY(Component.CENTER_ALIGNMENT);
-            Salir.setAlignmentX(Component.CENTER_ALIGNMENT);
-            Salir.setSize(65, 27);
-            Salir.setLocation(291, 58);
-            Salir.setFont(new Font("Century Gothic", Font.BOLD, 14));
-            Salir.addActionListener(this);
 	        complemento.setLayout(null);
             
 	                                    
@@ -248,18 +219,16 @@ public class PanelArmario extends JFrame implements ActionListener {
      		AñadirC.setAlignmentY(Component.CENTER_ALIGNMENT);
      		AñadirC.setAlignmentX(Component.CENTER_ALIGNMENT);
      		AñadirC.setSize(201, 29);
-     		AñadirC.setLocation(52, 56);
-     		AñadirC.setFont(new Font("Century Gothic", Font.BOLD, 16));
+     		AñadirC.setLocation(234, 370);
+     		AñadirC.setFont(new Font("Century Gothic", Font.BOLD, 14));
      		AñadirC.addActionListener(this);
      		AñadirC.setActionCommand("AñadirC");
-     		Salir.setActionCommand("Salir");
-    		complemento.add(Salir);
     		
     		tableC = new JTable();
        		tableC.setEnabled(true);
     		
     		scrollC = new JScrollPane(tableC);
-    		scrollC.setBounds(22, 96, 397, 297);
+    		scrollC.setBounds(24, 64, 397, 297);
     		complemento.add(scrollC);
           
             DefaultTableModel modelC= new DefaultTableModel();
@@ -286,15 +255,6 @@ public class PanelArmario extends JFrame implements ActionListener {
 		//PestañaArmario
 		armario = new JPanel ();
 		panelPestaña.addTab("Armario",null,armario, "Armario");
-			
-		 Salir = new JButton("Atras");
-		 Salir.setForeground(Color.BLACK);
-		 Salir.setAlignmentY(Component.CENTER_ALIGNMENT);
-		 Salir.setAlignmentX(Component.CENTER_ALIGNMENT);
-		 Salir.setSize(100, 29);
-		 Salir.setLocation(300, 43);
-		 Salir.setFont(new Font("Century Gothic", Font.BOLD, 14));
-		 Salir.addActionListener(this);
 		 armario.setLayout(null);
 
 		
@@ -304,7 +264,7 @@ public class PanelArmario extends JFrame implements ActionListener {
 		  txtpnHj.setBackground(Color.lightGray);
 		  txtpnHj.setFont(new Font("MS Mincho", Font.ITALIC, 23));
 		  txtpnHj.setText("¡Ya estas dentro de tu armario!");
-		  txtpnHj.setBounds(10, 5, 409, 33);
+		  txtpnHj.setBounds(56, 11, 334, 33);
 		  armario.add(txtpnHj);
 			  
 
@@ -316,14 +276,12 @@ public class PanelArmario extends JFrame implements ActionListener {
    		 Añadir.setAlignmentY(Component.CENTER_ALIGNMENT);
    		 Añadir.setAlignmentX(Component.CENTER_ALIGNMENT);
    		 Añadir.setSize(237, 29);
-   		 Añadir.setLocation(58, 43);
+   		 Añadir.setLocation(198, 366);
    		 Añadir.setFont(new Font("Century Gothic", Font.BOLD, 14));
    		 //        BSalir.setBounds(100, 103, 150, 30);
    		 Añadir.addActionListener(this);
    		 //  PanelCentro.setLayout(null);
    		   Añadir.setActionCommand("Añadir");
-   		   Salir.setActionCommand("Salir");
-   		   armario.add(Salir);
 			       	
 		
    		   
@@ -346,7 +304,7 @@ public class PanelArmario extends JFrame implements ActionListener {
                 model.addColumn("Tejido");   
             	
 	       		scroll = new JScrollPane (table_1);
-	       		scroll.setBounds(22, 92, 397, 297);
+	       		scroll.setBounds(25, 58, 397, 297);
 	       		armario.add(scroll);
 
 	       		
@@ -430,30 +388,26 @@ public class PanelArmario extends JFrame implements ActionListener {
 		txtpnEstosSonTus.setBackground(Color.LIGHT_GRAY);
 		conjunto.add(txtpnEstosSonTus);
 		
-		btnAadirNuevoConjunto = new JButton("Marcar como favorito");
-		btnAadirNuevoConjunto.setBounds(250, 364, 185, 27);
-		btnAadirNuevoConjunto.setForeground(Color.BLACK);
-		btnAadirNuevoConjunto.setFont(new Font("Century Gothic", Font.BOLD, 14));
-		btnAadirNuevoConjunto.setAlignmentY(0.5f);
-		btnAadirNuevoConjunto.setAlignmentX(0.5f);
-		btnAadirNuevoConjunto.setActionCommand("Añadir");
-		conjunto.add(btnAadirNuevoConjunto);
+ 		complemento.add(AñadirC);
+ 		       	
+
 		
-		button_1 = new JButton("Atras");
-		button_1.setBounds(364, 14, 65, 27);
-		button_1.setForeground(Color.BLACK);
-		button_1.setFont(new Font("Century Gothic", Font.BOLD, 14));
-		button_1.setAlignmentY(0.5f);
-		button_1.setAlignmentX(0.5f);
-		button_1.setActionCommand("Salir");
-		conjunto.add(button_1);
+		btnMarcarFavorito = new JButton("Marcar como favorito");
+		btnMarcarFavorito.setBounds(250, 364, 185, 27);
+		btnMarcarFavorito.setForeground(Color.BLACK);
+		btnMarcarFavorito.setFont(new Font("Century Gothic", Font.BOLD, 14));
+		btnMarcarFavorito.setAlignmentY(0.5f);
+		btnMarcarFavorito.setAlignmentX(0.5f);
+		btnMarcarFavorito.addActionListener(this);
+		btnMarcarFavorito.setActionCommand("Favorito");
+		conjunto.add(btnMarcarFavorito);
 		
 		 tableConj = new JTable();
 		 tableConj.setEnabled(true);
 		
 		//Cargamos la tabla con los datos de la BD de prendas
         DefaultTableModel model3= new DefaultTableModel();
-       // model3.addColumn("Id");
+        model3.addColumn("Id");
         model3.addColumn("Prenda 1");
         model3.addColumn("Prenda 2");
         model3.addColumn("Favorito");   
@@ -471,16 +425,17 @@ public class PanelArmario extends JFrame implements ActionListener {
         	if (objconjunto.getFavorito()==0) {
         		mensaje ="NO";
         	} else mensaje ="SI";
-        	//datoConj[0]=Integer.toString(objconjunto.getId());
-        	datoConj[0]=gprendas.nombrePrendaconID(objconjunto.getPrenda1());
-        	datoConj[1]=gprendas.nombrePrendaconID(objconjunto.getPrenda2());
-        	datoConj[2]=mensaje;
+        	datoConj[0]=Integer.toString(objconjunto.getId());
+        	datoConj[1]=gprendas.nombrePrendaconID(objconjunto.getPrenda1());
+        	datoConj[2]=gprendas.nombrePrendaconID(objconjunto.getPrenda2());
+        	datoConj[3]=mensaje;
         
         	model3.addRow(datoConj);
 
         }
+       
            
-   		tableConj.setCellSelectionEnabled(true);
+   		 tableConj.setCellSelectionEnabled(true);
 	     ListSelectionModel cellSelectionModel4 = tableConj.getSelectionModel();
 	     cellSelectionModel4.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	        
@@ -491,13 +446,12 @@ public class PanelArmario extends JFrame implements ActionListener {
     		        String selectedDataID = null;
     	
 
-    		      int selectedRow2 = tableConj.getSelectedRow();
-    		      
-		            selectedDataID = (String) tableConj.getValueAt(selectedRow2,0);
+    		      int selectedRow3 = tableConj.getSelectedRow();
+
+		            selectedDataID = (String) tableConj.getValueAt(selectedRow3,0);
 		            indice3=Integer.parseInt(selectedDataID);
 		            
 		            System.out.println("Selected: " + indice3);
-		          //  objconjunto2=new Conjunto(gconjuntos.conjuntoconID(indice3).getId(), gconjuntos.conjuntoconID(indice3).getPrenda1(), gconjuntos.conjuntoconID(indice3).getPrenda2(), gconjuntos.conjuntoconID(indice3).getUsuario(), gconjuntos.conjuntoconID(indice3).getFavorito());
     		 }
  		 });
         
@@ -512,23 +466,24 @@ public class PanelArmario extends JFrame implements ActionListener {
 		// TODO Auto-generated method stub
 
 		  switch (e.getActionCommand()){
-	        
-		  case "Ver":
-	        	
-	        //	VerPrenda objpanePanel2 = new VerPrenda();
-	        	//objpanePanel2.setVisible(true);
+		  case "Favorito":
+	        	gconjuntos.modifFavConjunto(indice3);
+				JOptionPane.showMessageDialog( null, "Ha marcado como favorito este conjunto. ", null, JOptionPane.INFORMATION_MESSAGE);
+				
+			PanelArmario objPanelArmario = null;
+			try {
+				dispose();
+				objPanelArmario = new PanelArmario();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+				objPanelArmario.setVisible(true);
 	            
 	                                
 	                    
-	        break;
-		  case "Complemento":
-	        	
-		        //	VerComplemento objpanePanel2 = new VerComplemento();
-		        	//objpanePanel2.setVisible(true);
-		            
-		                                
-		                    
-		        break;
+	        break;     
+
 	        case "Añadir":
 	        	
 	        	InsertarPrenda objpanePanel = new InsertarPrenda();
@@ -546,22 +501,14 @@ public class PanelArmario extends JFrame implements ActionListener {
 	                    
 	        break;
 	        case "Salir":
-				JOptionPane.showMessageDialog( null, "¡Gracias por su visita, hasta pronto!" , "ADIOS", JOptionPane.INFORMATION_MESSAGE);
-
 	        	dispose();
-	            
-	            
+
 	            
 	        break;
 	       
 	       	
 		}
-		  if (e.getSource() == btnAadirNuevoConjunto){
-			  
-			//gconjuntos.modifFavConjunto(objconjunto2);
-				JOptionPane.showMessageDialog( null, "Todavia no está disponible.." , "ADIOS", JOptionPane.INFORMATION_MESSAGE);
-
-		  }
+		  
 	}
 	
 }

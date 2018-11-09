@@ -1,2 +1,3 @@
-TRACE - 15:53:31,214 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: usuario inexistente
-TRACE - 15:54:06,327 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: boton registrarse
+TRACE - 17:53:45,462 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: entra correctamente al programa
+TRACE - 17:56:53,502 - main - grupo2.Main - Mensaje: Tablas creadas y base de datos inicializada
+TRACE - 17:56:56,770 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: entra correctamente al programa

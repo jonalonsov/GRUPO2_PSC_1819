@@ -8,8 +8,6 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -22,16 +20,12 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
-import grupo2.LD.BaseDeDatos;
 import grupo2.LN.Conjunto;
-import grupo2.LN.GestorComplemento;
 import grupo2.LN.GestorConjuntos;
 import grupo2.LN.GestorPrendas;
 import grupo2.LN.GestorUsuario;
 import grupo2.LN.Prenda;
 
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -51,11 +45,8 @@ public class InsertarConjunto extends JFrame implements ActionListener {
 	private JButton btnAcep;
 	private JTextArea M, I, A, R, M2, A2, R2, I2, O;
 	private JTextArea informacion;
-	private File imagen;
 	JFileChooser fc;
 	
-	private GestorPrendas gprenda; 
-	private grupo2.LN.Prenda prenda;
 	private GestorUsuario gusuarios;
 	private JScrollPane scrollPrenda1;
 	private JScrollPane scrollPrenda2;

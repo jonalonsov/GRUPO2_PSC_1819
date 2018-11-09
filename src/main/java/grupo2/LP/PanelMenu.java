@@ -294,8 +294,8 @@ public class PanelMenu extends JFrame implements ActionListener {
         break;
         case "Fav":
         	
-    		JOptionPane.showMessageDialog( null, "No disponible, inténtelo más adelante. " , "ERROR", JOptionPane.INFORMATION_MESSAGE);
-
+        	VerFavoritos objVerFavoritos = new VerFavoritos();
+        	objVerFavoritos.setVisible(true);
             
                                     
         break;

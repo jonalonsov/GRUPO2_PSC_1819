@@ -9,8 +9,6 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -20,7 +18,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import grupo2.LD.BaseDeDatos;
@@ -39,16 +36,11 @@ public class InsertarComplemento extends JFrame implements ActionListener {
 	
 	private JLabel textC;
 	private JLabel textColor;
-		private JTextField Color1;
-	
-	
-	
-	private JButton btnAcep;
+		private JButton btnAcep;
 	private JTextArea M, I, A, R, M2, A2, R2, I2, O;
 	private JTextArea informacion;
 	private JComboBox<String> comboBoxN;
 	private JComboBox<String> comboBoxC;
-	private JComboBox<String> comboBoxE;
 	private JButton btnSeleccionar;
 	//private File imagen;
 	JFileChooser fc;
