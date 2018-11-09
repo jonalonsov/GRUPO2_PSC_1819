@@ -64,6 +64,14 @@ import grupo2.LN.GestorPrendas;
 	        assertTrue( max == 2 );
 	    }
 	    
+	    @Test
+	    public void testanyadirPrenda()
+	    {
+	    	Prenda prenda4 = new Prenda('4' ,"Pantalon", "Azul", "Algodón", " ", "Andrea" );
+	    	GestorPrendas gp = new GestorPrendas(); 
+	    	gp.anyadirPrenda(BaseDeDatos.getStatement(), prenda4);
+	    	assertEquals( prenda4.getUsuario(), "Andrea" );
+	    }
 	    
 	    
 	}
