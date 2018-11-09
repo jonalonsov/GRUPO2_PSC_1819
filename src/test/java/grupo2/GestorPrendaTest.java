@@ -64,7 +64,7 @@ import grupo2.LN.GestorPrendas;
 	    }
 	    
 	    @Test
-	    public void testanyadirPrenda()
+	    public void testanyadirPrendaP()
 	    {
 	    	Prenda prenda4 = new Prenda('4' ,"Pantalon", "Azul", "Algodón", " ", "Andrea" );
 	    	GestorPrendas gp = new GestorPrendas(); 

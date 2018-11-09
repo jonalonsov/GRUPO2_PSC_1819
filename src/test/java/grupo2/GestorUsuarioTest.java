@@ -42,7 +42,7 @@ public class GestorUsuarioTest {
     }
 
     @Test
-    public void testchequearYaEnTabla()
+    public void testchequearYaEnTablaU()
     {
     	GestorUsuario gu = new GestorUsuario(); 
     	boolean expected = gu.chequearYaEnTabla("leire");
@@ -51,7 +51,7 @@ public class GestorUsuarioTest {
     }
     
     @Test
-    public void testchequearYaEnTabla2()
+    public void testchequearYaEnTabla2U()
     {
     	GestorUsuario gu = new GestorUsuario();
     	boolean expected = gu.chequearYaEnTabla("Miren");
