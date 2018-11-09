@@ -55,11 +55,21 @@ public class PrendaTest {
 
 	@Test
 	public void testGetImagen() {
+		System.out.println("getImagen");
+		Prenda instance = new Prenda (0, null, null, null, null, null);
+		String expResult = "";
+		instance.setImagen("");
+		String result = instance.getImagen();
+		assertEquals(expResult, result);
 		//fail("Not yet implemented");
 	}
 
 	@Test
 	public void testSetImagen() {
+		System.out.println("setImagen");
+		String imagen ="";
+		Prenda instance = new Prenda(0, imagen, imagen, imagen, imagen, imagen);
+		instance.setImagen(imagen);
 		//fail("Not yet implemented");
 	}
 
@@ -90,21 +100,41 @@ public class PrendaTest {
 
 	@Test
 	public void testGetId() {
+		System.out.println("getId");
+		Prenda instance = new Prenda (0, null, null, null, null, null);
+		int expResult = 0;
+		instance.setUsuario("");
+		int result = instance.getId();
+		assertEquals(expResult, result);
 		//fail("Not yet implemented");
 	}
 
 	@Test
 	public void testSetId() {
+		System.out.println("setId");
+		int id =0;
+		Prenda instance = new Prenda(id, null, null, null, null, null);
+		instance.setId(id);
 		//fail("Not yet implemented");
 	}
 
 	@Test
 	public void testGetUsuario() {
+		System.out.println("getUsuario");
+		Prenda instance = new Prenda (0, null, null, null, null, null);
+		String expResult = "";
+		instance.setUsuario("");
+		String result = instance.getUsuario();
+		assertEquals(expResult, result);
 		//fail("Not yet implemented");
 	}
 
 	@Test
 	public void testSetUsuario() {
+		System.out.println("setUsuario");
+		String usuario ="";
+		Prenda instance = new Prenda(0, usuario, usuario, usuario, usuario, usuario);
+		instance.setUsuario(usuario);
 		//fail("Not yet implemented");
 	}
 
