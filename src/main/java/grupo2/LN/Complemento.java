@@ -13,6 +13,7 @@ public class Complemento  implements Comparable<Object> {
 		this.id=id; 
 		this.nombre = nombre;
 		this.color = color;
+	//	this.imagen = imagen;
 		this.setUsuario(usuario);
 				
 	}
@@ -55,7 +56,5 @@ public class Complemento  implements Comparable<Object> {
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
-
 	
-
 }

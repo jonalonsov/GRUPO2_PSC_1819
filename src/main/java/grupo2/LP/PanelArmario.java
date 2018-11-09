@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -333,7 +334,7 @@ public class PanelArmario extends JFrame implements ActionListener {
 	       		//El label en el que meteremos la imagen de la prenda
 	       		//<--GOE-->SE DEBERÍA CAMBIAR EL TAMAÑO Y UBICACIÓN
 	       		lblLabelImagen = new JLabel("Imagen prenda");
-	       		lblLabelImagen.setBounds(450, 250, 350, 250);
+	       		lblLabelImagen.setBounds(458, 215, 270, 263);
 	       		getContentPane().add(lblLabelImagen);
 	       	
 	       		
@@ -407,10 +408,12 @@ public class PanelArmario extends JFrame implements ActionListener {
 					e1.printStackTrace();
 				}
 				System.out.println(imagePath);
-                lblLabelImagen.setIcon(new ImageIcon(imagePath));
-          
-		        
-		        
+				//ImageIcon imagen = new ImageIcon(imagePath).getScaledInstance(lblLabelImagen.getWidth(), lblLabelImagen.getHeight(),imagen.SCALE_SMOOTH);
+				ImageIcon imagenIcono = new ImageIcon(imagePath);
+				Image imagen = imagenIcono.getImage(); // transform it 
+				Image newimg = imagen.getScaledInstance(lblLabelImagen.getWidth(), lblLabelImagen.getHeight(),  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+				ImageIcon nuevo = new ImageIcon(newimg); 
+				lblLabelImagen.setIcon(nuevo);		        
 		      }
 		 });
 	
