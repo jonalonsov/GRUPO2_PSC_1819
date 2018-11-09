@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import grupo2.LD.BaseDeDatos;
@@ -20,11 +21,14 @@ import grupo2.LN.usuario;
  */
 
 public class GestorUsuarioTest {
-
-	@Before 
-	
-	public void setUp() { 
 		
+	private static boolean setUpIsDone = false;
+	
+	@Before	
+	public void setUp() { 
+		 if (setUpIsDone) {
+		        return;
+		    }
 		BaseDeDatos.initBD("miarmarioTest.bd");
 		
 		BaseDeDatos.crearTablaBDUsuario();
@@ -39,6 +43,8 @@ public class GestorUsuarioTest {
 		gu.anyadirUsuario(usu1);
 		gu.anyadirUsuario(usu2);
 		gu.anyadirUsuario(usu3);
+		
+		setUpIsDone = true;
     }
 
     @Test
@@ -49,68 +55,4 @@ public class GestorUsuarioTest {
         assertTrue( expected == true );
 
     }
-    
-    @Test
-    public void testchequearYaEnTabla2U()
-    {
-    	GestorUsuario gu = new GestorUsuario();
-    	boolean expected = gu.chequearYaEnTabla("Miren");
-    	
-        assertFalse( expected == true );
-
-    }
-    
-    @Test
-    public void testanyadirFilaATablauUsuario()
-    {
-    	GestorUsuario gu = new GestorUsuario();
-    	usuario usuario = new usuario("uxue", "uxue"); 
-    	
-    	boolean expected = gu.anyadirFilaATablauUsuario(usuario);
-    	
-    	
-        assertEquals( expected, true );
-        
-
-    }
-    
-    @Test
-    public void testanyadirFilaATablauUsuario2()
-    {
-    	GestorUsuario gu = new GestorUsuario();
-    	usuario usuario = new usuario("Maider", "maider"); 
-    	
-    	gu.anyadirFilaATablauUsuario(usuario);
-    	
-        assertEquals( usuario.getNombre(), "Maider" );
-
-    }
-    
-    @Test
-    public void testchequearYaEnTablaLOGIN()
-    {
-    	GestorUsuario gu = new GestorUsuario();
-    	
-    	boolean expected = gu.chequearYaEnTablaLOGIN( "Maider", "maider");
-    	
-        assertEquals( expected, true );
-
-    }
-    
-    @Test
-    public void testmodificarUsuarioSistema()
-    {
-    	GestorUsuario gu = new GestorUsuario();
-    	
-    	usuario usuario = new usuario("Maider", "maider"); 
-    	
-    	//El usuario usando el sistema pasa a ser Maider
-    	gu.modificarUsuarioSistema(usuario);
-    	
-    	//Compueba que es así
-        assertEquals( gu.nombreUsuario(), "Maider" );
-
-    }
-    
-    
 }
