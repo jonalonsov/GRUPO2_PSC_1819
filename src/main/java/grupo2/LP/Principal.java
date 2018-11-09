@@ -3,6 +3,7 @@ package grupo2.LP;
 
 
 import java.awt.BorderLayout;
+import org.apache.log4j.Logger;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -22,10 +23,13 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import grupo2.Main;
 import grupo2.LN.GestorUsuario;
 import grupo2.LN.usuario;
 
 public class Principal extends JFrame implements ActionListener {
+	
+	private final static Logger log = Logger.getLogger(Principal.class.getName());
 
 	/**
 	 * 
@@ -283,7 +287,7 @@ public class Principal extends JFrame implements ActionListener {
 			
 			if(Contraseña.getText().length()==0 || Usuario.getText().length()==0){
 				JOptionPane.showMessageDialog(null, "Debe rellenar todos los campos.", "CUIDADO",JOptionPane.INFORMATION_MESSAGE);
-
+				log.error("Mensaje: no ha rellenado todos los campos");
 					} else {
 			
 					String contrasenya = Contraseña.getText();
@@ -302,8 +306,10 @@ public class Principal extends JFrame implements ActionListener {
 									PanelMenu objpanelMP = new PanelMenu();
 									objpanelMP.setVisible(true);
 									dispose();
+									log.trace("Mensaje: entra correctamente al programa");
 								} else {			
-					
+									
+									log.error("Mensaje: usuario inexistente o se ha puesto mal los campos");
 									int resp = JOptionPane.showConfirmDialog(null, "¿Quieres registrarte como nuevo usuario con los datos introducidos?", "Alerta!", JOptionPane.YES_NO_OPTION);
 									if (resp==0) {
 														
@@ -330,6 +336,8 @@ public class Principal extends JFrame implements ActionListener {
 			//JOptionPane.showMessageDialog(null, "Registrarse"); 
 			Registrarse objpanelR = new Registrarse();
 			objpanelR.setVisible(true);
+			
+			log.trace("Mensaje: boton registrarse");
 			
 		break;
 		
