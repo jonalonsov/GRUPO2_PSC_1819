@@ -43,7 +43,6 @@ public class ContiperfTest {
 	@Required(max = 300, average = 300, median=500)  //Required define las requisitos de rendimiento, si no los cumple --> rojo
 	public void testchequearYaEnTablaP() throws Exception{
 		//Para que le de tiempo a ejecutar todas las invocations antes de hacer el análisis con contiperf
-		Thread.sleep(200);
 	}
 	
 	
@@ -52,7 +51,6 @@ public class ContiperfTest {
 	@Required(max = 300, average = 300, median=500)  //Required define las requisitos de rendimiento, si no los cumple --> rojo
 	public void testchequearYaEnTablaU() throws Exception{
 		//Para que le de tiempo a ejecutar todas las invocations antes de hacer el análisis con contiperf
-		Thread.sleep(200);
 	}
 	
 
@@ -61,7 +59,6 @@ public class ContiperfTest {
 	@Required(max = 300, average = 300, median=500)  //Required define las requisitos de rendimiento, si no los cumple --> rojo
 	public void testanyadirPrenda() throws Exception{
 		//Para que le de tiempo a ejecutar todas las invocations antes de hacer el análisis con contiperf
-		Thread.sleep(200);
 	}
 	
 
@@ -70,7 +67,6 @@ public class ContiperfTest {
 	@Required(max = 300, average = 300, median=500)  //Required define las requisitos de rendimiento, si no los cumple --> rojo
 	public void testchequearYaEnTabla2U() throws Exception{
 		//Para que le de tiempo a ejecutar todas las invocations antes de hacer el análisis con contiperf
-		Thread.sleep(200);
 	}
 	
 	@Test
@@ -78,7 +74,6 @@ public class ContiperfTest {
 	@Required(max = 300, average = 300, median=500)  //Required define las requisitos de rendimiento, si no los cumple --> rojo
 	public void testanyadirFilaATablauUsuario() throws Exception{
 		//Para que le de tiempo a ejecutar todas las invocations antes de hacer el análisis con contiperf
-		Thread.sleep(200);
 	}
 	
 	@Test
@@ -94,7 +89,6 @@ public class ContiperfTest {
 	@Required(max = 300, average = 300, median=500)  //Required define las requisitos de rendimiento, si no los cumple --> rojo
 	public void testchequearYaEnTablaLOGIN() throws Exception{
 		//Para que le de tiempo a ejecutar todas las invocations antes de hacer el análisis con contiperf
-		Thread.sleep(200);
 	}
 	
 	@Test
@@ -102,7 +96,6 @@ public class ContiperfTest {
 	@Required(max = 300, average = 300, median=500)  //Required define las requisitos de rendimiento, si no los cumple --> rojo
 	public void testmodificarUsuarioSistema() throws Exception{
 		//Para que le de tiempo a ejecutar todas las invocations antes de hacer el análisis con contiperf
-		Thread.sleep(200);
 	}
 	
 	

@@ -3,3 +3,7 @@ TRACE - 17:56:53,502 - main - grupo2.Main - Mensaje: Tablas creadas y base de da
 TRACE - 17:56:56,770 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: entra correctamente al programa
 TRACE - 19:55:13,111 - main - grupo2.Main - Mensaje: Tablas creadas y base de datos inicializada
 ERROR - 19:55:20,276 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: usuario inexistente o se ha puesto mal los campos
+TRACE - 08:30:12,528 - main - grupo2.Main - Mensaje: Tablas creadas y base de datos inicializada
+ERROR - 08:30:19,254 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: usuario inexistente o se ha puesto mal los campos
+TRACE - 10:38:57,777 - main - grupo2.Main - Mensaje: Tablas creadas y base de datos inicializada
+TRACE - 10:39:03,378 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: entra correctamente al programa
