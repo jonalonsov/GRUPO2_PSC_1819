@@ -34,6 +34,7 @@ public class PanelMenu extends JFrame implements ActionListener {
     private JButton Conjuntos;
     private JButton Fav;
     
+    
     private JTextArea M, I, A, R, M2, A2, R2, I2, O;
     private JTextArea informacion;
     

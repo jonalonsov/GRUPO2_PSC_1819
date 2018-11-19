@@ -97,7 +97,7 @@ public class BaseDeDatos {
 	public static void crearTablaBDComplemento() {
 		if (statement==null) return;
 		try {
-			statement.executeUpdate("create table if not exists COMPLEMENTO ( id int, nombre string, color string, usuario string )");
+			statement.executeUpdate("create table if not exists COMPLEMENTO1 ( id int, nombre string, color string, imagen string, usuario string )");
 			System.out.println ("Tabla creada");
 		} catch (SQLException e) {
 			// Si hay excepcion es que la tabla ya existia (lo cual es correcto)

@@ -9,6 +9,8 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -42,7 +44,7 @@ public class InsertarComplemento extends JFrame implements ActionListener {
 	private JComboBox<String> comboBoxN;
 	private JComboBox<String> comboBoxC;
 	private JButton btnSeleccionar;
-	//private File imagen;
+	private File imagen;
 	JFileChooser fc;
 	
 	private grupo2.LN.Complemento complemento;
@@ -223,7 +225,7 @@ public class InsertarComplemento extends JFrame implements ActionListener {
 						btnSeleccionar =new JButton("Seleccionar imagen...");    
 						btnSeleccionar.addActionListener(this);
 				        btnSeleccionar.setBounds(120, 214, 187, 23);
-				        //PanelIzquierda.add(btnSeleccionar);
+				        PanelIzquierda.add(btnSeleccionar);
 						
 				        
 				        PanelIzquierda.add(textC);
@@ -237,7 +239,7 @@ public class InsertarComplemento extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-	/*	if (e.getSource() == btnSeleccionar){
+		if (e.getSource() == btnSeleccionar){
 			
 			//Abrimos la ventana, guardamos la opcion seleccionada por el usuario
 			int seleccion=fc.showSaveDialog(PanelIzquierda);
@@ -259,12 +261,12 @@ public class InsertarComplemento extends JFrame implements ActionListener {
 //			 
 			}
 			
-		}*/
+		}
 		if (e.getSource() == btnAcep){
 			String nombre = (String)comboBoxN.getSelectedItem();
 			String color = (String)comboBoxC.getSelectedItem();
 			
-			if(nombre.equals("Seleccione complemento...") || color.equals("Seleccione color...")){
+			if(nombre.equals("Seleccione complemento...") || color.equals("Seleccione color...")|| imagen == null){
 				JOptionPane.showMessageDialog(null, "Debe rellenar todos los campos.", "CUIDADO",JOptionPane.INFORMATION_MESSAGE);
 			} else {
 				
@@ -272,7 +274,7 @@ public class InsertarComplemento extends JFrame implements ActionListener {
 				System.out.println(gusuario.nombreUsuario());	
 						
 												
-						complemento = new grupo2.LN.Complemento (0, nombre, color, gusuario.nombreUsuario());		
+						complemento = new grupo2.LN.Complemento (0, nombre, color, imagen.getAbsolutePath(), gusuario.nombreUsuario());		
 						
 						gcomplementos = new GestorComplemento();
 						

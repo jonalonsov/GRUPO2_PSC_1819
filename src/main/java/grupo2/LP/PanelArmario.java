@@ -54,13 +54,15 @@ public class PanelArmario extends JFrame implements ActionListener {
 	    private JTextArea M, I, A, R, M2, A2, R2, I2, O;
 	private JTextArea informacion;
 	private JLabel lblLabelImagen;
-	private  JTable table_1;
-	private  JTable tableConj;
-	private  JTable tableC;
+	private JTable table_1;
+	private JTable table_2;
+	private JTable tableConj;
+	private JTable tableC;
 	private JTextPane texto2;
 	private JPanel complemento;
 	private JPanel armario;
 	private JPanel conjunto;
+	private JPanel propuestas;
 	private  JTextPane txtpnHj;
 	private JScrollPane scroll;
 	
@@ -75,6 +77,7 @@ public class PanelArmario extends JFrame implements ActionListener {
 	private JScrollPane scrollConj;
 	private GestorConjuntos gconjuntos;
 	private int indice3;
+		
 	public PanelArmario() throws SQLException{
 		
 	gprendas = new GestorPrendas();
@@ -224,10 +227,10 @@ public class PanelArmario extends JFrame implements ActionListener {
      		AñadirC.addActionListener(this);
      		AñadirC.setActionCommand("AñadirC");
     		
-    		tableC = new JTable();
-       		tableC.setEnabled(true);
+    		table_2 = new JTable();
+       		table_2.setEnabled(true);
     		
-    		scrollC = new JScrollPane(tableC);
+    		scrollC = new JScrollPane(table_2);
     		scrollC.setBounds(24, 64, 397, 297);
     		complemento.add(scrollC);
           
@@ -235,11 +238,12 @@ public class PanelArmario extends JFrame implements ActionListener {
             modelC.addColumn("Id");
             modelC.addColumn("Color");
             modelC.addColumn("Nombre");
+            
 			
             Complemento objcomplemento;
 		       
             for (int i = 0; i < gcomplementos.selectComplementos().length; i++){
-            	datoC = new String[45];
+            	datoC = new String[75];
             	objcomplemento = gcomplementos.selectComplementos()[i];
             	
             	datoC[0]=Integer.toString(objcomplemento.getId());
@@ -249,7 +253,51 @@ public class PanelArmario extends JFrame implements ActionListener {
             }
             
             
-            tableC.setModel(modelC);
+            table_2.setCellSelectionEnabled(true);
+            ListSelectionModel cellSelectionModel2 = table_2.getSelectionModel();
+            cellSelectionModel2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+                                    
+            table_2.setModel(modelC);
+            
+            cellSelectionModel2.addListSelectionListener(new ListSelectionListener() {
+      		  public void valueChanged(ListSelectionEvent e) {
+      		        String selectedDataID1 = null;
+      	
+      		        int selectedRow1 = table_2.getSelectedRow();
+      		       	  selectedDataID1 = (String) table_2.getValueAt(selectedRow1,0);
+      		         System.out.println("Selected: " + selectedDataID1);
+      		        
+      	       		      		        
+      		 //<--GOR--> ESTO NO SE DEBERÍA PONER AQUÍ, LD                     
+                      String sql="SELECT imagen FROM COMPLEMENTO1 WHERE id = '"+ selectedDataID1 + "'";
+                      System.out.println(sql);		
+                      Statement st2=BaseDeDatos.getStatement();
+                      ResultSet result2 = null;
+                      
+                      
+      				try {
+      					result2 = st2.executeQuery(sql);
+      				} catch (SQLException e1) {
+      					// TODO Auto-generated catch block
+      					e1.printStackTrace();
+      				}
+      				
+                      String imagePath = null;
+      				try {
+      					imagePath = result2.getString(1);
+      				} catch (SQLException e1) {
+      					// TODO Auto-generated catch block
+      					e1.printStackTrace();
+      				}
+      				System.out.println(imagePath);
+      				//ImageIcon imagen = new ImageIcon(imagePath).getScaledInstance(lblLabelImagen.getWidth(), lblLabelImagen.getHeight(),imagen.SCALE_SMOOTH);
+      				ImageIcon imagenIcono = new ImageIcon(imagePath);
+      				Image imagen = imagenIcono.getImage(); // transform it 
+      				Image newimg = imagen.getScaledInstance(lblLabelImagen.getWidth(), lblLabelImagen.getHeight(),  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+      				ImageIcon nuevo = new ImageIcon(newimg); 
+      				lblLabelImagen.setIcon(nuevo);		        
+      		     }
+            });
 			
   //TABLA PRENDAS          
 		//PestañaArmario
@@ -325,12 +373,12 @@ public class PanelArmario extends JFrame implements ActionListener {
 	               
                 
                 table_1.setCellSelectionEnabled(true);
-                ListSelectionModel cellSelectionModel = table_1.getSelectionModel();
-                cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+                ListSelectionModel cellSelectionModel1 = table_1.getSelectionModel();
+                cellSelectionModel1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
                 
                 table_1.setModel(model);
 		
-	cellSelectionModel.addListSelectionListener(new ListSelectionListener() {
+	cellSelectionModel1.addListSelectionListener(new ListSelectionListener() {
 		  public void valueChanged(ListSelectionEvent e) {
 		        String selectedDataID = null;
 	
@@ -442,19 +490,57 @@ public class PanelArmario extends JFrame implements ActionListener {
         tableConj.setModel(model3);
         
         cellSelectionModel4.addListSelectionListener(new ListSelectionListener() {
-    		  public void valueChanged(ListSelectionEvent e) {
-    		        String selectedDataID = null;
+    		  public void valueChanged(ListSelectionEvent e1) {
+    		        String selectedDataID3 = null;
     	
 
     		      int selectedRow3 = tableConj.getSelectedRow();
 
-		            selectedDataID = (String) tableConj.getValueAt(selectedRow3,0);
-		            indice3=Integer.parseInt(selectedDataID);
+		            selectedDataID3 = (String) tableConj.getValueAt(selectedRow3,0);
+		            indice3=Integer.parseInt(selectedDataID3);
 		            
 		            System.out.println("Selected: " + indice3);
+		            
+		            
+		            
+		      /*      //<--GOR--> ESTO NO SE DEBERÍA PONER AQUÍ, LD                     
+	                String sql="SELECT imagen FROM CONJUNTO WHERE id = '"+ indice3 + "'";
+	                System.out.println(sql);		
+	                Statement st2=BaseDeDatos.getStatement();
+	                ResultSet result2 = null;
+	                
+	                
+					try {
+						result2 = st2.executeQuery(sql);
+					} catch (SQLException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+					
+	                String imagePath = null;
+					try {
+						imagePath = result2.getString(1);
+					} catch (SQLException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+					System.out.println(imagePath);
+					//ImageIcon imagen = new ImageIcon(imagePath).getScaledInstance(lblLabelImagen.getWidth(), lblLabelImagen.getHeight(),imagen.SCALE_SMOOTH);
+					ImageIcon imagenIcono = new ImageIcon(imagePath);
+					Image imagen = imagenIcono.getImage(); // transform it 
+					Image newimg = imagen.getScaledInstance(lblLabelImagen.getWidth(), lblLabelImagen.getHeight(),  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+					ImageIcon nuevo = new ImageIcon(newimg); 
+					lblLabelImagen.setIcon(nuevo);	*/
     		 }
- 		 });
+    		  
+        });	
         
+      //Panel propuestas
+      		propuestas = new JPanel ();
+      		panelPestaña.addTab("Propuestas",null,propuestas, "Propuestas");
+      		propuestas.setLayout(null);
+      		
+    
    
 	}
 
