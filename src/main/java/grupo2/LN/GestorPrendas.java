@@ -75,7 +75,7 @@ public class GestorPrendas {
 			
 		}
 		//Pasamos de ArrayList a Array
-		System.out.println("AQUI VA EL TAMAÑOOOOO");
+	//	System.out.println("AQUI VA EL TAMAÑOOOOO");
 		System.out.println(prendas.size());
 		Prenda[] Arrprendas = new Prenda[prendas.size()];
 		Arrprendas = prendas.toArray(Arrprendas);

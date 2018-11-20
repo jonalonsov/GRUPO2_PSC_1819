@@ -43,7 +43,7 @@ public class GestorConjuntos {
 		//SELECT
 		Statement st=BaseDeDatos.getStatement();
 		int id=0;
-				String sentSQL = "SELECT idC from PROPUESTA ORDER BY idP DESC LIMIT 1 ";
+				String sentSQL = "SELECT idP from PROPUESTAS ORDER BY idP DESC LIMIT 1 ";
 				System.out.println( sentSQL ); 
 				
 				ResultSet rs;
@@ -84,7 +84,7 @@ public class GestorConjuntos {
 		int val;
 		try {
 				
-				String sentSQL = "insert into PROPUESTA values(" + "'" + id + "', " + "'" + conjunto.getPrenda1() + "', " + "'" + conjunto.getPrenda2() + "', "+"'" + gusuario.nombreUsuario() + "', "+"'" + conjunto.getFavorito() + "')"; 
+				String sentSQL = "insert into PROPUESTAS values(" + "'" + id + "', " + "'" + conjunto.getPrenda1() + "', " + "'" + conjunto.getPrenda2() + "', "+"'" + gusuario.nombreUsuario() + "', "+"'" + conjunto.getFavorito() + "')"; 
 				System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
 				val = st.executeUpdate( sentSQL );
 				if (val!=1) return false;  // Se tiene que añadir 1 - error si no
@@ -164,7 +164,7 @@ public class GestorConjuntos {
 		//Creamos el arrayList de los que cumplen la condición de ser favoritos
 		ArrayList<Conjunto> conjuntos = new ArrayList<Conjunto>();
 		try {
-			String sentSQL = "select * from PROPUESTA  where ( usuario = '" + gusuario.nombreUsuario() + "' and favorito = '" + 0 + "')";
+			String sentSQL = "select * from PROPUESTAS  where ( usuario = '" + gusuario.nombreUsuario() + "' and favorito = '" + 0 + "')";
 			System.out.println( sentSQL ); 
 			
 			ResultSet rs = st.executeQuery( sentSQL );
@@ -196,6 +196,9 @@ public class GestorConjuntos {
 		try {
 			String sentSQL = "select * from CONJUNTO  where ( usuario = '" + gusuario.nombreUsuario() + "' and favorito = '" + 1 + "')";
 			System.out.println( sentSQL ); 
+			
+			//sentSQL = "select * from PROPUESTAS  where ( usuario = '" + gusuario.nombreUsuario() + "' and favorito = '" + 1 + "')";
+			//System.out.println( sentSQL );
 			
 			ResultSet rs = st.executeQuery( sentSQL );
 			while (rs.next()) {
@@ -242,5 +245,37 @@ public class GestorConjuntos {
 		
 	
 	 
-	}	
+	}
+	public boolean modifFavAleatorio(int id) {
+		// TODO Auto-generated method stub
+		st=BaseDeDatos.getStatement();
+		try {
+				
+			String sentSQL = "update PROPUESTAS set "+ 
+					"favorito = 0 where ( idP = '" + id + "')";
+				System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+				int val = st.executeUpdate( sentSQL );
+				if (val!=1) return false;  // Se tiene que añadir 1 - error si no
+				return true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
+		
+	}
+	public boolean modifNoFavAleatorio(int id) {
+		 st=BaseDeDatos.getStatement();
+		try {
+				
+			String sentSQL = "update PROPUESTAS set "+ 
+					"favorito = 0 where ( idP = '" + id + "')";
+				System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+				int val = st.executeUpdate( sentSQL );
+				if (val!=1) return false;  // Se tiene que añadir 1 - error si no
+				return true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
+	}
 }

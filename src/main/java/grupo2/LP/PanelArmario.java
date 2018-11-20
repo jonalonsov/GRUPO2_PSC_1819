@@ -78,10 +78,12 @@ public class PanelArmario extends JFrame implements ActionListener {
 	private  String[] datoPropu;
 	private JTextPane txtpnEstosSonTus;
 	private JButton btnMarcarFavorito;
+	private JButton btnMarcarFavoritoA;
 	private JScrollPane scrollC;
 	private JScrollPane scrollConj;
 	private JScrollPane scrollPropu;
 	private int indice3;
+	private int indice4;
 	private JButton CrearC;
 	
 	private Conjunto objconjunto;
@@ -566,15 +568,15 @@ public class PanelArmario extends JFrame implements ActionListener {
       		    		
     		//propuestas.add(AñadirC);
 		     	
-    		btnMarcarFavorito = new JButton("Marcar como favorito");
-    		btnMarcarFavorito.setBounds(250, 364, 185, 27);
-    		btnMarcarFavorito.setForeground(Color.BLACK);
-    		btnMarcarFavorito.setFont(new Font("Century Gothic", Font.BOLD, 14));
-    		btnMarcarFavorito.setAlignmentY(0.5f);
-    		btnMarcarFavorito.setAlignmentX(0.5f);
-    		btnMarcarFavorito.addActionListener(this);
-    		btnMarcarFavorito.setActionCommand("Favorito");
-    		propuestas.add(btnMarcarFavorito);
+    		btnMarcarFavoritoA = new JButton("Marcar como favorito");
+    		btnMarcarFavoritoA.setBounds(250, 364, 185, 27);
+    		btnMarcarFavoritoA.setForeground(Color.BLACK);
+    		btnMarcarFavoritoA.setFont(new Font("Century Gothic", Font.BOLD, 14));
+    		btnMarcarFavoritoA.setAlignmentY(0.5f);
+    		btnMarcarFavoritoA.setAlignmentX(0.5f);
+    		btnMarcarFavoritoA.addActionListener(this);
+    		btnMarcarFavoritoA.setActionCommand("FavoritoA");
+    		propuestas.add(btnMarcarFavoritoA);
     		
     		 tablePropu = new JTable();
     		 tablePropu.setEnabled(true);
@@ -623,13 +625,24 @@ public class PanelArmario extends JFrame implements ActionListener {
     	     ListSelectionModel cellSelectionModel5 = tablePropu.getSelectionModel();
     	     cellSelectionModel5.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     	        
-            tablePropu.setModel(model4);
+    	     tablePropu.setModel(model4);
+            
+            cellSelectionModel5.addListSelectionListener(new ListSelectionListener() {
+      		  public void valueChanged(ListSelectionEvent e2) {
+      		        String selectedDataID4 = null;
+      	
+
+      		      int selectedRow4 = tablePropu.getSelectedRow();
+
+  		            selectedDataID4 = (String) tableConj.getValueAt(selectedRow4,0);
+  		            indice4=Integer.parseInt(selectedDataID4);
+  		            
+  		            System.out.println("Selected: " + indice4);
     
    
+      		  }
+      	});	
 	}
-
-
-	  
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -652,7 +665,24 @@ public class PanelArmario extends JFrame implements ActionListener {
 	            
 	                                
 	                    
-	        break;     
+	        break;  
+		  case "FavoritoA":
+	        	gconjuntos.modifFavAleatorio(indice3);
+				JOptionPane.showMessageDialog( null, "Ha marcado como favorito este conjunto. ", null, JOptionPane.INFORMATION_MESSAGE);
+				
+			/*PanelArmario objPanelArmario = null;
+			try {
+				dispose();
+				objPanelArmario = new PanelArmario();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+				objPanelArmario.setVisible(true);*/
+	            
+	                                
+	                    
+	        break;   
 
 	        case "Añadir":
 	        	
