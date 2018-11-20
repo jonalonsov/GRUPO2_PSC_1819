@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -30,6 +31,7 @@ import javax.swing.event.ListSelectionListener;
 
 import grupo2.LD.BaseDeDatos;
 import grupo2.LN.GestorPrendas;
+import grupo2.LN.GestorUsuario;
 import grupo2.LN.Prenda;
 import grupo2.LN.Complemento;
 import grupo2.LN.Conjunto;
@@ -64,6 +66,7 @@ public class PanelArmario extends JFrame implements ActionListener {
 	private JPanel conjunto;
 	private JPanel propuestas;
 	private  JTextPane txtpnHj;
+	private  JTextPane txtPropu;
 	private JScrollPane scroll;
 	
 	private GestorPrendas gprendas;
@@ -75,8 +78,12 @@ public class PanelArmario extends JFrame implements ActionListener {
 	private JButton btnMarcarFavorito;
 	private JScrollPane scrollC;
 	private JScrollPane scrollConj;
-	private GestorConjuntos gconjuntos;
 	private int indice3;
+	private JButton CrearC;
+	
+	private Conjunto objconjunto;
+	private GestorConjuntos gconjuntos;
+	private GestorUsuario gusuarios;
 		
 	public PanelArmario() throws SQLException{
 		
@@ -192,9 +199,6 @@ public class PanelArmario extends JFrame implements ActionListener {
 									
 				getContentPane().add(PanelInferior);
 				PanelInferior.add(informacion);
-		
-				
-			//PANEL izquierda
 				panelPestaña.setBounds(0, 80, 450, 450);
 				panelPestaña.setVisible(true);
 				panelPestaña.setPreferredSize( new Dimension( 450,  450 ) );
@@ -438,8 +442,7 @@ public class PanelArmario extends JFrame implements ActionListener {
 		
  		complemento.add(AñadirC);
  		       	
-
-		
+ 		 		
 		btnMarcarFavorito = new JButton("Marcar como favorito");
 		btnMarcarFavorito.setBounds(250, 364, 185, 27);
 		btnMarcarFavorito.setForeground(Color.BLACK);
@@ -459,6 +462,16 @@ public class PanelArmario extends JFrame implements ActionListener {
         model3.addColumn("Prenda 1");
         model3.addColumn("Prenda 2");
         model3.addColumn("Favorito");   
+		
+		CrearC = new JButton("Crear Conjunto Aleatorio");
+		CrearC.setForeground(Color.BLACK);
+		CrearC.setFont(new Font("Century Gothic", Font.BOLD, 14));
+		CrearC.setAlignmentY(0.5f);
+		CrearC.setAlignmentX(0.5f);
+		CrearC.addActionListener(this);
+		CrearC.setActionCommand("CrearC");
+		CrearC.setBounds(10, 364, 230, 27);
+		conjunto.add(CrearC);
         
 		
 		scrollConj = new JScrollPane(tableConj);
@@ -540,6 +553,14 @@ public class PanelArmario extends JFrame implements ActionListener {
       		panelPestaña.addTab("Propuestas",null,propuestas, "Propuestas");
       		propuestas.setLayout(null);
       		
+      		 txtPropu = new JTextPane();
+     		 txtPropu.setForeground(SystemColor.desktop);
+     		txtPropu.setBackground(Color.lightGray);
+     		txtPropu.setFont(new Font("MS Mincho", Font.ITALIC, 23));
+     		txtPropu.setText("¡Estos son las propuestas en tu armario!");
+     		txtPropu.setBounds(56, 11, 334, 33);
+    		  propuestas.add(txtPropu);
+      		
     
    
 	}
@@ -586,6 +607,41 @@ public class PanelArmario extends JFrame implements ActionListener {
 	                                
 	                    
 	        break;
+	        
+	        case "CrearC":
+	        	System.out.println("dentro de aleatorio");
+	        	gusuarios = new GestorUsuario();
+	        	
+	        	Random random = new Random();
+	    		
+	    		// generates a random int
+	    		int aleatorio = random.nextInt(6)+1; 
+	    		System.out.println("se ha creado el primer aleatorio;"+aleatorio);
+	    		int aleatorio1 = random.nextInt(6)+1;
+	    		System.out.println("se ha creado el segundo aleatorio;"+aleatorio1);
+
+	    		System.out.println();
+
+	    				gusuarios = new GestorUsuario();
+						System.out.println(gusuarios.nombreUsuario());			
+						objconjunto = new Conjunto(0, aleatorio, aleatorio1,  gusuarios.nombreUsuario(), 0);	
+						
+
+						gconjuntos = new GestorConjuntos();
+						
+						
+						boolean semaforo = gconjuntos.anyadirConjunto( objconjunto);
+								
+						if(semaforo==true) {
+							JOptionPane.showMessageDialog(null, "Conjunto introducida con éxito","Correcto",JOptionPane.INFORMATION_MESSAGE);
+								dispose();
+						} else {
+							JOptionPane.showMessageDialog(null, "El conjunto no ha podido introducirse, vuelva a intentarlo. ","Incorrecto",JOptionPane.INFORMATION_MESSAGE);
+						}
+				                    
+	                    
+	        break;
+	        
 	        case "Salir":
 	        	dispose();
 
@@ -596,5 +652,4 @@ public class PanelArmario extends JFrame implements ActionListener {
 		}
 		  
 	}
-	
 }

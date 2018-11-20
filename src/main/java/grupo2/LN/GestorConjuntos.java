@@ -4,6 +4,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Random;
+
+import javax.swing.JOptionPane;
 
 import grupo2.LD.BaseDeDatos;
 
@@ -166,5 +169,10 @@ public class GestorConjuntos {
 			}
 
 		}
+	public void crearconjuntoA(int a) {
+		// TODO Auto-generated method stub
+		
 	
+	 
+	}	
 }
