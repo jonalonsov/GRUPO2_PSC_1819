@@ -60,6 +60,7 @@ public class PanelArmario extends JFrame implements ActionListener {
 	private JTable table_2;
 	private JTable tableConj;
 	private JTable tableC;
+	private JTable tablePropu;
 	private JTextPane texto2;
 	private JPanel complemento;
 	private JPanel armario;
@@ -74,10 +75,12 @@ public class PanelArmario extends JFrame implements ActionListener {
 	private  String[] dato;
 	private  String[] datoC;
 	private  String[] datoConj;
+	private  String[] datoPropu;
 	private JTextPane txtpnEstosSonTus;
 	private JButton btnMarcarFavorito;
 	private JScrollPane scrollC;
 	private JScrollPane scrollConj;
+	private JScrollPane scrollPropu;
 	private int indice3;
 	private JButton CrearC;
 	
@@ -553,14 +556,74 @@ public class PanelArmario extends JFrame implements ActionListener {
       		panelPestaña.addTab("Propuestas",null,propuestas, "Propuestas");
       		propuestas.setLayout(null);
       		
-      		 txtPropu = new JTextPane();
-     		 txtPropu.setForeground(SystemColor.desktop);
+      		txtPropu = new JTextPane();
+     		txtPropu.setForeground(SystemColor.desktop);
      		txtPropu.setBackground(Color.lightGray);
      		txtPropu.setFont(new Font("MS Mincho", Font.ITALIC, 23));
      		txtPropu.setText("¡Estos son las propuestas en tu armario!");
      		txtPropu.setBounds(56, 11, 334, 33);
-    		  propuestas.add(txtPropu);
-      		
+    		propuestas.add(txtPropu);
+      		    		
+    		//propuestas.add(AñadirC);
+		     	
+    		btnMarcarFavorito = new JButton("Marcar como favorito");
+    		btnMarcarFavorito.setBounds(250, 364, 185, 27);
+    		btnMarcarFavorito.setForeground(Color.BLACK);
+    		btnMarcarFavorito.setFont(new Font("Century Gothic", Font.BOLD, 14));
+    		btnMarcarFavorito.setAlignmentY(0.5f);
+    		btnMarcarFavorito.setAlignmentX(0.5f);
+    		btnMarcarFavorito.addActionListener(this);
+    		btnMarcarFavorito.setActionCommand("Favorito");
+    		propuestas.add(btnMarcarFavorito);
+    		
+    		 tablePropu = new JTable();
+    		 tablePropu.setEnabled(true);
+    		
+    		//Cargamos la tabla con los datos de la BD de propuestas
+            DefaultTableModel model4= new DefaultTableModel();
+            model4.addColumn("Id");
+            model4.addColumn("Prenda 1");
+            model4.addColumn("Prenda 2");
+            model4.addColumn("Favorito");   
+    		
+    		CrearC = new JButton("Crear Conjunto Aleatorio");
+    		CrearC.setForeground(Color.BLACK);
+    		CrearC.setFont(new Font("Century Gothic", Font.BOLD, 14));
+    		CrearC.setAlignmentY(0.5f);
+    		CrearC.setAlignmentX(0.5f);
+    		CrearC.addActionListener(this);
+    		CrearC.setActionCommand("CrearC");
+    		CrearC.setBounds(10, 364, 230, 27);
+    		propuestas.add(CrearC);
+            
+    		
+    		scrollPropu = new JScrollPane(tablePropu);
+    		scrollPropu.setBounds(23, 52, 397, 297);
+    		propuestas.add(scrollPropu);
+    		
+    		//Conjunto objconjunto;
+    		//String mensaje;
+       		for (int i = 0; i < gconjuntos.selectPropuestas().length; i++){
+            	datoPropu = new String[75];
+            	objconjunto= gconjuntos.selectPropuestas()[i];
+            	if (objconjunto.getFavorito()==0) {
+            		mensaje ="NO";
+            	} else mensaje ="SI";
+            	datoPropu[0]=Integer.toString(objconjunto.getId());
+            	datoPropu[1]=gprendas.nombrePrendaconID(objconjunto.getPrenda1());
+            	datoPropu[2]=gprendas.nombrePrendaconID(objconjunto.getPrenda2());
+            	datoPropu[3]=mensaje;
+            
+            	model4.addRow(datoPropu);
+
+            }
+           
+               
+       		 tablePropu.setCellSelectionEnabled(true);
+    	     ListSelectionModel cellSelectionModel5 = tablePropu.getSelectionModel();
+    	     cellSelectionModel5.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    	        
+            tablePropu.setModel(model4);
     
    
 	}
@@ -609,7 +672,6 @@ public class PanelArmario extends JFrame implements ActionListener {
 	        break;
 	        
 	        case "CrearC":
-	        	System.out.println("dentro de aleatorio");
 	        	gusuarios = new GestorUsuario();
 	        	
 	        	Random random = new Random();
@@ -630,10 +692,10 @@ public class PanelArmario extends JFrame implements ActionListener {
 						gconjuntos = new GestorConjuntos();
 						
 						
-						boolean semaforo = gconjuntos.anyadirConjunto( objconjunto);
+						boolean semaforo = gconjuntos.anyadirConjuntoA(objconjunto);
 								
 						if(semaforo==true) {
-							JOptionPane.showMessageDialog(null, "Conjunto introducida con éxito","Correcto",JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Conjunto aleatorio introducida con éxito","Correcto",JOptionPane.INFORMATION_MESSAGE);
 								dispose();
 						} else {
 							JOptionPane.showMessageDialog(null, "El conjunto no ha podido introducirse, vuelva a intentarlo. ","Incorrecto",JOptionPane.INFORMATION_MESSAGE);

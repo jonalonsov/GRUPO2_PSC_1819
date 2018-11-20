@@ -135,7 +135,7 @@ public static void crearTablaBDPropuestas() {
 		
 		if (statement==null) return;
 		try {
-			statement.executeUpdate("create table if not exists PROPUESTA ( idC int, prenda1 int, prenda2 int, usuario string, favorito int)");
+			statement.executeUpdate("create table if not exists PROPUESTA ( idP int, prenda1 int, prenda2 int, usuario string, favorito int)");
 			System.out.println ("Tabla propuesta creada");
 		} catch (SQLException e) {
 			// Si hay excepcion es que la tabla ya existia (lo cual es correcto)
