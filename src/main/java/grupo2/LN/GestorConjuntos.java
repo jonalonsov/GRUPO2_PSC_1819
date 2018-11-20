@@ -57,6 +57,24 @@ public class GestorConjuntos {
 			}
 	}
 	
+	public boolean anyadirConjuntoA(Conjunto conjunto) {
+		 st=BaseDeDatos.getStatement();
+		 gusuario = new GestorUsuario();
+		int id = maxIdConjunto() + 1;
+		int val;
+		try {
+				
+				String sentSQL = "insert into CONJUNTO values(" + "'" + id + "', " + "'" + conjunto.getPrenda1() + "', " + "'" + conjunto.getPrenda2() + "', "+"'" + gusuario.nombreUsuario() + "', "+"'" + conjunto.getFavorito() + "')"; 
+				System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+				val = st.executeUpdate( sentSQL );
+				if (val!=1) return false;  // Se tiene que añadir 1 - error si no
+				return true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
+	}
+	
 	public boolean modifFavConjunto(int id) {
 		 st=BaseDeDatos.getStatement();
 		try {
