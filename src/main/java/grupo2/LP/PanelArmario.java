@@ -87,6 +87,7 @@ public class PanelArmario extends JFrame implements ActionListener {
 	private JButton CrearC;
 	
 	private Conjunto objconjunto;
+	private Prenda objprenda;
 	private GestorConjuntos gconjuntos;
 	private GestorUsuario gusuarios;
 		
@@ -648,7 +649,8 @@ public class PanelArmario extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
-		  switch (e.getActionCommand()){
+		  int aleatorio1;
+		switch (e.getActionCommand()){
 		  case "Favorito":
 	        	gconjuntos.modifFavConjunto(indice3);
 				JOptionPane.showMessageDialog( null, "Ha marcado como favorito este conjunto. ", null, JOptionPane.INFORMATION_MESSAGE);
@@ -670,17 +672,7 @@ public class PanelArmario extends JFrame implements ActionListener {
 	        	gconjuntos.modifFavAleatorio(indice3);
 				JOptionPane.showMessageDialog( null, "Ha marcado como favorito este conjunto. ", null, JOptionPane.INFORMATION_MESSAGE);
 				
-			/*PanelArmario objPanelArmario = null;
-			try {
-				dispose();
-				objPanelArmario = new PanelArmario();
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-				objPanelArmario.setVisible(true);*/
-	            
-	                                
+			                       
 	                    
 	        break;   
 
@@ -703,20 +695,18 @@ public class PanelArmario extends JFrame implements ActionListener {
 	        
 	        case "CrearC":
 	        	gusuarios = new GestorUsuario();
+	        	gprendas = new GestorPrendas();
+	        
+	        	int a1= gconjuntos.crearAleatorio1();
+	        	int a2 = gconjuntos.crearAleatorio2();
 	        	
-	        	Random random = new Random();
-	    		
-	    		// generates a random int
-	    		int aleatorio = random.nextInt(6)+1; 
-	    		System.out.println("se ha creado el primer aleatorio;"+aleatorio);
-	    		int aleatorio1 = random.nextInt(6)+1;
-	    		System.out.println("se ha creado el segundo aleatorio;"+aleatorio1);
-
-	    		System.out.println();
-
-	    				gusuarios = new GestorUsuario();
-						System.out.println(gusuarios.nombreUsuario());			
-						objconjunto = new Conjunto(0, aleatorio, aleatorio1,  gusuarios.nombreUsuario(), 0);	
+	        	//if(a1!=0){
+	        	//	if(a2!=0){
+	        			gusuarios = new GestorUsuario();
+						System.out.println(gusuarios.nombreUsuario());	
+						
+						
+						objconjunto = new Conjunto(0, a1, a2,  gusuarios.nombreUsuario(), 0);	
 						
 
 						gconjuntos = new GestorConjuntos();
@@ -729,19 +719,44 @@ public class PanelArmario extends JFrame implements ActionListener {
 								dispose();
 						} else {
 							JOptionPane.showMessageDialog(null, "El conjunto no ha podido introducirse, vuelva a intentarlo. ","Incorrecto",JOptionPane.INFORMATION_MESSAGE);
-						}
-				                    
-	                    
+						
+		        	//}	    		
+	        		//}
+	        		
+	        	}
+	        /*	//gconjuntos.crearconjuntoA(a);
+	        	
+	        		
+    				gusuarios = new GestorUsuario();
+					System.out.println(gusuarios.nombreUsuario());	
+					
+					
+				//	objconjunto = new Conjunto(0, aleatorio, aleatorio11,  gusuarios.nombreUsuario(), 0);	
+					
+
+					gconjuntos = new GestorConjuntos();
+					
+					
+					boolean semaforo = gconjuntos.anyadirConjuntoA(objconjunto);
+							
+					if(semaforo==true) {
+						JOptionPane.showMessageDialog(null, "Conjunto aleatorio introducida con éxito","Correcto",JOptionPane.INFORMATION_MESSAGE);
+							dispose();
+					} else {
+						JOptionPane.showMessageDialog(null, "El conjunto no ha podido introducirse, vuelva a intentarlo. ","Incorrecto",JOptionPane.INFORMATION_MESSAGE);
+					
+	        	}	 */   
+	        	
+         
 	        break;
 	        
 	        case "Salir":
 	        	dispose();
 
 	            
-	        break;
-	       
+	        break;	       
 	       	
-		}
-		  
+	}
+ 				
 	}
 }

@@ -278,4 +278,59 @@ public class GestorConjuntos {
 				return false;
 			}
 	}
+	public int crearAleatorio1() {
+		// TODO Auto-generated method stub
+		Random random = new Random();
+		
+		 st=BaseDeDatos.getStatement();
+		 gusuario = new GestorUsuario();
+		 int id1=0;
+			
+			//	String sentSQL = "SELECT * from PRENDA where (usuario = '" + gusuario.nombreUsuario() + "' and nombre = 'Pantalones')"; 
+			//	System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+		 String sentSQL = "SELECT id from PRENDA where (usuario = '" + gusuario.nombreUsuario() + "' and nombre = 'Pantalones') ORDER BY RANDOM () LIMIT 1 "; 							
+				try {
+					ResultSet rs = st.executeQuery( sentSQL );
+					id1 = rs.getInt("id");	
+				    System.out.println("Radom 1:"+ id1);
+				} catch (SQLException e) {
+					 
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+					
+				
+		  
+    		    
+    		return id1;
+			
+		}
+	public int crearAleatorio2() {
+		// TODO Auto-generated method stub
+				
+		
+		
+		 st=BaseDeDatos.getStatement();
+		 gusuario = new GestorUsuario();
+		 int id2=0;
+			
+			//	String sentSQL = "SELECT * from PRENDA where (usuario = '" + gusuario.nombreUsuario() + "' and nombre = 'Pantalones')"; 
+			//	System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+		 String sentSQL = "SELECT id from PRENDA where (usuario = '" + gusuario.nombreUsuario() + "' and nombre = 'Jersey') ORDER BY RANDOM () LIMIT 1 "; 			 							
+				try {
+					ResultSet rs = st.executeQuery( sentSQL );
+					id2 = rs.getInt("id");	
+				    System.out.println("Radom 2:"+ id2);
+				} catch (SQLException e) {
+					 
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+							
+		  //  int aleatorio = random.nextInt(10)+1; 
+   		//System.out.println("se ha creado el primer aleatorio;"+aleatorio);
+   		    
+   		return id2;
+			
+		}
 }
