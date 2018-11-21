@@ -1,7 +1,4 @@
-TRACE - 18:26:02,470 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: entra correctamente al programa
-TRACE - 18:29:12,761 - main - grupo2.Main - Mensaje: Tablas creadas y base de datos inicializada
-TRACE - 18:29:19,262 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: entra correctamente al programa
-TRACE - 18:30:35,177 - main - grupo2.Main - Mensaje: Tablas creadas y base de datos inicializada
-TRACE - 18:30:42,548 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: entra correctamente al programa
-TRACE - 18:34:06,097 - main - grupo2.Main - Mensaje: Tablas creadas y base de datos inicializada
-TRACE - 18:34:12,252 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: entra correctamente al programa
+TRACE - 20:23:16,082 - main - grupo2.Main - Mensaje: Tablas creadas y base de datos inicializada
+TRACE - 20:23:26,375 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: entra correctamente al programa
+TRACE - 20:28:31,256 - main - grupo2.Main - Mensaje: Tablas creadas y base de datos inicializada
+TRACE - 20:28:39,247 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: entra correctamente al programa

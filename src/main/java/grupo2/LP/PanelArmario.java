@@ -635,7 +635,7 @@ public class PanelArmario extends JFrame implements ActionListener {
 
       		      int selectedRow4 = tablePropu.getSelectedRow();
 
-  		            selectedDataID4 = (String) tableConj.getValueAt(selectedRow4,0);
+  		            selectedDataID4 = (String) tablePropu.getValueAt(selectedRow4,0);
   		            indice4=Integer.parseInt(selectedDataID4);
   		            
   		            System.out.println("Selected: " + indice4);
@@ -669,7 +669,7 @@ public class PanelArmario extends JFrame implements ActionListener {
 	                    
 	        break;  
 		  case "FavoritoA":
-	        	gconjuntos.modifFavAleatorio(indice3);
+	        	gconjuntos.modifFavAleatorio(indice4);
 				JOptionPane.showMessageDialog( null, "Ha marcado como favorito este conjunto. ", null, JOptionPane.INFORMATION_MESSAGE);
 				
 			                       
@@ -700,9 +700,7 @@ public class PanelArmario extends JFrame implements ActionListener {
 	        	int a1= gconjuntos.crearAleatorio1();
 	        	int a2 = gconjuntos.crearAleatorio2();
 	        	
-	        	//if(a1!=0){
-	        	//	if(a2!=0){
-	        			gusuarios = new GestorUsuario();
+	        		    gusuarios = new GestorUsuario();
 						System.out.println(gusuarios.nombreUsuario());	
 						
 						
@@ -720,33 +718,10 @@ public class PanelArmario extends JFrame implements ActionListener {
 						} else {
 							JOptionPane.showMessageDialog(null, "El conjunto no ha podido introducirse, vuelva a intentarlo. ","Incorrecto",JOptionPane.INFORMATION_MESSAGE);
 						
-		        	//}	    		
-	        		//}
+		        	
 	        		
 	        	}
-	        /*	//gconjuntos.crearconjuntoA(a);
-	        	
-	        		
-    				gusuarios = new GestorUsuario();
-					System.out.println(gusuarios.nombreUsuario());	
-					
-					
-				//	objconjunto = new Conjunto(0, aleatorio, aleatorio11,  gusuarios.nombreUsuario(), 0);	
-					
-
-					gconjuntos = new GestorConjuntos();
-					
-					
-					boolean semaforo = gconjuntos.anyadirConjuntoA(objconjunto);
-							
-					if(semaforo==true) {
-						JOptionPane.showMessageDialog(null, "Conjunto aleatorio introducida con éxito","Correcto",JOptionPane.INFORMATION_MESSAGE);
-							dispose();
-					} else {
-						JOptionPane.showMessageDialog(null, "El conjunto no ha podido introducirse, vuelva a intentarlo. ","Incorrecto",JOptionPane.INFORMATION_MESSAGE);
-					
-	        	}	 */   
-	        	
+	      
          
 	        break;
 	        

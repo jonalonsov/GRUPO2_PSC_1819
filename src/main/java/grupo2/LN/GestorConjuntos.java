@@ -194,7 +194,7 @@ public class GestorConjuntos {
 		//Creamos el arrayList de los que cumplen la condición de ser favoritos
 		ArrayList<Conjunto> conjuntos = new ArrayList<Conjunto>();
 		try {
-			String sentSQL = "select * from CONJUNTO  where ( usuario = '" + gusuario.nombreUsuario() + "' and favorito = '" + 1 + "')";
+			String sentSQL = "select * from CONJUNTO where ( usuario = '" + gusuario.nombreUsuario() + "' and favorito = '" + 1 + "')";
 			System.out.println( sentSQL ); 
 			
 			//sentSQL = "select * from PROPUESTAS  where ( usuario = '" + gusuario.nombreUsuario() + "' and favorito = '" + 1 + "')";
@@ -252,7 +252,7 @@ public class GestorConjuntos {
 		try {
 				
 			String sentSQL = "update PROPUESTAS set "+ 
-					"favorito = 0 where ( idP = '" + id + "')";
+					"favorito = 1 where ( idP = '" + id + "')";
 				System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
 				int val = st.executeUpdate( sentSQL );
 				if (val!=1) return false;  // Se tiene que añadir 1 - error si no
@@ -279,9 +279,7 @@ public class GestorConjuntos {
 			}
 	}
 	public int crearAleatorio1() {
-		// TODO Auto-generated method stub
-		Random random = new Random();
-		
+				
 		 st=BaseDeDatos.getStatement();
 		 gusuario = new GestorUsuario();
 		 int id1=0;
@@ -299,24 +297,17 @@ public class GestorConjuntos {
 					e.printStackTrace();
 				}
 					
-				
-		  
-    		    
+			    
     		return id1;
 			
 		}
 	public int crearAleatorio2() {
-		// TODO Auto-generated method stub
-				
-		
 		
 		 st=BaseDeDatos.getStatement();
 		 gusuario = new GestorUsuario();
 		 int id2=0;
 			
-			//	String sentSQL = "SELECT * from PRENDA where (usuario = '" + gusuario.nombreUsuario() + "' and nombre = 'Pantalones')"; 
-			//	System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
-		 String sentSQL = "SELECT id from PRENDA where (usuario = '" + gusuario.nombreUsuario() + "' and nombre = 'Jersey') ORDER BY RANDOM () LIMIT 1 "; 			 							
+			String sentSQL = "SELECT id from PRENDA where (usuario = '" + gusuario.nombreUsuario() + "' and nombre = 'Jersey') ORDER BY RANDOM () LIMIT 1 "; 			 							
 				try {
 					ResultSet rs = st.executeQuery( sentSQL );
 					id2 = rs.getInt("id");	
@@ -326,10 +317,7 @@ public class GestorConjuntos {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-							
-		  //  int aleatorio = random.nextInt(10)+1; 
-   		//System.out.println("se ha creado el primer aleatorio;"+aleatorio);
-   		    
+						  		    
    		return id2;
 			
 		}
