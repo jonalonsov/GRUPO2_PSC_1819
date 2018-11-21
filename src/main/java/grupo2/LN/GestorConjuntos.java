@@ -345,8 +345,7 @@ public class GestorConjuntos {
 		 gusuario = new GestorUsuario();
 		 int id1=0;
 			
-			//	String sentSQL = "SELECT * from PRENDA where (usuario = '" + gusuario.nombreUsuario() + "' and nombre = 'Pantalones')"; 
-			//	System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+			
 		 String sentSQL = "SELECT id from PRENDA where (usuario = '" + gusuario.nombreUsuario() + "' and nombre = 'Pantalones') ORDER BY RANDOM () LIMIT 1 "; 							
 				try {
 					ResultSet rs = st.executeQuery( sentSQL );
