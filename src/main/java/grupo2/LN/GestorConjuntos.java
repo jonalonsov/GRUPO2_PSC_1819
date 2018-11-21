@@ -306,12 +306,7 @@ public class GestorConjuntos {
 			}
 
 		}
-	public void crearconjuntoA(int a) {
-		// TODO Auto-generated method stub
-		
 	
-	 
-	}
 	public boolean modifFavAleatorio(int id) {
 		// TODO Auto-generated method stub
 		st=BaseDeDatos.getStatement();
@@ -373,7 +368,7 @@ public class GestorConjuntos {
 		 gusuario = new GestorUsuario();
 		 int id2=0;
 			
-			String sentSQL = "SELECT id from PRENDA where (usuario = '" + gusuario.nombreUsuario() + "' and nombre = 'Jersey') ORDER BY RANDOM () LIMIT 1 "; 			 							
+			String sentSQL = "SELECT id from PRENDA where (usuario = '" + gusuario.nombreUsuario() + "' and nombre = 'Jersey' or nombre ='Camiseta' or nombre = 'Camisa') ORDER BY RANDOM () LIMIT 1 "; 			 							
 				try {
 					ResultSet rs = st.executeQuery( sentSQL );
 					id2 = rs.getInt("id");	
