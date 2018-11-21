@@ -649,7 +649,7 @@ public class PanelArmario extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
-		  int aleatorio1;
+		  
 		switch (e.getActionCommand()){
 		  case "Favorito":
 	        	gconjuntos.modifFavConjunto(indice3);
