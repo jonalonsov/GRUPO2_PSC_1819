@@ -17,7 +17,7 @@ public class ComplementoTest {
 	@Test
 	public void testGetNombre() {
 		System.out.println("getNombre");
-		Complemento instance = new Complemento (0, null, null, null);
+		Complemento instance = new Complemento (0, null, null, null, null);
 		String expResult = "";
 		instance.setNombre("");
 		String result = instance.getNombre();
@@ -29,7 +29,7 @@ public class ComplementoTest {
 	public void testSetNombre() {
 		System.out.println("setNombre");
 		String nombre ="";
-		Complemento instance = new Complemento(0, nombre, nombre, nombre);
+		Complemento instance = new Complemento(0, nombre, nombre, nombre, nombre);
 		instance.setNombre(nombre);
 		//fail("Not yet implemented");
 	}
@@ -37,7 +37,7 @@ public class ComplementoTest {
 	@Test
 	public void testGetColor() {
 		System.out.println("getColor");
-		Complemento instance = new Complemento (0, null, null, null);
+		Complemento instance = new Complemento (0, null, null, null, null);
 		String expResult = "";
 		instance.setColor("");
 		String result = instance.getColor();
@@ -49,7 +49,7 @@ public class ComplementoTest {
 	public void testSetColor() {
 		System.out.println("setColor");
 		String color ="";
-		Complemento instance = new Complemento(0, color, color, color);
+		Complemento instance = new Complemento(0, color, color, color, color);
 		instance.setColor(color);
 		//fail("Not yet implemented");
 	}
@@ -62,7 +62,7 @@ public class ComplementoTest {
 	@Test
 	public void testGetId() {
 		System.out.println("getId");
-		Complemento instance = new Complemento (0, null, null, null);
+		Complemento instance = new Complemento (0, null, null, null, null);
 		int expResult = 0;
 		//instance.setId("");
 		int result = instance.getId();
@@ -74,7 +74,7 @@ public class ComplementoTest {
 	public void testSetId() {
 		System.out.println("setId");
 		int id =0;
-		Complemento instance = new Complemento(id, null, null, null);
+		Complemento instance = new Complemento(id, null, null, null, null);
 		instance.setId(id);
 		//fail("Not yet implemented");
 	}
@@ -82,7 +82,7 @@ public class ComplementoTest {
 	@Test
 	public void testGetUsuario() {
 		System.out.println("getUsuario");
-		Complemento instance = new Complemento (0, null, null, null);
+		Complemento instance = new Complemento (0, null, null, null, null);
 		String expResult = "";
 		instance.setUsuario("");
 		String result = instance.getUsuario();
@@ -94,7 +94,7 @@ public class ComplementoTest {
 	public void testSetUsuario() {
 		System.out.println("setUsuario");
 		String usuario ="";
-		Complemento instance = new Complemento(0, usuario, usuario, usuario);
+		Complemento instance = new Complemento(0, usuario, usuario, usuario, usuario);
 		instance.setUsuario(usuario);
 		//fail("Not yet implemented");
 	}

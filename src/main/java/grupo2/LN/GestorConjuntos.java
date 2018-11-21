@@ -1,5 +1,6 @@
 package grupo2.LN;
 
+import java.lang.reflect.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -191,7 +192,33 @@ public class GestorConjuntos {
 		
 		 Statement st=BaseDeDatos.getStatement();
 		 gusuario = new GestorUsuario();
-		//Creamos el arrayList de los que cumplen la condición de ser favoritos
+		
+		 ArrayList<Conjunto> propuestas = new ArrayList<Conjunto>();
+		 try {
+				String sentSQL = "select * from PROPUESTAS where ( usuario = '" + gusuario.nombreUsuario() + "' and favorito = '" + 1 + "')";
+				System.out.println( sentSQL ); 
+				
+				//sentSQL = "select * from PROPUESTAS  where ( usuario = '" + gusuario.nombreUsuario() + "' and favorito = '" + 1 + "')";
+				//System.out.println( sentSQL );
+				
+				ResultSet rs = st.executeQuery( sentSQL );
+				while (rs.next()) {
+					
+					//Añadimos los id-s de los conjuntos que son favoritos
+					propuestas.add(new Conjunto(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4),rs.getInt(5)));				
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return null;
+				
+			}
+		 
+		 	System.out.println(propuestas.size());
+			Conjunto[] Arrpropuesta = new Conjunto[propuestas.size()];
+			Arrpropuesta = propuestas.toArray(Arrpropuesta);
+		 
+		 //Creamos el arrayList de los que cumplen la condición de ser favoritos
 		ArrayList<Conjunto> conjuntos = new ArrayList<Conjunto>();
 		try {
 			String sentSQL = "select * from CONJUNTO where ( usuario = '" + gusuario.nombreUsuario() + "' and favorito = '" + 1 + "')";
@@ -212,12 +239,51 @@ public class GestorConjuntos {
 			return null;
 			
 		}
-		//Pasamos de ArrayList a Array
+				//Pasamos de ArrayList a Array
 		System.out.println(conjuntos.size());
 		Conjunto[] Arrconjuntos = new Conjunto[conjuntos.size()];
 		Arrconjuntos = conjuntos.toArray(Arrconjuntos);
 		
+		//Arrconjuntos = [].concat(Arrconjuntos, Arrpropuesta);
+		//Array.prototype.push.apply(Arrconjuntos, Arrpropuesta);
+		//Arrpropuesta=Arrpropuesta.concat(Arrconjuntos);
+		
 		return Arrconjuntos;
+		
+	}
+	public Conjunto[] selectPropuestaFav() {
+		
+		 Statement st=BaseDeDatos.getStatement();
+		 gusuario = new GestorUsuario();
+		
+		 ArrayList<Conjunto> propuestas = new ArrayList<Conjunto>();
+		 try {
+				String sentSQL = "select * from PROPUESTAS where ( usuario = '" + gusuario.nombreUsuario() + "' and favorito = '" + 1 + "')";
+				System.out.println( sentSQL ); 
+				
+				ResultSet rs = st.executeQuery( sentSQL );
+				while (rs.next()) {
+					
+					//Añadimos los id-s de los conjuntos que son favoritos
+					propuestas.add(new Conjunto(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4),rs.getInt(5)));				
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return null;
+				
+			}
+		 
+				//Pasamos de ArrayList a Array
+		System.out.println(propuestas.size());
+		Conjunto[] Arrpropuestas = new Conjunto[propuestas.size()];
+		Arrpropuestas = propuestas.toArray(Arrpropuestas);
+		
+		//Arrconjuntos = [].concat(Arrconjuntos, Arrpropuesta);
+		//Array.prototype.push.apply(Arrconjuntos, Arrpropuesta);
+		//Arrpropuesta=Arrpropuesta.concat(Arrconjuntos);
+		
+		return Arrpropuestas;
 		
 	}
 	public Conjunto conjuntoconID(int id) {

@@ -671,7 +671,17 @@ public class PanelArmario extends JFrame implements ActionListener {
 		  case "FavoritoA":
 	        	gconjuntos.modifFavAleatorio(indice4);
 				JOptionPane.showMessageDialog( null, "Ha marcado como favorito este conjunto. ", null, JOptionPane.INFORMATION_MESSAGE);
-				
+			
+				PanelArmario objPanelArmario1 = null;
+				try {
+					dispose();
+					objPanelArmario1 = new PanelArmario();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+					objPanelArmario1.setVisible(true);
+		            
 			                       
 	                    
 	        break;   
@@ -703,12 +713,9 @@ public class PanelArmario extends JFrame implements ActionListener {
 	        		    gusuarios = new GestorUsuario();
 						System.out.println(gusuarios.nombreUsuario());	
 						
-						
 						objconjunto = new Conjunto(0, a1, a2,  gusuarios.nombreUsuario(), 0);	
 						
-
 						gconjuntos = new GestorConjuntos();
-						
 						
 						boolean semaforo = gconjuntos.anyadirConjuntoA(objconjunto);
 								
@@ -717,11 +724,18 @@ public class PanelArmario extends JFrame implements ActionListener {
 								dispose();
 						} else {
 							JOptionPane.showMessageDialog(null, "El conjunto no ha podido introducirse, vuelva a intentarlo. ","Incorrecto",JOptionPane.INFORMATION_MESSAGE);
-						
-		        	
-	        		
+					
 	        	}
-	      
+						PanelArmario objPanelArmario11 = null;
+						try {
+							dispose();
+							objPanelArmario11 = new PanelArmario();
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+							objPanelArmario11.setVisible(true);
+				            
          
 	        break;
 	        

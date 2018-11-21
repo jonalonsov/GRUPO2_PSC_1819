@@ -187,9 +187,7 @@ public class VerFavoritos extends JFrame implements ActionListener {
 						PanelIzquierda.setLayout(null);
 						btnNoFav.setActionCommand("NoFavorito");
 						PanelIzquierda.add(btnNoFav);
-						
-						
-						
+					
 						tableConj = new JTable();
 						 tableConj.setEnabled(true);
 						
@@ -210,6 +208,20 @@ public class VerFavoritos extends JFrame implements ActionListener {
 				   		for (int i = 0; i < gconjuntos.selectConjuntosFav().length; i++){
 				        	datoConj = new String[75];
 				        	objconjunto= gconjuntos.selectConjuntosFav()[i];
+				        	if (objconjunto.getFavorito()==0) {
+				        		mensaje ="NO";
+				        	} else mensaje ="SI";
+				        	datoConj[0]=Integer.toString(objconjunto.getId());
+				        	datoConj[1]=gprendas.nombrePrendaconID(objconjunto.getPrenda1());
+				        	datoConj[2]=gprendas.nombrePrendaconID(objconjunto.getPrenda2());
+				        	datoConj[3]=mensaje;
+				        
+				        	model3.addRow(datoConj);
+
+				        }
+				   		for (int i = 0; i < gconjuntos.selectPropuestaFav().length; i++){
+				        	datoConj = new String[75];
+				        	objconjunto= gconjuntos.selectPropuestaFav()[i];
 				        	if (objconjunto.getFavorito()==0) {
 				        		mensaje ="NO";
 				        	} else mensaje ="SI";
