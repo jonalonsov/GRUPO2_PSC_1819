@@ -26,7 +26,7 @@ public class GestorComplementoTest {
 		GestorComplemento com = new GestorComplemento();
 		
 		
-		Complemento com1 = new Complemento('1' ,"Rojo", "Pulsera", "leire" ); 
+		Complemento com1 = new Complemento('1' ,"Rojo", "Pulsera", "leire", null ); 
 		 
 		com.anyadirComplemento(BaseDeDatos.getStatement(), com1);
 		
@@ -44,7 +44,7 @@ public class GestorComplementoTest {
 
 	@Test
 	public void testAnyadirComplemento() {
-		Complemento prenda2 = new Complemento('1' ,"Azul", "Collar", "Amaia" );
+		Complemento prenda2 = new Complemento('1' ,"Azul", "Collar", "Amaia", null );
     	GestorComplemento gc = new GestorComplemento(); 
     	gc.anyadirComplemento(BaseDeDatos.getStatement(), prenda2);
     	assertEquals( prenda2.getUsuario(), "Amaia" );

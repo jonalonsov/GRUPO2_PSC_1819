@@ -20,7 +20,7 @@ private GestorUsuario gusuario;
 		//SELECT
 		st=BaseDeDatos.getStatement();
 		int id=0;
-				String sentSQL = "SELECT id from COMPLEMENTO ORDER BY id DESC LIMIT 1 ";
+				String sentSQL = "SELECT id from COMPLEMENTO1 ORDER BY id DESC LIMIT 1 ";
 				System.out.println( sentSQL ); 
 				
 				ResultSet rs;
@@ -43,7 +43,7 @@ private GestorUsuario gusuario;
 		
 		try {
 	
-				String sentSQL = "insert into COMPLEMENTO values(" + "'" + id + "', " + "'" + complemento.getNombre() + "', " + "'" + complemento.getColor() + "', " + "'" + complemento.getUsuario() + "')"; 
+				String sentSQL = "insert into COMPLEMENTO1 values(" + "'" + id + "', " + "'" + complemento.getNombre() + "', " + "'" + complemento.getColor() + "',"+"'" + complemento.getImagen() + "', " + "'" + complemento.getUsuario() + "')"; 
 				System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
 				int val = st.executeUpdate( sentSQL );
 				if (val!=1) return false;  // Se tiene que añadir 1 - error si no
@@ -61,14 +61,14 @@ private GestorUsuario gusuario;
 		//Creamos el arrayList de los que cumplen la condición de ser favoritos
 		ArrayList<Complemento> complementos = new ArrayList<Complemento>();
 		try {
-			String sentSQL = "select * from COMPLEMENTO where ( usuario = '" + gusuario.nombreUsuario() + "')";
+			String sentSQL = "select * from COMPLEMENTO1 where ( usuario = '" + gusuario.nombreUsuario() + "')";
 			System.out.println( sentSQL ); 
 			
 			ResultSet rs = st.executeQuery( sentSQL );
 			
 			while (rs.next()) {
 				//Añadimos los id-s de los conjuntos que son favoritos
-				complementos.add(new Complemento(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+				complementos.add(new Complemento(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),  rs.getString(5)));
 			}
 			
 		} catch (SQLException e) {
@@ -77,6 +77,8 @@ private GestorUsuario gusuario;
 			
 		}
 		//Pasamos de ArrayList a Array
+		System.out.println("AQUI VA EL TAMAÑOOOOO");
+		System.out.println(complementos.size());
 		Complemento[] Arrcomplementos = new Complemento[complementos.size()];
 		Arrcomplementos = complementos.toArray(Arrcomplementos);
 		

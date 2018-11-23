@@ -74,7 +74,7 @@ public class BaseDeDatos {
 		if (statement==null) return;
 		try {
 			statement.executeUpdate("create table if not exists USUARIO ( nombre string, contrasenya string )");
-			System.out.println ("Tabla creada");
+			System.out.println ("Tabla usuario creada");
 		} catch (SQLException e) {
 			// Si hay excepcion es que la tabla ya existia (lo cual es correcto)
 			if (!e.getMessage().equals("table interaccion already exists"))
@@ -86,7 +86,7 @@ public class BaseDeDatos {
 		if (statement==null) return;
 		try {
 			statement.executeUpdate("create table if not exists PRENDA ( id int, nombre string, color string, tejido string, imagen string, usuario string )");
-			System.out.println ("Tabla creada");
+			System.out.println ("Tabla prenda creada");
 		} catch (SQLException e) {
 			// Si hay excepcion es que la tabla ya existia (lo cual es correcto)
 			if (!e.getMessage().equals("table interaccion already exists"))
@@ -97,8 +97,8 @@ public class BaseDeDatos {
 	public static void crearTablaBDComplemento() {
 		if (statement==null) return;
 		try {
-			statement.executeUpdate("create table if not exists COMPLEMENTO ( id int, nombre string, color string, usuario string )");
-			System.out.println ("Tabla creada");
+			statement.executeUpdate("create table if not exists COMPLEMENTO1 ( id int, nombre string, color string, imagen string, usuario string )");
+			System.out.println ("Tabla complemento creada");
 		} catch (SQLException e) {
 			// Si hay excepcion es que la tabla ya existia (lo cual es correcto)
 			if (!e.getMessage().equals("table interaccion already exists"))
@@ -110,7 +110,7 @@ public class BaseDeDatos {
 		if (statement==null) return;
 		try {
 			statement.executeUpdate("create table if not exists USUARIO_SESION ( nombre string, contrasenya string )");
-			System.out.println ("Tabla creada");
+			System.out.println ("Tabla usuarioS creada");
 		} catch (SQLException e) {
 			// Si hay excepcion es que la tabla ya existia (lo cual es correcto)
 			if (!e.getMessage().equals("table interaccion already exists"))
@@ -123,7 +123,20 @@ public class BaseDeDatos {
 		if (statement==null) return;
 		try {
 			statement.executeUpdate("create table if not exists CONJUNTO ( idC int, prenda1 int, prenda2 int, usuario string, favorito int)");
-			System.out.println ("Tabla creada");
+			System.out.println ("Tabla conjunto creada");
+		} catch (SQLException e) {
+			// Si hay excepcion es que la tabla ya existia (lo cual es correcto)
+			if (!e.getMessage().equals("table interaccion already exists"))
+				e.printStackTrace();  
+		}
+	}
+	
+public static void crearTablaBDPropuestas() {
+		
+		if (statement==null) return;
+		try {
+			statement.executeUpdate("create table if not exists PROPUESTAS ( idP int, prenda1 int, prenda2 int, usuario string, favorito int)");
+			System.out.println ("Tabla propuesta creada");
 		} catch (SQLException e) {
 			// Si hay excepcion es que la tabla ya existia (lo cual es correcto)
 			if (!e.getMessage().equals("table interaccion already exists"))

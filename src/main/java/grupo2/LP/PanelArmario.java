@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -30,6 +31,7 @@ import javax.swing.event.ListSelectionListener;
 
 import grupo2.LD.BaseDeDatos;
 import grupo2.LN.GestorPrendas;
+import grupo2.LN.GestorUsuario;
 import grupo2.LN.Prenda;
 import grupo2.LN.Complemento;
 import grupo2.LN.Conjunto;
@@ -54,14 +56,18 @@ public class PanelArmario extends JFrame implements ActionListener {
 	    private JTextArea M, I, A, R, M2, A2, R2, I2, O;
 	private JTextArea informacion;
 	private JLabel lblLabelImagen;
-	private  JTable table_1;
-	private  JTable tableConj;
-	private  JTable tableC;
+	private JTable table_1;
+	private JTable table_2;
+	private JTable tableConj;
+	private JTable tableC;
+	private JTable tablePropu;
 	private JTextPane texto2;
 	private JPanel complemento;
 	private JPanel armario;
 	private JPanel conjunto;
+	private JPanel propuestas;
 	private  JTextPane txtpnHj;
+	private  JTextPane txtPropu;
 	private JScrollPane scroll;
 	
 	private GestorPrendas gprendas;
@@ -69,12 +75,22 @@ public class PanelArmario extends JFrame implements ActionListener {
 	private  String[] dato;
 	private  String[] datoC;
 	private  String[] datoConj;
+	private  String[] datoPropu;
 	private JTextPane txtpnEstosSonTus;
 	private JButton btnMarcarFavorito;
+	private JButton btnMarcarFavoritoA;
 	private JScrollPane scrollC;
 	private JScrollPane scrollConj;
-	private GestorConjuntos gconjuntos;
+	private JScrollPane scrollPropu;
 	private int indice3;
+	private int indice4;
+	private JButton CrearC;
+	
+	private Conjunto objconjunto;
+	private Prenda objprenda;
+	private GestorConjuntos gconjuntos;
+	private GestorUsuario gusuarios;
+		
 	public PanelArmario() throws SQLException{
 		
 	gprendas = new GestorPrendas();
@@ -189,9 +205,6 @@ public class PanelArmario extends JFrame implements ActionListener {
 									
 				getContentPane().add(PanelInferior);
 				PanelInferior.add(informacion);
-		
-				
-			//PANEL izquierda
 				panelPestaña.setBounds(0, 80, 450, 450);
 				panelPestaña.setVisible(true);
 				panelPestaña.setPreferredSize( new Dimension( 450,  450 ) );
@@ -224,10 +237,10 @@ public class PanelArmario extends JFrame implements ActionListener {
      		AñadirC.addActionListener(this);
      		AñadirC.setActionCommand("AñadirC");
     		
-    		tableC = new JTable();
-       		tableC.setEnabled(true);
+    		table_2 = new JTable();
+       		table_2.setEnabled(true);
     		
-    		scrollC = new JScrollPane(tableC);
+    		scrollC = new JScrollPane(table_2);
     		scrollC.setBounds(24, 64, 397, 297);
     		complemento.add(scrollC);
           
@@ -235,11 +248,12 @@ public class PanelArmario extends JFrame implements ActionListener {
             modelC.addColumn("Id");
             modelC.addColumn("Color");
             modelC.addColumn("Nombre");
+            
 			
             Complemento objcomplemento;
 		       
             for (int i = 0; i < gcomplementos.selectComplementos().length; i++){
-            	datoC = new String[45];
+            	datoC = new String[75];
             	objcomplemento = gcomplementos.selectComplementos()[i];
             	
             	datoC[0]=Integer.toString(objcomplemento.getId());
@@ -249,7 +263,51 @@ public class PanelArmario extends JFrame implements ActionListener {
             }
             
             
-            tableC.setModel(modelC);
+            table_2.setCellSelectionEnabled(true);
+            ListSelectionModel cellSelectionModel2 = table_2.getSelectionModel();
+            cellSelectionModel2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+                                    
+            table_2.setModel(modelC);
+            
+            cellSelectionModel2.addListSelectionListener(new ListSelectionListener() {
+      		  public void valueChanged(ListSelectionEvent e) {
+      		        String selectedDataID1 = null;
+      	
+      		        int selectedRow1 = table_2.getSelectedRow();
+      		       	  selectedDataID1 = (String) table_2.getValueAt(selectedRow1,0);
+      		         System.out.println("Selected: " + selectedDataID1);
+      		        
+      	       		      		        
+      		 //<--GOR--> ESTO NO SE DEBERÍA PONER AQUÍ, LD                     
+                      String sql="SELECT imagen FROM COMPLEMENTO1 WHERE id = '"+ selectedDataID1 + "'";
+                      System.out.println(sql);		
+                      Statement st2=BaseDeDatos.getStatement();
+                      ResultSet result2 = null;
+                      
+                      
+      				try {
+      					result2 = st2.executeQuery(sql);
+      				} catch (SQLException e1) {
+      					// TODO Auto-generated catch block
+      					e1.printStackTrace();
+      				}
+      				
+                      String imagePath = null;
+      				try {
+      					imagePath = result2.getString(1);
+      				} catch (SQLException e1) {
+      					// TODO Auto-generated catch block
+      					e1.printStackTrace();
+      				}
+      				System.out.println(imagePath);
+      				//ImageIcon imagen = new ImageIcon(imagePath).getScaledInstance(lblLabelImagen.getWidth(), lblLabelImagen.getHeight(),imagen.SCALE_SMOOTH);
+      				ImageIcon imagenIcono = new ImageIcon(imagePath);
+      				Image imagen = imagenIcono.getImage(); // transform it 
+      				Image newimg = imagen.getScaledInstance(lblLabelImagen.getWidth(), lblLabelImagen.getHeight(),  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+      				ImageIcon nuevo = new ImageIcon(newimg); 
+      				lblLabelImagen.setIcon(nuevo);		        
+      		     }
+            });
 			
   //TABLA PRENDAS          
 		//PestañaArmario
@@ -325,12 +383,12 @@ public class PanelArmario extends JFrame implements ActionListener {
 	               
                 
                 table_1.setCellSelectionEnabled(true);
-                ListSelectionModel cellSelectionModel = table_1.getSelectionModel();
-                cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+                ListSelectionModel cellSelectionModel1 = table_1.getSelectionModel();
+                cellSelectionModel1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
                 
                 table_1.setModel(model);
 		
-	cellSelectionModel.addListSelectionListener(new ListSelectionListener() {
+	cellSelectionModel1.addListSelectionListener(new ListSelectionListener() {
 		  public void valueChanged(ListSelectionEvent e) {
 		        String selectedDataID = null;
 	
@@ -390,8 +448,7 @@ public class PanelArmario extends JFrame implements ActionListener {
 		
  		complemento.add(AñadirC);
  		       	
-
-		
+ 		 		
 		btnMarcarFavorito = new JButton("Marcar como favorito");
 		btnMarcarFavorito.setBounds(250, 364, 185, 27);
 		btnMarcarFavorito.setForeground(Color.BLACK);
@@ -411,6 +468,16 @@ public class PanelArmario extends JFrame implements ActionListener {
         model3.addColumn("Prenda 1");
         model3.addColumn("Prenda 2");
         model3.addColumn("Favorito");   
+		
+		CrearC = new JButton("Crear Conjunto Aleatorio");
+		CrearC.setForeground(Color.BLACK);
+		CrearC.setFont(new Font("Century Gothic", Font.BOLD, 14));
+		CrearC.setAlignmentY(0.5f);
+		CrearC.setAlignmentX(0.5f);
+		CrearC.addActionListener(this);
+		CrearC.setActionCommand("CrearC");
+		CrearC.setBounds(10, 364, 230, 27);
+		conjunto.add(CrearC);
         
 		
 		scrollConj = new JScrollPane(tableConj);
@@ -442,30 +509,148 @@ public class PanelArmario extends JFrame implements ActionListener {
         tableConj.setModel(model3);
         
         cellSelectionModel4.addListSelectionListener(new ListSelectionListener() {
-    		  public void valueChanged(ListSelectionEvent e) {
-    		        String selectedDataID = null;
+    		  public void valueChanged(ListSelectionEvent e1) {
+    		        String selectedDataID3 = null;
     	
 
     		      int selectedRow3 = tableConj.getSelectedRow();
 
-		            selectedDataID = (String) tableConj.getValueAt(selectedRow3,0);
-		            indice3=Integer.parseInt(selectedDataID);
+		            selectedDataID3 = (String) tableConj.getValueAt(selectedRow3,0);
+		            indice3=Integer.parseInt(selectedDataID3);
 		            
 		            System.out.println("Selected: " + indice3);
+		            
+		            
+		            
+		      /*      //<--GOR--> ESTO NO SE DEBERÍA PONER AQUÍ, LD                     
+	                String sql="SELECT imagen FROM CONJUNTO WHERE id = '"+ indice3 + "'";
+	                System.out.println(sql);		
+	                Statement st2=BaseDeDatos.getStatement();
+	                ResultSet result2 = null;
+	                
+	                
+					try {
+						result2 = st2.executeQuery(sql);
+					} catch (SQLException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+					
+	                String imagePath = null;
+					try {
+						imagePath = result2.getString(1);
+					} catch (SQLException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+					System.out.println(imagePath);
+					//ImageIcon imagen = new ImageIcon(imagePath).getScaledInstance(lblLabelImagen.getWidth(), lblLabelImagen.getHeight(),imagen.SCALE_SMOOTH);
+					ImageIcon imagenIcono = new ImageIcon(imagePath);
+					Image imagen = imagenIcono.getImage(); // transform it 
+					Image newimg = imagen.getScaledInstance(lblLabelImagen.getWidth(), lblLabelImagen.getHeight(),  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+					ImageIcon nuevo = new ImageIcon(newimg); 
+					lblLabelImagen.setIcon(nuevo);	*/
     		 }
- 		 });
+    		  
+        });	
         
+      //Panel propuestas
+      		propuestas = new JPanel ();
+      		panelPestaña.addTab("Propuestas",null,propuestas, "Propuestas");
+      		propuestas.setLayout(null);
+      		
+      		txtPropu = new JTextPane();
+     		txtPropu.setForeground(SystemColor.desktop);
+     		txtPropu.setBackground(Color.lightGray);
+     		txtPropu.setFont(new Font("MS Mincho", Font.ITALIC, 23));
+     		txtPropu.setText("¡Estos son las propuestas en tu armario!");
+     		txtPropu.setBounds(56, 11, 334, 33);
+    		propuestas.add(txtPropu);
+      		    		
+    		//propuestas.add(AñadirC);
+		     	
+    		btnMarcarFavoritoA = new JButton("Marcar como favorito");
+    		btnMarcarFavoritoA.setBounds(250, 364, 185, 27);
+    		btnMarcarFavoritoA.setForeground(Color.BLACK);
+    		btnMarcarFavoritoA.setFont(new Font("Century Gothic", Font.BOLD, 14));
+    		btnMarcarFavoritoA.setAlignmentY(0.5f);
+    		btnMarcarFavoritoA.setAlignmentX(0.5f);
+    		btnMarcarFavoritoA.addActionListener(this);
+    		btnMarcarFavoritoA.setActionCommand("FavoritoA");
+    		propuestas.add(btnMarcarFavoritoA);
+    		
+    		 tablePropu = new JTable();
+    		 tablePropu.setEnabled(true);
+    		
+    		//Cargamos la tabla con los datos de la BD de propuestas
+            DefaultTableModel model4= new DefaultTableModel();
+            model4.addColumn("Id");
+            model4.addColumn("Prenda 1");
+            model4.addColumn("Prenda 2");
+            model4.addColumn("Favorito");   
+    		
+    		CrearC = new JButton("Crear Conjunto Aleatorio");
+    		CrearC.setForeground(Color.BLACK);
+    		CrearC.setFont(new Font("Century Gothic", Font.BOLD, 14));
+    		CrearC.setAlignmentY(0.5f);
+    		CrearC.setAlignmentX(0.5f);
+    		CrearC.addActionListener(this);
+    		CrearC.setActionCommand("CrearC");
+    		CrearC.setBounds(10, 364, 230, 27);
+    		propuestas.add(CrearC);
+            
+    		
+    		scrollPropu = new JScrollPane(tablePropu);
+    		scrollPropu.setBounds(23, 52, 397, 297);
+    		propuestas.add(scrollPropu);
+    		
+    		//Conjunto objconjunto;
+    		//String mensaje;
+       		for (int i = 0; i < gconjuntos.selectPropuestas().length; i++){
+            	datoPropu = new String[75];
+            	objconjunto= gconjuntos.selectPropuestas()[i];
+            	if (objconjunto.getFavorito()==0) {
+            		mensaje ="NO";
+            	} else mensaje ="SI";
+            	datoPropu[0]=Integer.toString(objconjunto.getId());
+            	datoPropu[1]=gprendas.nombrePrendaconID(objconjunto.getPrenda1());
+            	datoPropu[2]=gprendas.nombrePrendaconID(objconjunto.getPrenda2());
+            	datoPropu[3]=mensaje;
+            
+            	model4.addRow(datoPropu);
+
+            }
+           
+               
+       		 tablePropu.setCellSelectionEnabled(true);
+    	     ListSelectionModel cellSelectionModel5 = tablePropu.getSelectionModel();
+    	     cellSelectionModel5.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    	        
+    	     tablePropu.setModel(model4);
+            
+            cellSelectionModel5.addListSelectionListener(new ListSelectionListener() {
+      		  public void valueChanged(ListSelectionEvent e2) {
+      		        String selectedDataID4 = null;
+      	
+
+      		      int selectedRow4 = tablePropu.getSelectedRow();
+
+  		            selectedDataID4 = (String) tablePropu.getValueAt(selectedRow4,0);
+  		            indice4=Integer.parseInt(selectedDataID4);
+  		            
+  		            System.out.println("Selected: " + indice4);
+    
    
+      		  }
+      	});	
 	}
-
-
-	  
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
-		  switch (e.getActionCommand()){
+		  
+		switch (e.getActionCommand()){
 		  case "Favorito":
 	        	gconjuntos.modifFavConjunto(indice3);
 				JOptionPane.showMessageDialog( null, "Ha marcado como favorito este conjunto. ", null, JOptionPane.INFORMATION_MESSAGE);
@@ -482,7 +667,24 @@ public class PanelArmario extends JFrame implements ActionListener {
 	            
 	                                
 	                    
-	        break;     
+	        break;  
+		  case "FavoritoA":
+	        	gconjuntos.modifFavAleatorio(indice4);
+				JOptionPane.showMessageDialog( null, "Ha marcado como favorito este conjunto. ", null, JOptionPane.INFORMATION_MESSAGE);
+			
+				PanelArmario objPanelArmario1 = null;
+				try {
+					dispose();
+					objPanelArmario1 = new PanelArmario();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+					objPanelArmario1.setVisible(true);
+		            
+			                       
+	                    
+	        break;   
 
 	        case "Añadir":
 	        	
@@ -500,15 +702,50 @@ public class PanelArmario extends JFrame implements ActionListener {
 	                                
 	                    
 	        break;
+	        
+	        case "CrearC":
+	        	gusuarios = new GestorUsuario();
+	        	gprendas = new GestorPrendas();
+	        
+	        	int a1= gconjuntos.crearAleatorio1();
+	        	int a2 = gconjuntos.crearAleatorio2();
+	        	
+	        		    gusuarios = new GestorUsuario();
+						System.out.println(gusuarios.nombreUsuario());	
+						
+						objconjunto = new Conjunto(0, a1, a2,  gusuarios.nombreUsuario(), 0);	
+						
+						gconjuntos = new GestorConjuntos();
+						
+						boolean semaforo = gconjuntos.anyadirConjuntoA(objconjunto);
+								
+						if(semaforo==true) {
+							JOptionPane.showMessageDialog(null, "Conjunto aleatorio introducida con éxito","Correcto",JOptionPane.INFORMATION_MESSAGE);
+								dispose();
+						} else {
+							JOptionPane.showMessageDialog(null, "El conjunto no ha podido introducirse, vuelva a intentarlo. ","Incorrecto",JOptionPane.INFORMATION_MESSAGE);
+					
+	        	}
+						PanelArmario objPanelArmario11 = null;
+						try {
+							dispose();
+							objPanelArmario11 = new PanelArmario();
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+							objPanelArmario11.setVisible(true);
+				            
+         
+	        break;
+	        
 	        case "Salir":
 	        	dispose();
 
 	            
-	        break;
-	       
+	        break;	       
 	       	
-		}
-		  
 	}
-	
+ 				
+	}
 }
