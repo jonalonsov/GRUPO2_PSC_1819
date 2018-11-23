@@ -33,6 +33,7 @@ public class PanelMenu extends JFrame implements ActionListener {
     private JButton Salir;
     private JButton Conjuntos;
     private JButton Fav;
+    private JButton CrearCalendar;
     
     
     private JTextArea M, I, A, R, M2, A2, R2, I2, O;
@@ -163,7 +164,19 @@ public class PanelMenu extends JFrame implements ActionListener {
                                     
                 getContentPane().add(PanelCentro, BorderLayout.WEST);
                 
-                
+                CrearCalendar = new JButton("Crear calendario");
+                CrearCalendar.setForeground(Color.BLACK);
+                CrearCalendar.setAlignmentY(Component.CENTER_ALIGNMENT);
+                CrearCalendar.setAlignmentX(Component.LEFT_ALIGNMENT);
+                CrearCalendar.setSize(200, 29);
+                CrearCalendar.setLocation(100, 115);
+                CrearCalendar.setFont(new Font("Century Gothic", Font.CENTER_BASELINE, 15));
+                //        BSalir.setBounds(100, 103, 150, 30);
+                CrearCalendar.addActionListener(this);
+                        PanelCentro.setLayout(null);
+                        CrearCalendar.setActionCommand("CrearCalendar");
+                        PanelCentro.add(CrearCalendar);
+                        
                 Ver = new JButton("Ver mi armario");
                 Ver.setForeground(Color.BLACK);
                 Ver.setAlignmentY(Component.CENTER_ALIGNMENT);
@@ -310,13 +323,16 @@ public class PanelMenu extends JFrame implements ActionListener {
 		case "AñadirComp":
 		        	
 			InsertarComplemento objComp = new InsertarComplemento();
-			objComp.setVisible(true);		
-		            
+			objComp.setVisible(true);	
+		
 		                                    
 			break;
-
+		case "CrearCalendar":
+			
+			CalendarProgram objCalendar = new CalendarProgram();
+			objCalendar.main(null);
         
-        
+			break;
         }
         
     }

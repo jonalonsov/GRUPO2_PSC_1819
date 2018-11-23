@@ -11,7 +11,7 @@ import java.util.*;
 public class CalendarProgram {
 
     static JLabel lblMonth, lblYear;
-    static JButton btnPrev, btnNext;
+    static JButton btnPrev, btnNext, btnRegistrarFecha;
     static JTable tblCalendar;
     static JComboBox<String> cmbYear;
     static JFrame frmMain;
@@ -23,7 +23,7 @@ public class CalendarProgram {
 
 
 
-    public static void main (String args[]) {
+    public void main (String args[]) {
 
     	try {UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());}  
     	catch (ClassNotFoundException e) {}   
@@ -40,20 +40,27 @@ public class CalendarProgram {
     	
     	//Crear controles
     	lblMonth = new JLabel ("January");
-    	lblYear = new JLabel ("Change year:");
+    	lblMonth.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+    	lblMonth.setBackground(Color.CYAN);
+    	lblYear = new JLabel ("Escoja el año");
+    	lblYear.setFont(new Font("Century Gothic", Font.PLAIN, 11));
+    	lblYear.setBackground(Color.WHITE);
     	cmbYear = new JComboBox<String>();
     	btnPrev = new JButton ("<<");
+    	btnPrev.setBackground(Color.CYAN);
      	btnNext = new JButton (">>");
      	mtblCalendar = new DefaultTableModel(){/**
 			 * 
 			 */
 			private static final long serialVersionUID = 1L;
 
-		public boolean isCellEditable(int rowIndex, int mColIndex){return false;}};
+		public boolean isCellEditable(int rowIndex, int mColIndex){return true;}};
+		
      	tblCalendar = new JTable(mtblCalendar); //Table using the above model
     	stblCalendar = new JScrollPane(tblCalendar); //The scrollpane of the above table
     	
     	pnlCalendar = new JPanel(null); //Create the "panel" to place components
+    	pnlCalendar.setBackground(Color.LIGHT_GRAY);
     	pnlCalendar.setBorder(BorderFactory.createTitledBorder("Calendar")); //Set bord
     	
     	//Add controls to pane
@@ -67,8 +74,8 @@ public class CalendarProgram {
     	
     	//Set bounds
     	pnlCalendar.setBounds(0, 0, 320, 335);
-    	lblMonth.setBounds(160-lblMonth.getPreferredSize().width/2, 25, 100, 25);
-    	lblYear.setBounds(10, 305, 80, 20);
+    	lblMonth.setBounds(102, 23, 126, 25);
+    	lblYear.setBounds(153, 304, 80, 20);
     	cmbYear.setBounds(230, 305, 80, 20);
     	btnPrev.setBounds(10, 25, 50, 25);
     	btnNext.setBounds(260, 25, 50, 25);
@@ -111,6 +118,11 @@ public class CalendarProgram {
 		
 		//Set row/column count
 		tblCalendar.setRowHeight(38);
+		
+		btnRegistrarFecha = new JButton("Registrar fecha");
+		btnRegistrarFecha.setFont(new Font("Century Gothic", Font.PLAIN, 11));
+		btnRegistrarFecha.setBounds(20, 304, 113, 23);
+		pnlCalendar.add(btnRegistrarFecha);
 		mtblCalendar.setColumnCount(7);
 		mtblCalendar.setRowCount(6);
 		
@@ -122,9 +134,12 @@ public class CalendarProgram {
 		refreshCalendar (realMonth, realYear); //Refresh calendar
 		
 		//Register action listeners
+		btnRegistrarFecha.addActionListener(new btnRegistrar_Action());
 		btnPrev.addActionListener(new btnPrev_Action());
 		btnNext.addActionListener(new btnNext_Action());
 		cmbYear.addActionListener(new cmbYear_Action());
+		
+
     }
     
     public static void refreshCalendar(int month, int year){
@@ -155,6 +170,7 @@ public class CalendarProgram {
     	    	 int row = new Integer((i+som-2)/7);
     	    	 int column  =  (i+som-2)%7;
     	    	         mtblCalendar.setValueAt(i, row, column);
+    	    	        
     	     }
     	     tblCalendar.setDefaultRenderer(tblCalendar.getColumnClass(0), new tblCalendarRenderer()); //Apply renderer
     }
@@ -170,14 +186,14 @@ public class CalendarProgram {
 		public Component getTableCellRendererComponent (JTable table, Object value, boolean selected, boolean focused, int row, int column){
     		            super.getTableCellRendererComponent(table, value, selected, focused, row, column);
     		            if (column == 0 || column == 6){ //Week-end
-    		                setBackground(new Color(255, 220, 220));
+    		                setBackground(new Color(150, 150, 150));
     		            }
     		            else{ //Week
     		                setBackground(new Color(255, 255, 255));
     		            }
     		            if (value != null){
-    		                int realDay = 0;
-
+    		               
+    		            	
     						if (Integer.parseInt(value.toString()) == realDay && currentMonth == realMonth && currentYear == realYear){ //Today
     		                    setBackground(new Color(220, 220, 255));
     		                }
@@ -225,7 +241,7 @@ public class CalendarProgram {
 		             refreshCalendar(currentMonth, currentYear);
 		         }
 		     }
-		     static class cmbYear_Action implements ActionListener{
+	 static class cmbYear_Action implements ActionListener{
 		         public void actionPerformed (ActionEvent e){
 		             if (cmbYear.getSelectedItem() != null){
 		                 String b = cmbYear.getSelectedItem().toString();
@@ -233,9 +249,23 @@ public class CalendarProgram {
 		                 refreshCalendar(currentMonth, currentYear);
 		             }
 		         }
-		     }
+	 }
+	 static class btnRegistrar_Action implements ActionListener{
 
-    
-    
-
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		 
+	 }
 }
+	 
+	 
+	 
+	 
+
+    
+    
+
+

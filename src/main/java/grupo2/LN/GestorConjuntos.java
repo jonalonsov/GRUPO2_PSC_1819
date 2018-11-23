@@ -128,6 +128,8 @@ public class GestorConjuntos {
 			}
 	}
 	
+	
+	
 	public Conjunto[] selectConjuntos() {
 		
 		 Statement st=BaseDeDatos.getStatement();
