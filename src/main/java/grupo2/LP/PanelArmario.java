@@ -349,8 +349,8 @@ public class PanelArmario extends JFrame implements ActionListener {
 
 	       		//El label en el que meteremos la imagen de la prenda
 	       		//<--GOE-->SE DEBERÍA CAMBIAR EL TAMAÑO Y UBICACIÓN
-	       		lblLabelImagen = new JLabel("Imagen prenda");
-	       		lblLabelImagen.setBounds(458, 215, 270, 263);
+	       		lblLabelImagen = new JLabel("");
+	       		lblLabelImagen.setBounds(458, 196, 270, 263);
 	       		getContentPane().add(lblLabelImagen);
 	       	
 	       		
@@ -698,44 +698,17 @@ public class PanelArmario extends JFrame implements ActionListener {
 	        	
 	        	InsertarComplemento objpanePanelC = new InsertarComplemento();
 	        	objpanePanelC.setVisible(true);
+	        	
 	            
 	                                
 	                    
 	        break;
 	        
 	        case "CrearC":
-	        	gusuarios = new GestorUsuario();
-	        	gprendas = new GestorPrendas();
-	        
-	        	int a1= gconjuntos.crearAleatorio1();
-	        	int a2 = gconjuntos.crearAleatorio2();
 	        	
-	        		    gusuarios = new GestorUsuario();
-						System.out.println(gusuarios.nombreUsuario());	
-						
-						objconjunto = new Conjunto(0, a1, a2,  gusuarios.nombreUsuario(), 0);	
-						
-						gconjuntos = new GestorConjuntos();
-						
-						boolean semaforo = gconjuntos.anyadirConjuntoA(objconjunto);
-								
-						if(semaforo==true) {
-							JOptionPane.showMessageDialog(null, "Conjunto aleatorio introducida con éxito","Correcto",JOptionPane.INFORMATION_MESSAGE);
-								dispose();
-						} else {
-							JOptionPane.showMessageDialog(null, "El conjunto no ha podido introducirse, vuelva a intentarlo. ","Incorrecto",JOptionPane.INFORMATION_MESSAGE);
-					
-	        	}
-						PanelArmario objPanelArmario11 = null;
-						try {
-							dispose();
-							objPanelArmario11 = new PanelArmario();
-						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-							objPanelArmario11.setVisible(true);
-				            
+	        	InsertarConjuntoAleatorio objpanePanelCA = new InsertarConjuntoAleatorio();
+	        	objpanePanelCA.setVisible(true);
+	        	dispose();
          
 	        break;
 	        
