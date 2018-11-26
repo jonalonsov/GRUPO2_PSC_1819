@@ -12,24 +12,32 @@ import java.util.*;
 
 public class CalendarProgram {
 
-    static JLabel lblMonth, lblYear;
-    static JButton btnPrev, btnNext, btnRegistrarFecha;
-    static JTable tblCalendar;
-    static JComboBox<String> cmbYear;
-    static JFrame frmMain;
-    static Container pane;
-    static DefaultTableModel mtblCalendar; //Table model
-    static JTable jtable;
-    static JScrollPane stblCalendar; //The scrollpane
-    static JPanel pnlCalendar; //The panel
-    static int realDay, realMonth, realYear, currentMonth, currentYear;
+    private static JLabel lblMonth;
+	private JLabel lblYear;
+    private static JButton btnPrev;
+	private static JButton btnNext;
+	private JButton btnRegistrarFecha;
+    private static JTable tblCalendar;
+    private static JComboBox<String> cmbYear;
+    private static JFrame frmMain;
+    private Container pane;
+    private static DefaultTableModel mtblCalendar; //Table model
+    private JScrollPane stblCalendar; //The scrollpane
+    private JPanel pnlCalendar; //The panel
+    private static int realDay, realMonth;
+	private static int realYear;
+	private static int currentMonth;
+	private static int currentYear;
 
     private static Fecha objFecha;
     private static Integer valueInCell;
     private static GestorConjuntos  objGestorConjunto;
+    private int selectedRow;
+    private int selectedColumn;
 
 
-    public void main (String args[]) {
+
+    public void CrearCalendario() {
 
     	try {UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());}  
     	catch (ClassNotFoundException e) {}   
@@ -42,7 +50,9 @@ public class CalendarProgram {
     	frmMain.setSize(330, 375); //Two arguments: width and height
     	pane = frmMain.getContentPane();
     	pane.setLayout(null); //Apply the null layout
-    	frmMain.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
+    	frmMain.setDefaultCloseOperation (JFrame.DISPOSE_ON_CLOSE);
+    	
+    	
     	
     	//Crear controles
     	lblMonth = new JLabel ("January");
@@ -79,22 +89,20 @@ public class CalendarProgram {
     	    public void mouseClicked(final MouseEvent e) {
     	        if (e.getClickCount() == 1) {
     	            final JTable jTable= (JTable)e.getSource();
-    	            final int row = jTable.getSelectedRow();
-    	            final int column = jTable.getSelectedColumn();
-    	            valueInCell = (Integer)jTable.getValueAt(row, column);
+    	            selectedRow = jTable.getSelectedRow();
+    	            selectedColumn = jTable.getSelectedColumn();
+    	            valueInCell = (Integer)jTable.getValueAt(selectedRow, selectedColumn);
     	            
-    	            System.out.println("ESTA ES LA FILAAA" + row);
-    			     System.out.println("ESTA ES LA COLUMNAA" + column);
-    			     System.out.println("VALOOOOOOR" + valueInCell);
+    	            System.out.println("ESTA ES LA FILAAA" + selectedRow);
+    			    System.out.println("ESTA ES LA COLUMNAA" + selectedColumn);
+    			    System.out.println("VALOOOOOOR" + valueInCell);
+    			     
+    			 
     			     
     	        }
     	    }
     	});
     	
- 
-		     
-
-		
     	
     	pnlCalendar = new JPanel(null); //Create the "panel" to place components
     	pnlCalendar.setBackground(Color.LIGHT_GRAY);
@@ -175,8 +183,9 @@ public class CalendarProgram {
 		btnPrev.addActionListener(new btnPrev_Action());
 		btnNext.addActionListener(new btnNext_Action());
 		cmbYear.addActionListener(new cmbYear_Action());
+			
 		
-
+		
     }
     
     public static void refreshCalendar(int month, int year){
@@ -232,11 +241,13 @@ public class CalendarProgram {
     		            }
     		            if (value != null){
     		               
-    		            	
+    		            	System.out.println(realDay);
+    		            	System.out.println(valueInCell);
     						if (Integer.parseInt(value.toString()) == realDay && currentMonth == realMonth && currentYear == realYear){ //Today
     		                    setBackground(new Color(220, 220, 255));
     		                }
     		            }
+
     		            setBorder(null);
     		            setForeground(Color.black);
     		            return this;  
@@ -295,15 +306,23 @@ public class CalendarProgram {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			
-			objGestorConjunto = new GestorConjuntos();
+			objGestorConjunto = new GestorConjuntos();			
+			objFecha = new Fecha(currentYear, currentMonth, valueInCell);					
+			boolean semaforo = objGestorConjunto.anyadriFechaCalendario(objFecha.getAño(), objFecha.getMes(), objFecha.getDia());
 			
-			objFecha = new Fecha(currentYear, currentMonth, valueInCell);
-			
-		
-			
+			if(semaforo==true) {
+				JOptionPane.showMessageDialog(null, "Conjunto añadido al calendario con éxito","Correcto",JOptionPane.INFORMATION_MESSAGE);
+								
+				//frmMain.dispatchEvent(new WindowEvent(frmMain, WindowEvent.WINDOW_CLOSING));
+					frmMain.dispose(); //Destroy the JFrame object		
+			} else {
+				JOptionPane.showMessageDialog(null, "El conjunto no ha podido ser añadido al calendario, vuelva a intentarlo. ","Incorrecto",JOptionPane.INFORMATION_MESSAGE);
+			}
 		}
 		 
 	 }
+
+
 }
 	 
 	 

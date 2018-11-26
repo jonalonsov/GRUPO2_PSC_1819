@@ -1,6 +1,7 @@
 package grupo2.LN;
 
 import java.lang.reflect.Array;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -60,6 +61,26 @@ public class GestorConjuntos {
 		return id;
 	}
 	
+	public int maxIdCalendario() {
+		//SELECT
+		Statement st=BaseDeDatos.getStatement();
+		int id=0;
+				String sentSQL = "SELECT id from CALENDARIO ORDER BY id DESC LIMIT 1 ";
+				System.out.println( sentSQL ); 
+				
+				ResultSet rs;
+				try {
+					rs = st.executeQuery( sentSQL );
+						    id = rs.getInt("id");	
+						    System.out.println(id);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					id=0;
+				} 
+		return id;
+	}
+	
 	public boolean anyadirConjunto(Conjunto conjunto) {
 		 st=BaseDeDatos.getStatement();
 		 gusuario = new GestorUsuario();
@@ -101,9 +122,11 @@ public class GestorConjuntos {
 		 gusuario = new GestorUsuario();
 		 int val0=0;
 		 String valNulo = "";
+		 int id = maxIdCalendario() + 1;
 
+		 
 		try {
-				String sentSQL = "insert into CALENDARIO values(" + "'" + idConjunto + "', " + "'" + gusuario.nombreUsuario() + "', " + "'" + val0 + "', "+"'" + valNulo + "', "+"'" + val0 + "')"; 
+				String sentSQL = "insert into CALENDARIO values(" + "'" + id + "', " + "'" + idConjunto + "', " + "'" + gusuario.nombreUsuario() + "', " + "'" + val0 + "', "+"'" + valNulo + "', "+"'" + val0 + "')"; 
 				System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
 				val0 = st.executeUpdate( sentSQL );
 				if (val0!=1) return false;  // Se tiene que añadir 1 - error si no
@@ -117,9 +140,12 @@ public class GestorConjuntos {
 	public boolean anyadriFechaCalendario(int año, String mes, int dia) {
 		 st=BaseDeDatos.getStatement();
 		try {
-				
-			String sentSQL = "update CALENDARIO set "+ 
-					"favorito = 1 where ( idC = '" + id + "')";
+			 String sentSQL = "UPDATE CALENDARIO SET año = '" + año + "', mes= " + "'" + mes+ "', dia= " + "'" + dia+ "' where ( id = '" + maxIdCalendario() + "')";
+            /* st = BaseDeDatos.getConnection().prepareStatement(sentSQL);
+             ((PreparedStatement) st).setInt (1, año);
+             ((PreparedStatement) st).setString (2, mes);
+             ((PreparedStatement) st).setInt (3, dia);
+*/
 				System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
 				int val = st.executeUpdate( sentSQL );
 				if (val!=1) return false;  // Se tiene que añadir 1 - error si no

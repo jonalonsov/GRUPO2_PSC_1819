@@ -86,6 +86,7 @@ public class PanelArmario extends JFrame implements ActionListener {
 	private Conjunto objconjunto;
 	private GestorConjuntos gconjuntos;
 	private GestorUsuario gusuarios;
+	private  JButton btnAadirFecha;
 		
 	public PanelArmario() throws SQLException{
 		
@@ -504,9 +505,11 @@ public class PanelArmario extends JFrame implements ActionListener {
 	        
         tableConj.setModel(model3);
         
-        JButton btnAadirFecha = new JButton("Añadir a calendario");
+        btnAadirFecha = new JButton("Añadir al calendario");
         btnAadirFecha.setFont(new Font("Century Gothic", Font.BOLD, 10));
-        btnAadirFecha.setBounds(306, 11, 129, 23);
+        btnAadirFecha.setBounds(298, 11, 137, 23);
+        btnAadirFecha.addActionListener(this);
+        btnAadirFecha.setActionCommand("AñadirFecha");
         conjunto.add(btnAadirFecha);
         
         cellSelectionModel4.addListSelectionListener(new ListSelectionListener() {
@@ -703,7 +706,17 @@ public class PanelArmario extends JFrame implements ActionListener {
 	                                
 	                    
 	        break;
-	        
+	        case "AñadirFecha":
+	        	
+	        	if(indice3==0) {
+					JOptionPane.showMessageDialog(null, "Debe seleccionar el conjunto para poder vincularlo a una fecha, clique un conjunto de la tabla","Correcto",JOptionPane.INFORMATION_MESSAGE);
+	        	} else {	        	
+		        	gconjuntos.anyadirConjuntoCalendario(indice3);
+		        	CalendarProgram objCalendar = new CalendarProgram();
+					objCalendar.CrearCalendario();
+	        	}
+	        	
+	        break;	        
 	        case "CrearC":
 	        	gusuarios = new GestorUsuario();
 	        	gprendas = new GestorPrendas();

@@ -148,7 +148,7 @@ public static void crearTablaBDCalendario() {
 	
 	if (statement==null) return;
 	try {
-		statement.executeUpdate("create table if not exists CALENDARIO ( idConjunto int, usuario string, año int, mes string, dia int)");
+		statement.executeUpdate("create table if not exists CALENDARIO ( id int, idConjunto int, usuario string, año int, mes string, dia int)");
 		System.out.println ("Tabla CALENDARIO creada");
 	} catch (SQLException e) {
 		// Si hay excepcion es que la tabla ya existia (lo cual es correcto)

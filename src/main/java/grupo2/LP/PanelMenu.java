@@ -164,12 +164,12 @@ public class PanelMenu extends JFrame implements ActionListener {
                                     
                 getContentPane().add(PanelCentro, BorderLayout.WEST);
                 
-                CrearCalendar = new JButton("Crear calendario");
+                CrearCalendar = new JButton("Ver calendario");
                 CrearCalendar.setForeground(Color.BLACK);
                 CrearCalendar.setAlignmentY(Component.CENTER_ALIGNMENT);
                 CrearCalendar.setAlignmentX(Component.LEFT_ALIGNMENT);
                 CrearCalendar.setSize(200, 29);
-                CrearCalendar.setLocation(100, 115);
+                CrearCalendar.setLocation(100, 155);
                 CrearCalendar.setFont(new Font("Century Gothic", Font.CENTER_BASELINE, 15));
                 //        BSalir.setBounds(100, 103, 150, 30);
                 CrearCalendar.addActionListener(this);
@@ -182,7 +182,7 @@ public class PanelMenu extends JFrame implements ActionListener {
                 Ver.setAlignmentY(Component.CENTER_ALIGNMENT);
                 Ver.setAlignmentX(Component.LEFT_ALIGNMENT);
                 Ver.setSize(200, 29);
-                Ver.setLocation(100, 155);
+                Ver.setLocation(100, 114);
                 Ver.setFont(new Font("Century Gothic", Font.CENTER_BASELINE, 15));
                 //        BSalir.setBounds(100, 103, 150, 30);
                 Ver.addActionListener(this);
@@ -195,7 +195,7 @@ public class PanelMenu extends JFrame implements ActionListener {
                 Conjuntos.setAlignmentY(Component.CENTER_ALIGNMENT);
                 Conjuntos.setAlignmentX(Component.LEFT_ALIGNMENT);
                 Conjuntos.setSize(200, 29);
-                Conjuntos.setLocation(100, 195);
+                Conjuntos.setLocation(100, 315);
                 Conjuntos.setFont(new Font("Century Gothic", Font.BOLD, 15));
                 //        BSalir.setBounds(100, 103, 150, 30);
                 Conjuntos.addActionListener(this);
@@ -208,7 +208,7 @@ public class PanelMenu extends JFrame implements ActionListener {
                 Fav.setAlignmentY(Component.CENTER_ALIGNMENT);
                 Fav.setAlignmentX(Component.LEFT_ALIGNMENT);
                 Fav.setSize(200, 29);
-                Fav.setLocation(100, 235);
+                Fav.setLocation(100, 195);
                 Fav.setFont(new Font("Century Gothic", Font.BOLD, 15));
                 Fav.addActionListener(this);
                         PanelCentro.setLayout(null);
@@ -221,7 +221,7 @@ public class PanelMenu extends JFrame implements ActionListener {
                 Añadir.setAlignmentY(Component.CENTER_ALIGNMENT);
                 Añadir.setAlignmentX(Component.LEFT_ALIGNMENT);
                 Añadir.setSize(200, 29);
-                Añadir.setLocation(100, 275);
+                Añadir.setLocation(100, 235);
                 Añadir.setFont(new Font("Century Gothic", Font.BOLD, 15));
               
                 Añadir.addActionListener(this);
@@ -234,7 +234,7 @@ public class PanelMenu extends JFrame implements ActionListener {
                 AñadirComp.setAlignmentY(Component.CENTER_ALIGNMENT);
                 AñadirComp.setAlignmentX(Component.LEFT_ALIGNMENT);
                 AñadirComp.setSize(200, 29);
-                AñadirComp.setLocation(100, 315);
+                AñadirComp.setLocation(100, 275);
                 AñadirComp.setFont(new Font("Century Gothic", Font.BOLD, 15));
               
                 AñadirComp.addActionListener(this);
@@ -330,7 +330,7 @@ public class PanelMenu extends JFrame implements ActionListener {
 		case "CrearCalendar":
 			
 			CalendarProgram objCalendar = new CalendarProgram();
-			objCalendar.main(null);
+			objCalendar.CrearCalendario();
         
 			break;
         }
