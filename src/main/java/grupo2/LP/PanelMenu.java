@@ -329,8 +329,8 @@ public class PanelMenu extends JFrame implements ActionListener {
 			break;
 		case "CrearCalendar":
 			
-			CalendarProgram objCalendar = new CalendarProgram();
-			objCalendar.CrearCalendario();
+			VerCalendario objCalendar = new VerCalendario();
+			objCalendar.setVisible(true);
         
 			break;
         }

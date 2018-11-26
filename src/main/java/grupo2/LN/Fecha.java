@@ -43,7 +43,6 @@ public class Fecha  implements Comparable<Object> {
 		} else if ( mes==10){ return "Octubre";
 		} else if ( mes==11){ return "Noviemre";
 		} else return "Diciembre";
-		
 	}
 
 

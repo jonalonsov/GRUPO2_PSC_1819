@@ -1,15 +1,9 @@
 package grupo2.LN;
 
-import java.lang.reflect.Array;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Random;
-
-import javax.swing.JOptionPane;
-
 import grupo2.LD.BaseDeDatos;
 
 public class GestorConjuntos {
@@ -267,47 +261,15 @@ public class GestorConjuntos {
 		
 	}
 	
-	public Conjunto[] selectConjuntofromCalendario() {
+	public Calendario[] selectCalendario() {
 		
 		 Statement st=BaseDeDatos.getStatement();
 		 gusuario = new GestorUsuario();
 		//Creamos el arrayList de los que cumplen la condición de ser favoritos
-		ArrayList<Conjunto> conjuntos = new ArrayList<Conjunto>();
-		try {
-			String sentSQL = "select * from CALENDARIO  where ( usuario = '" + gusuario.nombreUsuario() + "')";
-			System.out.println( sentSQL ); 
-			
-			ResultSet rs = st.executeQuery( sentSQL );
-			while (rs.next()) {
-				
-				//Añadimos los id-s de los conjuntos que son favoritos
-				int idCon = rs.getInt(2);
-				Conjunto conj = new Conjunto(idCon, conjuntoconID(idCon).getPrenda1(),conjuntoconID(idCon).getPrenda2(), conjuntoconID(idCon).getUsuario(), conjuntoconID(idCon).getFavorito());
-								
-				conjuntos.add(conj);				
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null;
-			
-		}
-		//Pasamos de ArrayList a Array
-		System.out.println(conjuntos.size());
-		Conjunto[] Arrconjuntos = new Conjunto[conjuntos.size()];
-		Arrconjuntos = conjuntos.toArray(Arrconjuntos);
-		
-		return Arrconjuntos;
-		
-	}
-	
-	public Fecha[] selectFechafromCalendario() {
-		
-		 Statement st=BaseDeDatos.getStatement();
-		 gusuario = new GestorUsuario();
-		//Creamos el arrayList de los que cumplen la condición de ser favoritos
-		 Fecha fecha;
-		ArrayList<Fecha> fechas = new ArrayList<Fecha>();
+		ArrayList<Calendario> calendarios = new ArrayList<Calendario>();
+		Fecha fecha;
+		Conjunto conjunto;
+
 		try {
 			String sentSQL = "select * from CALENDARIO  where ( usuario = '" + gusuario.nombreUsuario() + "')";
 			System.out.println( sentSQL ); 
@@ -317,11 +279,31 @@ public class GestorConjuntos {
 				
 				//Añadimos los id-s de los conjuntos que son favoritos
 				int año = rs.getInt(4);
+				//System.out.println(año);
 				String mes = rs.getString(5);
+				//System.out.println(mes);
 				int dia = rs.getInt(6);
+				//System.out.println(dia);
+				int mesNum =0;
 				
-				fecha = new Fecha(año, parseInt(mes), dia);
-				fechas.add(conj);				
+				if(mes=="Enero") { mesNum=1;
+				} else if ( mes=="Febrero"){ mesNum=2 ;
+				} else if ( mes=="Marzo"){ mesNum=3;
+				} else if ( mes=="Abril"){ mesNum=4;
+				} else if ( mes=="Mayo"){ mesNum=5;
+				} else if ( mes=="Junio"){ mesNum=6;
+				} else if ( mes=="Julio"){ mesNum=7;
+				} else if ( mes=="Agosto"){ mesNum=8;
+				} else if ( mes=="Septiembre"){ mesNum=9;
+				} else if ( mes=="Octubre"){ mesNum=10;
+				} else if ( mes=="Noviemre"){ mesNum=11;
+				} else mesNum=12;
+				
+				
+				fecha = new Fecha(año, mesNum, dia);
+				conjunto = new Conjunto(conjuntoconID(rs.getInt(2)).getId(), conjuntoconID(rs.getInt(2)).getPrenda1(), conjuntoconID(rs.getInt(2)).getPrenda2(), conjuntoconID(rs.getInt(2)).getUsuario(), conjuntoconID(rs.getInt(2)).getFavorito());
+										
+				calendarios.add(new Calendario(rs.getInt(1), conjunto, rs.getString(2),fecha));				
 			}
 			
 		} catch (SQLException e) {
@@ -330,11 +312,11 @@ public class GestorConjuntos {
 			
 		}
 		//Pasamos de ArrayList a Array
-		System.out.println(conjuntos.size());
-		Conjunto[] Arrconjuntos = new Conjunto[conjuntos.size()];
-		Arrconjuntos = conjuntos.toArray(Arrconjuntos);
+		System.out.println(calendarios.size());
+		Calendario[] Arrcalendarios = new Calendario[calendarios.size()];
+		Arrcalendarios = calendarios.toArray(Arrcalendarios);
 		
-		return Arrconjuntos;
+		return Arrcalendarios;
 		
 	}
 	
@@ -439,22 +421,26 @@ public class GestorConjuntos {
 	public Conjunto conjuntoconID(int id) {
 		//SELECT
 		 Statement st=BaseDeDatos.getStatement();
+		 Conjunto objConjunto = null;
 			try {
 				
-				String sentSQL = "select * from CONJUNTO where ( id = '" + id + "')";
+				String sentSQL = "select * from CONJUNTO where ( idC = '" + id + "')";
 				System.out.println( sentSQL ); 
 				
 				ResultSet rs = st.executeQuery( sentSQL );
+				while (rs.next()) {
+					
+					objConjunto = new Conjunto(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4),rs.getInt(5));				
+					return objConjunto;
+				}
 				
-				
-					return (Conjunto) rs;
-					//Añadimos los id-s de los conjuntos que son favoritos
-
 			} catch (SQLException e) {
 				e.printStackTrace();
 				return null;
+				
 			}
-
+			return objConjunto;
+			
 		}
 	
 	public boolean modifFavAleatorio(int id) {

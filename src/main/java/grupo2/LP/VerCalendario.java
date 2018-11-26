@@ -16,7 +16,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
-import grupo2.LN.Conjunto;
+import grupo2.LN.Calendario;
 import grupo2.LN.GestorConjuntos;
 import grupo2.LN.GestorPrendas;
 import javax.swing.JFileChooser;
@@ -193,29 +193,35 @@ public class VerCalendario extends JFrame implements ActionListener {
 						
 						//Cargamos la tabla con los datos de la BD de prendas
 				        DefaultTableModel model3= new DefaultTableModel();
-				        model3.addColumn("Fecha");
 				        model3.addColumn("Id");
+				        model3.addColumn("Fecha");
 				        model3.addColumn("Prenda 1");
 				        model3.addColumn("Prenda 2");
-				        model3.addColumn("Favorito");   
+				        
 				        
 						
 						scrollConj = new JScrollPane(tableConj);
 						scrollConj.setBounds(23, 52, 397, 297);
 						PanelIzquierda.add(scrollConj);
 						
-						Conjunto objconjunto;
-						String mensaje;
-				   		for (int i = 0; i < gconjuntos.selectConjuntofromCalendario().length; i++){
+						Calendario objCalendario = null;
+						String fecha;
+						String prenda1;
+						String prenda2;
+				   		for (int i = 0; i < gconjuntos.selectCalendario().length; i++){
 				        	datoConj = new String[75];
-				        	objconjunto= gconjuntos.selectConjuntosFav()[i];
-				        	if (objconjunto.getFavorito()==0) {
-				        		mensaje ="NO";
-				        	} else mensaje ="SI";
-				        	datoConj[0]=Integer.toString(objconjunto.getId());
-				        	datoConj[1]=gprendas.nombrePrendaconID(objconjunto.getPrenda1());
-				        	datoConj[2]=gprendas.nombrePrendaconID(objconjunto.getPrenda2());
-				        	datoConj[3]=mensaje;
+				        	
+				        	objCalendario= gconjuntos.selectCalendario()[i];
+				        	prenda1 = gprendas.nombrePrendaconID(objCalendario.getConjunto().getPrenda1());
+				        	prenda2 = gprendas.nombrePrendaconID(objCalendario.getConjunto().getPrenda2());
+				        	fecha = objCalendario.getFecha().getDia() + " de " + objCalendario.getFecha().getMes() + " del " +objCalendario.getFecha().getAño();
+				        	datoConj[0]=Integer.toString(objCalendario.getId());
+				        	
+				        	datoConj[1]=fecha;
+				        	
+				        	datoConj[2]=prenda1;
+				        	datoConj[3]=prenda2;
+				        
 				        
 				        	model3.addRow(datoConj);
 
