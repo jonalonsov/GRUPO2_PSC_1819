@@ -143,6 +143,18 @@ public static void crearTablaBDPropuestas() {
 				e.printStackTrace();  
 		}
 	}
+public static void crearTablaBDCalendario() {
+	
+	if (statement==null) return;
+	try {
+		statement.executeUpdate("create table if not exists CALENDARIO ( idConjunto int, usuario string, año int, mes string, dia int)");
+		System.out.println ("Tabla CALENDARIO creada");
+	} catch (SQLException e) {
+		// Si hay excepcion es que la tabla ya existia (lo cual es correcto)
+		if (!e.getMessage().equals("table interaccion already exists"))
+			e.printStackTrace();  
+	}
+}
 
 
 	public static void inicializarValores() {

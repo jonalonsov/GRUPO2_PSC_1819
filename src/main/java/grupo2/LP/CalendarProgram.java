@@ -3,6 +3,8 @@ package grupo2.LP;
 import javax.swing.*;
 import javax.swing.table.*;
 
+import grupo2.LN.Fecha;
+import grupo2.LN.GestorConjuntos;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -17,10 +19,14 @@ public class CalendarProgram {
     static JFrame frmMain;
     static Container pane;
     static DefaultTableModel mtblCalendar; //Table model
+    static JTable jtable;
     static JScrollPane stblCalendar; //The scrollpane
     static JPanel pnlCalendar; //The panel
     static int realDay, realMonth, realYear, currentMonth, currentYear;
 
+    private static Fecha objFecha;
+    private static Integer valueInCell;
+    private static GestorConjuntos  objGestorConjunto;
 
 
     public void main (String args[]) {
@@ -53,11 +59,42 @@ public class CalendarProgram {
 			 * 
 			 */
 			private static final long serialVersionUID = 1L;
-
-		public boolean isCellEditable(int rowIndex, int mColIndex){return true;}};
+/*
+		public boolean isCellEditable(int rowIndex, int mColIndex){return false;}  
+		 	
+	*/	
+		};
 		
+		
+
      	tblCalendar = new JTable(mtblCalendar); //Table using the above model
     	stblCalendar = new JScrollPane(tblCalendar); //The scrollpane of the above table
+    	
+    	//Activamos la selección de la tabla
+    	tblCalendar.setColumnSelectionAllowed(true);
+    	tblCalendar.setRowSelectionAllowed(true);
+
+    	tblCalendar.addMouseListener(new MouseAdapter() {
+    	    @Override
+    	    public void mouseClicked(final MouseEvent e) {
+    	        if (e.getClickCount() == 1) {
+    	            final JTable jTable= (JTable)e.getSource();
+    	            final int row = jTable.getSelectedRow();
+    	            final int column = jTable.getSelectedColumn();
+    	            valueInCell = (Integer)jTable.getValueAt(row, column);
+    	            
+    	            System.out.println("ESTA ES LA FILAAA" + row);
+    			     System.out.println("ESTA ES LA COLUMNAA" + column);
+    			     System.out.println("VALOOOOOOR" + valueInCell);
+    			     
+    	        }
+    	    }
+    	});
+    	
+ 
+		     
+
+		
     	
     	pnlCalendar = new JPanel(null); //Create the "panel" to place components
     	pnlCalendar.setBackground(Color.LIGHT_GRAY);
@@ -173,6 +210,8 @@ public class CalendarProgram {
     	    	        
     	     }
     	     tblCalendar.setDefaultRenderer(tblCalendar.getColumnClass(0), new tblCalendarRenderer()); //Apply renderer
+    	     System.out.println(currentYear);
+    	     System.out.println(currentMonth);
     }
     
     static class tblCalendarRenderer extends DefaultTableCellRenderer{
@@ -255,6 +294,12 @@ public class CalendarProgram {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
+			
+			objGestorConjunto = new GestorConjuntos();
+			
+			objFecha = new Fecha(currentYear, currentMonth, valueInCell);
+			
+		
 			
 		}
 		 

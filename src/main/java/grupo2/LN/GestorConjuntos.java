@@ -96,6 +96,40 @@ public class GestorConjuntos {
 			}
 	}
 	
+	public boolean anyadirConjuntoCalendario(int idConjunto) {
+		 st=BaseDeDatos.getStatement();
+		 gusuario = new GestorUsuario();
+		 int val0=0;
+		 String valNulo = "";
+
+		try {
+				String sentSQL = "insert into CALENDARIO values(" + "'" + idConjunto + "', " + "'" + gusuario.nombreUsuario() + "', " + "'" + val0 + "', "+"'" + valNulo + "', "+"'" + val0 + "')"; 
+				System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+				val0 = st.executeUpdate( sentSQL );
+				if (val0!=1) return false;  // Se tiene que añadir 1 - error si no
+				return true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
+	}
+	
+	public boolean anyadriFechaCalendario(int año, String mes, int dia) {
+		 st=BaseDeDatos.getStatement();
+		try {
+				
+			String sentSQL = "update CALENDARIO set "+ 
+					"favorito = 1 where ( idC = '" + id + "')";
+				System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+				int val = st.executeUpdate( sentSQL );
+				if (val!=1) return false;  // Se tiene que añadir 1 - error si no
+				return true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
+	}
+	
 	public boolean modifFavConjunto(int id) {
 		 st=BaseDeDatos.getStatement();
 		try {

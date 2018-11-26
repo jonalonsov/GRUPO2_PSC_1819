@@ -19,6 +19,7 @@ public class Main {
 		BaseDeDatos.crearTablaBDConjunto();
 		BaseDeDatos.crearTablaBDPropuestas();
 		BaseDeDatos.crearTablaUsuarioSesion();
+		BaseDeDatos.crearTablaBDCalendario();
 		BaseDeDatos.inicializarValores();
 		//BaseDeDatos.insertarUsuario(BaseDeDatos.getStatement());
 		log.trace("Mensaje: Tablas creadas y base de datos inicializada");

@@ -13,8 +13,6 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Random;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -59,7 +57,6 @@ public class PanelArmario extends JFrame implements ActionListener {
 	private JTable table_1;
 	private JTable table_2;
 	private JTable tableConj;
-	private JTable tableC;
 	private JTable tablePropu;
 	private JTextPane texto2;
 	private JPanel complemento;
@@ -87,7 +84,6 @@ public class PanelArmario extends JFrame implements ActionListener {
 	private JButton CrearC;
 	
 	private Conjunto objconjunto;
-	private Prenda objprenda;
 	private GestorConjuntos gconjuntos;
 	private GestorUsuario gusuarios;
 		
@@ -214,7 +210,7 @@ public class PanelArmario extends JFrame implements ActionListener {
    //TABLA COMPLEMENTOS
 		//Aqui se muestra la Pestaña de los Complementos, con sus caracteristicas principales
 			complemento = new JPanel ();
-			panelPestaña.addTab("Complemento",null,complemento, "Complemento");
+			panelPestaña.addTab("Complementos",null,complemento, "Complemento");
 	        complemento.setLayout(null);
             
 	                                    
@@ -312,7 +308,7 @@ public class PanelArmario extends JFrame implements ActionListener {
   //TABLA PRENDAS          
 		//PestañaArmario
 		armario = new JPanel ();
-		panelPestaña.addTab("Armario",null,armario, "Armario");
+		panelPestaña.addTab("Prendas",null,armario, "Armario");
 		 armario.setLayout(null);
 
 		
@@ -435,7 +431,7 @@ public class PanelArmario extends JFrame implements ActionListener {
 	
 	//Panel conjuntos
 		conjunto = new JPanel ();
-		panelPestaña.addTab("Conjunto",null,conjunto, "Conjunto");
+		panelPestaña.addTab("Conjuntos",null,conjunto, "Conjunto");
 		conjunto.setLayout(null);
 		
 		txtpnEstosSonTus = new JTextPane();
