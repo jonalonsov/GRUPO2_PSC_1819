@@ -435,7 +435,7 @@ public class PanelArmario extends JFrame implements ActionListener {
 		conjunto.setLayout(null);
 		
 		txtpnEstosSonTus = new JTextPane();
-		txtpnEstosSonTus.setBounds(91, 5, 263, 36);
+		txtpnEstosSonTus.setBounds(23, 5, 263, 36);
 		txtpnEstosSonTus.setText("Estos son tus conjuntos: ");
 		txtpnEstosSonTus.setForeground(Color.BLACK);
 		txtpnEstosSonTus.setFont(new Font("Dialog", Font.ITALIC, 23));
@@ -446,7 +446,7 @@ public class PanelArmario extends JFrame implements ActionListener {
  		       	
  		 		
 		btnMarcarFavorito = new JButton("Marcar como favorito");
-		btnMarcarFavorito.setBounds(250, 364, 185, 27);
+		btnMarcarFavorito.setBounds(235, 364, 185, 27);
 		btnMarcarFavorito.setForeground(Color.BLACK);
 		btnMarcarFavorito.setFont(new Font("Century Gothic", Font.BOLD, 14));
 		btnMarcarFavorito.setAlignmentY(0.5f);
@@ -472,7 +472,7 @@ public class PanelArmario extends JFrame implements ActionListener {
 		CrearC.setAlignmentX(0.5f);
 		CrearC.addActionListener(this);
 		CrearC.setActionCommand("CrearC");
-		CrearC.setBounds(10, 364, 230, 27);
+		CrearC.setBounds(21, 364, 201, 27);
 		conjunto.add(CrearC);
         
 		
@@ -503,6 +503,11 @@ public class PanelArmario extends JFrame implements ActionListener {
 	     cellSelectionModel4.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	        
         tableConj.setModel(model3);
+        
+        JButton btnAadirFecha = new JButton("Añadir a calendario");
+        btnAadirFecha.setFont(new Font("Century Gothic", Font.BOLD, 10));
+        btnAadirFecha.setBounds(306, 11, 129, 23);
+        conjunto.add(btnAadirFecha);
         
         cellSelectionModel4.addListSelectionListener(new ListSelectionListener() {
     		  public void valueChanged(ListSelectionEvent e1) {
@@ -558,8 +563,8 @@ public class PanelArmario extends JFrame implements ActionListener {
       		txtPropu = new JTextPane();
      		txtPropu.setForeground(SystemColor.desktop);
      		txtPropu.setBackground(Color.lightGray);
-     		txtPropu.setFont(new Font("MS Mincho", Font.ITALIC, 23));
-     		txtPropu.setText("¡Estos son las propuestas en tu armario!");
+     		txtPropu.setFont(new Font("Dialog", Font.ITALIC, 18));
+     		txtPropu.setText("¡Estas son las propuestas de tu armario!");
      		txtPropu.setBounds(56, 11, 334, 33);
     		propuestas.add(txtPropu);
       		    		

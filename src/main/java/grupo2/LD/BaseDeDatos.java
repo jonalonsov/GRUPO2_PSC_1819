@@ -143,6 +143,7 @@ public static void crearTablaBDPropuestas() {
 				e.printStackTrace();  
 		}
 	}
+//Este es el calendario en el que se irán registrando todas las fechas que se han guardado
 public static void crearTablaBDCalendario() {
 	
 	if (statement==null) return;
