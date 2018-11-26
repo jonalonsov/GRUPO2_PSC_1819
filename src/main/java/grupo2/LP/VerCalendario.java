@@ -193,6 +193,7 @@ public class VerCalendario extends JFrame implements ActionListener {
 						
 						//Cargamos la tabla con los datos de la BD de prendas
 				        DefaultTableModel model3= new DefaultTableModel();
+				        model3.addColumn("Fecha");
 				        model3.addColumn("Id");
 				        model3.addColumn("Prenda 1");
 				        model3.addColumn("Prenda 2");
@@ -205,7 +206,7 @@ public class VerCalendario extends JFrame implements ActionListener {
 						
 						Conjunto objconjunto;
 						String mensaje;
-				   		for (int i = 0; i < gconjuntos.selectConjuntosFav().length; i++){
+				   		for (int i = 0; i < gconjuntos.selectConjuntofromCalendario().length; i++){
 				        	datoConj = new String[75];
 				        	objconjunto= gconjuntos.selectConjuntosFav()[i];
 				        	if (objconjunto.getFavorito()==0) {
@@ -219,21 +220,7 @@ public class VerCalendario extends JFrame implements ActionListener {
 				        	model3.addRow(datoConj);
 
 				        }
-				   		for (int i = 0; i < gconjuntos.selectPropuestaFav().length; i++){
-				        	datoConj = new String[75];
-				        	objconjunto= gconjuntos.selectPropuestaFav()[i];
-				        	if (objconjunto.getFavorito()==0) {
-				        		mensaje ="NO";
-				        	} else mensaje ="SI";
-				        	datoConj[0]=Integer.toString(objconjunto.getId());
-				        	datoConj[1]=gprendas.nombrePrendaconID(objconjunto.getPrenda1());
-				        	datoConj[2]=gprendas.nombrePrendaconID(objconjunto.getPrenda2());
-				        	datoConj[3]=mensaje;
-				        
-				        	model3.addRow(datoConj);
-
-				        }
-				       
+				   					       
 				           
 				   		 tableConj.setCellSelectionEnabled(true);
 					     ListSelectionModel cellSelectionModel4 = tableConj.getSelectionModel();
@@ -266,11 +253,13 @@ public class VerCalendario extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		
 		  switch (e.getActionCommand()){
-		  case "NoFavorito":
-	        	gconjuntos.modifNoFavConjunto(indice3);
+		  case "QuitarRegistro":
+			  
+	        	gconjuntos.deleteCalendario(indice3);
 				dispose();
-				VerFavoritos objVerFavoritos = new VerFavoritos();
-	        	objVerFavoritos.setVisible(true);
+				
+				VerCalendario objVerCalendario = new VerCalendario();
+				objVerCalendario.setVisible(true);
 	            
 				 break;
 			       

@@ -188,6 +188,22 @@ public class GestorConjuntos {
 			}
 	}
 	
+	public boolean deleteCalendario(int id) {
+		 st=BaseDeDatos.getStatement();
+		try {
+				
+			String sentSQL = "delete  from CALENDARIO s where ( id = '" + id + "')";
+			
+				System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+				int val = st.executeUpdate( sentSQL );
+				if (val!=1) return false;  // Se tiene que añadir 1 - error si no
+				return true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
+	}
+	
 	
 	
 	public Conjunto[] selectConjuntos() {
@@ -250,6 +266,78 @@ public class GestorConjuntos {
 		return Arrconjuntos;
 		
 	}
+	
+	public Conjunto[] selectConjuntofromCalendario() {
+		
+		 Statement st=BaseDeDatos.getStatement();
+		 gusuario = new GestorUsuario();
+		//Creamos el arrayList de los que cumplen la condición de ser favoritos
+		ArrayList<Conjunto> conjuntos = new ArrayList<Conjunto>();
+		try {
+			String sentSQL = "select * from CALENDARIO  where ( usuario = '" + gusuario.nombreUsuario() + "')";
+			System.out.println( sentSQL ); 
+			
+			ResultSet rs = st.executeQuery( sentSQL );
+			while (rs.next()) {
+				
+				//Añadimos los id-s de los conjuntos que son favoritos
+				int idCon = rs.getInt(2);
+				Conjunto conj = new Conjunto(idCon, conjuntoconID(idCon).getPrenda1(),conjuntoconID(idCon).getPrenda2(), conjuntoconID(idCon).getUsuario(), conjuntoconID(idCon).getFavorito());
+								
+				conjuntos.add(conj);				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+			
+		}
+		//Pasamos de ArrayList a Array
+		System.out.println(conjuntos.size());
+		Conjunto[] Arrconjuntos = new Conjunto[conjuntos.size()];
+		Arrconjuntos = conjuntos.toArray(Arrconjuntos);
+		
+		return Arrconjuntos;
+		
+	}
+	
+	public Fecha[] selectFechafromCalendario() {
+		
+		 Statement st=BaseDeDatos.getStatement();
+		 gusuario = new GestorUsuario();
+		//Creamos el arrayList de los que cumplen la condición de ser favoritos
+		 Fecha fecha;
+		ArrayList<Fecha> fechas = new ArrayList<Fecha>();
+		try {
+			String sentSQL = "select * from CALENDARIO  where ( usuario = '" + gusuario.nombreUsuario() + "')";
+			System.out.println( sentSQL ); 
+			
+			ResultSet rs = st.executeQuery( sentSQL );
+			while (rs.next()) {
+				
+				//Añadimos los id-s de los conjuntos que son favoritos
+				int año = rs.getInt(4);
+				String mes = rs.getString(5);
+				int dia = rs.getInt(6);
+				
+				fecha = new Fecha(año, parseInt(mes), dia);
+				fechas.add(conj);				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+			
+		}
+		//Pasamos de ArrayList a Array
+		System.out.println(conjuntos.size());
+		Conjunto[] Arrconjuntos = new Conjunto[conjuntos.size()];
+		Arrconjuntos = conjuntos.toArray(Arrconjuntos);
+		
+		return Arrconjuntos;
+		
+	}
+	
 	public Conjunto[] selectConjuntosFav() {
 		
 		 Statement st=BaseDeDatos.getStatement();
