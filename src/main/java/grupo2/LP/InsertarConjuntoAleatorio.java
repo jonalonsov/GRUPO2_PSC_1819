@@ -68,6 +68,9 @@ public class InsertarConjuntoAleatorio extends JFrame implements ActionListener 
 	private JRadioButton rdbtnLluvia;
 	private JRadioButton rdbtnFrio;
 	private JRadioButton rdbtnCalor;
+	
+	private JRadioButton rdbtnUrbano;
+	private JRadioButton rdbtnFormal;
 
 	
 	
@@ -237,10 +240,10 @@ public class InsertarConjuntoAleatorio extends JFrame implements ActionListener 
 		        rdbtnCalor.setBounds(264, 85, 69, 25);
 		        PanelIzquierda.add(rdbtnCalor);
 		        
-		        ButtonGroup group = new ButtonGroup();
-		        group.add(rdbtnLluvia);
-		        group.add(rdbtnFrio);
-		        group.add(rdbtnCalor);
+		        ButtonGroup group1 = new ButtonGroup();
+		        group1.add(rdbtnLluvia);
+		        group1.add(rdbtnFrio);
+		        group1.add(rdbtnCalor);
 		        
 		        rdbtnLluvia.addActionListener(this);
 		        rdbtnFrio.addActionListener(this);
@@ -258,13 +261,20 @@ public class InsertarConjuntoAleatorio extends JFrame implements ActionListener 
 		        btnTiempo.setBounds(90, 119, 243, 31);
 		        PanelIzquierda.add(btnTiempo);
 		        
-		        JRadioButton rdbtnFormal = new JRadioButton("Formal");
+		        rdbtnFormal = new JRadioButton("Formal");
 		        rdbtnFormal.setBounds(94, 203, 69, 25);
 		        PanelIzquierda.add(rdbtnFormal);
 		        
-		        JRadioButton rdbtnUrbano = new JRadioButton("Informal");
+		        rdbtnUrbano = new JRadioButton("Informal");
 		        rdbtnUrbano.setBounds(179, 203, 69, 25);
 		        PanelIzquierda.add(rdbtnUrbano);
+		        
+		        ButtonGroup group2 = new ButtonGroup();
+		        group2.add(rdbtnUrbano);
+		        group2.add(rdbtnFormal);
+		        rdbtnUrbano.addActionListener(this);
+		        rdbtnFormal.addActionListener(this);
+		        
 		        
 		        btnEstilo = new JButton("Aplicar filtro de estilo");
 		        btnEstilo.setForeground(Color.BLACK);
@@ -313,6 +323,35 @@ public class InsertarConjuntoAleatorio extends JFrame implements ActionListener 
 		
 		if (e.getSource() == btnEstilo){
 			//filtro estilo
+			
+			if (rdbtnUrbano.isSelected() ){
+				
+				gusuarios = new GestorUsuario();
+	        	gprendas = new GestorPrendas();
+	        	gconjuntos = new GestorConjuntos();
+	        
+	        	int a1= gconjuntos.crearUrbano1();
+	        	int a2 = gconjuntos.crearUrbano2();
+	        	
+	        	gestionar(a1, a2);
+				
+				dispose();
+			}
+			
+			if (rdbtnFormal.isSelected() ){
+				
+				gusuarios = new GestorUsuario();
+	        	gprendas = new GestorPrendas();
+	        	gconjuntos = new GestorConjuntos();
+	        
+	        	int a1= gconjuntos.crearFormal1();
+	        	int a2 = gconjuntos.crearFormal2();
+	        	
+	        	gestionar(a1, a2);
+				
+				dispose();
+				
+			}
 		}
 		
 		if (e.getSource() == btnTiempo){
@@ -334,15 +373,33 @@ public class InsertarConjuntoAleatorio extends JFrame implements ActionListener 
 			
 			if (rdbtnCalor.isSelected() ){
 				
+				gusuarios = new GestorUsuario();
+	        	gprendas = new GestorPrendas();
+	        	gconjuntos = new GestorConjuntos();
+	        
+	        	int a1= gconjuntos.crearCalor1();
+	        	int a2 = gconjuntos.crearCalor2();
+	        	
+	        	gestionar(a1, a2);
+				
+				dispose();
 			}
 			
 			if (rdbtnFrio.isSelected() ){
 				
+				gusuarios = new GestorUsuario();
+	        	gprendas = new GestorPrendas();
+	        	gconjuntos = new GestorConjuntos();
+	        
+	        	int a1= gconjuntos.crearFrio1();
+	        	int a2 = gconjuntos.crearFrio2();
+	        	
+	        	gestionar(a1, a2);
+				
+				dispose();
+				
 			}
 			
-//			group.add(rdbtnLluvia);
-//	        group.add(rdbtnFrio);
-//	        group.add(rdbtnCalor);
 		}
 	}
 	
