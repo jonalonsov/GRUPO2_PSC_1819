@@ -2,6 +2,7 @@ package grupo2.LN;
 
 public class usuario  implements Comparable<Object> {
 
+	private static final long serialVersionUID = 1L;
 	static int count = 0; 
 	int id;
 	private String nombre;

@@ -12,6 +12,7 @@ import java.util.*;
 
 public class CalendarProgram {
 
+	private static final long serialVersionUID = 1L;
     private static JLabel lblMonth;
 	private JLabel lblYear;
     private static JButton btnPrev;

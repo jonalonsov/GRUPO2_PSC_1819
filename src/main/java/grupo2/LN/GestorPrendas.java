@@ -9,6 +9,7 @@ import grupo2.LD.BaseDeDatos;
 
 public class GestorPrendas {
 		
+	private static final long serialVersionUID = 1L;
 	private Statement st;
 	public GestorPrendas(){
 		

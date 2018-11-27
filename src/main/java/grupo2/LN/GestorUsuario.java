@@ -10,6 +10,7 @@ import grupo2.LD.BaseDeDatos;
 
 public class GestorUsuario {
 
+	private static final long serialVersionUID = 1L;
 	//<--GOE--> HACER LO MISMO QUE HE HECHO CON GESTORCOMPLEMENTOS Y GESTORPRENDAS, NO CREAR UN NUEVO OBJETO
 	private Statement st;
 	

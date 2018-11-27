@@ -2,6 +2,7 @@ package grupo2.LN;
 
 public class Complemento  implements Comparable<Object> {
 
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private String nombre;
 	private String color;

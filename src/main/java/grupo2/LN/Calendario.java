@@ -2,6 +2,7 @@ package grupo2.LN;
 
 public class Calendario  implements Comparable<Object> {
 
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private int idConjunto;
 	private String usuario;

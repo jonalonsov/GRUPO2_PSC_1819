@@ -9,9 +9,9 @@ import grupo2.LD.BaseDeDatos;
 
 public class GestorComplemento {
 
-	
-private Statement st;
-private GestorUsuario gusuario;
+	private static final long serialVersionUID = 1L;
+	private Statement st;
+	private GestorUsuario gusuario;
 	public GestorComplemento(){
 
 	}

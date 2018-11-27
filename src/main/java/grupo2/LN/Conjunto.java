@@ -2,6 +2,7 @@ package grupo2.LN;
 
 public class Conjunto  implements Comparable<Object> {
 
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private int prenda1;
 	private int prenda2;

@@ -2,6 +2,7 @@ package grupo2.LN;
 
 public class Fecha  implements Comparable<Object> {
 
+	private static final long serialVersionUID = 1L;
 	private int año;
 	private int mes;
 	private int dia;

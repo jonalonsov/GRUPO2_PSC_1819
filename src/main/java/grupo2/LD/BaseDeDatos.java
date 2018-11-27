@@ -10,6 +10,8 @@ import javax.swing.JOptionPane;
 
 public class BaseDeDatos {
 	
+	private static final long serialVersionUID = 1L;
+	
 	public BaseDeDatos() {
 		
 		//para inicializar la base de datos

@@ -22,6 +22,7 @@ import javax.swing.JTextPane;
 @SuppressWarnings("serial")
 public class PanelMenu extends JFrame implements ActionListener {
 
+	private static final long serialVersionUID = 1L;
     private JPanel PanelSuperior;
     private JPanel PanelInferior;
     private JPanel PanelCentro;
