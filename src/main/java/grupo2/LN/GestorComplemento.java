@@ -89,7 +89,7 @@ private GestorUsuario gusuario;
 		 st=BaseDeDatos.getStatement();
 		try {
 				
-			String sentSQL = "delete from COMPLEMENTO where ( id = '" + id + "')";
+			String sentSQL = "delete from COMPLEMENTO1 where ( id = '" + id + "')";
 			
 				System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
 				int val = st.executeUpdate( sentSQL );

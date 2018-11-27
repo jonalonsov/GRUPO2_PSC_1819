@@ -82,6 +82,8 @@ public class PanelArmario extends JFrame implements ActionListener {
 	private JScrollPane scrollC;
 	private JScrollPane scrollConj;
 	private JScrollPane scrollPropu;
+	private int indice1;
+	private int indice2;
 	private int indice3;
 	private int indice4;
 	private JButton CrearC;
@@ -275,6 +277,7 @@ public class PanelArmario extends JFrame implements ActionListener {
       	
       		        int selectedRow1 = table_2.getSelectedRow();
       		       	  selectedDataID1 = (String) table_2.getValueAt(selectedRow1,0);
+      		       	indice2=Integer.parseInt(selectedDataID1);
       		         System.out.println("Selected: " + selectedDataID1);
       		        
       	       		      		        
@@ -394,6 +397,7 @@ public class PanelArmario extends JFrame implements ActionListener {
                 btnEliminarPrenda.setAlignmentY(0.5f);
                 btnEliminarPrenda.setAlignmentX(0.5f);
                 btnEliminarPrenda.setActionCommand("EliminarP");
+                btnEliminarPrenda.addActionListener(this);
                 btnEliminarPrenda.setBounds(10, 366, 178, 29);
                 armario.add(btnEliminarPrenda);
 		
@@ -403,9 +407,10 @@ public class PanelArmario extends JFrame implements ActionListener {
 	
 		        int selectedRow = table_1.getSelectedRow();
 		  
-	
-		      
+			      
 		            selectedDataID = (String) table_1.getValueAt(selectedRow,0);
+		            indice1=Integer.parseInt(selectedDataID);
+		           
 		        
 		        System.out.println("Selected: " + selectedDataID);
 		        
@@ -463,6 +468,7 @@ public class PanelArmario extends JFrame implements ActionListener {
  		btnEliminarComplemento.setAlignmentY(0.5f);
  		btnEliminarComplemento.setAlignmentX(0.5f);
  		btnEliminarComplemento.setActionCommand("EliminarC");
+ 		btnEliminarComplemento.addActionListener(this);
  		btnEliminarComplemento.setBounds(24, 370, 201, 29);
  		complemento.add(btnEliminarComplemento);
  		       	
@@ -539,6 +545,7 @@ public class PanelArmario extends JFrame implements ActionListener {
         btnBorrarConjunto.setAlignmentY(0.5f);
         btnBorrarConjunto.setAlignmentX(0.5f);
         btnBorrarConjunto.setActionCommand("EliminarConj");
+        btnBorrarConjunto.addActionListener(this);
         btnBorrarConjunto.setBounds(232, 364, 201, 27);
         conjunto.add(btnBorrarConjunto);
         
@@ -668,6 +675,7 @@ public class PanelArmario extends JFrame implements ActionListener {
     	     btnEliminarPropuesta.setAlignmentY(0.5f);
     	     btnEliminarPropuesta.setAlignmentX(0.5f);
     	     btnEliminarPropuesta.setActionCommand("EliminarPropu");
+    	     btnEliminarPropuesta.addActionListener(this);
     	     btnEliminarPropuesta.setBounds(250, 364, 185, 27);
     	     propuestas.add(btnEliminarPropuesta);
             
@@ -767,10 +775,10 @@ public class PanelArmario extends JFrame implements ActionListener {
 	        break;
 	        case "EliminarC":
 	        	
-	        	gcomplementos.EliminarComplemento(indice3);
-				JOptionPane.showMessageDialog( null, "Has eliminado el complemento. ", null, JOptionPane.INFORMATION_MESSAGE);
+	        	gcomplementos.EliminarComplemento(indice2);
+				JOptionPane.showMessageDialog( null, "Has eliminado el complemento del armario. ", null, JOptionPane.INFORMATION_MESSAGE);
 				
-			PanelArmario objPanelArmario2 = null;
+			//PanelArmario objPanelArmario2 = null;
 			try {
 				dispose();
 				objPanelArmario = new PanelArmario();
@@ -778,13 +786,25 @@ public class PanelArmario extends JFrame implements ActionListener {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-				objPanelArmario2.setVisible(true);
+				//objPanelArmario2.setVisible(true);
 	            
 	                                
 	                    
 	        break;
 	        case "EliminarP":
 	        	
+	        	gprendas.EliminarPrenda(indice1);
+				JOptionPane.showMessageDialog( null, "Has eliminado la prenda del armario. ", null, JOptionPane.INFORMATION_MESSAGE);
+				
+			//PanelArmario objPanelArmario2 = null;
+			try {
+				dispose();
+				objPanelArmario = new PanelArmario();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+				//objPanelArmario2.setVisible(true);
 	        	
 	        	
 	            
@@ -793,14 +813,36 @@ public class PanelArmario extends JFrame implements ActionListener {
 	        break;
 	        case "EliminarConj":
 	        	
-	        
+	        	gconjuntos.EliminarConjunto(indice3);
+				JOptionPane.showMessageDialog( null, "Has eliminado el conjunto del armario. ", null, JOptionPane.INFORMATION_MESSAGE);
+				
+			//PanelArmario objPanelArmario2 = null;
+			try {
+				dispose();
+				objPanelArmario = new PanelArmario();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+				//objPanelArmario2.setVisible(true);
 	            
 	                                
 	                    
 	        break;
 	        case "EliminarPropu":
 	        	
-	        	
+	        	gconjuntos.EliminarPropuesta(indice4);
+				JOptionPane.showMessageDialog( null, "Has eliminado la propuesta del armario. ", null, JOptionPane.INFORMATION_MESSAGE);
+				
+			//PanelArmario objPanelArmario2 = null;
+			try {
+				dispose();
+				objPanelArmario = new PanelArmario();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+				//objPanelArmario2.setVisible(true);
 	            
 	                                
 	                    

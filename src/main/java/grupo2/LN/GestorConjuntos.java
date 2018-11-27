@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
 import grupo2.LD.BaseDeDatos;
 
 public class GestorConjuntos {
@@ -553,4 +554,34 @@ public class GestorConjuntos {
   		return id2;
 			
 		}
+	public boolean EliminarConjunto(int id) {
+		 st=BaseDeDatos.getStatement();
+		try {
+				
+			String sentSQL = "delete from CONJUNTO where ( idC = '" + id + "')";
+			
+				System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+				int val = st.executeUpdate( sentSQL );
+				if (val!=1) return false;  // Se tiene que añadir 1 - error si no
+				return true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
+	}
+	public boolean EliminarPropuesta(int id) {
+		 st=BaseDeDatos.getStatement();
+		try {
+				
+			String sentSQL = "delete from PROPUESTAS where ( idP = '" + id + "')";
+			
+				System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+				int val = st.executeUpdate( sentSQL );
+				if (val!=1) return false;  // Se tiene que añadir 1 - error si no
+				return true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
+	}
 }

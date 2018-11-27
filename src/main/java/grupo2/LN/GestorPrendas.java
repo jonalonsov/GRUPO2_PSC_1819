@@ -9,6 +9,7 @@ import grupo2.LD.BaseDeDatos;
 
 public class GestorPrendas {
 		
+	private Statement st;
 	public GestorPrendas(){
 		
 	}
@@ -135,6 +136,22 @@ public class GestorPrendas {
 		
 		return Arrfavoritos;
 		
+	}
+
+	public boolean EliminarPrenda(int id) {
+		 st=BaseDeDatos.getStatement();
+		try {
+				
+			String sentSQL = "delete from PRENDA where ( id = '" + id + "')";
+			
+				System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+				int val = st.executeUpdate( sentSQL );
+				if (val!=1) return false;  // Se tiene que añadir 1 - error si no
+				return true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
 	}
 			
 
