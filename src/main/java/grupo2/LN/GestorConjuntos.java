@@ -481,7 +481,7 @@ public class GestorConjuntos {
 			
 			
 		
-		 String sentSQL = "SELECT id from PRENDA where (usuario = '" + gusuario.nombreUsuario() + "' and nombre = 'Pantalones') ORDER BY RANDOM () LIMIT 1 "; 							
+		 String sentSQL = "SELECT id from PRENDA where (usuario = '" + gusuario.nombreUsuario() + "' and nombre = 'Pantalon largo' or nombre = 'Pantalon corto' or nombre = 'Falda') ORDER BY RANDOM () LIMIT 1 "; 							
 		 log.trace("Mensaje: Se quiere crear un conjunto aleatorio");
 		 try {
 					ResultSet rs = st.executeQuery( sentSQL );
@@ -503,7 +503,7 @@ public class GestorConjuntos {
 		 gusuario = new GestorUsuario();
 		 int id2=0;
 			
-			String sentSQL = "SELECT id from PRENDA where (usuario = '" + gusuario.nombreUsuario() + "' and nombre = 'Jersey' or nombre ='Camiseta' or nombre = 'Camisa') ORDER BY RANDOM () LIMIT 1 "; 			 							
+			String sentSQL = "SELECT id from PRENDA where (usuario = '" + gusuario.nombreUsuario() + "' and nombre = 'Jersey'  or nombre ='Camiseta corta' or nombre ='Camiseta tirantes' or nombre ='Camiseta larga' or nombre = 'Camisa' nombre = 'Chaqueta' nombre = 'Sudadera' nombre = 'Polo' nombre = 'Americana' nombre = 'Abrigo') ORDER BY RANDOM () LIMIT 1 "; 			 							
 				try {
 					ResultSet rs = st.executeQuery( sentSQL );
 					id2 = rs.getInt("id");	
@@ -525,7 +525,7 @@ public class GestorConjuntos {
 		 int id1=0;
 			
 			
-		 String sentSQL = "SELECT id from PRENDA where (usuario = '" + gusuario.nombreUsuario() + "' and nombre = 'Pantalones') ORDER BY RANDOM () LIMIT 1 "; 							
+		 String sentSQL = "SELECT id from PRENDA where (usuario = '" + gusuario.nombreUsuario() + "' and nombre = 'Pantalon largo') ORDER BY RANDOM () LIMIT 1 "; 							
 				try {
 					ResultSet rs = st.executeQuery( sentSQL );
 					id1 = rs.getInt("id");	
@@ -547,7 +547,7 @@ public class GestorConjuntos {
 		 gusuario = new GestorUsuario();
 		 int id2=0;
 			
-			String sentSQL = "SELECT id from PRENDA where (usuario = '" + gusuario.nombreUsuario() + "' and nombre = 'Jersey') ORDER BY RANDOM () LIMIT 1 "; 			 							
+			String sentSQL = "SELECT id from PRENDA where (usuario = '" + gusuario.nombreUsuario() + "' and nombre = 'Chaqueta' or nombre = 'Abrigo' and tejido = 'impermeable') ORDER BY RANDOM () LIMIT 1 "; 			 							
 				try {
 					ResultSet rs = st.executeQuery( sentSQL );
 					id2 = rs.getInt("id");	
@@ -569,7 +569,7 @@ public class GestorConjuntos {
 		 int id1=0;
 			
 			
-		 String sentSQL = "SELECT id from PRENDA where (usuario = '" + gusuario.nombreUsuario() + "' and nombre = 'Pantalones') ORDER BY RANDOM () LIMIT 1 "; 							
+		 String sentSQL = "SELECT id from PRENDA where (usuario = '" + gusuario.nombreUsuario() + "' and nombre = 'falda' or nombre = 'Pantalon corto') ORDER BY RANDOM () LIMIT 1 "; 							
 				try {
 					ResultSet rs = st.executeQuery( sentSQL );
 					id1 = rs.getInt("id");	
@@ -591,7 +591,7 @@ public class GestorConjuntos {
 		 gusuario = new GestorUsuario();
 		 int id2=0;
 			
-			String sentSQL = "SELECT id from PRENDA where (usuario = '" + gusuario.nombreUsuario() + "' and nombre = 'Camiseta') ORDER BY RANDOM () LIMIT 1 "; 			 							
+			String sentSQL = "SELECT id from PRENDA where (usuario = '" + gusuario.nombreUsuario() + "' and nombre = 'Camiseta corta' or nombre = 'Camiseta tirantes' or nombre = 'polo') ORDER BY RANDOM () LIMIT 1 "; 			 							
 				try {
 					ResultSet rs = st.executeQuery( sentSQL );
 					id2 = rs.getInt("id");	
