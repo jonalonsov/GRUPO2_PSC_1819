@@ -277,6 +277,7 @@ public class InsertarConjuntoAleatorio extends JFrame implements ActionListener 
 		        
 		        
 		        btnEstilo = new JButton("Aplicar filtro de estilo");
+		        btnEstilo.addActionListener(this);
 		        btnEstilo.setForeground(Color.BLACK);
 		        btnEstilo.setFont(new Font("Century Gothic", Font.BOLD, 16));
 		        btnEstilo.setAlignmentY(0.5f);
@@ -430,7 +431,7 @@ public class InsertarConjuntoAleatorio extends JFrame implements ActionListener 
 				JOptionPane.showMessageDialog(null, "Conjunto aleatorio introducida con éxito","Correcto",JOptionPane.INFORMATION_MESSAGE);
 					dispose();
 			} else {
-				JOptionPane.showMessageDialog(null, "El conjunto no ha podido introducirse, vuelva a intentarlo. ","Incorrecto",JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "No dispone de prendas suficientes para aplicar este filtro. ","Incorrecto",JOptionPane.ERROR_MESSAGE);
 		
 	}
 			
