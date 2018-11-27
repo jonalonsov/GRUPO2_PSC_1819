@@ -3,14 +3,14 @@ package grupo2.LN;
 public class Calendario  implements Comparable<Object> {
 
 	private int id;
-	private Conjunto conjunto;
+	private int idConjunto;
 	private String usuario;
 	private Fecha fecha;
 
-	public Calendario(int id, Conjunto conjunto, String usuario, Fecha fecha){
+	public Calendario(int id, int idConjunto, String usuario, Fecha fecha){
 		
 		this.setId(id);
-		this.setConjunto(conjunto);
+		this.setIdConjunto(idConjunto);
 		this.setUsuario(usuario);
 		this.setFecha(fecha);
 		
@@ -40,17 +40,6 @@ public class Calendario  implements Comparable<Object> {
 		return 0;
 	}
 
-	public Conjunto getConjunto() {
-		return conjunto;
-	}
-
-
-
-	public void setConjunto(Conjunto conjunto) {
-		this.conjunto = conjunto;
-	}
-
-
 
 	public Fecha getFecha() {
 		return fecha;
@@ -60,6 +49,16 @@ public class Calendario  implements Comparable<Object> {
 
 	public void setFecha(Fecha fecha) {
 		this.fecha = fecha;
+	}
+
+
+	public int getIdConjunto() {
+		return idConjunto;
+	}
+
+
+	public void setIdConjunto(int idConjunto) {
+		this.idConjunto = idConjunto;
 	}
 
 	

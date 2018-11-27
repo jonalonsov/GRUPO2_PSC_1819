@@ -135,11 +135,7 @@ public class GestorConjuntos {
 		 st=BaseDeDatos.getStatement();
 		try {
 			 String sentSQL = "UPDATE CALENDARIO SET año = '" + año + "', mes= " + "'" + mes+ "', dia= " + "'" + dia+ "' where ( id = '" + maxIdCalendario() + "')";
-            /* st = BaseDeDatos.getConnection().prepareStatement(sentSQL);
-             ((PreparedStatement) st).setInt (1, año);
-             ((PreparedStatement) st).setString (2, mes);
-             ((PreparedStatement) st).setInt (3, dia);
-*/
+            
 				System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
 				int val = st.executeUpdate( sentSQL );
 				if (val!=1) return false;  // Se tiene que añadir 1 - error si no
@@ -186,7 +182,7 @@ public class GestorConjuntos {
 		 st=BaseDeDatos.getStatement();
 		try {
 				
-			String sentSQL = "delete  from CALENDARIO s where ( id = '" + id + "')";
+			String sentSQL = "delete from CALENDARIO where ( id = '" + id + "')";
 			
 				System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
 				int val = st.executeUpdate( sentSQL );
@@ -265,11 +261,10 @@ public class GestorConjuntos {
 		
 		 Statement st=BaseDeDatos.getStatement();
 		 gusuario = new GestorUsuario();
+		 
 		//Creamos el arrayList de los que cumplen la condición de ser favoritos
 		ArrayList<Calendario> calendarios = new ArrayList<Calendario>();
 		Fecha fecha;
-		Conjunto conjunto;
-
 		try {
 			String sentSQL = "select * from CALENDARIO  where ( usuario = '" + gusuario.nombreUsuario() + "')";
 			System.out.println( sentSQL ); 
@@ -279,31 +274,29 @@ public class GestorConjuntos {
 				
 				//Añadimos los id-s de los conjuntos que son favoritos
 				int año = rs.getInt(4);
-				//System.out.println(año);
 				String mes = rs.getString(5);
-				//System.out.println(mes);
+				System.out.println("MEEEEEEES" +rs.getString(5));
 				int dia = rs.getInt(6);
-				//System.out.println(dia);
-				int mesNum =0;
+				int mesNum;
 				
-				if(mes=="Enero") { mesNum=1;
-				} else if ( mes=="Febrero"){ mesNum=2 ;
-				} else if ( mes=="Marzo"){ mesNum=3;
-				} else if ( mes=="Abril"){ mesNum=4;
-				} else if ( mes=="Mayo"){ mesNum=5;
-				} else if ( mes=="Junio"){ mesNum=6;
-				} else if ( mes=="Julio"){ mesNum=7;
-				} else if ( mes=="Agosto"){ mesNum=8;
-				} else if ( mes=="Septiembre"){ mesNum=9;
-				} else if ( mes=="Octubre"){ mesNum=10;
-				} else if ( mes=="Noviemre"){ mesNum=11;
+				if(mes.equals("Enero")) { mesNum=1;
+				} else if ( mes.equals("Febrero")){ mesNum=2;
+				} else if ( mes.equals("Marzo")){ mesNum=3;
+				} else if ( mes.equals("Abril")){ mesNum=4;
+				} else if ( mes.equals("Mayo")){ mesNum=5;
+				} else if ( mes.equals("Junio")){ mesNum=6;
+				} else if ( mes.equals("Julio")){ mesNum=7;
+				} else if ( mes.equals("Agosto")){ mesNum=8;
+				} else if ( mes.equals("Septiembre")){ mesNum=9;
+				} else if ( mes.equals("Octubre")){ mesNum=10;
+				} else if ( mes.equals("Noviembre")){ mesNum=11;
 				} else mesNum=12;
 				
 				
 				fecha = new Fecha(año, mesNum, dia);
-				conjunto = new Conjunto(conjuntoconID(rs.getInt(2)).getId(), conjuntoconID(rs.getInt(2)).getPrenda1(), conjuntoconID(rs.getInt(2)).getPrenda2(), conjuntoconID(rs.getInt(2)).getUsuario(), conjuntoconID(rs.getInt(2)).getFavorito());
+				
 										
-				calendarios.add(new Calendario(rs.getInt(1), conjunto, rs.getString(2),fecha));				
+				calendarios.add(new Calendario(rs.getInt(1), rs.getInt(2), rs.getString(3),fecha));				
 			}
 			
 		} catch (SQLException e) {
@@ -312,7 +305,6 @@ public class GestorConjuntos {
 			
 		}
 		//Pasamos de ArrayList a Array
-		System.out.println(calendarios.size());
 		Calendario[] Arrcalendarios = new Calendario[calendarios.size()];
 		Arrcalendarios = calendarios.toArray(Arrcalendarios);
 		

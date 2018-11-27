@@ -34,9 +34,6 @@ public class CalendarProgram {
     private static GestorConjuntos  objGestorConjunto;
     private int selectedRow;
     private int selectedColumn;
-
-
-
     public void CrearCalendario() {
 
     	try {UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());}  
@@ -50,7 +47,7 @@ public class CalendarProgram {
     	frmMain.setSize(330, 375); //Two arguments: width and height
     	pane = frmMain.getContentPane();
     	pane.setLayout(null); //Apply the null layout
-    	frmMain.setDefaultCloseOperation (JFrame.DISPOSE_ON_CLOSE);
+    	frmMain.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
     	
     	
     	
@@ -184,7 +181,54 @@ public class CalendarProgram {
 		btnNext.addActionListener(new btnNext_Action());
 		cmbYear.addActionListener(new cmbYear_Action());
 			
-		
+		frmMain.addWindowListener(new WindowListener() {
+		    @Override
+		    public void windowClosed(WindowEvent e) {
+		        System.out.println("RAN EVENT HANDLER");
+		        frmMain.setVisible(false);
+		        frmMain = null;
+		        pnlCalendar=null;
+		        new CalendarProgram();
+		        
+		        
+		    }
+
+			@Override
+			public void windowOpened(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowClosing(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowIconified(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowDeiconified(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowActivated(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowDeactivated(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
     }
     
@@ -307,22 +351,20 @@ public class CalendarProgram {
 			// TODO Auto-generated method stub
 			
 			objGestorConjunto = new GestorConjuntos();			
-			objFecha = new Fecha(currentYear, currentMonth, valueInCell);					
+			objFecha = new Fecha(currentYear, currentMonth+1, valueInCell);					
 			boolean semaforo = objGestorConjunto.anyadriFechaCalendario(objFecha.getAño(), objFecha.getMes(), objFecha.getDia());
 			
 			if(semaforo==true) {
 				JOptionPane.showMessageDialog(null, "Conjunto añadido al calendario con éxito","Correcto",JOptionPane.INFORMATION_MESSAGE);
 								
 				//frmMain.dispatchEvent(new WindowEvent(frmMain, WindowEvent.WINDOW_CLOSING));
-					frmMain.dispose(); //Destroy the JFrame object		
+					//frmMain.dispose(); //Destroy the JFrame object		
 			} else {
 				JOptionPane.showMessageDialog(null, "El conjunto no ha podido ser añadido al calendario, vuelva a intentarlo. ","Incorrecto",JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
 		 
 	 }
-
-
 }
 	 
 	 

@@ -204,22 +204,30 @@ public class VerCalendario extends JFrame implements ActionListener {
 						scrollConj.setBounds(23, 52, 397, 297);
 						PanelIzquierda.add(scrollConj);
 						
-						Calendario objCalendario = null;
+						Calendario objCalendario;
 						String fecha;
 						String prenda1;
 						String prenda2;
-				   		for (int i = 0; i < gconjuntos.selectCalendario().length; i++){
+						int idConj;
+
+						for (int i = 0; i < gconjuntos.selectCalendario().length; i++){
 				        	datoConj = new String[75];
 				        	
 				        	objCalendario= gconjuntos.selectCalendario()[i];
-				        	prenda1 = gprendas.nombrePrendaconID(objCalendario.getConjunto().getPrenda1());
-				        	prenda2 = gprendas.nombrePrendaconID(objCalendario.getConjunto().getPrenda2());
-				        	fecha = objCalendario.getFecha().getDia() + " de " + objCalendario.getFecha().getMes() + " del " +objCalendario.getFecha().getAño();
-				        	datoConj[0]=Integer.toString(objCalendario.getId());
 				        	
+				        	idConj=objCalendario.getIdConjunto();
+
+				        	prenda1 = gprendas.nombrePrendaconID(gconjuntos.conjuntoconID(idConj).getPrenda1());
+				        	prenda2 = gprendas.nombrePrendaconID(gconjuntos.conjuntoconID(idConj).getPrenda2());
+				        	
+				        	fecha = objCalendario.getFecha().getDia() + " de " + objCalendario.getFecha().getMes() + " del " +objCalendario.getFecha().getAño();
+				        	
+				        	datoConj[0]=Integer.toString(objCalendario.getId());
+
 				        	datoConj[1]=fecha;
 				        	
 				        	datoConj[2]=prenda1;
+				        	
 				        	datoConj[3]=prenda2;
 				        
 				        
@@ -260,7 +268,6 @@ public class VerCalendario extends JFrame implements ActionListener {
 		
 		  switch (e.getActionCommand()){
 		  case "QuitarRegistro":
-			  
 	        	gconjuntos.deleteCalendario(indice3);
 				dispose();
 				

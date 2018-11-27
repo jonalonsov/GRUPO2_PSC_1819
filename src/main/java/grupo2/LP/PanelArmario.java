@@ -66,6 +66,9 @@ public class PanelArmario extends JFrame implements ActionListener {
 	private  JTextPane txtpnHj;
 	private  JTextPane txtPropu;
 	private JScrollPane scroll;
+	private InsertarPrenda objpanePanel;
+	private CalendarProgram objCalendar;
+	private PanelMenu objPanelMenu;
 	
 	private GestorPrendas gprendas;
 	private GestorComplemento gcomplementos;
@@ -507,7 +510,7 @@ public class PanelArmario extends JFrame implements ActionListener {
         
         btnAadirFecha = new JButton("Añadir al calendario");
         btnAadirFecha.setFont(new Font("Century Gothic", Font.BOLD, 10));
-        btnAadirFecha.setBounds(298, 11, 137, 23);
+        btnAadirFecha.setBounds(298, 18, 137, 23);
         btnAadirFecha.addActionListener(this);
         btnAadirFecha.setActionCommand("AñadirFecha");
         conjunto.add(btnAadirFecha);
@@ -692,7 +695,7 @@ public class PanelArmario extends JFrame implements ActionListener {
 
 	        case "Añadir":
 	        	
-	        	InsertarPrenda objpanePanel = new InsertarPrenda();
+	        	objpanePanel = new InsertarPrenda();
 	        	objpanePanel.setVisible(true);
 	            
 	                                
@@ -712,7 +715,8 @@ public class PanelArmario extends JFrame implements ActionListener {
 					JOptionPane.showMessageDialog(null, "Debe seleccionar el conjunto para poder vincularlo a una fecha, clique un conjunto de la tabla","Correcto",JOptionPane.INFORMATION_MESSAGE);
 	        	} else {	        	
 		        	gconjuntos.anyadirConjuntoCalendario(indice3);
-		        	CalendarProgram objCalendar = new CalendarProgram();
+		        	
+		        	objCalendar = new CalendarProgram();
 					objCalendar.CrearCalendario();
 	        	}
 	        	
@@ -757,7 +761,16 @@ public class PanelArmario extends JFrame implements ActionListener {
 	        	dispose();
 
 	            
-	        break;	       
+	        break;	 
+	        
+	        case "X":
+	        	objCalendar = null;
+	        
+	        	dispose();
+	        	objPanelMenu = new PanelMenu();
+	        	objPanelMenu.setVisible(true);
+	            
+	        break;	 
 	       	
 	}
  				
