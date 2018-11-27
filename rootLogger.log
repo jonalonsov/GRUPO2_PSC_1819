@@ -1,0 +1,6 @@
+TRACE - 14:06:52,899 - main - grupo2.Main - Mensaje: Tablas creadas y base de datos inicializada
+ERROR - 14:07:05,157 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: usuario inexistente o se ha puesto mal los campos
+ERROR - 14:07:11,454 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: usuario inexistente o se ha puesto mal los campos
+ERROR - 14:07:20,375 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: usuario inexistente o se ha puesto mal los campos
+TRACE - 14:07:39,455 - main - grupo2.Main - Mensaje: Tablas creadas y base de datos inicializada
+ERROR - 14:07:45,076 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: usuario inexistente o se ha puesto mal los campos

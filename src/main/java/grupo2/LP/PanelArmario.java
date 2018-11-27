@@ -387,6 +387,15 @@ public class PanelArmario extends JFrame implements ActionListener {
                 cellSelectionModel1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
                 
                 table_1.setModel(model);
+                
+                JButton btnEliminarPrenda = new JButton("Eliminar prenda");
+                btnEliminarPrenda.setForeground(Color.BLACK);
+                btnEliminarPrenda.setFont(new Font("Century Gothic", Font.BOLD, 14));
+                btnEliminarPrenda.setAlignmentY(0.5f);
+                btnEliminarPrenda.setAlignmentX(0.5f);
+                btnEliminarPrenda.setActionCommand("EliminarP");
+                btnEliminarPrenda.setBounds(10, 366, 178, 29);
+                armario.add(btnEliminarPrenda);
 		
 	cellSelectionModel1.addListSelectionListener(new ListSelectionListener() {
 		  public void valueChanged(ListSelectionEvent e) {
@@ -447,10 +456,19 @@ public class PanelArmario extends JFrame implements ActionListener {
 		conjunto.add(txtpnEstosSonTus);
 		
  		complemento.add(AñadirC);
+ 		
+ 		JButton btnEliminarComplemento = new JButton("Eliminar complemento");
+ 		btnEliminarComplemento.setForeground(Color.BLACK);
+ 		btnEliminarComplemento.setFont(new Font("Century Gothic", Font.BOLD, 14));
+ 		btnEliminarComplemento.setAlignmentY(0.5f);
+ 		btnEliminarComplemento.setAlignmentX(0.5f);
+ 		btnEliminarComplemento.setActionCommand("EliminarC");
+ 		btnEliminarComplemento.setBounds(24, 370, 201, 29);
+ 		complemento.add(btnEliminarComplemento);
  		       	
  		 		
 		btnMarcarFavorito = new JButton("Marcar como favorito");
-		btnMarcarFavorito.setBounds(235, 364, 185, 27);
+		btnMarcarFavorito.setBounds(298, 5, 137, 23);
 		btnMarcarFavorito.setForeground(Color.BLACK);
 		btnMarcarFavorito.setFont(new Font("Century Gothic", Font.BOLD, 14));
 		btnMarcarFavorito.setAlignmentY(0.5f);
@@ -510,10 +528,19 @@ public class PanelArmario extends JFrame implements ActionListener {
         
         btnAadirFecha = new JButton("Añadir al calendario");
         btnAadirFecha.setFont(new Font("Century Gothic", Font.BOLD, 10));
-        btnAadirFecha.setBounds(298, 18, 137, 23);
+        btnAadirFecha.setBounds(296, 28, 137, 23);
         btnAadirFecha.addActionListener(this);
         btnAadirFecha.setActionCommand("AñadirFecha");
         conjunto.add(btnAadirFecha);
+        
+        JButton btnBorrarConjunto = new JButton("Eliminar Conjunto");
+        btnBorrarConjunto.setForeground(Color.BLACK);
+        btnBorrarConjunto.setFont(new Font("Century Gothic", Font.BOLD, 14));
+        btnBorrarConjunto.setAlignmentY(0.5f);
+        btnBorrarConjunto.setAlignmentX(0.5f);
+        btnBorrarConjunto.setActionCommand("EliminarConj");
+        btnBorrarConjunto.setBounds(232, 364, 201, 27);
+        conjunto.add(btnBorrarConjunto);
         
         cellSelectionModel4.addListSelectionListener(new ListSelectionListener() {
     		  public void valueChanged(ListSelectionEvent e1) {
@@ -571,13 +598,13 @@ public class PanelArmario extends JFrame implements ActionListener {
      		txtPropu.setBackground(Color.lightGray);
      		txtPropu.setFont(new Font("Dialog", Font.ITALIC, 18));
      		txtPropu.setText("¡Estas son las propuestas de tu armario!");
-     		txtPropu.setBounds(56, 11, 334, 33);
+     		txtPropu.setBounds(10, 8, 298, 33);
     		propuestas.add(txtPropu);
       		    		
     		//propuestas.add(AñadirC);
 		     	
     		btnMarcarFavoritoA = new JButton("Marcar como favorito");
-    		btnMarcarFavoritoA.setBounds(250, 364, 185, 27);
+    		btnMarcarFavoritoA.setBounds(315, 14, 120, 27);
     		btnMarcarFavoritoA.setForeground(Color.BLACK);
     		btnMarcarFavoritoA.setFont(new Font("Century Gothic", Font.BOLD, 14));
     		btnMarcarFavoritoA.setAlignmentY(0.5f);
@@ -634,6 +661,15 @@ public class PanelArmario extends JFrame implements ActionListener {
     	     cellSelectionModel5.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     	        
     	     tablePropu.setModel(model4);
+    	     
+    	     JButton btnEliminarPropuesta = new JButton("Eliminar Propuesta");
+    	     btnEliminarPropuesta.setForeground(Color.BLACK);
+    	     btnEliminarPropuesta.setFont(new Font("Century Gothic", Font.BOLD, 14));
+    	     btnEliminarPropuesta.setAlignmentY(0.5f);
+    	     btnEliminarPropuesta.setAlignmentX(0.5f);
+    	     btnEliminarPropuesta.setActionCommand("EliminarPropu");
+    	     btnEliminarPropuesta.setBounds(250, 364, 185, 27);
+    	     propuestas.add(btnEliminarPropuesta);
             
             cellSelectionModel5.addListSelectionListener(new ListSelectionListener() {
       		  public void valueChanged(ListSelectionEvent e2) {
