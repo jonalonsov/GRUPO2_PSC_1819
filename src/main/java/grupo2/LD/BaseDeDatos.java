@@ -1,6 +1,8 @@
 package grupo2.LD;
 
 
+import grupo2.LP.Principal;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -8,9 +10,13 @@ import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
+import org.apache.log4j.Logger;
+
 public class BaseDeDatos {
 	
 	private static final long serialVersionUID = 1L;
+	private final static Logger log = Logger.getLogger(Principal.class.getName());
+	
 	
 	public BaseDeDatos() {
 		
@@ -36,7 +42,7 @@ public class BaseDeDatos {
 		    return connection;
 		} catch (ClassNotFoundException | SQLException e) {
 			JOptionPane.showMessageDialog( null, "Error!! Nombre: " + nombreBD + " / no se ha conectado la base de datos" , "ERROR", JOptionPane.ERROR_MESSAGE );
-			System.out.println( "Error!! Nombre: " + nombreBD + " / Contrasenya incorreta");
+			log.warn("Error!! Nombre: " + nombreBD + " / Contrasenya incorreta");
 			return null;
 		}
 	}
@@ -76,7 +82,8 @@ public class BaseDeDatos {
 		if (statement==null) return;
 		try {
 			statement.executeUpdate("create table if not exists USUARIO ( nombre string, contrasenya string )");
-			System.out.println ("Tabla usuario creada");
+			log.trace("Mensaje: Tabla usuario creada");
+			
 		} catch (SQLException e) {
 			// Si hay excepcion es que la tabla ya existia (lo cual es correcto)
 			if (!e.getMessage().equals("table interaccion already exists"))
@@ -88,7 +95,8 @@ public class BaseDeDatos {
 		if (statement==null) return;
 		try {
 			statement.executeUpdate("create table if not exists PRENDA ( id int, nombre string, color string, tejido string, imagen string, usuario string )");
-			System.out.println ("Tabla prenda creada");
+			
+			log.trace("Mensaje: Tabla prenda creada");
 		} catch (SQLException e) {
 			// Si hay excepcion es que la tabla ya existia (lo cual es correcto)
 			if (!e.getMessage().equals("table interaccion already exists"))
@@ -100,7 +108,8 @@ public class BaseDeDatos {
 		if (statement==null) return;
 		try {
 			statement.executeUpdate("create table if not exists COMPLEMENTO1 ( id int, nombre string, color string, imagen string, usuario string )");
-			System.out.println ("Tabla complemento creada");
+			
+			log.trace("Mensaje: Tabla complemento creada");
 		} catch (SQLException e) {
 			// Si hay excepcion es que la tabla ya existia (lo cual es correcto)
 			if (!e.getMessage().equals("table interaccion already exists"))
@@ -112,7 +121,8 @@ public class BaseDeDatos {
 		if (statement==null) return;
 		try {
 			statement.executeUpdate("create table if not exists USUARIO_SESION ( nombre string, contrasenya string )");
-			System.out.println ("Tabla usuarioS creada");
+			
+			log.trace("Mensaje: Tabla usuario-sesion creada");
 		} catch (SQLException e) {
 			// Si hay excepcion es que la tabla ya existia (lo cual es correcto)
 			if (!e.getMessage().equals("table interaccion already exists"))
@@ -125,7 +135,8 @@ public class BaseDeDatos {
 		if (statement==null) return;
 		try {
 			statement.executeUpdate("create table if not exists CONJUNTO ( idC int, prenda1 int, prenda2 int, usuario string, favorito int)");
-			System.out.println ("Tabla conjunto creada");
+			
+			log.trace("Mensaje: Tabla conjunto creada");
 		} catch (SQLException e) {
 			// Si hay excepcion es que la tabla ya existia (lo cual es correcto)
 			if (!e.getMessage().equals("table interaccion already exists"))
@@ -138,7 +149,8 @@ public static void crearTablaBDPropuestas() {
 		if (statement==null) return;
 		try {
 			statement.executeUpdate("create table if not exists PROPUESTAS ( idP int, prenda1 int, prenda2 int, usuario string, favorito int)");
-			System.out.println ("Tabla propuesta creada");
+			
+			log.trace("Mensaje: Tabla propuesta creada");
 		} catch (SQLException e) {
 			// Si hay excepcion es que la tabla ya existia (lo cual es correcto)
 			if (!e.getMessage().equals("table interaccion already exists"))
@@ -151,7 +163,8 @@ public static void crearTablaBDCalendario() {
 	if (statement==null) return;
 	try {
 		statement.executeUpdate("create table if not exists CALENDARIO ( id int, idConjunto int, usuario string, año int, mes string, dia int)");
-		System.out.println ("Tabla CALENDARIO creada");
+		
+		log.trace("Mensaje: Tabla calendario creada");
 	} catch (SQLException e) {
 		// Si hay excepcion es que la tabla ya existia (lo cual es correcto)
 		if (!e.getMessage().equals("table interaccion already exists"))

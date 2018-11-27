@@ -22,6 +22,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
+import org.apache.log4j.Logger;
+
 import grupo2.LD.BaseDeDatos;
 import grupo2.LN.GestorComplemento;
 import grupo2.LN.GestorUsuario;
@@ -32,6 +34,8 @@ public class InsertarComplemento extends JFrame implements ActionListener {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private final static Logger log = Logger.getLogger(Principal.class.getName());
+	
 	private JPanel PanelSuperior;
 	private JPanel PanelInferior;
 	private JPanel PanelIzquierda;

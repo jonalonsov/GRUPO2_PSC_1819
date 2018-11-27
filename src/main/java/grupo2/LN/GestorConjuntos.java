@@ -5,11 +5,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
+
 import grupo2.LD.BaseDeDatos;
+import grupo2.LP.Principal;
 
 public class GestorConjuntos {
 
 	private static final long serialVersionUID = 1L;
+	private final static Logger log = Logger.getLogger(Principal.class.getName());
 	//<--GOE--> HACER LO MISMO QUE HE HECHO CON GESTORCOMPLEMENTOS Y GESTORPRENDAS, NO CREAR UN NUEVO OBJETO
 	private Statement st;
 	private GestorUsuario gusuario;
@@ -22,13 +26,13 @@ public class GestorConjuntos {
 		Statement st=BaseDeDatos.getStatement();
 		int id=0;
 				String sentSQL = "SELECT idC from Conjunto ORDER BY idC DESC LIMIT 1 ";
-				System.out.println( sentSQL ); 
+				//System.out.println( sentSQL ); 
 				
 				ResultSet rs;
 				try {
 					rs = st.executeQuery( sentSQL );
 						    id = rs.getInt("idC");	
-						    System.out.println(id);
+						  //  System.out.println(id);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -42,13 +46,13 @@ public class GestorConjuntos {
 		Statement st=BaseDeDatos.getStatement();
 		int id=0;
 				String sentSQL = "SELECT idP from PROPUESTAS ORDER BY idP DESC LIMIT 1 ";
-				System.out.println( sentSQL ); 
+				//System.out.println( sentSQL ); 
 				
 				ResultSet rs;
 				try {
 					rs = st.executeQuery( sentSQL );
 						    id = rs.getInt("idP");	
-						    System.out.println(id);
+						   // System.out.println(id);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -62,13 +66,13 @@ public class GestorConjuntos {
 		Statement st=BaseDeDatos.getStatement();
 		int id=0;
 				String sentSQL = "SELECT id from CALENDARIO ORDER BY id DESC LIMIT 1 ";
-				System.out.println( sentSQL ); 
+				//System.out.println( sentSQL ); 
 				
 				ResultSet rs;
 				try {
 					rs = st.executeQuery( sentSQL );
 						    id = rs.getInt("id");	
-						    System.out.println(id);
+						   // System.out.println(id);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -85,7 +89,8 @@ public class GestorConjuntos {
 		try {
 				
 				String sentSQL = "insert into CONJUNTO values(" + "'" + id + "', " + "'" + conjunto.getPrenda1() + "', " + "'" + conjunto.getPrenda2() + "', "+"'" + gusuario.nombreUsuario() + "', "+"'" + conjunto.getFavorito() + "')"; 
-				System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+				log.trace("Mensaje: El conjunto" +id+ " se quiere añadir");
+				//System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
 				val = st.executeUpdate( sentSQL );
 				if (val!=1) return false;  // Se tiene que añadir 1 - error si no
 				return true;
@@ -103,7 +108,8 @@ public class GestorConjuntos {
 		try {
 				
 				String sentSQL = "insert into PROPUESTAS values(" + "'" + id + "', " + "'" + conjunto.getPrenda1() + "', " + "'" + conjunto.getPrenda2() + "', "+"'" + gusuario.nombreUsuario() + "', "+"'" + conjunto.getFavorito() + "')"; 
-				System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+				log.trace("Mensaje: La propuesto" +id+ " se quiere añadir");
+				//System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
 				val = st.executeUpdate( sentSQL );
 				if (val!=1) return false;  // Se tiene que añadir 1 - error si no
 				return true;
@@ -123,7 +129,8 @@ public class GestorConjuntos {
 		 
 		try {
 				String sentSQL = "insert into CALENDARIO values(" + "'" + id + "', " + "'" + idConjunto + "', " + "'" + gusuario.nombreUsuario() + "', " + "'" + val0 + "', "+"'" + valNulo + "', "+"'" + val0 + "')"; 
-				System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+				log.trace("Mensaje: El conjunto" +id+ " se quiere añadir al calendario");
+				//System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
 				val0 = st.executeUpdate( sentSQL );
 				if (val0!=1) return false;  // Se tiene que añadir 1 - error si no
 				return true;
@@ -138,7 +145,7 @@ public class GestorConjuntos {
 		try {
 			 String sentSQL = "UPDATE CALENDARIO SET año = '" + año + "', mes= " + "'" + mes+ "', dia= " + "'" + dia+ "' where ( id = '" + maxIdCalendario() + "')";
             
-				System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+				//System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
 				int val = st.executeUpdate( sentSQL );
 				if (val!=1) return false;  // Se tiene que añadir 1 - error si no
 				return true;
@@ -154,7 +161,8 @@ public class GestorConjuntos {
 				
 			String sentSQL = "update CONJUNTO set "+ 
 					"favorito = 1 where ( idC = '" + id + "')";
-				System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+				//System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+			
 				int val = st.executeUpdate( sentSQL );
 				if (val!=1) return false;  // Se tiene que añadir 1 - error si no
 				return true;
@@ -170,7 +178,7 @@ public class GestorConjuntos {
 				
 			String sentSQL = "update CONJUNTO set "+ 
 					"favorito = 0 where ( idC = '" + id + "')";
-				System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+				//System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
 				int val = st.executeUpdate( sentSQL );
 				if (val!=1) return false;  // Se tiene que añadir 1 - error si no
 				return true;
@@ -186,7 +194,7 @@ public class GestorConjuntos {
 				
 			String sentSQL = "delete from CALENDARIO where ( id = '" + id + "')";
 			
-				System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+				//System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
 				int val = st.executeUpdate( sentSQL );
 				if (val!=1) return false;  // Se tiene que añadir 1 - error si no
 				return true;
@@ -206,7 +214,7 @@ public class GestorConjuntos {
 		ArrayList<Conjunto> conjuntos = new ArrayList<Conjunto>();
 		try {
 			String sentSQL = "select * from CONJUNTO  where ( usuario = '" + gusuario.nombreUsuario() + "' and favorito = '" + 0 + "')";
-			System.out.println( sentSQL ); 
+			//System.out.println( sentSQL ); 
 			
 			ResultSet rs = st.executeQuery( sentSQL );
 			while (rs.next()) {
@@ -221,7 +229,7 @@ public class GestorConjuntos {
 			
 		}
 		//Pasamos de ArrayList a Array
-		System.out.println(conjuntos.size());
+		//System.out.println(conjuntos.size());
 		Conjunto[] Arrconjuntos = new Conjunto[conjuntos.size()];
 		Arrconjuntos = conjuntos.toArray(Arrconjuntos);
 		
@@ -236,7 +244,7 @@ public class GestorConjuntos {
 		ArrayList<Conjunto> conjuntos = new ArrayList<Conjunto>();
 		try {
 			String sentSQL = "select * from PROPUESTAS  where ( usuario = '" + gusuario.nombreUsuario() + "' and favorito = '" + 0 + "')";
-			System.out.println( sentSQL ); 
+			//System.out.println( sentSQL ); 
 			
 			ResultSet rs = st.executeQuery( sentSQL );
 			while (rs.next()) {
@@ -251,7 +259,7 @@ public class GestorConjuntos {
 			
 		}
 		//Pasamos de ArrayList a Array
-		System.out.println(conjuntos.size());
+		//System.out.println(conjuntos.size());
 		Conjunto[] Arrconjuntos = new Conjunto[conjuntos.size()];
 		Arrconjuntos = conjuntos.toArray(Arrconjuntos);
 		
@@ -269,7 +277,7 @@ public class GestorConjuntos {
 		Fecha fecha;
 		try {
 			String sentSQL = "select * from CALENDARIO  where ( usuario = '" + gusuario.nombreUsuario() + "')";
-			System.out.println( sentSQL ); 
+			//System.out.println( sentSQL ); 
 			
 			ResultSet rs = st.executeQuery( sentSQL );
 			while (rs.next()) {
@@ -277,7 +285,7 @@ public class GestorConjuntos {
 				//Añadimos los id-s de los conjuntos que son favoritos
 				int año = rs.getInt(4);
 				String mes = rs.getString(5);
-				System.out.println("MEEEEEEES" +rs.getString(5));
+				//System.out.println("MEEEEEEES" +rs.getString(5));
 				int dia = rs.getInt(6);
 				int mesNum;
 				
@@ -322,10 +330,8 @@ public class GestorConjuntos {
 		 ArrayList<Conjunto> propuestas = new ArrayList<Conjunto>();
 		 try {
 				String sentSQL = "select * from PROPUESTAS where ( usuario = '" + gusuario.nombreUsuario() + "' and favorito = '" + 1 + "')";
-				System.out.println( sentSQL ); 
+				//System.out.println( sentSQL ); 
 				
-				//sentSQL = "select * from PROPUESTAS  where ( usuario = '" + gusuario.nombreUsuario() + "' and favorito = '" + 1 + "')";
-				//System.out.println( sentSQL );
 				
 				ResultSet rs = st.executeQuery( sentSQL );
 				while (rs.next()) {
@@ -340,7 +346,7 @@ public class GestorConjuntos {
 				
 			}
 		 
-		 	System.out.println(propuestas.size());
+		 	//System.out.println(propuestas.size());
 			Conjunto[] Arrpropuesta = new Conjunto[propuestas.size()];
 			Arrpropuesta = propuestas.toArray(Arrpropuesta);
 		 
@@ -348,10 +354,8 @@ public class GestorConjuntos {
 		ArrayList<Conjunto> conjuntos = new ArrayList<Conjunto>();
 		try {
 			String sentSQL = "select * from CONJUNTO where ( usuario = '" + gusuario.nombreUsuario() + "' and favorito = '" + 1 + "')";
-			System.out.println( sentSQL ); 
+			//System.out.println( sentSQL ); 
 			
-			//sentSQL = "select * from PROPUESTAS  where ( usuario = '" + gusuario.nombreUsuario() + "' and favorito = '" + 1 + "')";
-			//System.out.println( sentSQL );
 			
 			ResultSet rs = st.executeQuery( sentSQL );
 			while (rs.next()) {
@@ -366,7 +370,7 @@ public class GestorConjuntos {
 			
 		}
 				//Pasamos de ArrayList a Array
-		System.out.println(conjuntos.size());
+		//System.out.println(conjuntos.size());
 		Conjunto[] Arrconjuntos = new Conjunto[conjuntos.size()];
 		Arrconjuntos = conjuntos.toArray(Arrconjuntos);
 		
@@ -385,7 +389,7 @@ public class GestorConjuntos {
 		 ArrayList<Conjunto> propuestas = new ArrayList<Conjunto>();
 		 try {
 				String sentSQL = "select * from PROPUESTAS where ( usuario = '" + gusuario.nombreUsuario() + "' and favorito = '" + 1 + "')";
-				System.out.println( sentSQL ); 
+				//System.out.println( sentSQL ); 
 				
 				ResultSet rs = st.executeQuery( sentSQL );
 				while (rs.next()) {
@@ -401,7 +405,7 @@ public class GestorConjuntos {
 			}
 		 
 				//Pasamos de ArrayList a Array
-		System.out.println(propuestas.size());
+		//System.out.println(propuestas.size());
 		Conjunto[] Arrpropuestas = new Conjunto[propuestas.size()];
 		Arrpropuestas = propuestas.toArray(Arrpropuestas);
 		
@@ -419,7 +423,7 @@ public class GestorConjuntos {
 			try {
 				
 				String sentSQL = "select * from CONJUNTO where ( idC = '" + id + "')";
-				System.out.println( sentSQL ); 
+				//System.out.println( sentSQL ); 
 				
 				ResultSet rs = st.executeQuery( sentSQL );
 				while (rs.next()) {
@@ -444,7 +448,7 @@ public class GestorConjuntos {
 				
 			String sentSQL = "update PROPUESTAS set "+ 
 					"favorito = 1 where ( idP = '" + id + "')";
-				System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+				//System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
 				int val = st.executeUpdate( sentSQL );
 				if (val!=1) return false;  // Se tiene que añadir 1 - error si no
 				return true;
@@ -460,7 +464,7 @@ public class GestorConjuntos {
 				
 			String sentSQL = "update PROPUESTAS set "+ 
 					"favorito = 0 where ( idP = '" + id + "')";
-				System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+				//System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
 				int val = st.executeUpdate( sentSQL );
 				if (val!=1) return false;  // Se tiene que añadir 1 - error si no
 				return true;
@@ -476,11 +480,13 @@ public class GestorConjuntos {
 		 int id1=0;
 			
 			
+		
 		 String sentSQL = "SELECT id from PRENDA where (usuario = '" + gusuario.nombreUsuario() + "' and nombre = 'Pantalones') ORDER BY RANDOM () LIMIT 1 "; 							
-				try {
+		 log.trace("Mensaje: Se quiere crear un conjunto aleatorio");
+		 try {
 					ResultSet rs = st.executeQuery( sentSQL );
 					id1 = rs.getInt("id");	
-				    System.out.println("Radom 1:"+ id1);
+				   // System.out.println("Radom 1:"+ id1);
 				} catch (SQLException e) {
 					 
 					// TODO Auto-generated catch block
@@ -501,7 +507,7 @@ public class GestorConjuntos {
 				try {
 					ResultSet rs = st.executeQuery( sentSQL );
 					id2 = rs.getInt("id");	
-				    System.out.println("Radom 2:"+ id2);
+				    //System.out.println("Radom 2:"+ id2);
 				} catch (SQLException e) {
 					 
 					// TODO Auto-generated catch block
@@ -523,7 +529,7 @@ public class GestorConjuntos {
 				try {
 					ResultSet rs = st.executeQuery( sentSQL );
 					id1 = rs.getInt("id");	
-				    System.out.println("Radom 1:"+ id1);
+				    //System.out.println("Radom 1:"+ id1);
 				} catch (SQLException e) {
 					 
 					// TODO Auto-generated catch block
@@ -545,7 +551,7 @@ public class GestorConjuntos {
 				try {
 					ResultSet rs = st.executeQuery( sentSQL );
 					id2 = rs.getInt("id");	
-				    System.out.println("Radom 2:"+ id2);
+				    //System.out.println("Radom 2:"+ id2);
 				} catch (SQLException e) {
 					 
 					// TODO Auto-generated catch block
@@ -560,8 +566,9 @@ public class GestorConjuntos {
 		try {
 				
 			String sentSQL = "delete from CONJUNTO where ( idC = '" + id + "')";
+			log.trace("Mensaje: El conjunto" +id+ " se quiere eliminar");
 			
-				System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+				//System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
 				int val = st.executeUpdate( sentSQL );
 				if (val!=1) return false;  // Se tiene que añadir 1 - error si no
 				return true;
@@ -575,8 +582,9 @@ public class GestorConjuntos {
 		try {
 				
 			String sentSQL = "delete from PROPUESTAS where ( idP = '" + id + "')";
+			log.trace("Mensaje: La propuesta" +id+ " se quiere eliminar");
 			
-				System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+				//System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
 				int val = st.executeUpdate( sentSQL );
 				if (val!=1) return false;  // Se tiene que añadir 1 - error si no
 				return true;

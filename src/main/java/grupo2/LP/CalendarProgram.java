@@ -3,6 +3,8 @@ package grupo2.LP;
 import javax.swing.*;
 import javax.swing.table.*;
 
+import org.apache.log4j.Logger;
+
 import grupo2.LN.Fecha;
 import grupo2.LN.GestorConjuntos;
 
@@ -13,6 +15,8 @@ import java.util.*;
 public class CalendarProgram {
 
 	private static final long serialVersionUID = 1L;
+	private final static Logger log = Logger.getLogger(Principal.class.getName());
+	
     private static JLabel lblMonth;
 	private JLabel lblYear;
     private static JButton btnPrev;

@@ -24,12 +24,16 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import org.apache.log4j.Logger;
+
 public class Registrarse extends JFrame implements ActionListener {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private final static Logger log = Logger.getLogger(Principal.class.getName());
+	
 	private JPanel PanelSuperior;
 	private JPanel PanelInferior;
 	private JPanel PanelIzquierda;

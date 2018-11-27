@@ -8,6 +8,7 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -30,12 +31,16 @@ import javax.swing.JFileChooser;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import org.apache.log4j.Logger;
+
 public class InsertarConjunto extends JFrame implements ActionListener {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private final static Logger log = Logger.getLogger(Principal.class.getName());
+	
 	private JPanel PanelSuperior;
 	private JPanel PanelInferior;
 	private JPanel PanelIzquierda;

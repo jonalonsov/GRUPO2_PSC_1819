@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -39,12 +40,16 @@ import grupo2.LN.GestorConjuntos;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTabbedPane;
 
+import org.apache.log4j.Logger;
+
 public class PanelArmario extends JFrame implements ActionListener {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private final static Logger log = Logger.getLogger(Principal.class.getName());
+	
 	private JPanel PanelSuperior;
 	private JPanel PanelInferior;
 	JTabbedPane panelPestaña = new JTabbedPane ();

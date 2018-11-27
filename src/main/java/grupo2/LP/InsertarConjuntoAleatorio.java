@@ -33,12 +33,16 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.JRadioButton;
 
+import org.apache.log4j.Logger;
+
 public class InsertarConjuntoAleatorio extends JFrame implements ActionListener {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private final static Logger log = Logger.getLogger(Principal.class.getName());
+	
 	private JPanel PanelSuperior;
 	private JPanel PanelInferior;
 	private JPanel PanelIzquierda;
