@@ -1,1 +1,10 @@
-TRACE - 20:47:39,476 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: entra correctamente al programa
+TRACE - 22:40:24,625 - main - grupo2.LP.Principal - Mensaje: Tabla propuesta creada
+TRACE - 22:40:24,626 - main - grupo2.LP.Principal - Mensaje: Tabla usuario-sesion creada
+TRACE - 22:40:24,627 - main - grupo2.LP.Principal - Mensaje: Tabla calendario creada
+TRACE - 22:40:24,628 - main - grupo2.Main - Mensaje: Tablas creadas y base de datos inicializada
+ERROR - 22:40:31,840 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: usuario inexistente o se ha puesto mal los campos
+TRACE - 22:40:42,582 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: entra correctamente al programa
+TRACE - 22:41:12,010 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: La prenda6 se quiere añadir
+TRACE - 22:41:49,826 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: La prenda7 se quiere añadir
+TRACE - 22:42:08,624 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: La propuesto5 se quiere añadir
+TRACE - 22:42:27,722 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: La propuesto6 se quiere añadir
