@@ -208,7 +208,7 @@ public class InsertarConjuntoAleatorio extends JFrame implements ActionListener 
 				PanelIzquierda.setBackground(SystemColor.WHITE);
 									
 				getContentPane().add(PanelIzquierda, BorderLayout.WEST);
-						PanelIzquierda.setLayout(null);
+				PanelIzquierda.setLayout(null);
 				PanelIzquierda.add(textT);
 				PanelIzquierda.add(textP);
 				

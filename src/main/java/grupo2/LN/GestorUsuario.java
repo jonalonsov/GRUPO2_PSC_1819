@@ -31,8 +31,7 @@ public class GestorUsuario {
 			try {
 
 				String sentSQL = "select * from USUARIO where (nombre = '" + nombre + "')";
-				//System.out.println( sentSQL ); 
-				
+								
 				ResultSet rs = st.executeQuery( sentSQL );
 				
 				if (rs.next()) {  // Normalmente se recorre con un while, pero aqui solo hay que ver si ya existe
@@ -52,8 +51,7 @@ public class GestorUsuario {
 			try {
 
 				String sentSQL = "select * from USUARIO where ( nombre = '" + nombre + "' and contrasenya = '" + contrasenya + "')";
-				//System.out.println( sentSQL ); 
-				
+								
 				ResultSet rs = st.executeQuery( sentSQL );
 				
 				if (rs.next()) { 
@@ -86,8 +84,6 @@ public class GestorUsuario {
 		// Insercion normal
 		try {
 			String sentSQL = "insert into USUARIO values(" + "'" + user.getNombre() + "', " + "'" + user.getContrasenya() + "')"; 
-			//System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
-			//log.trace("Mensaje: El usuario" +user.getNombre()+ " se quiere añadir");
 			int val = st.executeUpdate( sentSQL );
 			if (val!=1) return false;  // Se tiene que añadir 1 - error si no
 			return true;
@@ -130,7 +126,7 @@ public class GestorUsuario {
 				String sentSQL = "update USUARIO set "+ 
 						"nombre = '" + user.getNombre() + "', " +
 						"contrasenya = '" + user.getContrasenya() + "'";
-				//System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+			
 				int val = st.executeUpdate( sentSQL );
 				if (val!=1) return false;  // Se tiene que modificar 1, error si no
 				return true;
@@ -146,7 +142,7 @@ public class GestorUsuario {
 		//meter a la tabla temporal de usuario para saber durante la sesión qué usuario está en el sistema	
 			try {		
 					String sentSQL = "delete from USUARIO_SESION";
-					//System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+					
 					int val = st.executeUpdate( sentSQL );
 					if (val!=1) return false;  // Se tiene que modificar 1, error si no
 					return true;
@@ -174,7 +170,6 @@ public class GestorUsuario {
 		//SELECT
 		try {
 				String sentSQL = "select * from USUARIO_SESION";
-				//System.out.println( sentSQL ); 
 				
 				ResultSet rs = st.executeQuery( sentSQL );
 

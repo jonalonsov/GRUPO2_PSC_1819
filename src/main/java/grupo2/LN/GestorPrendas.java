@@ -27,8 +27,6 @@ public class GestorPrendas {
 		int id=0;
 				String sentSQL = "SELECT id from PRENDA ORDER BY id DESC LIMIT 1 ";
 				
-				//System.out.println( sentSQL ); 
-				
 				ResultSet rs;
 				try {
 					rs = st.executeQuery( sentSQL );
@@ -48,8 +46,7 @@ public class GestorPrendas {
 		try {
 				
 				String sentSQL = "insert into PRENDA values(" + "'" + id + "', " + "'" + prenda.getNombre() + "', " + "'" + prenda.getColor() + "', "+"'" + prenda.getTejido() + "', "+"'" + prenda.getImagen() + "', "+"'" + prenda.getUsuario() + "')"; 
-				log.trace("Mensaje: La prenda" +id+ " se quiere añadir");
-				//System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+				log.trace("Mensaje: La prenda " +id+ " se ha añadido");
 				st.executeUpdate( sentSQL );
 				return true;
 			} catch (SQLException e) {
@@ -68,7 +65,6 @@ public class GestorPrendas {
 		ArrayList<Prenda> prendas = new ArrayList<Prenda>();
 		try {
 			String sentSQL = "select * from PRENDA  where ( usuario = '" + gusuario.nombreUsuario() + "')";
-			//System.out.println( sentSQL ); 
 			
 			ResultSet rs = st.executeQuery( sentSQL );
 			while (rs.next()) {
@@ -82,9 +78,7 @@ public class GestorPrendas {
 			return null;
 			
 		}
-		//Pasamos de ArrayList a Array
-	//	System.out.println("AQUI VA EL TAMAÑOOOOO");
-		//System.out.println(prendas.size());
+		
 		Prenda[] Arrprendas = new Prenda[prendas.size()];
 		Arrprendas = prendas.toArray(Arrprendas);
 		
@@ -99,7 +93,6 @@ public class GestorPrendas {
 			try {
 				
 				String sentSQL = "select * from PRENDA where ( id = '" + id + "')";
-				//System.out.println( sentSQL ); 
 				
 				ResultSet rs = st.executeQuery( sentSQL );
 				
@@ -123,7 +116,6 @@ public class GestorPrendas {
 		ArrayList<Conjunto> favoritos = new ArrayList<Conjunto>();
 		try {
 			String sentSQL = "select id from CONJUNTO where favorito = 1)";
-			//System.out.println( sentSQL ); 
 			
 			ResultSet rs = st.executeQuery( sentSQL );
 			
@@ -151,8 +143,7 @@ public class GestorPrendas {
 				
 			String sentSQL = "delete from PRENDA where ( id = '" + id + "')";
 			
-				//System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
-			log.trace("Mensaje: La prenda" +id+ " se quiere eliminar");
+			log.trace("Mensaje: La prenda " +id+ " se ha eliminado");
 				int val = st.executeUpdate( sentSQL );
 				if (val!=1) return false;  // Se tiene que añadir 1 - error si no
 				return true;

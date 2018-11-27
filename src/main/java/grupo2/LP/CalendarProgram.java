@@ -70,7 +70,7 @@ public class CalendarProgram {
      	mtblCalendar = new DefaultTableModel(){/**
 			 * 
 			 */
-			private static final long serialVersionUID = 1L;
+			
 /*
 		public boolean isCellEditable(int rowIndex, int mColIndex){return false;}  
 		 	
@@ -95,9 +95,9 @@ public class CalendarProgram {
     	            selectedColumn = jTable.getSelectedColumn();
     	            valueInCell = (Integer)jTable.getValueAt(selectedRow, selectedColumn);
     	            
-    	            System.out.println("ESTA ES LA FILAAA" + selectedRow);
-    			    System.out.println("ESTA ES LA COLUMNAA" + selectedColumn);
-    			    System.out.println("VALOOOOOOR" + valueInCell);
+    	          //  System.out.println("ESTA ES LA FILAAA" + selectedRow);
+    			  //  System.out.println("ESTA ES LA COLUMNAA" + selectedColumn);
+    			  //  System.out.println("VALOOOOOOR" + valueInCell);
     			     
     			 
     			     
@@ -268,8 +268,8 @@ public class CalendarProgram {
     	    	        
     	     }
     	     tblCalendar.setDefaultRenderer(tblCalendar.getColumnClass(0), new tblCalendarRenderer()); //Apply renderer
-    	     System.out.println(currentYear);
-    	     System.out.println(currentMonth);
+    	   //  System.out.println(currentYear);
+    	   //  System.out.println(currentMonth);
     }
     
     static class tblCalendarRenderer extends DefaultTableCellRenderer{
@@ -290,8 +290,8 @@ public class CalendarProgram {
     		            }
     		            if (value != null){
     		               
-    		            	System.out.println(realDay);
-    		            	System.out.println(valueInCell);
+    		            	//System.out.println(realDay);
+    		            	//System.out.println(valueInCell);
     						if (Integer.parseInt(value.toString()) == realDay && currentMonth == realMonth && currentYear == realYear){ //Today
     		                    setBackground(new Color(220, 220, 255));
     		                }

@@ -86,7 +86,6 @@ public class InsertarComplemento extends JFrame implements ActionListener {
 		setLocationRelativeTo( null );  // Centra la ventana en la pantalla
 		setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
 		setBounds(250, 50, 450, 600); 
-		//PanelSuperior.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().setLayout(new BorderLayout());
 		
 		M = new JTextArea();
@@ -253,7 +252,8 @@ public class InsertarComplemento extends JFrame implements ActionListener {
 			 
 			    //Seleccionamos el fichero
 			 imagen =fc.getSelectedFile();
-			 System.out.println(imagen.getAbsolutePath());
+			 log.trace("Imagen insertada:"+ imagen.getAbsolutePath());
+			
 //			    try(FileWriter fw=new FileWriter(fichero)){
 //			 
 //			        //Escribimos el texto en el fichero
@@ -275,9 +275,7 @@ public class InsertarComplemento extends JFrame implements ActionListener {
 			} else {
 				
 				gusuario = new GestorUsuario();
-				System.out.println(gusuario.nombreUsuario());	
-						
-												
+										
 						complemento = new grupo2.LN.Complemento (0, nombre, color, imagen.getAbsolutePath(), gusuario.nombreUsuario());		
 						
 						gcomplementos = new GestorComplemento();

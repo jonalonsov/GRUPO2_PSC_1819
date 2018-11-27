@@ -264,8 +264,7 @@ public class Principal extends JFrame implements ActionListener {
 						
 						
 				JPanel PanelDerecha = new JPanel();
-				//PanelIzquierda.setSize(400, 432);
-				
+								
 				PanelDerecha.setPreferredSize( new Dimension( 450,  450 ) );
 				PanelDerecha.setBackground(SystemColor.activeCaption);
 									
