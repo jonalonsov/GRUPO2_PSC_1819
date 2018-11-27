@@ -765,7 +765,46 @@ public class PanelArmario extends JFrame implements ActionListener {
 	        	dispose();
          
 	        break;
+	        case "EliminarC":
+	        	
+	        	gcomplementos.EliminarComplemento(indice3);
+				JOptionPane.showMessageDialog( null, "Has eliminado el complemento. ", null, JOptionPane.INFORMATION_MESSAGE);
+				
+			PanelArmario objPanelArmario2 = null;
+			try {
+				dispose();
+				objPanelArmario = new PanelArmario();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+				objPanelArmario2.setVisible(true);
+	            
+	                                
+	                    
+	        break;
+	        case "EliminarP":
+	        	
+	        	
+	        	
+	            
+	                                
+	                    
+	        break;
+	        case "EliminarConj":
+	        	
 	        
+	            
+	                                
+	                    
+	        break;
+	        case "EliminarPropu":
+	        	
+	        	
+	            
+	                                
+	                    
+	        break;
 	        case "Salir":
 	        	dispose();
 

@@ -85,4 +85,20 @@ private GestorUsuario gusuario;
 		return Arrcomplementos;
 	}
 
+	public boolean EliminarComplemento(int id) {
+		 st=BaseDeDatos.getStatement();
+		try {
+				
+			String sentSQL = "delete from COMPLEMENTO where ( id = '" + id + "')";
+			
+				System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+				int val = st.executeUpdate( sentSQL );
+				if (val!=1) return false;  // Se tiene que añadir 1 - error si no
+				return true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
+	}
+
 }
