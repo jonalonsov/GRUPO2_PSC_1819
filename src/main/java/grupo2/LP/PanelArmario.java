@@ -224,10 +224,11 @@ public class PanelArmario extends JFrame implements ActionListener {
 	        texto2.setForeground(SystemColor.desktop);
 	        texto2.setBackground(Color.lightGray);
 	        texto2.setFont(new Font("MS Mincho", Font.ITALIC, 23));
-	        texto2.setText("¡Aqui estan tus complementos!");
-	        texto2.setBounds(52, 11, 324, 36);
+	        texto2.setText("¡TUS COMPLEMENTOS!");
+	        texto2.setBounds(56, 11, 334, 33);
 	        complemento.add(texto2);
-                         
+	        
+	                               
      		AñadirC = new JButton("Añadir complemento");
      		complemento.add(AñadirC);
      		AñadirC.setForeground(Color.BLACK);             	
@@ -324,7 +325,7 @@ public class PanelArmario extends JFrame implements ActionListener {
 		  txtpnHj.setForeground(SystemColor.desktop);
 		  txtpnHj.setBackground(Color.lightGray);
 		  txtpnHj.setFont(new Font("MS Mincho", Font.ITALIC, 23));
-		  txtpnHj.setText("¡Ya estas dentro de tu armario!");
+		  txtpnHj.setText("¡Ya estas entu armario!");
 		  txtpnHj.setBounds(56, 11, 334, 33);
 		  armario.add(txtpnHj);
 			  
@@ -453,12 +454,14 @@ public class PanelArmario extends JFrame implements ActionListener {
 		conjunto.setLayout(null);
 		
 		txtpnEstosSonTus = new JTextPane();
-		txtpnEstosSonTus.setBounds(23, 5, 263, 36);
-		txtpnEstosSonTus.setText("Estos son tus conjuntos: ");
-		txtpnEstosSonTus.setForeground(Color.BLACK);
-		txtpnEstosSonTus.setFont(new Font("Dialog", Font.ITALIC, 23));
+		txtpnEstosSonTus.setBounds(56, 11, 230, 36);
+		txtpnEstosSonTus.setText("¡TUS CONJUNTOS! ");
+		txtpnEstosSonTus.setForeground(SystemColor.desktop);
+		txtpnEstosSonTus.setFont(new Font("MS Mincho", Font.ITALIC, 23));
 		txtpnEstosSonTus.setBackground(Color.LIGHT_GRAY);
 		conjunto.add(txtpnEstosSonTus);
+		
+		 
 		
  		complemento.add(AñadirC);
  		
@@ -473,10 +476,10 @@ public class PanelArmario extends JFrame implements ActionListener {
  		complemento.add(btnEliminarComplemento);
  		       	
  		 		
-		btnMarcarFavorito = new JButton("Marcar como favorito");
+		btnMarcarFavorito = new JButton("Marcar Favorito");
 		btnMarcarFavorito.setBounds(298, 5, 137, 23);
 		btnMarcarFavorito.setForeground(Color.BLACK);
-		btnMarcarFavorito.setFont(new Font("Century Gothic", Font.BOLD, 14));
+		btnMarcarFavorito.setFont(new Font("Century Gothic", Font.BOLD, 10));
 		btnMarcarFavorito.setAlignmentY(0.5f);
 		btnMarcarFavorito.setAlignmentX(0.5f);
 		btnMarcarFavorito.addActionListener(this);
@@ -603,17 +606,18 @@ public class PanelArmario extends JFrame implements ActionListener {
       		txtPropu = new JTextPane();
      		txtPropu.setForeground(SystemColor.desktop);
      		txtPropu.setBackground(Color.lightGray);
-     		txtPropu.setFont(new Font("Dialog", Font.ITALIC, 18));
-     		txtPropu.setText("¡Estas son las propuestas de tu armario!");
-     		txtPropu.setBounds(10, 8, 298, 33);
+     		txtPropu.setFont(new Font("MS Mincho", Font.ITALIC, 23));
+     		txtPropu.setText("¡Las propuestas!");
+     		txtPropu.setBounds(56, 11, 230, 36);
     		propuestas.add(txtPropu);
-      		    		
+    		
+    		      		    		
     		//propuestas.add(AñadirC);
 		     	
-    		btnMarcarFavoritoA = new JButton("Marcar como favorito");
+    		btnMarcarFavoritoA = new JButton("Marcar Favorito");
     		btnMarcarFavoritoA.setBounds(315, 14, 120, 27);
     		btnMarcarFavoritoA.setForeground(Color.BLACK);
-    		btnMarcarFavoritoA.setFont(new Font("Century Gothic", Font.BOLD, 14));
+    		btnMarcarFavoritoA.setFont(new Font("Century Gothic", Font.BOLD, 10));
     		btnMarcarFavoritoA.setAlignmentY(0.5f);
     		btnMarcarFavoritoA.setAlignmentX(0.5f);
     		btnMarcarFavoritoA.addActionListener(this);

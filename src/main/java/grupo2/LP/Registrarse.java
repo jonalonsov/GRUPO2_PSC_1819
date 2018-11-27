@@ -213,7 +213,8 @@ public class Registrarse extends JFrame implements ActionListener {
 				btnRegistrar.setAlignmentX(Component.RIGHT_ALIGNMENT);
 				btnRegistrar.setSize(113, 31);
 				btnRegistrar.setLocation(95, 205);
-				btnRegistrar.setFont(new Font("Century Gothic", Font.BOLD, 16));
+				//btnRegistrar.setFont(new Font("Century Gothic", Font.BOLD, 11));
+				btnRegistrar.setFont(new Font("Century Gothic", Font.BOLD, 10));
 				//		BSalir.setBounds(100, 103, 150, 30);
 				btnRegistrar.addActionListener(this);
 						PanelIzquierda.setLayout(null);
