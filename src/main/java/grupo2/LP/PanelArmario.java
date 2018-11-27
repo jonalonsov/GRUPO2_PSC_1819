@@ -284,12 +284,12 @@ public class PanelArmario extends JFrame implements ActionListener {
       		        int selectedRow1 = table_2.getSelectedRow();
       		       	  selectedDataID1 = (String) table_2.getValueAt(selectedRow1,0);
       		       	indice2=Integer.parseInt(selectedDataID1);
-      		         System.out.println("Selected: " + selectedDataID1);
+      		      log.trace("Id seleecionado: "+ indice2); 
       		        
       	       		      		        
       		 //<--GOR--> ESTO NO SE DEBERÍA PONER AQUÍ, LD                     
                       String sql="SELECT imagen FROM COMPLEMENTO1 WHERE id = '"+ selectedDataID1 + "'";
-                      System.out.println(sql);		
+                     // System.out.println(sql);		
                       Statement st2=BaseDeDatos.getStatement();
                       ResultSet result2 = null;
                       
@@ -308,7 +308,7 @@ public class PanelArmario extends JFrame implements ActionListener {
       					// TODO Auto-generated catch block
       					e1.printStackTrace();
       				}
-      				System.out.println(imagePath);
+      				//System.out.println(imagePath);
       				//ImageIcon imagen = new ImageIcon(imagePath).getScaledInstance(lblLabelImagen.getWidth(), lblLabelImagen.getHeight(),imagen.SCALE_SMOOTH);
       				ImageIcon imagenIcono = new ImageIcon(imagePath);
       				Image imagen = imagenIcono.getImage(); // transform it 
@@ -418,13 +418,13 @@ public class PanelArmario extends JFrame implements ActionListener {
 		            indice1=Integer.parseInt(selectedDataID);
 		           
 		        
-		        System.out.println("Selected: " + selectedDataID);
+		            log.trace("Id seleecionado: "+ indice1); 
 		        
 	       		
 		        
 		 //<--GOR--> ESTO NO SE DEBERÍA PONER AQUÍ, LD                     
                 String sql="SELECT imagen FROM PRENDA WHERE id = '"+ selectedDataID + "'";
-                System.out.println(sql);		
+               // System.out.println(sql);		
                 Statement st2=BaseDeDatos.getStatement();
                 ResultSet result2 = null;
                 
@@ -443,7 +443,7 @@ public class PanelArmario extends JFrame implements ActionListener {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				System.out.println(imagePath);
+				//System.out.println(imagePath);
 				//ImageIcon imagen = new ImageIcon(imagePath).getScaledInstance(lblLabelImagen.getWidth(), lblLabelImagen.getHeight(),imagen.SCALE_SMOOTH);
 				ImageIcon imagenIcono = new ImageIcon(imagePath);
 				Image imagen = imagenIcono.getImage(); // transform it 
@@ -567,7 +567,7 @@ public class PanelArmario extends JFrame implements ActionListener {
 		            selectedDataID3 = (String) tableConj.getValueAt(selectedRow3,0);
 		            indice3=Integer.parseInt(selectedDataID3);
 		            
-		            System.out.println("Selected: " + indice3);
+		            log.trace("Id seleecionado: "+ indice3); 
 		            
 		            
 		            
@@ -698,7 +698,7 @@ public class PanelArmario extends JFrame implements ActionListener {
   		            selectedDataID4 = (String) tablePropu.getValueAt(selectedRow4,0);
   		            indice4=Integer.parseInt(selectedDataID4);
   		            
-  		            System.out.println("Selected: " + indice4);
+  		          log.trace("Id seleecionado: "+ indice4); 
     
    
       		  }

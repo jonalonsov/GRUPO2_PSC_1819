@@ -159,7 +159,6 @@ public class PanelMenu extends JFrame implements ActionListener {
                 
             //PanelCentro    
                 PanelCentro = new JPanel();
-                //PanelIzquierda.setSize(400, 432);
                 
                 PanelCentro.setPreferredSize( new Dimension( 450,  450 ) );
                 PanelCentro.setBackground(SystemColor.WHITE);

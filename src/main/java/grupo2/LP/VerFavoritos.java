@@ -257,7 +257,7 @@ public class VerFavoritos extends JFrame implements ActionListener {
 						            selectedDataID = (String) tableConj.getValueAt(selectedRow3,0);
 						            indice3=Integer.parseInt(selectedDataID);
 						            
-						            System.out.println("Selected: " + indice3);
+						            log.trace("Id seleecionado: "+ indice3); 
 				    		 }
 				 		 });
 				        

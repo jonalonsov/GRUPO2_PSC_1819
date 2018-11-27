@@ -258,7 +258,7 @@ public class InsertarPrenda extends JFrame implements ActionListener {
 			 
 			    //Seleccionamos el fichero
 			 imagen =fc.getSelectedFile();
-			 System.out.println(imagen.getAbsolutePath());
+			 //System.out.println(imagen.getAbsolutePath());
 //			    try(FileWriter fw=new FileWriter(fichero)){
 //			 
 //			        //Escribimos el texto en el fichero

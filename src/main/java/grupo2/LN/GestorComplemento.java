@@ -25,7 +25,6 @@ public class GestorComplemento {
 		st=BaseDeDatos.getStatement();
 		int id=0;
 				String sentSQL = "SELECT id from COMPLEMENTO1 ORDER BY id DESC LIMIT 1 ";
-				//System.out.println( sentSQL ); 
 				
 				ResultSet rs;
 				try {
@@ -48,8 +47,8 @@ public class GestorComplemento {
 		try {
 	
 				String sentSQL = "insert into COMPLEMENTO1 values(" + "'" + id + "', " + "'" + complemento.getNombre() + "', " + "'" + complemento.getColor() + "',"+"'" + complemento.getImagen() + "', " + "'" + complemento.getUsuario() + "')"; 
-				//System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
-				log.trace("Mensaje: El complemento" +id+ " se quiere añadir");
+				
+				log.trace("Mensaje: El complemento " +id+ " se ha añadido");
 				int val = st.executeUpdate( sentSQL );
 				if (val!=1) return false;  // Se tiene que añadir 1 - error si no
 				return true;
@@ -67,7 +66,6 @@ public class GestorComplemento {
 		ArrayList<Complemento> complementos = new ArrayList<Complemento>();
 		try {
 			String sentSQL = "select * from COMPLEMENTO1 where ( usuario = '" + gusuario.nombreUsuario() + "')";
-			//System.out.println( sentSQL ); 
 			
 			ResultSet rs = st.executeQuery( sentSQL );
 			
@@ -82,8 +80,7 @@ public class GestorComplemento {
 			
 		}
 		//Pasamos de ArrayList a Array
-		//System.out.println("AQUI VA EL TAMAÑOOOOO");
-		//System.out.println(complementos.size());
+		
 		Complemento[] Arrcomplementos = new Complemento[complementos.size()];
 		Arrcomplementos = complementos.toArray(Arrcomplementos);
 		
@@ -96,8 +93,7 @@ public class GestorComplemento {
 				
 			String sentSQL = "delete from COMPLEMENTO1 where ( id = '" + id + "')";
 			
-				//System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
-			log.trace("Mensaje: El complemento" +id+ " se quiere eliminar");
+			log.trace("Mensaje: El complemento " +id+ " se ha eliminado");
 			
 				int val = st.executeUpdate( sentSQL );
 				if (val!=1) return false;  // Se tiene que añadir 1 - error si no
