@@ -1,9 +1,0 @@
-<map id="grupo2.LP.InsertarConjunto.InsertarConjunto" name="grupo2.LP.InsertarConjunto.InsertarConjunto">
-<area shape="rect" id="node2" href="$classgrupo2_1_1_l_n_1_1_gestor_prendas.html#ae23f381e9f75e611c275f743f184e471" title="grupo2.LN.GestorPrendas.select\lPrendas" alt="" coords="236,37,447,79"/>
-<area shape="rect" id="node5" href="$classgrupo2_1_1_l_n_1_1_prenda.html#a3153425eee3accf5795dd572a816d16a" title="grupo2.LN.Prenda.getId" alt="" coords="262,103,421,130"/>
-<area shape="rect" id="node6" href="$classgrupo2_1_1_l_n_1_1_prenda.html#a17447648459267871461c9300b70ebe5" title="grupo2.LN.Prenda.getNombre" alt="" coords="245,154,438,181"/>
-<area shape="rect" id="node7" href="$classgrupo2_1_1_l_n_1_1_prenda.html#a88bff68d617b157e558f01a3e381ba66" title="grupo2.LN.Prenda.getColor" alt="" coords="252,205,431,231"/>
-<area shape="rect" id="node8" href="$classgrupo2_1_1_l_n_1_1_prenda.html#a60b2a7103565245091528937982e93a6" title="grupo2.LN.Prenda.getTejido" alt="" coords="250,255,433,282"/>
-<area shape="rect" id="node3" href="$classgrupo2_1_1_l_d_1_1_base_de_datos.html#af7695cd19723948b20b2631b577a518d" title="grupo2.LD.BaseDeDatos.get\lStatement" alt="" coords="509,5,695,47"/>
-<area shape="rect" id="node4" href="$classgrupo2_1_1_l_n_1_1_gestor_usuario.html#af78497f5a34ed39fa0bec5e9b6d885d7" title="grupo2.LN.GestorUsuario.nombre\lUsuario" alt="" coords="495,71,709,112"/>
-</map>

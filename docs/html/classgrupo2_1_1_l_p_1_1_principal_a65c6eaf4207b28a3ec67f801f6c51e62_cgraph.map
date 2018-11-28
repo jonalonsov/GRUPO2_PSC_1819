@@ -1,9 +1,0 @@
-<map id="grupo2.LP.Principal.actionPerformed" name="grupo2.LP.Principal.actionPerformed">
-<area shape="rect" id="node2" href="$classgrupo2_1_1_l_n_1_1_gestor_usuario.html#a468f230deb10b1a4f943b8279b52fe36" title="grupo2.LN.GestorUsuario.chequear\lYaEnTablaLOGIN" alt="" coords="228,5,453,47"/>
-<area shape="rect" id="node3" href="$classgrupo2_1_1_l_n_1_1_gestor_usuario.html#aa263a14854493df60752c8d3f38c6dc7" title="grupo2.LN.GestorUsuario.modificar\lUsuarioSistema" alt="" coords="229,71,453,112"/>
-<area shape="rect" id="node7" href="$classgrupo2_1_1_l_n_1_1_gestor_usuario.html#a145ea51663f6eba1329c0574d2fb13b1" title="grupo2.LN.GestorUsuario.anyadir\lUsuario" alt="" coords="233,136,448,177"/>
-<area shape="rect" id="node4" href="$classgrupo2_1_1_l_n_1_1_gestor_usuario.html#afb99ee5d2cd4becef66767e60620eb20" title="grupo2.LN.GestorUsuario.eliminar\lUsuarioSistema" alt="" coords="505,19,723,60"/>
-<area shape="rect" id="node5" href="$classgrupo2_1_1_l_n_1_1usuario.html#aab34b36d0c30eb128c8f5495be3cc5c5" title="grupo2.LN.usuario.getNombre" alt="" coords="517,85,711,111"/>
-<area shape="rect" id="node6" href="$classgrupo2_1_1_l_n_1_1usuario.html#adba94668bb594664759807115eba217d" title="grupo2.LN.usuario.getContrasenya" alt="" coords="503,135,725,162"/>
-<area shape="rect" id="node8" href="$classgrupo2_1_1_l_n_1_1_gestor_usuario.html#aea267344a983f083ab4ee5edf2e95261" title="grupo2.LN.GestorUsuario.chequear\lYaEnTabla" alt="" coords="501,187,727,228"/>
-</map>
