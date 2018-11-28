@@ -5,10 +5,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
+
 import grupo2.LD.BaseDeDatos;
+import grupo2.LP.Principal;
 
 public class GestorPrendas {
 		
+	private static final long serialVersionUID = 1L;
+	private final static Logger log = Logger.getLogger(Principal.class.getName());
+	private Statement st;
 	public GestorPrendas(){
 		
 	}
@@ -20,13 +26,12 @@ public class GestorPrendas {
 		Statement st=BaseDeDatos.getStatement();
 		int id=0;
 				String sentSQL = "SELECT id from PRENDA ORDER BY id DESC LIMIT 1 ";
-				System.out.println( sentSQL ); 
 				
 				ResultSet rs;
 				try {
 					rs = st.executeQuery( sentSQL );
 						    id = rs.getInt("id");	
-						    System.out.println(id);
+						    //System.out.println(id);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -41,7 +46,7 @@ public class GestorPrendas {
 		try {
 				
 				String sentSQL = "insert into PRENDA values(" + "'" + id + "', " + "'" + prenda.getNombre() + "', " + "'" + prenda.getColor() + "', "+"'" + prenda.getTejido() + "', "+"'" + prenda.getImagen() + "', "+"'" + prenda.getUsuario() + "')"; 
-				System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+				log.trace("Mensaje: La prenda " +id+ " se ha añadido");
 				st.executeUpdate( sentSQL );
 				return true;
 			} catch (SQLException e) {
@@ -60,7 +65,6 @@ public class GestorPrendas {
 		ArrayList<Prenda> prendas = new ArrayList<Prenda>();
 		try {
 			String sentSQL = "select * from PRENDA  where ( usuario = '" + gusuario.nombreUsuario() + "')";
-			System.out.println( sentSQL ); 
 			
 			ResultSet rs = st.executeQuery( sentSQL );
 			while (rs.next()) {
@@ -74,9 +78,7 @@ public class GestorPrendas {
 			return null;
 			
 		}
-		//Pasamos de ArrayList a Array
-	//	System.out.println("AQUI VA EL TAMAÑOOOOO");
-		System.out.println(prendas.size());
+		
 		Prenda[] Arrprendas = new Prenda[prendas.size()];
 		Arrprendas = prendas.toArray(Arrprendas);
 		
@@ -91,7 +93,6 @@ public class GestorPrendas {
 			try {
 				
 				String sentSQL = "select * from PRENDA where ( id = '" + id + "')";
-				System.out.println( sentSQL ); 
 				
 				ResultSet rs = st.executeQuery( sentSQL );
 				
@@ -115,7 +116,6 @@ public class GestorPrendas {
 		ArrayList<Conjunto> favoritos = new ArrayList<Conjunto>();
 		try {
 			String sentSQL = "select id from CONJUNTO where favorito = 1)";
-			System.out.println( sentSQL ); 
 			
 			ResultSet rs = st.executeQuery( sentSQL );
 			
@@ -135,6 +135,22 @@ public class GestorPrendas {
 		
 		return Arrfavoritos;
 		
+	}
+
+	public boolean EliminarPrenda(int id) {
+		 st=BaseDeDatos.getStatement();
+		try {
+				
+			String sentSQL = "delete from PRENDA where ( id = '" + id + "')";
+			
+			log.trace("Mensaje: La prenda " +id+ " se ha eliminado");
+				int val = st.executeUpdate( sentSQL );
+				if (val!=1) return false;  // Se tiene que añadir 1 - error si no
+				return true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
 	}
 			
 

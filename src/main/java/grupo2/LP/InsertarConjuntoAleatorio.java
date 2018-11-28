@@ -33,12 +33,16 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.JRadioButton;
 
+import org.apache.log4j.Logger;
+
 public class InsertarConjuntoAleatorio extends JFrame implements ActionListener {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private final static Logger log = Logger.getLogger(Principal.class.getName());
+	
 	private JPanel PanelSuperior;
 	private JPanel PanelInferior;
 	private JPanel PanelIzquierda;
@@ -64,6 +68,9 @@ public class InsertarConjuntoAleatorio extends JFrame implements ActionListener 
 	private JRadioButton rdbtnLluvia;
 	private JRadioButton rdbtnFrio;
 	private JRadioButton rdbtnCalor;
+	
+	private JRadioButton rdbtnUrbano;
+	private JRadioButton rdbtnFormal;
 
 	
 	
@@ -204,7 +211,7 @@ public class InsertarConjuntoAleatorio extends JFrame implements ActionListener 
 				PanelIzquierda.setBackground(SystemColor.WHITE);
 									
 				getContentPane().add(PanelIzquierda, BorderLayout.WEST);
-						PanelIzquierda.setLayout(null);
+				PanelIzquierda.setLayout(null);
 				PanelIzquierda.add(textT);
 				PanelIzquierda.add(textP);
 				
@@ -233,10 +240,10 @@ public class InsertarConjuntoAleatorio extends JFrame implements ActionListener 
 		        rdbtnCalor.setBounds(264, 85, 69, 25);
 		        PanelIzquierda.add(rdbtnCalor);
 		        
-		        ButtonGroup group = new ButtonGroup();
-		        group.add(rdbtnLluvia);
-		        group.add(rdbtnFrio);
-		        group.add(rdbtnCalor);
+		        ButtonGroup group1 = new ButtonGroup();
+		        group1.add(rdbtnLluvia);
+		        group1.add(rdbtnFrio);
+		        group1.add(rdbtnCalor);
 		        
 		        rdbtnLluvia.addActionListener(this);
 		        rdbtnFrio.addActionListener(this);
@@ -254,15 +261,23 @@ public class InsertarConjuntoAleatorio extends JFrame implements ActionListener 
 		        btnTiempo.setBounds(90, 119, 243, 31);
 		        PanelIzquierda.add(btnTiempo);
 		        
-		        JRadioButton rdbtnFormal = new JRadioButton("Formal");
+		        rdbtnFormal = new JRadioButton("Formal");
 		        rdbtnFormal.setBounds(94, 203, 69, 25);
 		        PanelIzquierda.add(rdbtnFormal);
 		        
-		        JRadioButton rdbtnUrbano = new JRadioButton("Informal");
+		        rdbtnUrbano = new JRadioButton("Informal");
 		        rdbtnUrbano.setBounds(179, 203, 69, 25);
 		        PanelIzquierda.add(rdbtnUrbano);
 		        
+		        ButtonGroup group2 = new ButtonGroup();
+		        group2.add(rdbtnUrbano);
+		        group2.add(rdbtnFormal);
+		        rdbtnUrbano.addActionListener(this);
+		        rdbtnFormal.addActionListener(this);
+		        
+		        
 		        btnEstilo = new JButton("Aplicar filtro de estilo");
+		        btnEstilo.addActionListener(this);
 		        btnEstilo.setForeground(Color.BLACK);
 		        btnEstilo.setFont(new Font("Century Gothic", Font.BOLD, 16));
 		        btnEstilo.setAlignmentY(0.5f);
@@ -309,6 +324,35 @@ public class InsertarConjuntoAleatorio extends JFrame implements ActionListener 
 		
 		if (e.getSource() == btnEstilo){
 			//filtro estilo
+			
+			if (rdbtnUrbano.isSelected() ){
+				
+				gusuarios = new GestorUsuario();
+	        	gprendas = new GestorPrendas();
+	        	gconjuntos = new GestorConjuntos();
+	        
+	        	int a1= gconjuntos.crearUrbano1();
+	        	int a2 = gconjuntos.crearUrbano2();
+	        	
+	        	gestionar(a1, a2);
+				
+				dispose();
+			}
+			
+			if (rdbtnFormal.isSelected() ){
+				
+				gusuarios = new GestorUsuario();
+	        	gprendas = new GestorPrendas();
+	        	gconjuntos = new GestorConjuntos();
+	        
+	        	int a1= gconjuntos.crearFormal1();
+	        	int a2 = gconjuntos.crearFormal2();
+	        	
+	        	gestionar(a1, a2);
+				
+				dispose();
+				
+			}
 		}
 		
 		if (e.getSource() == btnTiempo){
@@ -330,15 +374,33 @@ public class InsertarConjuntoAleatorio extends JFrame implements ActionListener 
 			
 			if (rdbtnCalor.isSelected() ){
 				
+				gusuarios = new GestorUsuario();
+	        	gprendas = new GestorPrendas();
+	        	gconjuntos = new GestorConjuntos();
+	        
+	        	int a1= gconjuntos.crearCalor1();
+	        	int a2 = gconjuntos.crearCalor2();
+	        	
+	        	gestionar(a1, a2);
+				
+				dispose();
 			}
 			
 			if (rdbtnFrio.isSelected() ){
 				
+				gusuarios = new GestorUsuario();
+	        	gprendas = new GestorPrendas();
+	        	gconjuntos = new GestorConjuntos();
+	        
+	        	int a1= gconjuntos.crearFrio1();
+	        	int a2 = gconjuntos.crearFrio2();
+	        	
+	        	gestionar(a1, a2);
+				
+				dispose();
+				
 			}
 			
-//			group.add(rdbtnLluvia);
-//	        group.add(rdbtnFrio);
-//	        group.add(rdbtnCalor);
 		}
 	}
 	
@@ -369,7 +431,7 @@ public class InsertarConjuntoAleatorio extends JFrame implements ActionListener 
 				JOptionPane.showMessageDialog(null, "Conjunto aleatorio introducida con éxito","Correcto",JOptionPane.INFORMATION_MESSAGE);
 					dispose();
 			} else {
-				JOptionPane.showMessageDialog(null, "El conjunto no ha podido introducirse, vuelva a intentarlo. ","Incorrecto",JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "No dispone de prendas suficientes para aplicar este filtro. ","Incorrecto",JOptionPane.ERROR_MESSAGE);
 		
 	}
 			

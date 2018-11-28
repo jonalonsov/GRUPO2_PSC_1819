@@ -26,12 +26,16 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 
+import org.apache.log4j.Logger;
+
 public class InsertarPrenda extends JFrame implements ActionListener {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private final static Logger log = Logger.getLogger(Principal.class.getName());
+	
 	private JPanel PanelSuperior;
 	private JPanel PanelInferior;
 	private JPanel PanelIzquierda;
@@ -216,7 +220,7 @@ public class InsertarPrenda extends JFrame implements ActionListener {
 						PanelIzquierda.add(btnAcep);
 						
 				comboBoxN = new JComboBox<String>();
-				comboBoxN.setModel(new DefaultComboBoxModel<String>(new String[] {"Seleccione tipo prenda...", "Camisa", "Camiseta", "Pantalones", "Jersey"}));
+				comboBoxN.setModel(new DefaultComboBoxModel(new String[] {"Seleccione tipo prenda...", "Camisa", "Camiseta corta", "Camiseta tirantes", "Camiseta larga", "Jersey", "Chaqueta", "Sudadera", "Polo", "Americana", "Abrigo", "Pantalon largo", "Pantalon corto", "Falda"}));
 				comboBoxN.setBounds(93, 88, 180, 22);
 				PanelIzquierda.add(comboBoxN);
 				
@@ -226,7 +230,7 @@ public class InsertarPrenda extends JFrame implements ActionListener {
 				PanelIzquierda.add(comboBoxC);
 				
 				comboBoxT = new JComboBox<String>();
-				comboBoxT.setModel(new DefaultComboBoxModel<String>(new String[] {"Seleccione tejido...", "Algodón", "Vaquero", "Lino", "Poliester", "Piel"}));
+				comboBoxT.setModel(new DefaultComboBoxModel(new String[] {"Seleccione tejido...", "Algodón", "Vaquero", "Lino", "Poliester", "Piel", "Chandal"}));
 				comboBoxT.setBounds(94, 229, 180, 22);
 				PanelIzquierda.add(comboBoxT);
 				
@@ -254,7 +258,7 @@ public class InsertarPrenda extends JFrame implements ActionListener {
 			 
 			    //Seleccionamos el fichero
 			 imagen =fc.getSelectedFile();
-			 System.out.println(imagen.getAbsolutePath());
+			 //System.out.println(imagen.getAbsolutePath());
 //			    try(FileWriter fw=new FileWriter(fichero)){
 //			 
 //			        //Escribimos el texto en el fichero

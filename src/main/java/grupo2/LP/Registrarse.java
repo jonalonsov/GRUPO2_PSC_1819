@@ -24,12 +24,16 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import org.apache.log4j.Logger;
+
 public class Registrarse extends JFrame implements ActionListener {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private final static Logger log = Logger.getLogger(Principal.class.getName());
+	
 	private JPanel PanelSuperior;
 	private JPanel PanelInferior;
 	private JPanel PanelIzquierda;
@@ -213,7 +217,7 @@ public class Registrarse extends JFrame implements ActionListener {
 				btnRegistrar.setAlignmentX(Component.RIGHT_ALIGNMENT);
 				btnRegistrar.setSize(113, 31);
 				btnRegistrar.setLocation(95, 205);
-				btnRegistrar.setFont(new Font("Century Gothic", Font.BOLD, 16));
+				btnRegistrar.setFont(new Font("Century Gothic", Font.BOLD, 10));
 				//		BSalir.setBounds(100, 103, 150, 30);
 				btnRegistrar.addActionListener(this);
 						PanelIzquierda.setLayout(null);

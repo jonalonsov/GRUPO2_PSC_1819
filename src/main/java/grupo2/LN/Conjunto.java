@@ -1,7 +1,14 @@
 package grupo2.LN;
 
+import grupo2.LP.Principal;
+
+import org.apache.log4j.Logger;
+
 public class Conjunto  implements Comparable<Object> {
 
+	private static final long serialVersionUID = 1L;
+	private final static Logger log = Logger.getLogger(Principal.class.getName());
+	
 	private int id;
 	private int prenda1;
 	private int prenda2;

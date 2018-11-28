@@ -19,9 +19,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 
+import org.apache.log4j.Logger;
+
 @SuppressWarnings("serial")
 public class PanelMenu extends JFrame implements ActionListener {
 
+	private static final long serialVersionUID = 1L;
+	private final static Logger log = Logger.getLogger(Principal.class.getName());
+	
     private JPanel PanelSuperior;
     private JPanel PanelInferior;
     private JPanel PanelCentro;
@@ -42,10 +47,7 @@ public class PanelMenu extends JFrame implements ActionListener {
     
     public PanelMenu(){
        
-   //GOE --> Ponerle nombre de usuario arriba a la derecha
-        
-            
-    
+     
         this.setTitle("Bienvenido a tu armario");
         setLocationRelativeTo(null);  // Centra la ventana en la pantalla
         setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
@@ -157,7 +159,6 @@ public class PanelMenu extends JFrame implements ActionListener {
                 
             //PanelCentro    
                 PanelCentro = new JPanel();
-                //PanelIzquierda.setSize(400, 432);
                 
                 PanelCentro.setPreferredSize( new Dimension( 450,  450 ) );
                 PanelCentro.setBackground(SystemColor.WHITE);

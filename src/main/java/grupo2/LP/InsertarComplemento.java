@@ -22,6 +22,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
+import org.apache.log4j.Logger;
+
 import grupo2.LD.BaseDeDatos;
 import grupo2.LN.GestorComplemento;
 import grupo2.LN.GestorUsuario;
@@ -32,6 +34,8 @@ public class InsertarComplemento extends JFrame implements ActionListener {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private final static Logger log = Logger.getLogger(Principal.class.getName());
+	
 	private JPanel PanelSuperior;
 	private JPanel PanelInferior;
 	private JPanel PanelIzquierda;
@@ -82,7 +86,6 @@ public class InsertarComplemento extends JFrame implements ActionListener {
 		setLocationRelativeTo( null );  // Centra la ventana en la pantalla
 		setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
 		setBounds(250, 50, 450, 600); 
-		//PanelSuperior.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().setLayout(new BorderLayout());
 		
 		M = new JTextArea();
@@ -249,7 +252,8 @@ public class InsertarComplemento extends JFrame implements ActionListener {
 			 
 			    //Seleccionamos el fichero
 			 imagen =fc.getSelectedFile();
-			 System.out.println(imagen.getAbsolutePath());
+			 log.trace("Imagen insertada:"+ imagen.getAbsolutePath());
+			
 //			    try(FileWriter fw=new FileWriter(fichero)){
 //			 
 //			        //Escribimos el texto en el fichero
@@ -271,9 +275,7 @@ public class InsertarComplemento extends JFrame implements ActionListener {
 			} else {
 				
 				gusuario = new GestorUsuario();
-				System.out.println(gusuario.nombreUsuario());	
-						
-												
+										
 						complemento = new grupo2.LN.Complemento (0, nombre, color, imagen.getAbsolutePath(), gusuario.nombreUsuario());		
 						
 						gcomplementos = new GestorComplemento();

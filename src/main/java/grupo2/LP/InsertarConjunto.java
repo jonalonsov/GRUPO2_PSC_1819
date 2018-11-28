@@ -8,6 +8,7 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -30,12 +31,16 @@ import javax.swing.JFileChooser;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import org.apache.log4j.Logger;
+
 public class InsertarConjunto extends JFrame implements ActionListener {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private final static Logger log = Logger.getLogger(Principal.class.getName());
+	
 	private JPanel PanelSuperior;
 	private JPanel PanelInferior;
 	private JPanel PanelIzquierda;
@@ -78,8 +83,7 @@ public class InsertarConjunto extends JFrame implements ActionListener {
 		textP.setFont(new Font("Century Gothic", Font.BOLD, 12));
 		textP.setBounds(10, 11, 231, 20);
 			
-		
-		
+				
 		setTitle("Bienvenido a tu armario");
 		setLocationRelativeTo( null );  // Centra la ventana en la pantalla
 		setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
@@ -263,7 +267,8 @@ public class InsertarConjunto extends JFrame implements ActionListener {
 	          		            selectedDataID = (String) tablep1.getValueAt(selectedRow,0);
 	          		            indice1=Integer.parseInt(selectedDataID);
 	          		        
-	          		        System.out.println("Selected: " + indice1);
+	          		    
+	          		          log.trace("Id seleecionado: "+ indice1); 
 	          		        
 	  	          		 }
 	       		 });
@@ -312,14 +317,12 @@ public class InsertarConjunto extends JFrame implements ActionListener {
 		          		  public void valueChanged(ListSelectionEvent e) {
 		          		        String selectedDataID = null;
 		          	
-
-		          		        
 		          		      int selectedRow2 = tablep2.getSelectedRow();
 		          		      
 	        		            selectedDataID = (String) tablep1.getValueAt(selectedRow2,0);
 	        		            indice2=Integer.parseInt(selectedDataID);
 	        		            
-	        		            System.out.println("Selected: " + indice2);
+	        		            log.trace("Id seleecionado: "+ indice2); 
 		          		 }
 		       		 });
 
@@ -336,7 +339,7 @@ public class InsertarConjunto extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(null, "Debe seleccionar dos prendas.", "CUIDADO",JOptionPane.INFORMATION_MESSAGE);
 			} else {
 					gusuarios = new GestorUsuario();
-					System.out.println(gusuarios.nombreUsuario());			
+					//System.out.println(gusuarios.nombreUsuario());			
 					objconjunto = new Conjunto(0, indice1, indice2,  gusuarios.nombreUsuario(), 0);	
 					
 

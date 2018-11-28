@@ -5,13 +5,17 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
+
 import grupo2.LD.BaseDeDatos;
+import grupo2.LP.Principal;
 
 public class GestorComplemento {
 
-	
-private Statement st;
-private GestorUsuario gusuario;
+	private static final long serialVersionUID = 1L;
+	private final static Logger log = Logger.getLogger(Principal.class.getName());
+	private Statement st;
+	private GestorUsuario gusuario;
 	public GestorComplemento(){
 
 	}
@@ -21,14 +25,13 @@ private GestorUsuario gusuario;
 		st=BaseDeDatos.getStatement();
 		int id=0;
 				String sentSQL = "SELECT id from COMPLEMENTO1 ORDER BY id DESC LIMIT 1 ";
-				System.out.println( sentSQL ); 
 				
 				ResultSet rs;
 				try {
 					rs = st.executeQuery( sentSQL );
 						    id = rs.getInt("id");	
 						  
-						    System.out.println(id);
+						    //System.out.println(id);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -44,7 +47,8 @@ private GestorUsuario gusuario;
 		try {
 	
 				String sentSQL = "insert into COMPLEMENTO1 values(" + "'" + id + "', " + "'" + complemento.getNombre() + "', " + "'" + complemento.getColor() + "',"+"'" + complemento.getImagen() + "', " + "'" + complemento.getUsuario() + "')"; 
-				System.out.println( sentSQL );  // (Quitar) para ver lo que se hace
+				
+				log.trace("Mensaje: El complemento " +id+ " se ha añadido");
 				int val = st.executeUpdate( sentSQL );
 				if (val!=1) return false;  // Se tiene que añadir 1 - error si no
 				return true;
@@ -62,7 +66,6 @@ private GestorUsuario gusuario;
 		ArrayList<Complemento> complementos = new ArrayList<Complemento>();
 		try {
 			String sentSQL = "select * from COMPLEMENTO1 where ( usuario = '" + gusuario.nombreUsuario() + "')";
-			System.out.println( sentSQL ); 
 			
 			ResultSet rs = st.executeQuery( sentSQL );
 			
@@ -77,12 +80,28 @@ private GestorUsuario gusuario;
 			
 		}
 		//Pasamos de ArrayList a Array
-		System.out.println("AQUI VA EL TAMAÑOOOOO");
-		System.out.println(complementos.size());
+		
 		Complemento[] Arrcomplementos = new Complemento[complementos.size()];
 		Arrcomplementos = complementos.toArray(Arrcomplementos);
 		
 		return Arrcomplementos;
+	}
+
+	public boolean EliminarComplemento(int id) {
+		 st=BaseDeDatos.getStatement();
+		try {
+				
+			String sentSQL = "delete from COMPLEMENTO1 where ( id = '" + id + "')";
+			
+			log.trace("Mensaje: El complemento " +id+ " se ha eliminado");
+			
+				int val = st.executeUpdate( sentSQL );
+				if (val!=1) return false;  // Se tiene que añadir 1 - error si no
+				return true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
 	}
 
 }

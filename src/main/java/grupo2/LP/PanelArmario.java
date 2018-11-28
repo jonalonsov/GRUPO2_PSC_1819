@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -39,12 +40,16 @@ import grupo2.LN.GestorConjuntos;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTabbedPane;
 
+import org.apache.log4j.Logger;
+
 public class PanelArmario extends JFrame implements ActionListener {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private final static Logger log = Logger.getLogger(Principal.class.getName());
+	
 	private JPanel PanelSuperior;
 	private JPanel PanelInferior;
 	JTabbedPane panelPestaña = new JTabbedPane ();
@@ -82,6 +87,8 @@ public class PanelArmario extends JFrame implements ActionListener {
 	private JScrollPane scrollC;
 	private JScrollPane scrollConj;
 	private JScrollPane scrollPropu;
+	private int indice1;
+	private int indice2;
 	private int indice3;
 	private int indice4;
 	private JButton CrearC;
@@ -222,10 +229,11 @@ public class PanelArmario extends JFrame implements ActionListener {
 	        texto2.setForeground(SystemColor.desktop);
 	        texto2.setBackground(Color.lightGray);
 	        texto2.setFont(new Font("MS Mincho", Font.ITALIC, 23));
-	        texto2.setText("¡Aqui estan tus complementos!");
-	        texto2.setBounds(52, 11, 324, 36);
+	        texto2.setText("¡TUS COMPLEMENTOS!");
+	        texto2.setBounds(56, 11, 334, 33);
 	        complemento.add(texto2);
-                         
+	        
+	                               
      		AñadirC = new JButton("Añadir complemento");
      		complemento.add(AñadirC);
      		AñadirC.setForeground(Color.BLACK);             	
@@ -275,12 +283,13 @@ public class PanelArmario extends JFrame implements ActionListener {
       	
       		        int selectedRow1 = table_2.getSelectedRow();
       		       	  selectedDataID1 = (String) table_2.getValueAt(selectedRow1,0);
-      		         System.out.println("Selected: " + selectedDataID1);
+      		       	indice2=Integer.parseInt(selectedDataID1);
+      		      log.trace("Id seleecionado: "+ indice2); 
       		        
       	       		      		        
       		 //<--GOR--> ESTO NO SE DEBERÍA PONER AQUÍ, LD                     
                       String sql="SELECT imagen FROM COMPLEMENTO1 WHERE id = '"+ selectedDataID1 + "'";
-                      System.out.println(sql);		
+                     // System.out.println(sql);		
                       Statement st2=BaseDeDatos.getStatement();
                       ResultSet result2 = null;
                       
@@ -299,7 +308,7 @@ public class PanelArmario extends JFrame implements ActionListener {
       					// TODO Auto-generated catch block
       					e1.printStackTrace();
       				}
-      				System.out.println(imagePath);
+      				//System.out.println(imagePath);
       				//ImageIcon imagen = new ImageIcon(imagePath).getScaledInstance(lblLabelImagen.getWidth(), lblLabelImagen.getHeight(),imagen.SCALE_SMOOTH);
       				ImageIcon imagenIcono = new ImageIcon(imagePath);
       				Image imagen = imagenIcono.getImage(); // transform it 
@@ -321,7 +330,7 @@ public class PanelArmario extends JFrame implements ActionListener {
 		  txtpnHj.setForeground(SystemColor.desktop);
 		  txtpnHj.setBackground(Color.lightGray);
 		  txtpnHj.setFont(new Font("MS Mincho", Font.ITALIC, 23));
-		  txtpnHj.setText("¡Ya estas dentro de tu armario!");
+		  txtpnHj.setText("¡Ya estas entu armario!");
 		  txtpnHj.setBounds(56, 11, 334, 33);
 		  armario.add(txtpnHj);
 			  
@@ -387,6 +396,16 @@ public class PanelArmario extends JFrame implements ActionListener {
                 cellSelectionModel1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
                 
                 table_1.setModel(model);
+                
+                JButton btnEliminarPrenda = new JButton("Eliminar prenda");
+                btnEliminarPrenda.setForeground(Color.BLACK);
+                btnEliminarPrenda.setFont(new Font("Century Gothic", Font.BOLD, 14));
+                btnEliminarPrenda.setAlignmentY(0.5f);
+                btnEliminarPrenda.setAlignmentX(0.5f);
+                btnEliminarPrenda.setActionCommand("EliminarP");
+                btnEliminarPrenda.addActionListener(this);
+                btnEliminarPrenda.setBounds(10, 366, 178, 29);
+                armario.add(btnEliminarPrenda);
 		
 	cellSelectionModel1.addListSelectionListener(new ListSelectionListener() {
 		  public void valueChanged(ListSelectionEvent e) {
@@ -394,17 +413,18 @@ public class PanelArmario extends JFrame implements ActionListener {
 	
 		        int selectedRow = table_1.getSelectedRow();
 		  
-	
-		      
+			      
 		            selectedDataID = (String) table_1.getValueAt(selectedRow,0);
+		            indice1=Integer.parseInt(selectedDataID);
+		           
 		        
-		        System.out.println("Selected: " + selectedDataID);
+		            log.trace("Id seleecionado: "+ indice1); 
 		        
 	       		
 		        
 		 //<--GOR--> ESTO NO SE DEBERÍA PONER AQUÍ, LD                     
                 String sql="SELECT imagen FROM PRENDA WHERE id = '"+ selectedDataID + "'";
-                System.out.println(sql);		
+               // System.out.println(sql);		
                 Statement st2=BaseDeDatos.getStatement();
                 ResultSet result2 = null;
                 
@@ -423,7 +443,7 @@ public class PanelArmario extends JFrame implements ActionListener {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				System.out.println(imagePath);
+				//System.out.println(imagePath);
 				//ImageIcon imagen = new ImageIcon(imagePath).getScaledInstance(lblLabelImagen.getWidth(), lblLabelImagen.getHeight(),imagen.SCALE_SMOOTH);
 				ImageIcon imagenIcono = new ImageIcon(imagePath);
 				Image imagen = imagenIcono.getImage(); // transform it 
@@ -439,20 +459,32 @@ public class PanelArmario extends JFrame implements ActionListener {
 		conjunto.setLayout(null);
 		
 		txtpnEstosSonTus = new JTextPane();
-		txtpnEstosSonTus.setBounds(23, 5, 263, 36);
-		txtpnEstosSonTus.setText("Estos son tus conjuntos: ");
-		txtpnEstosSonTus.setForeground(Color.BLACK);
-		txtpnEstosSonTus.setFont(new Font("Dialog", Font.ITALIC, 23));
+		txtpnEstosSonTus.setBounds(56, 11, 230, 36);
+		txtpnEstosSonTus.setText("¡TUS CONJUNTOS! ");
+		txtpnEstosSonTus.setForeground(SystemColor.desktop);
+		txtpnEstosSonTus.setFont(new Font("MS Mincho", Font.ITALIC, 23));
 		txtpnEstosSonTus.setBackground(Color.LIGHT_GRAY);
 		conjunto.add(txtpnEstosSonTus);
 		
+		 
+		
  		complemento.add(AñadirC);
+ 		
+ 		JButton btnEliminarComplemento = new JButton("Eliminar complemento");
+ 		btnEliminarComplemento.setForeground(Color.BLACK);
+ 		btnEliminarComplemento.setFont(new Font("Century Gothic", Font.BOLD, 14));
+ 		btnEliminarComplemento.setAlignmentY(0.5f);
+ 		btnEliminarComplemento.setAlignmentX(0.5f);
+ 		btnEliminarComplemento.setActionCommand("EliminarC");
+ 		btnEliminarComplemento.addActionListener(this);
+ 		btnEliminarComplemento.setBounds(24, 370, 201, 29);
+ 		complemento.add(btnEliminarComplemento);
  		       	
  		 		
-		btnMarcarFavorito = new JButton("Marcar como favorito");
-		btnMarcarFavorito.setBounds(235, 364, 185, 27);
+		btnMarcarFavorito = new JButton("Marcar Favorito");
+		btnMarcarFavorito.setBounds(298, 5, 137, 23);
 		btnMarcarFavorito.setForeground(Color.BLACK);
-		btnMarcarFavorito.setFont(new Font("Century Gothic", Font.BOLD, 14));
+		btnMarcarFavorito.setFont(new Font("Century Gothic", Font.BOLD, 10));
 		btnMarcarFavorito.setAlignmentY(0.5f);
 		btnMarcarFavorito.setAlignmentX(0.5f);
 		btnMarcarFavorito.addActionListener(this);
@@ -510,10 +542,20 @@ public class PanelArmario extends JFrame implements ActionListener {
         
         btnAadirFecha = new JButton("Añadir al calendario");
         btnAadirFecha.setFont(new Font("Century Gothic", Font.BOLD, 10));
-        btnAadirFecha.setBounds(298, 18, 137, 23);
+        btnAadirFecha.setBounds(296, 28, 137, 23);
         btnAadirFecha.addActionListener(this);
         btnAadirFecha.setActionCommand("AñadirFecha");
         conjunto.add(btnAadirFecha);
+        
+        JButton btnBorrarConjunto = new JButton("Eliminar Conjunto");
+        btnBorrarConjunto.setForeground(Color.BLACK);
+        btnBorrarConjunto.setFont(new Font("Century Gothic", Font.BOLD, 14));
+        btnBorrarConjunto.setAlignmentY(0.5f);
+        btnBorrarConjunto.setAlignmentX(0.5f);
+        btnBorrarConjunto.setActionCommand("EliminarConj");
+        btnBorrarConjunto.addActionListener(this);
+        btnBorrarConjunto.setBounds(232, 364, 201, 27);
+        conjunto.add(btnBorrarConjunto);
         
         cellSelectionModel4.addListSelectionListener(new ListSelectionListener() {
     		  public void valueChanged(ListSelectionEvent e1) {
@@ -525,7 +567,7 @@ public class PanelArmario extends JFrame implements ActionListener {
 		            selectedDataID3 = (String) tableConj.getValueAt(selectedRow3,0);
 		            indice3=Integer.parseInt(selectedDataID3);
 		            
-		            System.out.println("Selected: " + indice3);
+		            log.trace("Id seleecionado: "+ indice3); 
 		            
 		            
 		            
@@ -569,17 +611,18 @@ public class PanelArmario extends JFrame implements ActionListener {
       		txtPropu = new JTextPane();
      		txtPropu.setForeground(SystemColor.desktop);
      		txtPropu.setBackground(Color.lightGray);
-     		txtPropu.setFont(new Font("Dialog", Font.ITALIC, 18));
-     		txtPropu.setText("¡Estas son las propuestas de tu armario!");
-     		txtPropu.setBounds(56, 11, 334, 33);
+     		txtPropu.setFont(new Font("MS Mincho", Font.ITALIC, 23));
+     		txtPropu.setText("¡Las propuestas!");
+     		txtPropu.setBounds(56, 11, 230, 36);
     		propuestas.add(txtPropu);
-      		    		
+    		
+    		      		    		
     		//propuestas.add(AñadirC);
 		     	
-    		btnMarcarFavoritoA = new JButton("Marcar como favorito");
-    		btnMarcarFavoritoA.setBounds(250, 364, 185, 27);
+    		btnMarcarFavoritoA = new JButton("Marcar Favorito");
+    		btnMarcarFavoritoA.setBounds(315, 14, 120, 27);
     		btnMarcarFavoritoA.setForeground(Color.BLACK);
-    		btnMarcarFavoritoA.setFont(new Font("Century Gothic", Font.BOLD, 14));
+    		btnMarcarFavoritoA.setFont(new Font("Century Gothic", Font.BOLD, 10));
     		btnMarcarFavoritoA.setAlignmentY(0.5f);
     		btnMarcarFavoritoA.setAlignmentX(0.5f);
     		btnMarcarFavoritoA.addActionListener(this);
@@ -596,14 +639,14 @@ public class PanelArmario extends JFrame implements ActionListener {
             model4.addColumn("Prenda 2");
             model4.addColumn("Favorito");   
     		
-    		CrearC = new JButton("Crear Conjunto Aleatorio");
+    		CrearC = new JButton("Crear Aleatorio");
     		CrearC.setForeground(Color.BLACK);
     		CrearC.setFont(new Font("Century Gothic", Font.BOLD, 14));
     		CrearC.setAlignmentY(0.5f);
     		CrearC.setAlignmentX(0.5f);
     		CrearC.addActionListener(this);
     		CrearC.setActionCommand("CrearC");
-    		CrearC.setBounds(10, 364, 230, 27);
+    		CrearC.setBounds(10, 364, 135, 27);
     		propuestas.add(CrearC);
             
     		
@@ -634,6 +677,26 @@ public class PanelArmario extends JFrame implements ActionListener {
     	     cellSelectionModel5.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     	        
     	     tablePropu.setModel(model4);
+    	     
+    	     JButton btnEliminarPropuesta = new JButton("Eliminar");
+    	     btnEliminarPropuesta.setForeground(Color.BLACK);
+    	     btnEliminarPropuesta.setFont(new Font("Century Gothic", Font.BOLD, 14));
+    	     btnEliminarPropuesta.setAlignmentY(0.5f);
+    	     btnEliminarPropuesta.setAlignmentX(0.5f);
+    	     btnEliminarPropuesta.setActionCommand("EliminarPropu");
+    	     btnEliminarPropuesta.addActionListener(this);
+    	     btnEliminarPropuesta.setBounds(155, 364, 120, 27);
+    	     propuestas.add(btnEliminarPropuesta);
+    	     
+    	     JButton btnMarcarConjunto = new JButton("Marcar Conjunto");
+    	     btnMarcarConjunto.setForeground(Color.BLACK);
+    	     btnMarcarConjunto.setFont(new Font("Century Gothic", Font.BOLD, 14));
+    	     btnMarcarConjunto.setAlignmentY(0.5f);
+    	     btnMarcarConjunto.setAlignmentX(0.5f);
+    	     btnMarcarConjunto.setActionCommand("MarcarConj");
+    	     btnMarcarConjunto.addActionListener(this);
+    	     btnMarcarConjunto.setBounds(285, 364, 135, 27);
+    	     propuestas.add(btnMarcarConjunto);
             
             cellSelectionModel5.addListSelectionListener(new ListSelectionListener() {
       		  public void valueChanged(ListSelectionEvent e2) {
@@ -645,7 +708,7 @@ public class PanelArmario extends JFrame implements ActionListener {
   		            selectedDataID4 = (String) tablePropu.getValueAt(selectedRow4,0);
   		            indice4=Integer.parseInt(selectedDataID4);
   		            
-  		            System.out.println("Selected: " + indice4);
+  		          log.trace("Id seleecionado: "+ indice4); 
     
    
       		  }
@@ -729,7 +792,98 @@ public class PanelArmario extends JFrame implements ActionListener {
 	        	dispose();
          
 	        break;
-	        
+	        case "EliminarC":
+	        	
+	        	gcomplementos.EliminarComplemento(indice2);
+				JOptionPane.showMessageDialog( null, "Has eliminado el complemento del armario. ", null, JOptionPane.INFORMATION_MESSAGE);
+				
+			//PanelArmario objPanelArmario2 = null;
+			try {
+				dispose();
+				objPanelArmario = new PanelArmario();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+				//objPanelArmario2.setVisible(true);
+	            
+	                                
+	                    
+	        break;
+	        case "EliminarP":
+	        	
+	        	gprendas.EliminarPrenda(indice1);
+				JOptionPane.showMessageDialog( null, "Has eliminado la prenda del armario. ", null, JOptionPane.INFORMATION_MESSAGE);
+				
+			//PanelArmario objPanelArmario2 = null;
+			try {
+				dispose();
+				objPanelArmario = new PanelArmario();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+				//objPanelArmario2.setVisible(true);
+	        	
+	        	
+	            
+	                                
+	                    
+	        break;
+	        case "EliminarConj":
+	        	
+	        	gconjuntos.EliminarConjunto(indice3);
+				JOptionPane.showMessageDialog( null, "Has eliminado el conjunto del armario. ", null, JOptionPane.INFORMATION_MESSAGE);
+				
+			//PanelArmario objPanelArmario2 = null;
+			try {
+				dispose();
+				objPanelArmario = new PanelArmario();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+				//objPanelArmario2.setVisible(true);
+	            
+	                                
+	                    
+	        break;
+	        case "EliminarPropu":
+	        	
+	        	gconjuntos.EliminarPropuesta(indice4);
+				JOptionPane.showMessageDialog( null, "Has eliminado la propuesta del armario. ", null, JOptionPane.INFORMATION_MESSAGE);
+				
+			//PanelArmario objPanelArmario2 = null;
+			try {
+				dispose();
+				objPanelArmario = new PanelArmario();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+				//objPanelArmario2.setVisible(true);
+	            
+	                                
+	                    
+	        break;
+	        case "MarcarConj":
+	        	gconjuntos.modifConjAleatorio(indice4);
+				JOptionPane.showMessageDialog( null, "Ha marcado como un conjunto de tu armario esta propuesta. ", null, JOptionPane.INFORMATION_MESSAGE);
+			
+				      
+						PanelArmario objPanelArmario111 = null;
+						try {
+							dispose();
+							objPanelArmario111 = new PanelArmario();
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+							objPanelArmario111.setVisible(true);
+				            
+			                       
+	                    
+	        break; 
 	        case "Salir":
 	        	dispose();
 

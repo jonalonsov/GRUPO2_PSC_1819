@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 public class Main {
 	
 	private final static Logger log = Logger.getLogger(Main.class.getName());
+	private static final long serialVersionUID = 1L;
 	
 	public static void main(String[] args) {
 
