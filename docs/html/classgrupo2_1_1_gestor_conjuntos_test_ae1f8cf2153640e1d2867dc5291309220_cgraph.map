@@ -1,0 +1,12 @@
+<map id="grupo2.GestorConjuntosTest.testselectPropuestas" name="grupo2.GestorConjuntosTest.testselectPropuestas">
+<area shape="rect" id="node2" href="$classgrupo2_1_1_l_n_1_1_gestor_usuario.html#aa562fbc68ec8203b9706830a346346b1" title="grupo2.LN.GestorUsuario.anyadir\lFilaATablauUsuario" alt="" coords="305,104,519,145"/>
+<area shape="rect" id="node7" href="$classgrupo2_1_1_l_n_1_1_gestor_usuario.html#aa263a14854493df60752c8d3f38c6dc7" title="grupo2.LN.GestorUsuario.modificar\lUsuarioSistema" alt="" coords="571,221,795,263"/>
+<area shape="rect" id="node9" href="$classgrupo2_1_1_l_n_1_1_gestor_conjuntos.html#ab8f2adee4263f91170b95156c98ec701" title="grupo2.LN.GestorConjuntos.select\lPropuestas" alt="" coords="301,287,523,328"/>
+<area shape="rect" id="node3" href="$classgrupo2_1_1_l_n_1_1_gestor_usuario.html#aea267344a983f083ab4ee5edf2e95261" title="grupo2.LN.GestorUsuario.chequear\lYaEnTabla" alt="" coords="571,39,796,80"/>
+<area shape="rect" id="node4" href="$classgrupo2_1_1_l_n_1_1usuario.html#aab34b36d0c30eb128c8f5495be3cc5c5" title="grupo2.LN.usuario.getNombre" alt="" coords="858,111,1053,138"/>
+<area shape="rect" id="node5" href="$classgrupo2_1_1_l_n_1_1_gestor_usuario.html#af227511f20e55da1e44054e5d805bb0d" title="grupo2.LN.GestorUsuario.modificar\lFilaEnTablaUsuario" alt="" coords="571,104,795,145"/>
+<area shape="rect" id="node6" href="$classgrupo2_1_1_l_n_1_1usuario.html#adba94668bb594664759807115eba217d" title="grupo2.LN.usuario.getContrasenya" alt="" coords="844,170,1067,197"/>
+<area shape="rect" id="node8" href="$classgrupo2_1_1_l_n_1_1_gestor_usuario.html#afb99ee5d2cd4becef66767e60620eb20" title="grupo2.LN.GestorUsuario.eliminar\lUsuarioSistema" alt="" coords="847,221,1064,263"/>
+<area shape="rect" id="node10" href="$classgrupo2_1_1_l_d_1_1_base_de_datos.html#af7695cd19723948b20b2631b577a518d" title="grupo2.LD.BaseDeDatos.get\lStatement" alt="" coords="590,352,777,393"/>
+<area shape="rect" id="node11" href="$classgrupo2_1_1_l_n_1_1_gestor_usuario.html#af78497f5a34ed39fa0bec5e9b6d885d7" title="grupo2.LN.GestorUsuario.nombre\lUsuario" alt="" coords="576,287,791,328"/>
+</map>

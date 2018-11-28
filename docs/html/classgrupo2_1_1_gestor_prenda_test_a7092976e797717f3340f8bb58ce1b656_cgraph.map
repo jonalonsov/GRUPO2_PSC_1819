@@ -1,0 +1,10 @@
+<map id="grupo2.GestorPrendaTest.testanyadirPrendaP" name="grupo2.GestorPrendaTest.testanyadirPrendaP">
+<area shape="rect" id="node2" href="$classgrupo2_1_1_l_n_1_1_gestor_prendas.html#a70a2985d77cda00e62c54e2cc3cd87c7" title="grupo2.LN.GestorPrendas.anyadir\lPrenda" alt="" coords="292,165,511,207"/>
+<area shape="rect" id="node4" href="$classgrupo2_1_1_l_d_1_1_base_de_datos.html#af7695cd19723948b20b2631b577a518d" title="grupo2.LD.BaseDeDatos.get\lStatement" alt="" coords="808,161,995,203"/>
+<area shape="rect" id="node9" href="$classgrupo2_1_1_l_n_1_1_prenda.html#aa5c0f5d5574d92617a35318b6380a867" title="grupo2.LN.Prenda.getUsuario" alt="" coords="563,274,755,301"/>
+<area shape="rect" id="node3" href="$classgrupo2_1_1_l_n_1_1_gestor_prendas.html#a13f0f8b0bb979e013d696a3a6c0e538d" title="grupo2.LN.GestorPrendas.max\lIdPrenda" alt="" coords="559,5,760,47"/>
+<area shape="rect" id="node5" href="$classgrupo2_1_1_l_n_1_1_prenda.html#a17447648459267871461c9300b70ebe5" title="grupo2.LN.Prenda.getNombre" alt="" coords="563,71,756,98"/>
+<area shape="rect" id="node6" href="$classgrupo2_1_1_l_n_1_1_prenda.html#a88bff68d617b157e558f01a3e381ba66" title="grupo2.LN.Prenda.getColor" alt="" coords="570,122,749,149"/>
+<area shape="rect" id="node7" href="$classgrupo2_1_1_l_n_1_1_prenda.html#a60b2a7103565245091528937982e93a6" title="grupo2.LN.Prenda.getTejido" alt="" coords="568,173,751,199"/>
+<area shape="rect" id="node8" href="$classgrupo2_1_1_l_n_1_1_prenda.html#a61347bd42527c3a24c909465a183f06b" title="grupo2.LN.Prenda.getImagen" alt="" coords="564,223,755,250"/>
+</map>

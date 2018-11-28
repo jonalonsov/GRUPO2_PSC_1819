@@ -1,0 +1,11 @@
+<map id="grupo2.LN.Conjunto.getFavorito" name="grupo2.LN.Conjunto.getFavorito">
+<area shape="rect" id="node2" href="$classgrupo2_1_1_l_n_1_1_gestor_conjuntos.html#a745a4b4efc16621c7bcc21260cd4435f" title="grupo2.LN.GestorConjuntos.anyadir\lConjunto" alt="" coords="256,57,484,98"/>
+<area shape="rect" id="node5" href="$classgrupo2_1_1_l_n_1_1_gestor_conjuntos.html#a9f0b32ea1554772b8c95a6f5efc1decf" title="grupo2.LN.GestorConjuntos.anyadir\lConjuntoA" alt="" coords="256,122,484,163"/>
+<area shape="rect" id="node7" href="$classgrupo2_1_1_l_p_1_1_panel_armario.html#ab0ea082cecb9b179e40129018b04973c" title="grupo2.LP.PanelArmario.Panel\lArmario" alt="" coords="270,187,470,229"/>
+<area shape="rect" id="node9" href="$classgrupo2_1_1_l_p_1_1_ver_favoritos.html#abdf6a9f0f7f7cca52d9654e29d1e5e48" title="grupo2.LP.VerFavoritos.Ver\lFavoritos" alt="" coords="279,253,461,294"/>
+<area shape="rect" id="node3" href="$classgrupo2_1_1_gestor_conjuntos_test.html#ab9a53e79f2a513721106d8cdda1be80a" title="grupo2.GestorConjuntosTest.setUp" alt="" coords="547,5,772,32"/>
+<area shape="rect" id="node4" href="$classgrupo2_1_1_gestor_conjuntos_test.html#a521b08634328043a5b5b965cf132103c" title="grupo2.GestorConjuntosTest.testanyadir\lConjunto" alt="" coords="532,57,787,98"/>
+<area shape="rect" id="node6" href="$classgrupo2_1_1_gestor_conjuntos_test.html#aa8af34551173198d7906645d411c5f68" title="grupo2.GestorConjuntosTest.testanyadir\lConjuntoA" alt="" coords="532,122,787,163"/>
+<area shape="rect" id="node8" href="$classgrupo2_1_1_l_p_1_1_panel_armario.html#af60da31dfb60c352c1d3d588e1d550bc" title="grupo2.LP.PanelArmario.action\lPerformed" alt="" coords="558,187,761,229"/>
+<area shape="rect" id="node10" href="$classgrupo2_1_1_l_p_1_1_ver_favoritos.html#afd494240aa3af5024703273b7034f56d" title="grupo2.LP.VerFavoritos.action\lPerformed" alt="" coords="561,253,757,294"/>
+</map>

@@ -1,0 +1,10 @@
+<map id="grupo2.LP.InsertarComplemento.actionPerformed" name="grupo2.LP.InsertarComplemento.actionPerformed">
+<area shape="rect" id="node2" href="$classgrupo2_1_1_l_n_1_1_gestor_usuario.html#af78497f5a34ed39fa0bec5e9b6d885d7" title="grupo2.LN.GestorUsuario.nombre\lUsuario" alt="" coords="318,104,533,145"/>
+<area shape="rect" id="node3" href="$classgrupo2_1_1_l_n_1_1_gestor_complemento.html#a3c3e4581d25fc539af440d213bafc5fd" title="grupo2.LN.GestorComplemento.anyadir\lComplemento" alt="" coords="300,169,551,211"/>
+<area shape="rect" id="node5" href="$classgrupo2_1_1_l_d_1_1_base_de_datos.html#af7695cd19723948b20b2631b577a518d" title="grupo2.LD.BaseDeDatos.get\lStatement" alt="" coords="880,165,1067,207"/>
+<area shape="rect" id="node4" href="$classgrupo2_1_1_l_n_1_1_gestor_complemento.html#ae65a01465725be01af329078ea035518" title="grupo2.LN.GestorComplemento.max\lIdComp" alt="" coords="599,5,832,47"/>
+<area shape="rect" id="node6" href="$classgrupo2_1_1_l_n_1_1_complemento.html#aed8c1667ad7f4da8ab5ee8b3ad944849" title="grupo2.LN.Complemento.get\lNombre" alt="" coords="622,71,809,112"/>
+<area shape="rect" id="node7" href="$classgrupo2_1_1_l_n_1_1_complemento.html#a83b436b8e0aa90b96819e93fe4fa605f" title="grupo2.LN.Complemento.get\lColor" alt="" coords="622,136,809,177"/>
+<area shape="rect" id="node8" href="$classgrupo2_1_1_l_n_1_1_complemento.html#a6d2bd9a3882d6151f7ded8c69f6b8766" title="grupo2.LN.Complemento.get\lImagen" alt="" coords="622,201,809,243"/>
+<area shape="rect" id="node9" href="$classgrupo2_1_1_l_n_1_1_complemento.html#a49f1e8bbadb4604ed3a89f4f8a711cff" title="grupo2.LN.Complemento.get\lUsuario" alt="" coords="622,267,809,308"/>
+</map>

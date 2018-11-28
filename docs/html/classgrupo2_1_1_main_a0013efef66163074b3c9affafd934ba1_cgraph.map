@@ -1,0 +1,11 @@
+<map id="grupo2.Main.main" name="grupo2.Main.main">
+<area shape="rect" id="node2" href="$classgrupo2_1_1_l_d_1_1_base_de_datos.html#a924075b4484b67a206fd04e0ccc81566" title="grupo2.LD.BaseDeDatos.initBD" alt="" coords="188,5,392,32"/>
+<area shape="rect" id="node3" href="$classgrupo2_1_1_l_d_1_1_base_de_datos.html#a2ab03280971152d5ec32be75bffd43c2" title="grupo2.LD.BaseDeDatos.crear\lTablaBDUsuario" alt="" coords="191,57,389,98"/>
+<area shape="rect" id="node4" href="$classgrupo2_1_1_l_d_1_1_base_de_datos.html#a927c0e7e6d88f70b9e1621620586535a" title="grupo2.LD.BaseDeDatos.crear\lTablaBDPrenda" alt="" coords="191,122,389,163"/>
+<area shape="rect" id="node5" href="$classgrupo2_1_1_l_d_1_1_base_de_datos.html#a12fcce2f9d74c2db6b203545f84ba1ed" title="grupo2.LD.BaseDeDatos.crear\lTablaBDComplemento" alt="" coords="191,187,389,229"/>
+<area shape="rect" id="node6" href="$classgrupo2_1_1_l_d_1_1_base_de_datos.html#ac98ac170eedf0eac493bdc2bd014812d" title="grupo2.LD.BaseDeDatos.crear\lTablaBDConjunto" alt="" coords="191,253,389,294"/>
+<area shape="rect" id="node7" href="$classgrupo2_1_1_l_d_1_1_base_de_datos.html#a04390155965e499ad09fe84045eef397" title="grupo2.LD.BaseDeDatos.crear\lTablaBDPropuestas" alt="" coords="191,318,389,359"/>
+<area shape="rect" id="node8" href="$classgrupo2_1_1_l_d_1_1_base_de_datos.html#ad8f14a8ae6bff6a77df6b0cf8e93f0f4" title="grupo2.LD.BaseDeDatos.crear\lTablaUsuarioSesion" alt="" coords="191,383,389,425"/>
+<area shape="rect" id="node9" href="$classgrupo2_1_1_l_d_1_1_base_de_datos.html#a116cd378c99bf72921f342c825539a34" title="grupo2.LD.BaseDeDatos.crear\lTablaBDCalendario" alt="" coords="191,449,389,490"/>
+<area shape="rect" id="node10" href="$classgrupo2_1_1_l_d_1_1_base_de_datos.html#a614c973a933d5d80c4ac27d00ac0fb5b" title="grupo2.LD.BaseDeDatos.inicializar\lValores" alt="" coords="179,514,401,555"/>
+</map>
