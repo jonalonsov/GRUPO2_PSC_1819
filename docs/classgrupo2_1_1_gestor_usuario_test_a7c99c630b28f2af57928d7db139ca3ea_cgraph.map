@@ -1,0 +1,9 @@
+<map id="grupo2.GestorUsuarioTest.setUp" name="grupo2.GestorUsuarioTest.setUp">
+<area shape="rect" id="node2" href="$classgrupo2_1_1_l_d_1_1_base_de_datos.html#a924075b4484b67a206fd04e0ccc81566" title="grupo2.LD.BaseDeDatos.initBD" alt="" coords="269,5,473,32"/>
+<area shape="rect" id="node3" href="$classgrupo2_1_1_l_d_1_1_base_de_datos.html#a2ab03280971152d5ec32be75bffd43c2" title="grupo2.LD.BaseDeDatos.crear\lTablaBDUsuario" alt="" coords="272,57,471,98"/>
+<area shape="rect" id="node4" href="$classgrupo2_1_1_l_d_1_1_base_de_datos.html#ad8f14a8ae6bff6a77df6b0cf8e93f0f4" title="grupo2.LD.BaseDeDatos.crear\lTablaUsuarioSesion" alt="" coords="272,122,471,163"/>
+<area shape="rect" id="node5" href="$classgrupo2_1_1_l_n_1_1_gestor_usuario.html#a145ea51663f6eba1329c0574d2fb13b1" title="grupo2.LN.GestorUsuario.anyadir\lUsuario" alt="" coords="264,187,479,229"/>
+<area shape="rect" id="node6" href="$classgrupo2_1_1_l_n_1_1_gestor_usuario.html#aea267344a983f083ab4ee5edf2e95261" title="grupo2.LN.GestorUsuario.chequear\lYaEnTabla" alt="" coords="527,129,752,170"/>
+<area shape="rect" id="node7" href="$classgrupo2_1_1_l_n_1_1usuario.html#aab34b36d0c30eb128c8f5495be3cc5c5" title="grupo2.LN.usuario.getNombre" alt="" coords="542,195,737,221"/>
+<area shape="rect" id="node8" href="$classgrupo2_1_1_l_n_1_1usuario.html#adba94668bb594664759807115eba217d" title="grupo2.LN.usuario.getContrasenya" alt="" coords="528,245,751,272"/>
+</map>

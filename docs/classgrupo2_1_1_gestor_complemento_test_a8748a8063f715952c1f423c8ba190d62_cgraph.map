@@ -1,0 +1,14 @@
+<map id="grupo2.GestorComplementoTest.setUp" name="grupo2.GestorComplementoTest.setUp">
+<area shape="rect" id="node2" href="$classgrupo2_1_1_l_d_1_1_base_de_datos.html#a924075b4484b67a206fd04e0ccc81566" title="grupo2.LD.BaseDeDatos.initBD" alt="" coords="261,5,465,32"/>
+<area shape="rect" id="node3" href="$classgrupo2_1_1_l_d_1_1_base_de_datos.html#a927c0e7e6d88f70b9e1621620586535a" title="grupo2.LD.BaseDeDatos.crear\lTablaBDPrenda" alt="" coords="263,57,462,98"/>
+<area shape="rect" id="node4" href="$classgrupo2_1_1_l_d_1_1_base_de_datos.html#ac98ac170eedf0eac493bdc2bd014812d" title="grupo2.LD.BaseDeDatos.crear\lTablaBDConjunto" alt="" coords="263,122,462,163"/>
+<area shape="rect" id="node5" href="$classgrupo2_1_1_l_d_1_1_base_de_datos.html#a2ab03280971152d5ec32be75bffd43c2" title="grupo2.LD.BaseDeDatos.crear\lTablaBDUsuario" alt="" coords="263,187,462,229"/>
+<area shape="rect" id="node6" href="$classgrupo2_1_1_l_d_1_1_base_de_datos.html#ad8f14a8ae6bff6a77df6b0cf8e93f0f4" title="grupo2.LD.BaseDeDatos.crear\lTablaUsuarioSesion" alt="" coords="263,253,462,294"/>
+<area shape="rect" id="node7" href="$classgrupo2_1_1_l_n_1_1_gestor_complemento.html#a3c3e4581d25fc539af440d213bafc5fd" title="grupo2.LN.GestorComplemento.anyadir\lComplemento" alt="" coords="237,318,488,359"/>
+<area shape="rect" id="node9" href="$classgrupo2_1_1_l_d_1_1_base_de_datos.html#af7695cd19723948b20b2631b577a518d" title="grupo2.LD.BaseDeDatos.get\lStatement" alt="" coords="817,314,1004,355"/>
+<area shape="rect" id="node8" href="$classgrupo2_1_1_l_n_1_1_gestor_complemento.html#ae65a01465725be01af329078ea035518" title="grupo2.LN.GestorComplemento.max\lIdComp" alt="" coords="536,154,769,195"/>
+<area shape="rect" id="node10" href="$classgrupo2_1_1_l_n_1_1_complemento.html#aed8c1667ad7f4da8ab5ee8b3ad944849" title="grupo2.LN.Complemento.get\lNombre" alt="" coords="559,219,746,261"/>
+<area shape="rect" id="node11" href="$classgrupo2_1_1_l_n_1_1_complemento.html#a83b436b8e0aa90b96819e93fe4fa605f" title="grupo2.LN.Complemento.get\lColor" alt="" coords="559,285,746,326"/>
+<area shape="rect" id="node12" href="$classgrupo2_1_1_l_n_1_1_complemento.html#a6d2bd9a3882d6151f7ded8c69f6b8766" title="grupo2.LN.Complemento.get\lImagen" alt="" coords="559,350,746,391"/>
+<area shape="rect" id="node13" href="$classgrupo2_1_1_l_n_1_1_complemento.html#a49f1e8bbadb4604ed3a89f4f8a711cff" title="grupo2.LN.Complemento.get\lUsuario" alt="" coords="559,415,746,457"/>
+</map>
