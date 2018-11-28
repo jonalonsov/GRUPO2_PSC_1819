@@ -870,8 +870,7 @@ public class PanelArmario extends JFrame implements ActionListener {
 	        	gconjuntos.modifConjAleatorio(indice4);
 				JOptionPane.showMessageDialog( null, "Ha marcado como un conjunto de tu armario esta propuesta. ", null, JOptionPane.INFORMATION_MESSAGE);
 			
-				        	
-	        		   
+				      
 						PanelArmario objPanelArmario111 = null;
 						try {
 							dispose();
