@@ -747,4 +747,20 @@ public class GestorConjuntos {
 				return false;
 			}
 	}
+	public boolean modifConjAleatorio(int indice4) {
+		 st=BaseDeDatos.getStatement();
+		 gusuario = new GestorUsuario();
+		
+		int val;
+		try {
+				
+				String sentSQL = "insert into CONJUNTO select * from PROPUESTAS where (idP = '" + indice4 + "')";
+				val = st.executeUpdate( sentSQL );
+				if (val!=1) return false;  // Se tiene que añadir 1 - error si no
+				return true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
+	}
 }

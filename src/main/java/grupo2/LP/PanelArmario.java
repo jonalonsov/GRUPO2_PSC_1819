@@ -639,14 +639,14 @@ public class PanelArmario extends JFrame implements ActionListener {
             model4.addColumn("Prenda 2");
             model4.addColumn("Favorito");   
     		
-    		CrearC = new JButton("Crear Conjunto Aleatorio");
+    		CrearC = new JButton("Crear Aleatorio");
     		CrearC.setForeground(Color.BLACK);
     		CrearC.setFont(new Font("Century Gothic", Font.BOLD, 14));
     		CrearC.setAlignmentY(0.5f);
     		CrearC.setAlignmentX(0.5f);
     		CrearC.addActionListener(this);
     		CrearC.setActionCommand("CrearC");
-    		CrearC.setBounds(10, 364, 230, 27);
+    		CrearC.setBounds(10, 364, 135, 27);
     		propuestas.add(CrearC);
             
     		
@@ -678,15 +678,25 @@ public class PanelArmario extends JFrame implements ActionListener {
     	        
     	     tablePropu.setModel(model4);
     	     
-    	     JButton btnEliminarPropuesta = new JButton("Eliminar Propuesta");
+    	     JButton btnEliminarPropuesta = new JButton("Eliminar");
     	     btnEliminarPropuesta.setForeground(Color.BLACK);
     	     btnEliminarPropuesta.setFont(new Font("Century Gothic", Font.BOLD, 14));
     	     btnEliminarPropuesta.setAlignmentY(0.5f);
     	     btnEliminarPropuesta.setAlignmentX(0.5f);
     	     btnEliminarPropuesta.setActionCommand("EliminarPropu");
     	     btnEliminarPropuesta.addActionListener(this);
-    	     btnEliminarPropuesta.setBounds(250, 364, 185, 27);
+    	     btnEliminarPropuesta.setBounds(155, 364, 120, 27);
     	     propuestas.add(btnEliminarPropuesta);
+    	     
+    	     JButton btnMarcarConjunto = new JButton("Marcar Conjunto");
+    	     btnMarcarConjunto.setForeground(Color.BLACK);
+    	     btnMarcarConjunto.setFont(new Font("Century Gothic", Font.BOLD, 14));
+    	     btnMarcarConjunto.setAlignmentY(0.5f);
+    	     btnMarcarConjunto.setAlignmentX(0.5f);
+    	     btnMarcarConjunto.setActionCommand("MarcarConj");
+    	     btnMarcarConjunto.addActionListener(this);
+    	     btnMarcarConjunto.setBounds(285, 364, 135, 27);
+    	     propuestas.add(btnMarcarConjunto);
             
             cellSelectionModel5.addListSelectionListener(new ListSelectionListener() {
       		  public void valueChanged(ListSelectionEvent e2) {
@@ -856,6 +866,25 @@ public class PanelArmario extends JFrame implements ActionListener {
 	                                
 	                    
 	        break;
+	        case "MarcarConj":
+	        	gconjuntos.modifConjAleatorio(indice4);
+				JOptionPane.showMessageDialog( null, "Ha marcado como un conjunto de tu armario esta propuesta. ", null, JOptionPane.INFORMATION_MESSAGE);
+			
+				        	
+	        		   
+						PanelArmario objPanelArmario111 = null;
+						try {
+							dispose();
+							objPanelArmario111 = new PanelArmario();
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+							objPanelArmario111.setVisible(true);
+				            
+			                       
+	                    
+	        break; 
 	        case "Salir":
 	        	dispose();
 
