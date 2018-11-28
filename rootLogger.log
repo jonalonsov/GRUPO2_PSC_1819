@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 TRACE - 21:58:07,555 - main - grupo2.LP.Principal - Mensaje: Tabla usuario creada
 TRACE - 21:58:07,556 - main - grupo2.LP.Principal - Mensaje: Tabla usuario-sesion creada
 TRACE - 21:58:07,565 - main - grupo2.LP.Principal - Mensaje: La prenda 5 se ha añadido
@@ -6,3 +7,9 @@ TRACE - 21:58:07,583 - main - grupo2.LP.Principal - Mensaje: La prenda 7 se ha a
 TRACE - 21:58:07,599 - main - grupo2.LP.Principal - Mensaje: La prenda 8 se ha añadido
 TRACE - 21:58:09,083 - main - grupo2.LP.Principal - Mensaje: Tabla usuario creada
 TRACE - 21:58:09,085 - main - grupo2.LP.Principal - Mensaje: Tabla usuario-sesion creada
+=======
+TRACE - 21:43:39,132 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: Se quiere crear un conjunto aleatorio
+TRACE - 21:43:39,133 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: Se ha creado un conjunto aleatorio con el id17
+TRACE - 21:43:39,133 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: Se ha creado un conjunto aleatorio con el id22
+TRACE - 21:43:39,134 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: La propuesta 2 se ha aÃ±adido
+>>>>>>> 63bfeeb6ee5a9b843261749ac9c5662833973b68
