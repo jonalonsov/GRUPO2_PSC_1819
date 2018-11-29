@@ -1,15 +1,27 @@
-<<<<<<< HEAD
-TRACE - 21:58:07,555 - main - grupo2.LP.Principal - Mensaje: Tabla usuario creada
-TRACE - 21:58:07,556 - main - grupo2.LP.Principal - Mensaje: Tabla usuario-sesion creada
-TRACE - 21:58:07,565 - main - grupo2.LP.Principal - Mensaje: La prenda 5 se ha a�adido
-TRACE - 21:58:07,575 - main - grupo2.LP.Principal - Mensaje: La prenda 6 se ha a�adido
-TRACE - 21:58:07,583 - main - grupo2.LP.Principal - Mensaje: La prenda 7 se ha a�adido
-TRACE - 21:58:07,599 - main - grupo2.LP.Principal - Mensaje: La prenda 8 se ha a�adido
-TRACE - 21:58:09,083 - main - grupo2.LP.Principal - Mensaje: Tabla usuario creada
-TRACE - 21:58:09,085 - main - grupo2.LP.Principal - Mensaje: Tabla usuario-sesion creada
-=======
-TRACE - 21:43:39,132 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: Se quiere crear un conjunto aleatorio
-TRACE - 21:43:39,133 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: Se ha creado un conjunto aleatorio con el id17
-TRACE - 21:43:39,133 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: Se ha creado un conjunto aleatorio con el id22
-TRACE - 21:43:39,134 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: La propuesta 2 se ha añadido
->>>>>>> 63bfeeb6ee5a9b843261749ac9c5662833973b68
+TRACE - 17:42:55,878 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: El complemento 13 se ha añadido
+TRACE - 17:42:56,026 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: El complemento 14 se ha añadido
+TRACE - 17:42:56,117 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: El complemento 15 se ha añadido
+TRACE - 17:42:56,208 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: El complemento 16 se ha añadido
+TRACE - 17:42:56,304 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: El complemento 17 se ha añadido
+TRACE - 17:42:56,423 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: El complemento 18 se ha añadido
+TRACE - 17:42:56,540 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: El complemento 19 se ha añadido
+TRACE - 17:42:56,633 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: El complemento 20 se ha añadido
+TRACE - 17:46:46,743 - main - grupo2.LP.Principal - Mensaje: Tabla usuario creada
+TRACE - 17:46:46,745 - main - grupo2.LP.Principal - Mensaje: Tabla prenda creada
+TRACE - 17:46:46,746 - main - grupo2.LP.Principal - Mensaje: Tabla complemento creada
+TRACE - 17:46:46,748 - main - grupo2.LP.Principal - Mensaje: Tabla conjunto creada
+TRACE - 17:46:46,748 - main - grupo2.LP.Principal - Mensaje: Tabla propuesta creada
+TRACE - 17:46:46,748 - main - grupo2.LP.Principal - Mensaje: Tabla usuario-sesion creada
+TRACE - 17:46:46,749 - main - grupo2.LP.Principal - Mensaje: Tabla calendario creada
+TRACE - 17:46:46,749 - main - grupo2.Main - Mensaje: Tablas creadas y base de datos inicializada
+TRACE - 17:47:05,197 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: entra correctamente al programa
+TRACE - 17:47:07,193 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: El complemento 21 se ha añadido
+TRACE - 17:47:07,279 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: El complemento 22 se ha añadido
+TRACE - 17:47:07,371 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: El complemento 23 se ha añadido
+TRACE - 17:47:07,483 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: El complemento 24 se ha añadido
+TRACE - 17:47:07,571 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: El complemento 25 se ha añadido
+TRACE - 17:47:07,783 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: El complemento 26 se ha añadido
+TRACE - 17:47:07,923 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: El complemento 27 se ha añadido
+TRACE - 17:47:08,020 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: El complemento 28 se ha añadido
+TRACE - 17:47:08,192 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: El complemento 29 se ha añadido
+TRACE - 17:47:08,313 - AWT-EventQueue-0 - grupo2.LP.Principal - Mensaje: El complemento 30 se ha añadido

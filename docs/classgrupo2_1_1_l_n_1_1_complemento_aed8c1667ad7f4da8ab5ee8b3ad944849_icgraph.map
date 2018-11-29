@@ -1,0 +1,9 @@
+<map id="grupo2.LN.Complemento.getNombre" name="grupo2.LN.Complemento.getNombre">
+<area shape="rect" id="node2" href="$classgrupo2_1_1_l_n_1_1_gestor_complemento.html#a3c3e4581d25fc539af440d213bafc5fd" title="grupo2.LN.GestorComplemento.anyadir\lComplemento" alt="" coords="240,103,491,144"/>
+<area shape="rect" id="node6" href="$classgrupo2_1_1_l_p_1_1_panel_armario.html#ab0ea082cecb9b179e40129018b04973c" title="grupo2.LP.PanelArmario.Panel\lArmario" alt="" coords="265,184,465,225"/>
+<area shape="rect" id="node8" href="$classgrupo2_1_1_complemento_test.html#a83023018f81235401afc4e19abb873dc" title="grupo2.ComplementoTest.test\lGetNombre" alt="" coords="267,249,463,291"/>
+<area shape="rect" id="node3" href="$classgrupo2_1_1_l_p_1_1_insertar_complemento.html#a42574374d5434e4da94d2d52929f7bff" title="grupo2.LP.InsertarComplemento.action\lPerformed" alt="" coords="539,5,785,47"/>
+<area shape="rect" id="node4" href="$classgrupo2_1_1_gestor_complemento_test.html#a8748a8063f715952c1f423c8ba190d62" title="grupo2.GestorComplemento\lTest.setUp" alt="" coords="570,71,754,112"/>
+<area shape="rect" id="node5" href="$classgrupo2_1_1_gestor_complemento_test.html#a36418645209bfc280e942f258a6f37d6" title="grupo2.GestorComplemento\lTest.testAnyadirComplemento" alt="" coords="563,136,761,177"/>
+<area shape="rect" id="node7" href="$classgrupo2_1_1_l_p_1_1_panel_armario.html#af60da31dfb60c352c1d3d588e1d550bc" title="grupo2.LP.PanelArmario.action\lPerformed" alt="" coords="561,201,763,243"/>
+</map>

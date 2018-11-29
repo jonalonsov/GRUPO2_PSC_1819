@@ -21,6 +21,10 @@ import javax.swing.JTextPane;
 
 import org.apache.log4j.Logger;
 
+import grupo2.LD.BaseDeDatos;
+import grupo2.LN.GestorComplemento;
+import grupo2.LN.GestorUsuario;
+
 @SuppressWarnings("serial")
 public class PanelMenu extends JFrame implements ActionListener {
 
@@ -39,10 +43,19 @@ public class PanelMenu extends JFrame implements ActionListener {
     private JButton Conjuntos;
     private JButton Fav;
     private JButton CrearCalendar;
+    private JButton btnVisualvm;
     
     
     private JTextArea M, I, A, R, M2, A2, R2, I2, O;
     private JTextArea informacion;
+    
+	private grupo2.LN.Complemento complemento1;
+	private grupo2.LN.Complemento complemento2;
+	private grupo2.LN.Complemento complemento3;
+	private grupo2.LN.Complemento complemento4;
+	private grupo2.LN.Complemento complemento5;
+	private GestorComplemento gcomplementos;
+	private GestorUsuario gusuario;
     
     
     public PanelMenu(){
@@ -267,6 +280,21 @@ public class PanelMenu extends JFrame implements ActionListener {
                 txtpnHj.setBounds(53, 43, 344, 60);
                 PanelCentro.add(txtpnHj);
                 
+                btnVisualvm = new JButton("VISUALVM");
+                btnVisualvm.setBackground(Color.LIGHT_GRAY);
+                btnVisualvm.setForeground(Color.BLACK);
+                btnVisualvm.setFont(new Font("Century Gothic", Font.BOLD, 15));
+                btnVisualvm.setAlignmentY(0.5f);
+                btnVisualvm.setAlignmentX(0.0f);
+                btnVisualvm.setActionCommand("Conjuntos");
+                btnVisualvm.setBounds(100, 358, 200, 29);
+                PanelCentro.add(btnVisualvm);
+                
+                btnVisualvm.addActionListener(this);
+                PanelCentro.setLayout(null);
+                btnVisualvm.setActionCommand("Visualvm");
+                
+                
                         
     }
 
@@ -332,6 +360,35 @@ public class PanelMenu extends JFrame implements ActionListener {
 			
 			VerCalendario objCalendar = new VerCalendario();
 			objCalendar.setVisible(true);
+        
+			break;
+			
+		case "Visualvm":
+			
+			gusuario = new GestorUsuario();
+			
+			complemento1 = new grupo2.LN.Complemento (0, "Collar", "Rojo", "/", gusuario.nombreUsuario());	
+			complemento2 = new grupo2.LN.Complemento (0, "Pulsera", "Verde", "/", gusuario.nombreUsuario());
+			complemento3 = new grupo2.LN.Complemento (0, "Pendientes", "Rojo", "/", gusuario.nombreUsuario());
+			complemento4 = new grupo2.LN.Complemento (0, "Gafas", "Negro", "/", gusuario.nombreUsuario());
+			complemento5 = new grupo2.LN.Complemento (0, "Gorra", "Amarillo", "/", gusuario.nombreUsuario());
+			
+			gcomplementos = new GestorComplemento();
+			
+//			metodo como estaba
+			gcomplementos.anyadirComplemento( BaseDeDatos.getStatement(), complemento1);
+			gcomplementos.anyadirComplemento( BaseDeDatos.getStatement(), complemento2);
+			gcomplementos.anyadirComplemento( BaseDeDatos.getStatement(), complemento3);
+			gcomplementos.anyadirComplemento( BaseDeDatos.getStatement(), complemento4);
+			gcomplementos.anyadirComplemento( BaseDeDatos.getStatement(), complemento5);
+			
+//			metodo para testear con visualvm
+			gcomplementos.anyadirComplemento2( BaseDeDatos.getStatement(), 0, "Collar", "Rojo", "/", gusuario.nombreUsuario());
+			gcomplementos.anyadirComplemento2( BaseDeDatos.getStatement(), 0, "Pulsera", "Verde", "/", gusuario.nombreUsuario());
+			gcomplementos.anyadirComplemento2( BaseDeDatos.getStatement(), 0, "Pendientes", "Rojo", "/", gusuario.nombreUsuario());
+			gcomplementos.anyadirComplemento2( BaseDeDatos.getStatement(), 0, "Gafas", "Negro", "/", gusuario.nombreUsuario());
+			gcomplementos.anyadirComplemento2( BaseDeDatos.getStatement(), 0, "Gorra", "Amarillo", "/", gusuario.nombreUsuario());
+			
         
 			break;
         }

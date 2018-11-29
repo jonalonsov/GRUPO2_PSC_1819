@@ -1,0 +1,13 @@
+<map id="grupo2.LP.VerFavoritos.actionPerformed" name="grupo2.LP.VerFavoritos.actionPerformed">
+<area shape="rect" id="node2" href="$classgrupo2_1_1_l_n_1_1_gestor_conjuntos.html#aa7a52ace747aabae95391a1a0b10183a" title="grupo2.LN.GestorConjuntos.modif\lNoFavConjunto" alt="" coords="249,32,467,74"/>
+<area shape="rect" id="node4" href="$classgrupo2_1_1_l_p_1_1_ver_favoritos.html#abdf6a9f0f7f7cca52d9654e29d1e5e48" title="grupo2.LP.VerFavoritos.Ver\lFavoritos" alt="" coords="267,170,449,211"/>
+<area shape="rect" id="node3" href="$classgrupo2_1_1_l_d_1_1_base_de_datos.html#af7695cd19723948b20b2631b577a518d" title="grupo2.LD.BaseDeDatos.get\lStatement" alt="" coords="798,216,985,258"/>
+<area shape="rect" id="node5" href="$classgrupo2_1_1_l_n_1_1_gestor_conjuntos.html#a4331450cbf457fd74d8daed0a0826d4a" title="grupo2.LN.GestorConjuntos.select\lConjuntosFav" alt="" coords="515,264,736,306"/>
+<area shape="rect" id="node7" href="$classgrupo2_1_1_l_n_1_1_conjunto.html#a81857d920a8cec451ea283de15464931" title="grupo2.LN.Conjunto.getFavorito" alt="" coords="524,396,727,422"/>
+<area shape="rect" id="node8" href="$classgrupo2_1_1_l_n_1_1_conjunto.html#a98bc71eb7cb17a0b61812eaf0dff7e9d" title="grupo2.LN.Conjunto.getId" alt="" coords="541,46,709,73"/>
+<area shape="rect" id="node9" href="$classgrupo2_1_1_l_n_1_1_gestor_prendas.html#a2af1808a0228b6c54c16ff33cf5d1b96" title="grupo2.LN.GestorPrendas.nombre\lPrendaconID" alt="" coords="516,199,735,240"/>
+<area shape="rect" id="node10" href="$classgrupo2_1_1_l_n_1_1_conjunto.html#ab9c802be806afad76691fad00e18c361" title="grupo2.LN.Conjunto.getPrenda1" alt="" coords="522,97,729,124"/>
+<area shape="rect" id="node11" href="$classgrupo2_1_1_l_n_1_1_conjunto.html#ac8133b6e7e1d0a4f7b5108fdf983ddee" title="grupo2.LN.Conjunto.getPrenda2" alt="" coords="522,148,729,174"/>
+<area shape="rect" id="node12" href="$classgrupo2_1_1_l_n_1_1_gestor_conjuntos.html#aa67da1626b98144109f5a3f71e47e8f8" title="grupo2.LN.GestorConjuntos.select\lPropuestaFav" alt="" coords="515,330,736,371"/>
+<area shape="rect" id="node6" href="$classgrupo2_1_1_l_n_1_1_gestor_usuario.html#af78497f5a34ed39fa0bec5e9b6d885d7" title="grupo2.LN.GestorUsuario.nombre\lUsuario" alt="" coords="784,314,999,355"/>
+</map>
