@@ -1,10 +1,14 @@
 package grupo2;
 
 import static org.junit.Assert.*;
-import grupo2.LN.Complemento;
-import grupo2.LN.Conjunto;
-import grupo2.LN.usuario;
 
+import org.databene.contiperf.PerfTest;
+import org.databene.contiperf.Required;
+import org.databene.contiperf.junit.ContiPerfRule;
+
+import grupo2.LN.Complemento;
+
+import org.junit.Rule;
 import org.junit.Test;
 
 public class ComplementoTest {
@@ -13,8 +17,14 @@ public class ComplementoTest {
 	public void testComplemento() {
 				//fail("Not yet implemented");
 	}
+	
+	@Rule
+	public ContiPerfRule i = new ContiPerfRule();
+	
 
 	@Test
+	@PerfTest(invocations = 5000, threads = 5000,  duration=2000)   //PerfTest convierte un JUnit en una prueba Contiperf. A definir número de iteraciones y los hilos que se disponen
+	@Required(max = 300, average = 3000, median=5000)  //Required define las requisitos de rendimiento, si no los cumple --> rojo
 	public void testGetNombre() {
 		System.out.println("getNombre");
 		Complemento instance = new Complemento (0, null, null, null, null);

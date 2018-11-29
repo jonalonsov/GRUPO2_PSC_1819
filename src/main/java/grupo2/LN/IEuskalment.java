@@ -2,10 +2,10 @@ package grupo2.LN;
 
 public interface IEuskalment {
 	
-	public int  sensacionTermica (int temp, int i);
+	public int  sensacionTermica (int temp, int humedad);
 	
-	public int  probLluvia (int temp, int litros, int met2);
+	public int  litrosMetro (int litros, int met2);
 	
-	public String  prevMet (int temp, String explic);	
+	public boolean isPositive (int temp);	
 
 }
