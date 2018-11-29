@@ -58,6 +58,24 @@ public class GestorComplemento {
 			}
 	}
 	
+public boolean anyadirComplemento2(Statement st, Integer id1, String nombre, String color, String imagen,String usuario) {
+		
+		int id = maxIdComp() + 1;
+		
+		try {
+	
+				String sentSQL = "insert into COMPLEMENTO1 values(" + "'" + id + "', " + "'" + nombre + "', " + "'" + color + "',"+"'" + imagen + "', " + "'" + usuario + "')"; 
+				
+				log.trace("Mensaje: El complemento " +id+ " se ha añadido");
+				int val = st.executeUpdate( sentSQL );
+				if (val!=1) return false;  // Se tiene que añadir 1 - error si no
+				return true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
+	}
+	
 	public Complemento[] selectComplementos() {
 		
 		 st=BaseDeDatos.getStatement();
