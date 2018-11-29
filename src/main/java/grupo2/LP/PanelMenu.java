@@ -39,6 +39,7 @@ public class PanelMenu extends JFrame implements ActionListener {
     private JButton Conjuntos;
     private JButton Fav;
     private JButton CrearCalendar;
+    private JButton btnVisualvm;
     
     
     private JTextArea M, I, A, R, M2, A2, R2, I2, O;
@@ -266,6 +267,21 @@ public class PanelMenu extends JFrame implements ActionListener {
                 txtpnHj.setText("¡Bienvenido a tu armario!");
                 txtpnHj.setBounds(53, 43, 344, 60);
                 PanelCentro.add(txtpnHj);
+                
+                btnVisualvm = new JButton("VISUALVM");
+                btnVisualvm.setBackground(Color.LIGHT_GRAY);
+                btnVisualvm.setForeground(Color.BLACK);
+                btnVisualvm.setFont(new Font("Century Gothic", Font.BOLD, 15));
+                btnVisualvm.setAlignmentY(0.5f);
+                btnVisualvm.setAlignmentX(0.0f);
+                btnVisualvm.setActionCommand("Conjuntos");
+                btnVisualvm.setBounds(100, 358, 200, 29);
+                PanelCentro.add(btnVisualvm);
+                
+                btnVisualvm.addActionListener(this);
+                PanelCentro.setLayout(null);
+                btnVisualvm.setActionCommand("Visualvm");
+                
                 
                         
     }
