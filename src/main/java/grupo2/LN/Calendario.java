@@ -4,9 +4,8 @@ import grupo2.LP.Principal;
 
 import org.apache.log4j.Logger;
 
-public class Calendario  implements Comparable<Object> {
+public class Calendario  {
 
-	private static final long serialVersionUID = 1L;
 	private final static Logger log = Logger.getLogger(Principal.class.getName());
 	private int id;
 	private int idConjunto;
@@ -38,12 +37,6 @@ public class Calendario  implements Comparable<Object> {
 
 	public void setUsuario(String usuario2) {
 		this.usuario = usuario2;
-	}
-
-	@Override
-	public int compareTo(Object o) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 

@@ -1,13 +1,15 @@
 package grupo2;
 
 import static org.junit.Assert.*;
+
+import org.databene.contiperf.PerfTest;
+import org.databene.contiperf.Required;
+
 import grupo2.LD.BaseDeDatos;
 import grupo2.LN.Calendario;
 import grupo2.LN.Conjunto;
 import grupo2.LN.GestorConjuntos;
-import grupo2.LN.GestorPrendas;
 import grupo2.LN.GestorUsuario;
-import grupo2.LN.Prenda;
 import grupo2.LN.usuario;
 
 import org.junit.Before;
@@ -16,6 +18,11 @@ import org.junit.Test;
 public class GestorConjuntosTest {
 	
 	private static boolean setUpIsDone = false;
+	private GestorConjuntos gc;
+	private Conjunto conjunto2;
+	private Conjunto conjunto1;
+	
+	
 	@Before 
 	public void setUp() { 
 		
@@ -30,26 +37,25 @@ public class GestorConjuntosTest {
 		BaseDeDatos.crearTablaBDUsuario();
 		BaseDeDatos.crearTablaUsuarioSesion();
 		
-		GestorConjuntos gc = new GestorConjuntos();
-		
-		
-		Conjunto conjunto1 = new Conjunto('1', '3', '2', "leire", '0');  
-		Conjunto conjunto2 = new Conjunto( '2', '1', '2', "leire", '0'); 
-		
-		gc.anyadirConjunto(conjunto1);
-		gc.anyadirConjunto(conjunto2);
+		gc = new GestorConjuntos();
+	
+		conjunto1 = new Conjunto('1', '3', '2', "leire", '0');  
+		conjunto2 = new Conjunto( '2', '1', '2', "leire", '0'); 
 		
 		setUpIsDone = true;
     }
 	
-	 @Test
-	    public void testanyadirConjunto()
-	    {
-	    	Conjunto conjunto3 = new Conjunto('3' ,'2', '1', "Andrea", '0');
-	    	GestorConjuntos gc = new GestorConjuntos(); 
-	    	gc.anyadirConjunto(conjunto3);
-	    	assertEquals( conjunto3.getUsuario(), "Andrea" );
-	    }
+
+	@Test
+	@PerfTest(invocations = 10, threads = 50,  duration=2000)   //PerfTest convierte un JUnit en una prueba Contiperf. A definir número de iteraciones y los hilos que se disponen
+	@Required(max = 1000, average = 300, median=500)  //Required define las requisitos de rendimiento, si no los cumple --> rojo
+	public void testanyadirConjunto(){
+		//Para que le de tiempo a ejecutar todas las invocations antes de hacer el análisis con contiperf
+	boolean sem1 = 	gc.anyadirConjunto(conjunto1);
+	boolean sem2 =	gc.anyadirConjunto(conjunto2);		
+		assertTrue(sem1);
+		assertTrue(sem2);
+	}
 	 @Test
 	    public void testmaxIdConjunto()
 	    {

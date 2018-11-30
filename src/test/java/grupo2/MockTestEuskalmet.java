@@ -3,7 +3,12 @@ package grupo2;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import org.databene.contiperf.PerfTest;
+import org.databene.contiperf.Required;
+import org.databene.contiperf.junit.ContiPerfRule;
+import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -22,6 +27,7 @@ public class MockTestEuskalmet {
 	
 	@Mock
 	GestorEuskalmet mockIEuskalmet;	
+	
 	@Before 
 	public void setUp() { 
 
@@ -32,9 +38,19 @@ public class MockTestEuskalmet {
 
     }
 	
+	@After
+	public void tearDown() throws Exception {
+		mockIEuskalmet = null;
+
+	}
+	
+	@Rule
+	public ContiPerfRule i = new ContiPerfRule();
+	
 	@Test
+	@PerfTest(invocations = 1000, threads = 20000,  duration=2000)   //PerfTest convierte un JUnit en una prueba Contiperf. A definir número de iteraciones y los hilos que se disponen
+	@Required(max = 1000, average = 300, median=500)  //Required define las requisitos d
 	public void testGestorEuskalmet() {
-		
 		assertTrue(mockIEuskalmet.isPositive(temp));
 		assertEquals(mockIEuskalmet.litrosMetro(litros, met2),12);				
 		assertEquals(mockIEuskalmet.sensacionTermica(temp, humedad),25);

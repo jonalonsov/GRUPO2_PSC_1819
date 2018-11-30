@@ -17,6 +17,7 @@ public class GestorConjuntos {
 	//<--GOE--> HACER LO MISMO QUE HE HECHO CON GESTORCOMPLEMENTOS Y GESTORPRENDAS, NO CREAR UN NUEVO OBJETO
 	private Statement st;
 	private GestorUsuario gusuario;
+	private static ResultSet rs;
 	public GestorConjuntos(){
 		st=BaseDeDatos.getStatement();
 		
@@ -27,8 +28,7 @@ public class GestorConjuntos {
 		int id=0;
 				String sentSQL = "SELECT idC from Conjunto ORDER BY idC DESC LIMIT 1 ";
 				//System.out.println( sentSQL ); 
-				
-				ResultSet rs;
+
 				try {
 					rs = st.executeQuery( sentSQL );
 						    id = rs.getInt("idC");	

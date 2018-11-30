@@ -4,9 +4,8 @@ import grupo2.LP.Principal;
 
 import org.apache.log4j.Logger;
 
-public class Conjunto  implements Comparable<Object> {
+public class Conjunto  {
 
-	private static final long serialVersionUID = 1L;
 	private final static Logger log = Logger.getLogger(Principal.class.getName());
 	
 	private int id;
@@ -15,8 +14,7 @@ public class Conjunto  implements Comparable<Object> {
 	private String usuario;
 	private int favorito; //1 será que es un conjunto favorito y 0 que no
 	
-	public Conjunto(int id, int prenda1, int prenda2, String usuario, int favorito){
-		
+	public Conjunto(int id, int prenda1, int prenda2, String usuario, int favorito){		
 		this.setId(id);
 		this.setPrenda1(prenda1);
 		this.setPrenda2(prenda2);
@@ -64,15 +62,5 @@ public class Conjunto  implements Comparable<Object> {
 	public void setFavorito(int favorito) {
 		this.favorito = favorito;
 	}
-
-	@Override
-	public int compareTo(Object o) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	
-	
-
 
 }

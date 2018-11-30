@@ -1,11 +1,2 @@
-TRACE - 20:24:40,601 - main - grupo2.LP.Principal - Mensaje: Tabla usuario-sesion creada
-TRACE - 20:24:40,644 - main - grupo2.LP.Principal - Mensaje: El conjunto 16 se ha añadido
-TRACE - 20:24:40,663 - main - grupo2.LP.Principal - Mensaje: El conjunto 17 se ha añadido
-TRACE - 20:24:49,520 - main - grupo2.LP.Principal - Mensaje: El conjunto 18 se ha añadido
-TRACE - 20:24:50,518 - main - grupo2.LP.Principal - Mensaje: La propuesta 1 se ha añadido
-TRACE - 20:29:31,336 - main - grupo2.LP.Principal - Mensaje: Tabla prenda creada
-TRACE - 20:29:31,339 - main - grupo2.LP.Principal - Mensaje: Tabla conjunto creada
-TRACE - 20:29:31,340 - main - grupo2.LP.Principal - Mensaje: Tabla usuario creada
-TRACE - 20:29:31,340 - main - grupo2.LP.Principal - Mensaje: Tabla usuario-sesion creada
-TRACE - 20:29:31,344 - main - grupo2.LP.Principal - Mensaje: El conjunto 19 se ha añadido
-TRACE - 20:29:31,364 - main - grupo2.LP.Principal - Mensaje: El conjunto 20 se ha añadido
+TRACE - 20:16:21,066 - main - grupo2.LP.Principal - Mensaje: El usuariojon se quiere a�adir
+TRACE - 20:16:21,500 - main - grupo2.LP.Principal - Mensaje: El usuariogorka se quiere a�adir

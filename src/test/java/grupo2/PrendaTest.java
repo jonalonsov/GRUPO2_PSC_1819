@@ -1,141 +1,151 @@
 package grupo2;
 
 import static org.junit.Assert.*;
-import grupo2.LN.Prenda;
-import grupo2.LN.usuario;
 
+import org.databene.contiperf.PerfTest;
+import org.databene.contiperf.Required;
+import org.databene.contiperf.junit.ContiPerfRule;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Rule;
+
+import grupo2.LN.Prenda;
 import org.junit.Test;
 
 public class PrendaTest {
 
-	@Test
-	public void testPrenda() {
-		//fail("Not yet implemented");
-	}
+	private Prenda instance;
+	@Before
+	public void setUp() {
 
+		instance = new Prenda(5, "Pantalon", "Azul", "Algodon", null, "Gorka");
+	}
+	
+	@After
+	public void tearDown() throws Exception {
+		instance = null;
+
+	}
+		
+	@Rule
+	public ContiPerfRule i = new ContiPerfRule();
+
+	
 	@Test
+	@PerfTest(invocations = 5000, threads = 5000,  duration=2000)   //PerfTest convierte un JUnit en una prueba Contiperf. A definir número de iteraciones y los hilos que se disponen
+	@Required(max = 3000, average = 3000, median=5000)  //Required define las requisitos de rendimiento, si no los cumple --> rojo
 	public void testGetNombre() {
-		System.out.println("getNombre");
-		Prenda instance = new Prenda (0, null, null, null, null, null);
-		String expResult = "";
-		instance.setNombre("");
+		String expResult = "Pantalon";
 		String result = instance.getNombre();
+		
 		assertEquals(expResult, result);
-		//fail("Not yet implemented");
 	}
 
 	@Test
 	public void testSetNombre() {
-		System.out.println("setNombre");
-		String nombre ="";
-		Prenda instance = new Prenda(0, nombre, nombre, nombre, nombre, nombre);
-		instance.setNombre(nombre);
-		//fail("Not yet implemented");
+		String expResult = "Camisa";
+		
+		instance.setNombre("Camisa");
+		String result = instance.getNombre();
+		
+		assertEquals(expResult, result);
 	}
 
 	@Test
 	public void testGetColor() {
-		System.out.println("getColor");
-		Prenda instance = new Prenda (0, null, null, null, null, null);
-		String expResult = "";
-		instance.setColor("");
+		String expResult = "Azul";
 		String result = instance.getColor();
+		
 		assertEquals(expResult, result);
-		//fail("Not yet implemented");
 	}
 
 	@Test
 	public void testSetColor() {
-		System.out.println("setColor");
-		String color ="";
-		Prenda instance = new Prenda(0, color, color, color, color, color);
-		instance.setColor(color);
-		//fail("Not yet implemented");
+		String expResult = "Rojo";
+		
+		instance.setColor("Rojo");
+		String result = instance.getColor();
+		
+		assertEquals(expResult, result);
 	}
 
 	@Test
 	public void testGetImagen() {
-		System.out.println("getImagen");
-		Prenda instance = new Prenda (0, null, null, null, null, null);
-		String expResult = "";
-		instance.setImagen("");
+		String expResult = null;
 		String result = instance.getImagen();
+		
 		assertEquals(expResult, result);
-		//fail("Not yet implemented");
 	}
 
 	@Test
 	public void testSetImagen() {
-		System.out.println("setImagen");
-		String imagen ="";
-		Prenda instance = new Prenda(0, imagen, imagen, imagen, imagen, imagen);
-		instance.setImagen(imagen);
-		//fail("Not yet implemented");
-	}
-
-	@Test
-	public void testCompareTo() {
-		//fail("Not yet implemented");
+		String expResult = "https:\\";
+		
+		instance.setImagen(expResult);
+		String result = instance.getImagen();
+		
+		assertEquals(expResult, result);
 	}
 
 	@Test
 	public void testGetTejido() {
-		System.out.println("getTejido");
-		Prenda instance = new Prenda (0, null, null, null, null, null);
-		String expResult = "";
-		instance.setTejido("");
+		String expResult = "Algodon";
 		String result = instance.getTejido();
+		
 		assertEquals(expResult, result);
-		//fail("Not yet implemented");
 	}
 
 	@Test
 	public void testSetTejido() {
-		System.out.println("setTejido");
-		String tejido ="";
-		Prenda instance = new Prenda(0, tejido, tejido, tejido, tejido, tejido);
-		instance.setTejido(tejido);
-		//fail("Not yet implemented");
+		String expResult = "Seda";
+		
+		instance.setTejido("Seda");
+		
+		String result = instance.getTejido();
+		
+		assertEquals(expResult, result);
 	}
 
 	@Test
+	@PerfTest(invocations = 5000, threads = 5000,  duration=2000)   //PerfTest convierte un JUnit en una prueba Contiperf. A definir número de iteraciones y los hilos que se disponen
+	@Required(max = 3000, average = 3000, median=5000)  //Required define las requisitos de rendimiento, si no los cumple --> rojo
 	public void testGetId() {
-		System.out.println("getId");
-		Prenda instance = new Prenda (0, null, null, null, null, null);
-		int expResult = 0;
-		instance.setUsuario("");
+		int expResult = 5;
+		
 		int result = instance.getId();
 		assertEquals(expResult, result);
-		//fail("Not yet implemented");
 	}
 
 	@Test
 	public void testSetId() {
-		System.out.println("setId");
-		int id =0;
-		Prenda instance = new Prenda(id, null, null, null, null, null);
-		instance.setId(id);
-		//fail("Not yet implemented");
+		int expResult = 3;
+		
+		instance.setId(3);
+		int result = instance.getId();
+		
+		assertEquals(expResult, result);
 	}
 
 	@Test
+	@PerfTest(invocations = 5000, threads = 50000,  duration=2000)   //PerfTest convierte un JUnit en una prueba Contiperf. A definir número de iteraciones y los hilos que se disponen
+	@Required(max = 3000, average = 3000, median=5000)  //Required define las requisitos de rendimiento, si no los cumple --> rojo
 	public void testGetUsuario() {
-		System.out.println("getUsuario");
-		Prenda instance = new Prenda (0, null, null, null, null, null);
-		String expResult = "";
-		instance.setUsuario("");
+		String expResult = "Gorka";
+		
 		String result = instance.getUsuario();
+		
 		assertEquals(expResult, result);
-		//fail("Not yet implemented");
 	}
 
 	@Test
 	public void testSetUsuario() {
-		System.out.println("setUsuario");
-		String usuario ="";
-		Prenda instance = new Prenda(0, usuario, usuario, usuario, usuario, usuario);
-		instance.setUsuario(usuario);
-		//fail("Not yet implemented");
+		String expResult = "Leire";
+		
+		instance.setUsuario("Leire");
+		
+		String result = instance.getUsuario();
+		
+		assertEquals(expResult, result);
 	}
 
 }

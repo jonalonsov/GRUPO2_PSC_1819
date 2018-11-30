@@ -4,9 +4,8 @@ import grupo2.LP.Principal;
 
 import org.apache.log4j.Logger;
 
-public class Fecha  implements Comparable<Object> {
+public class Fecha {
 
-	private static final long serialVersionUID = 1L;
 	private final static Logger log = Logger.getLogger(Principal.class.getName());
 	private int año;
 	private int mes;
@@ -68,15 +67,5 @@ public class Fecha  implements Comparable<Object> {
 	public void setDia(int dia) {
 		this.dia = dia;
 	}
-
-
-
-	@Override
-	public int compareTo(Object o) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	
 
 }

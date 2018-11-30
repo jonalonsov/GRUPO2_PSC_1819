@@ -1,60 +1,65 @@
 package grupo2;
 
 import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+
 import grupo2.LN.usuario;
 
 import org.junit.Test;
 
 public class usuarioTest {
+	private usuario instance;
+	
+	@Before
+	public void setUp() {
 
-	@Test
-	public void testUsuario() {
-		//fail("Not yet implemented");
+		instance = new usuario("Jon", "a");
 	}
+	
+	@After
+	public void tearDown() throws Exception {
+		instance = null;
 
+	}
+	
 	@Test
 	public void testGetNombre() {
-		System.out.println("getNombre");
-		usuario instance = new usuario (null, null);
-		String expResult = "";
-		instance.setNombre("");
+		String expResult = "Jon";
 		String result = instance.getNombre();
+		
 		assertEquals(expResult, result);
-		//fail("Not yet implemented");
 	}
 
+	
 	@Test
 	public void testSetNombre() {
-		System.out.println("setNombre");
-		String nombre ="";
-		usuario instance = new usuario(nombre, nombre);
-		instance.setNombre(nombre);
-		//fail("Not yet implemented");
+		String expResult = "Leire";
+		
+		instance.setNombre("Leire");
+		String result = instance.getNombre();
+		
+		assertEquals(expResult, result);
 	}
+	
 
 	@Test
 	public void testGetContrasenya() {
-		System.out.println("getContrasenya");
-		usuario instance = new usuario (null, null);
-		String expResult = "";
-		instance.setContrasenya("");
+		String expResult = "a";
 		String result = instance.getContrasenya();
+		
 		assertEquals(expResult, result);
-		//fail("Not yet implemented");
 	}
 
 	@Test
 	public void testSetContrasenya() {
-		System.out.println("setContrasenya");
-		String contrasenya ="";
-		usuario instance = new usuario(contrasenya, contrasenya);
-		instance.setContrasenya(contrasenya);
-		//fail("Not yet implemented");
-	}
-
-	@Test
-	public void testCompareTo() {
-		//fail("Not yet implemented");
+		String expResult = "b";
+		
+		instance.setContrasenya("b");
+		String result = instance.getContrasenya();
+		
+		assertEquals(expResult, result);
 	}
 
 }

@@ -8,105 +8,108 @@ import org.databene.contiperf.junit.ContiPerfRule;
 
 import grupo2.LN.Complemento;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
 public class ComplementoTest {
 
-	@Test
-	public void testComplemento() {
-				//fail("Not yet implemented");
+	private Complemento instance;
+
+	@Before
+	public void setUp() {
+
+		instance = new Complemento(5, "Pulsera", "Azul", null, "Gorka");
 	}
 	
+	@After
+	public void tearDown() throws Exception {
+		instance = null;
+
+	}
+		
 	@Rule
 	public ContiPerfRule i = new ContiPerfRule();
 	
 
 	@Test
 	@PerfTest(invocations = 5000, threads = 5000,  duration=2000)   //PerfTest convierte un JUnit en una prueba Contiperf. A definir número de iteraciones y los hilos que se disponen
-	@Required(max = 300, average = 3000, median=5000)  //Required define las requisitos de rendimiento, si no los cumple --> rojo
+	@Required(max = 3000, average = 3000, median=5000)  //Required define las requisitos de rendimiento, si no los cumple --> rojo
 	public void testGetNombre() {
-		System.out.println("getNombre");
-		Complemento instance = new Complemento (0, null, null, null, null);
-		String expResult = "";
-		instance.setNombre("");
+	
+		String expResult = "Pulsera";
 		String result = instance.getNombre();
+		
 		assertEquals(expResult, result);
-		//fail("Not yet implemented");
 	}
 
 	@Test
+	@PerfTest(invocations = 1000, threads = 20,  duration=2000)   //PerfTest convierte un JUnit en una prueba Contiperf. A definir número de iteraciones y los hilos que se disponen
+	@Required(max = 1000, average = 300, median=500)  //Required define las requisitos d
 	public void testSetNombre() {
-		System.out.println("setNombre");
-		String nombre ="";
-		Complemento instance = new Complemento(0, nombre, nombre, nombre, nombre);
-		instance.setNombre(nombre);
-		//fail("Not yet implemented");
+		String expResult = "Pendientes";
+		
+		instance.setNombre("Pendientes");
+		String result = instance.getNombre();
+		
+		assertEquals(expResult, result);
 	}
 
 	@Test
 	public void testGetColor() {
-		System.out.println("getColor");
-		Complemento instance = new Complemento (0, null, null, null, null);
-		String expResult = "";
-		instance.setColor("");
+		String expResult = "Azul";
 		String result = instance.getColor();
+		
 		assertEquals(expResult, result);
-		//fail("Not yet implemented");
 	}
 
 	@Test
 	public void testSetColor() {
-		System.out.println("setColor");
-		String color ="";
-		Complemento instance = new Complemento(0, color, color, color, color);
-		instance.setColor(color);
-		//fail("Not yet implemented");
-	}
-
-	@Test
-	public void testCompareTo() {
-		//fail("Not yet implemented");
+		String expResult = "Rojo";
+		
+		instance.setColor("Rojo");
+		String result = instance.getColor();
+		
+		assertEquals(expResult, result);
 	}
 
 	@Test
 	public void testGetId() {
-		System.out.println("getId");
-		Complemento instance = new Complemento (0, null, null, null, null);
-		int expResult = 0;
-		//instance.setId("");
+		int expResult = 5;
+		
 		int result = instance.getId();
 		assertEquals(expResult, result);
-		//fail("Not yet implemented");
 	}
 
 	@Test
 	public void testSetId() {
-		System.out.println("setId");
-		int id =0;
-		Complemento instance = new Complemento(id, null, null, null, null);
-		instance.setId(id);
-		//fail("Not yet implemented");
+		int expResult = 3;
+		
+		instance.setId(3);
+		int result = instance.getId();
+		
+		assertEquals(expResult, result);
 	}
 
 	@Test
 	public void testGetUsuario() {
-		System.out.println("getUsuario");
-		Complemento instance = new Complemento (0, null, null, null, null);
-		String expResult = "";
-		instance.setUsuario("");
+		String expResult = "Gorka";
+		
 		String result = instance.getUsuario();
+		
 		assertEquals(expResult, result);
-		//fail("Not yet implemented");
 	}
 
 	@Test
 	public void testSetUsuario() {
-		System.out.println("setUsuario");
-		String usuario ="";
-		Complemento instance = new Complemento(0, usuario, usuario, usuario, usuario);
-		instance.setUsuario(usuario);
-		//fail("Not yet implemented");
+		String expResult = "Leire";
+		
+		instance.setUsuario("Leire");
+		
+		String result = instance.getUsuario();
+		
+		assertEquals(expResult, result);
 	}
 
 }

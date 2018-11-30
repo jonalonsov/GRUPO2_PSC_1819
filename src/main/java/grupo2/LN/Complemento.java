@@ -4,9 +4,8 @@ import grupo2.LP.Principal;
 
 import org.apache.log4j.Logger;
 
-public class Complemento  implements Comparable<Object> {
+public class Complemento  {
 
-	private static final long serialVersionUID = 1L;
 	private final static Logger log = Logger.getLogger(Principal.class.getName());
 	
 	private int id;
@@ -50,12 +49,6 @@ public class Complemento  implements Comparable<Object> {
 		this.imagen = imagen;
 	}
 	
-
-	@Override
-	public int compareTo(Object o) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	public int getId() {
 		return id;
