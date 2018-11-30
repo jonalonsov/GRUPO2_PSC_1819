@@ -9,7 +9,9 @@ import grupo2.LD.BaseDeDatos;
 import grupo2.LN.Calendario;
 import grupo2.LN.Conjunto;
 import grupo2.LN.GestorConjuntos;
+import grupo2.LN.GestorPrendas;
 import grupo2.LN.GestorUsuario;
+import grupo2.LN.Prenda;
 import grupo2.LN.usuario;
 
 import org.junit.Before;
@@ -35,47 +37,53 @@ public class GestorConjuntosTest {
 		BaseDeDatos.crearTablaBDPrenda();
 		BaseDeDatos.crearTablaBDConjunto();
 		BaseDeDatos.crearTablaBDUsuario();
+		BaseDeDatos.crearTablaBDPropuestas();
+		BaseDeDatos.crearTablaBDCalendario();
 		BaseDeDatos.crearTablaUsuarioSesion();
-		
-		gc = new GestorConjuntos();
 	
-		conjunto1 = new Conjunto('1', '3', '2', "leire", '0');  
-		conjunto2 = new Conjunto( '2', '1', '2', "leire", '0'); 
 		
+		Conjunto propuesta1 = new Conjunto('1', '2', '1', "jon", '0');  
+		Conjunto propuesta2 = new Conjunto( '2', '1', '1', "gorka", '0'); 
+		
+		gc.anyadirConjuntoA(propuesta1);
+		gc.anyadirConjuntoA(propuesta2);
+		
+		Calendario calendario1 = new Calendario('1', '2', "jon", null);  
+		Calendario calendario2 = new Calendario( '2', '1', "leire", null); 
+		
+		gc.anyadirConjuntoCalendario('1');
+		gc.anyadirConjuntoCalendario('2');
 		setUpIsDone = true;
     }
-	
+	 @Test
+	    public void testanyadirConjunto()
+	    {
+	    	Conjunto conjunto3 = new Conjunto('3' ,'2', '1', "Andrea", '0');
+	    	GestorConjuntos gc = new GestorConjuntos(); 
+	    	gc.anyadirConjunto(conjunto3);
+	    	assertEquals( conjunto3.getUsuario(), "Andrea" );
+	    }
 
-	@Test
-	@PerfTest(invocations = 10, threads = 50,  duration=2000)   //PerfTest convierte un JUnit en una prueba Contiperf. A definir número de iteraciones y los hilos que se disponen
-	@Required(max = 1000, average = 300, median=500)  //Required define las requisitos de rendimiento, si no los cumple --> rojo
-	public void testanyadirConjunto(){
-		//Para que le de tiempo a ejecutar todas las invocations antes de hacer el análisis con contiperf
-	boolean sem1 = 	gc.anyadirConjunto(conjunto1);
-	boolean sem2 =	gc.anyadirConjunto(conjunto2);		
-		assertTrue(sem1);
-		assertTrue(sem2);
-	}
 	 @Test
 	    public void testmaxIdConjunto()
 	    {
 		 GestorConjuntos gc = new GestorConjuntos(); 
 	    	int max = gc.maxIdConjunto();
-	       // assertTrue( max == 4 );
+	        assertTrue( max == 3 );
 	    }
 	 @Test
 	    public void testmaxIdPropuesta()
 	    {
 		 GestorConjuntos gc = new GestorConjuntos(); 
 	    	int max = gc.maxIdPropuesta();
-	       // assertTrue( max == 1 );
+	        assertTrue( max == 2 );
 	    }
 	 @Test
 	    public void testmaxIdCalendario()
 	    {
 		 GestorConjuntos gc = new GestorConjuntos(); 
 	    	int max = gc.maxIdCalendario();
-	        //assertTrue( max == 1 );
+	        assertTrue( max == 2 );
 	    }
 	 @Test
 	    public void testanyadirConjuntoA()
@@ -144,6 +152,21 @@ public class GestorConjuntosTest {
 	    }
 	 
 	 @Test
+	    public void testselectPropuestaFav()
+	    {
+		 	GestorConjuntos gc = new GestorConjuntos();
+	    	GestorUsuario gu = new GestorUsuario();
+	    	usuario usuario = new usuario("leire", "leire"); 
+	    	
+	    	gu.anyadirFilaATablauUsuario(usuario);
+	    	gu.modificarUsuarioSistema(usuario);
+	    	Conjunto[] propuestas = gc.selectPropuestaFav();
+	    
+	    	assertEquals( propuestas.length, 4 );
+	    
+	    }
+	 
+	 @Test
 	    public void testconjuntoconID()
 	    {
 		 	GestorConjuntos gc = new GestorConjuntos();
@@ -153,5 +176,225 @@ public class GestorConjuntosTest {
 	    	//assertTrue( conjunto == "leire" );
 	    
 	    }
+	 
+	 @Test
+	    public void testcrearAleatorio1()
+	    {
+			GestorConjuntos gc = new GestorConjuntos(); 
+			GestorPrendas gp = new GestorPrendas();
+			
+			Prenda prenda1 = new Prenda ( '0', "Pantalon largo", "Negro", "Algodón", "/", "j");
+			
+			
+			gp.anyadirPrenda( BaseDeDatos.getStatement(), prenda1);
+			
+	    	int exists = gc.crearAleatorio1();
+	    	assertTrue( exists != 0 );
+	    	
+	    }
+		
+		@Test
+	    public void testcrearAleatorio2()
+	    {
+			GestorConjuntos gc = new GestorConjuntos(); 
+			GestorPrendas gp = new GestorPrendas();
+			
+			Prenda prenda2 = new Prenda ( '0', "Jersey", "Negro", "Algodón", "/", "j");
+			
+			
+			gp.anyadirPrenda( BaseDeDatos.getStatement(), prenda2);
+	    	int exists = gc.crearAleatorio2();
+	    	
+	    	assertTrue( exists != 0 );
+	    	
+	    }
+		
+		@Test
+	    public void testcrearLluvia1()
+	    {
+			GestorConjuntos gc = new GestorConjuntos(); 
+			GestorPrendas gp = new GestorPrendas();
+			
+			Prenda prenda3 = new Prenda ( '0', "Pantalon largo", "Negro", "Algodón", "/", "j");
+			
+			
+			gp.anyadirPrenda( BaseDeDatos.getStatement(), prenda3);
+	    	int exists = gc.crearLluvia1();
+	    	
+	    	assertTrue( exists != 0 );
+	    	
+	    }
+		
+		@Test
+	    public void testcrearLluvia2()
+	    {
+			GestorConjuntos gc = new GestorConjuntos(); 
+			GestorPrendas gp = new GestorPrendas();
+			
+			Prenda prenda4 = new Prenda ( '0', "Chaqueta", "Negro", "impermeable", "/", "j");
+			
+			
+			gp.anyadirPrenda( BaseDeDatos.getStatement(), prenda4); 
+	    	int exists = gc.crearLluvia2();
+	    	
+	    	assertTrue( exists != 0 );
+	    	
+	    }
+		
+		@Test
+	    public void testcrearCalor1()
+	    {
+			GestorConjuntos gc = new GestorConjuntos(); 
+			GestorPrendas gp = new GestorPrendas();
+			
+			Prenda prenda5 = new Prenda ( '0', "falda", "Negro", "Algodón", "/", "j");
+			
+			
+			gp.anyadirPrenda( BaseDeDatos.getStatement(), prenda5); 
+	    	int exists = gc.crearCalor1();
+	    	
+	    	assertTrue( exists != 0 );
+	    	
+	    }
+		
+		@Test
+	    public void testcrearCalor2()
+	    {
+			GestorConjuntos gc = new GestorConjuntos(); 
+			GestorPrendas gp = new GestorPrendas();
+			
+			Prenda prenda6 = new Prenda ( '0', "polo", "Negro", "Algodón", "/", "j");
+			
+			
+			gp.anyadirPrenda( BaseDeDatos.getStatement(), prenda6); 
+	    	int exists = gc.crearCalor2();
+	    	
+	    	assertTrue( exists != 0 );
+	    	
+	    }
+		
+	    public void testcrearFrio1()
+	    {
+	    	GestorConjuntos gc = new GestorConjuntos(); 
+			GestorPrendas gp = new GestorPrendas();
+			
+			Prenda prenda7 = new Prenda ( '0', "Pantalon largo", "Negro", "Algodón", "/", "j");
+			
+			
+			gp.anyadirPrenda( BaseDeDatos.getStatement(), prenda7);
+	    	int exists = gc.crearFrio1();
+	    	
+	    	assertTrue( exists != 0 );
+	    	
+	    }
+		
+		@Test
+	    public void testcrearFrio2()
+	    {
+			GestorConjuntos gc = new GestorConjuntos(); 
+			GestorPrendas gp = new GestorPrendas();
+			
+			Prenda prenda8 = new Prenda ( '0', "Camiseta larga", "Negro", "Algodón", "/", "j");
+			
+			
+			gp.anyadirPrenda( BaseDeDatos.getStatement(), prenda8);
+	    	int exists = gc.crearFrio2();
+	    	
+	    	assertTrue( exists != 0 );
+	    	
+	    }
+		
+		@Test
+	    public void testcrearUrbano1()
+	    {
+			GestorConjuntos gc = new GestorConjuntos(); 
+			GestorPrendas gp = new GestorPrendas();
+			
+			Prenda prenda9 = new Prenda ( '0', "Pantalon largo", "Negro", "Algodón", "/", "j");
+			
+			
+			gp.anyadirPrenda( BaseDeDatos.getStatement(), prenda9);
+	    	int exists = gc.crearUrbano1();
+	    	
+	    	assertTrue( exists != 0 );
+	    	
+	    }
+		
+		@Test
+	    public void testcrearUrbano2()
+	    {
+			GestorConjuntos gc = new GestorConjuntos(); 
+			GestorPrendas gp = new GestorPrendas();
+			
+			Prenda prenda10 = new Prenda ( '0', "Camiseta tirantes", "Negro", "Algodón", "/", "j");
+			
+			
+			gp.anyadirPrenda( BaseDeDatos.getStatement(), prenda10);
+	    	int exists = gc.crearUrbano2();
+	    	
+	    	assertTrue( exists != 0 );
+	    	
+	    }
+		
+		@Test
+	    public void testcrearFormal1()
+	    {
+			GestorConjuntos gc = new GestorConjuntos(); 
+			GestorPrendas gp = new GestorPrendas();
+			
+			Prenda prenda11 = new Prenda ( '0', "Pantalon largo", "Negro", "Algodón", "/", "j");
+			
+			
+			gp.anyadirPrenda( BaseDeDatos.getStatement(), prenda11);
+	    	int exists = gc.crearFormal1();
+	    	
+	    	assertTrue( exists != 0 );
+	    	
+	    }
+		
+		@Test
+	    public void testcrearFormal2()
+	    {
+			GestorConjuntos gc = new GestorConjuntos(); 
+			GestorPrendas gp = new GestorPrendas();
+			
+			Prenda prenda12 = new Prenda ( '0', "Polo", "Blanco", "Algodón", "/", "j");
+			
+			
+			gp.anyadirPrenda( BaseDeDatos.getStatement(), prenda12); 
+	    	int exists = gc.crearFormal2();
+	    	
+	    	assertTrue( exists != 0 );
+	    }
+	    	
+
+	    public void testanyadirFechaCalendario()
+	    {
+		 	//Calendario c1 =new Calendario (0, 0, null, null);
+	    	
+	    	GestorConjuntos gc = new GestorConjuntos(); 
+	    	gc.anyadriFechaCalendario('1', "Marzo",'1');
+	    	//assertEquals( c1.getUsuario(), null );
+	    }
+	 
+	 @Test
+	    public void testmodFavConjunto()
+	    {
+		   	GestorConjuntos gc = new GestorConjuntos(); 
+	    	gc.modifFavConjunto('1');
+	    	//assertEquals( conjunto5.getUsuario(), "Jon" );
+	    	
+	    }
+	 
+	 @Test
+	    public void testmodifConjAleatorio()
+	    {
+		   	GestorConjuntos gc = new GestorConjuntos(); 
+	    	gc.modifConjAleatorio('1');
+	    	
+	    	
+	    }
+	 
+
 
 }

@@ -108,8 +108,22 @@ import grupo2.LN.usuario;
 	    
 	    }
 	    
-	   
+	    @Test
+	    public void testselectFavoritos()
+	    {
+	    	GestorPrendas gp = new GestorPrendas();
+	    	GestorUsuario gu = new GestorUsuario();
+	    	usuario usuario = new usuario("leire", "leire"); 
+	    	
+	    	gu.anyadirFilaATablauUsuario(usuario);
+	    	gu.modificarUsuarioSistema(usuario);
+	    	Conjunto[] favoritos = gp.selectFavoritos(null);
 	    
+	    	assertEquals( favoritos.length, 4 );
+	    
+	    }
+	    
+	  
 	    
 	    
 	}
