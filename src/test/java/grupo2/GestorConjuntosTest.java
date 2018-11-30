@@ -28,17 +28,29 @@ public class GestorConjuntosTest {
 		BaseDeDatos.crearTablaBDPrenda();
 		BaseDeDatos.crearTablaBDConjunto();
 		BaseDeDatos.crearTablaBDUsuario();
+		BaseDeDatos.crearTablaBDPropuestas();
+		BaseDeDatos.crearTablaBDCalendario();
 		BaseDeDatos.crearTablaUsuarioSesion();
 		
 		GestorConjuntos gc = new GestorConjuntos();
-		
-		
+				
 		Conjunto conjunto1 = new Conjunto('1', '3', '2', "leire", '0');  
 		Conjunto conjunto2 = new Conjunto( '2', '1', '2', "leire", '0'); 
 		
 		gc.anyadirConjunto(conjunto1);
 		gc.anyadirConjunto(conjunto2);
 		
+		Conjunto propuesta1 = new Conjunto('1', '2', '1', "jon", '0');  
+		Conjunto propuesta2 = new Conjunto( '2', '1', '1', "gorka", '0'); 
+		
+		gc.anyadirConjuntoA(propuesta1);
+		gc.anyadirConjuntoA(propuesta2);
+		
+		Calendario calendario1 = new Calendario('1', '2', "jon", null);  
+		Calendario calendario2 = new Calendario( '2', '1', "leire", null); 
+		
+		gc.anyadirConjuntoCalendario('1');
+		gc.anyadirConjuntoCalendario('2');
 		setUpIsDone = true;
     }
 	
@@ -58,21 +70,21 @@ public class GestorConjuntosTest {
 	    {
 		 GestorConjuntos gc = new GestorConjuntos(); 
 	    	int max = gc.maxIdConjunto();
-	       // assertTrue( max == 4 );
+	        assertTrue( max == 3 );
 	    }
 	 @Test
 	    public void testmaxIdPropuesta()
 	    {
 		 GestorConjuntos gc = new GestorConjuntos(); 
 	    	int max = gc.maxIdPropuesta();
-	       // assertTrue( max == 1 );
+	        assertTrue( max == 2 );
 	    }
 	 @Test
 	    public void testmaxIdCalendario()
 	    {
 		 GestorConjuntos gc = new GestorConjuntos(); 
 	    	int max = gc.maxIdCalendario();
-	        //assertTrue( max == 1 );
+	        assertTrue( max == 2 );
 	    }
 	 @Test
 	    public void testanyadirConjuntoA()
@@ -137,6 +149,21 @@ public class GestorConjuntosTest {
 	    	Conjunto[] conjuntos = gc.selectConjuntosFav();
 	    
 	    	assertEquals( conjuntos.length, 4 );
+	    
+	    }
+	 
+	 @Test
+	    public void testselectPropuestaFav()
+	    {
+		 	GestorConjuntos gc = new GestorConjuntos();
+	    	GestorUsuario gu = new GestorUsuario();
+	    	usuario usuario = new usuario("leire", "leire"); 
+	    	
+	    	gu.anyadirFilaATablauUsuario(usuario);
+	    	gu.modificarUsuarioSistema(usuario);
+	    	Conjunto[] propuestas = gc.selectPropuestaFav();
+	    
+	    	assertEquals( propuestas.length, 4 );
 	    
 	    }
 	 
@@ -339,7 +366,36 @@ public class GestorConjuntosTest {
 	    	int exists = gc.crearFormal2();
 	    	
 	    	assertTrue( exists != 0 );
+	    }
+	    	
+
+	    public void testanyadirFechaCalendario()
+	    {
+		 	//Calendario c1 =new Calendario (0, 0, null, null);
+	    	
+	    	GestorConjuntos gc = new GestorConjuntos(); 
+	    	gc.anyadriFechaCalendario('1', "Marzo",'1');
+	    	//assertEquals( c1.getUsuario(), null );
+	    }
+	 
+	 @Test
+	    public void testmodFavConjunto()
+	    {
+		   	GestorConjuntos gc = new GestorConjuntos(); 
+	    	gc.modifFavConjunto('1');
+	    	//assertEquals( conjunto5.getUsuario(), "Jon" );
 	    	
 	    }
+	 
+	 @Test
+	    public void testmodifConjAleatorio()
+	    {
+		   	GestorConjuntos gc = new GestorConjuntos(); 
+	    	gc.modifConjAleatorio('1');
+	    	
+	    	
+	    }
+	 
+
 
 }
